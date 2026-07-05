@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PCCS — Hero Section (Build Preview)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1C1C1A; --cream:#FFFFFF; --muted:#1C1C1A;
+    --line:rgba(28,28,26,.12);
+    --gold:#B8924A; --gold-soft:#D4B87E;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--cream);color:var(--ink);font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;}
+
+  /* ===================== PAGE CONTAINER (fixed thin outer margin) ===================== */
+  .page{
+    padding:24px 40px 0;
+  }
+
+  /* ===================== HERO STAGE ===================== */
+  .hero-stage{
+    position:relative;
+    height:88vh;
+    min-height:600px;
+    overflow:hidden;
+    border-radius:28px;
+    display:flex;align-items:center;justify-content:center;
+    background:var(--cream);
+    container-type:inline-size;
+    container-name:hero;
+  }
+
+  .hero-frame{
+    position:relative;
+    width:34%;
+    height:46%;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 30px 80px rgba(0,0,0,.18);
+    transition:
+      width 1.3s cubic-bezier(.65,0,.15,1),
+      height 1.3s cubic-bezier(.65,0,.15,1),
+      border-radius .9s cubic-bezier(.65,0,.15,1) .1s;
+  }
+  .hero-stage.expanded .hero-frame{
+    width:100%;
+    height:100%;
+    border-radius:28px;
+  }
+
+  .hero-frame img{
+    position:absolute;inset:0;
+    width:100%;height:100%;
+    object-fit:cover;
+    object-position:center 38%;
+    transform-origin:center;
+    will-change:transform;
+  }
+
+  /* subtle dark gradient only for text legibility - no colour tint added */
+  .hero-scrim{
+    position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(0,0,0,.05) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,.35) 100%);
+    opacity:0;
+    transition:opacity 1s ease .5s;
+  }
+  .hero-stage.expanded .hero-scrim{opacity:1;}
+
+  /* ===================== NAV ===================== */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    display:flex;justify-content:center;
+    padding:36px 80px;
+    opacity:0;
+    transform:translateY(-14px);
+    pointer-events:none;
+    transition:opacity .8s ease, transform .8s ease;
+  }
+  nav.nav-visible{opacity:1;transform:translateY(0);pointer-events:auto;}
+  nav.nav-hidden{transform:translateY(-110%);opacity:0;pointer-events:none;}
+
+  .nav-in{
+    position:relative;
+    width:100%;
+    max-width:var(--nav-full,1760px);
+    display:flex;align-items:center;justify-content:space-between;
+    border-radius:999px;
+    transition:max-width .6s cubic-bezier(.4,0,.2,1), padding .6s cubic-bezier(.4,0,.2,1);
+    will-change:max-width;
+  }
+  /* dark blurred pill background — fades in via opacity (compositor-smooth) */
+  .nav-in::before{
+    content:"";position:absolute;inset:0;border-radius:999px;z-index:-1;pointer-events:none;
+    background:rgba(20,20,18,.72);
+    backdrop-filter:blur(16px) saturate(140%);
+    -webkit-backdrop-filter:blur(16px) saturate(140%);
+    box-shadow:0 12px 34px rgba(0,0,0,.24);
+    opacity:0;
+    transition:opacity .5s ease;
+  }
+  .nav-logo{display:flex;align-items:center;text-decoration:none;}
+  .nav-logo img{height:46px;transition:height .6s cubic-bezier(.4,0,.2,1);filter:brightness(0) invert(1);}
+  .nav-links{display:flex;gap:28px;align-items:center;transition:gap .6s cubic-bezier(.4,0,.2,1);}
+  .nav-links a{
+    font-size:13.5px;font-weight:500;letter-spacing:.0085em;
+    color:#fff;text-decoration:none;opacity:.92;
+    transition:opacity .2s, font-size .6s cubic-bezier(.4,0,.2,1);
+    white-space:nowrap;
+  }
+  .nav-links a:hover{opacity:1;}
+  .lang{font-size:12.5px;color:rgba(255,255,255,.75);letter-spacing:.017em;white-space:nowrap;}
+  .nav-cta{
+    font-size:13px;font-weight:600;color:var(--ink)!important;
+    background:#fff;padding:10px 22px;border-radius:999px;opacity:1!important;
+  }
+
+  /* SCROLLED state: nav shrinks into a centered pill — all props ease in unison */
+  nav.nav-scrolled .nav-in{
+    max-width:880px;
+    padding:10px 12px 10px 22px;
+  }
+  nav.nav-scrolled .nav-in::before{opacity:1;}
+  nav.nav-scrolled .nav-logo img{height:30px;}
+  nav.nav-scrolled .nav-links{gap:22px;}
+  nav.nav-scrolled .nav-links a:not(.nav-cta){font-size:13px;}
+
+  @media(max-width:900px){
+    .nav-links a:not(.nav-cta){display:none;}
+    .lang{display:none;}
+    nav{padding:24px 24px;}
+  }
+
+  /* ===================== HERO CONTENT ===================== */
+  .hero-content{
+    position:absolute;left:0;right:0;bottom:0;
+    padding:0 40px 48px;
+    color:#fff;
+    opacity:0;
+    transition:opacity .9s ease .9s;
+  }
+  .hero-stage.expanded .hero-content{opacity:1;}
+
+  .eyebrow{
+    font-size:clamp(12px,.83cqw,16px);letter-spacing:.187em;text-transform:uppercase;
+    color:#fff;font-weight:700;margin-bottom:26px;
+  }
+  .hero-content h1{
+    font-family:'Inter',system-ui,sans-serif;font-weight:300;
+    font-size:clamp(46px,7.94cqw,152px);line-height:.88;letter-spacing:-.034em;
+  }
+  .hero-content h1 .line{
+    display:block;
+    opacity:0;transform:translateY(28px);
+    transition:opacity .8s cubic-bezier(.22,.61,.36,1), transform .8s cubic-bezier(.22,.61,.36,1);
+  }
+  .hero-stage.expanded .hero-content h1 .line{opacity:1;transform:none;}
+  .hero-content h1 .line:nth-child(1){transition-delay:1.15s;}
+  .hero-content h1 .line:nth-child(2){transition-delay:1.28s;}
+  .hero-content h1 .line:nth-child(3){transition-delay:1.41s;}
+
+  /* ===================== NEWS CARD (light frosted glass) ===================== */
+  .news-card{
+    position:absolute;right:2.08cqw;bottom:4.17cqw;
+    width:clamp(280px,20.42cqw,392px);
+    padding:8px;
+    border-radius:8px;
+    background:rgba(255,255,255,.22);
+    backdrop-filter:blur(18px) saturate(140%);
+    -webkit-backdrop-filter:blur(18px) saturate(140%);
+    box-shadow:0 24px 60px rgba(0,0,0,.22);
+    opacity:0;transform:translateY(20px);
+    transition:opacity .9s cubic-bezier(.22,.61,.36,1) 1.55s, transform .9s cubic-bezier(.22,.61,.36,1) 1.55s;
+  }
+  .hero-stage.expanded .news-card{opacity:1;transform:none;}
+  .nc-imgwrap{overflow:hidden;border-radius:4px;line-height:0;}
+  .news-card img{width:100%;height:clamp(160px,13.02cqw,250px);object-fit:cover;display:block;
+    transition:transform .7s cubic-bezier(.22,.61,.36,1);will-change:transform;}
+  .news-card:hover img{transform:scale(1.08);}
+  .news-card-body{
+    height:clamp(140px,9.84cqw,189px);
+    padding:14px 8px 8px;
+    display:flex;flex-direction:column;justify-content:space-between;
+    position:relative;
+  }
+  .news-card .tag{
+    font-size:clamp(11px,.68cqw,13px);letter-spacing:.119em;text-transform:uppercase;
+    color:#fff;font-weight:700;display:block;
+    opacity:.9;
+  }
+  .news-card .headline-row{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;}
+  .news-card .headline{font-size:clamp(20px,1.56cqw,30px);line-height:1.15;color:#fff;font-weight:700;}
+  .news-card .arrow{
+    flex:none;
+    width:clamp(34px,2.29cqw,44px);height:clamp(34px,2.29cqw,44px);border-radius:6px;
+    background:rgba(255,255,255,.3);
+    display:flex;align-items:center;justify-content:center;
+    color:#fff;font-size:18px;
+  }
+
+  /* ===================== FOOTER STRIP (below the card, on plain page) ===================== */
+  .hero-foot-in{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:20px 4px;font-size:14px;letter-spacing:.153em;text-transform:uppercase;
+    font-weight:700;
+    color:var(--muted);
+    border-top:1px solid var(--line);
+    margin-top:0;
+  }
+
+  /* ===================== SPACER ===================== */
+  .below-hero{
+    max-width:1400px;margin:0 auto;
+    padding:60px 32px 90px;
+    color:var(--muted);
+    font-size:14px;
+  }
+
+  /* ===================== MOBILE (phones) ===================== */
+  @media(max-width:680px){
+    .page{padding:14px 14px 0;}
+    .hero-stage{border-radius:18px;min-height:680px;}
+    .hero-frame{border-radius:16px;}
+    .hero-stage.expanded .hero-frame{border-radius:18px;}
+
+    nav{padding:20px 18px;}
+    .nav-logo img{height:34px;}
+
+    .hero-content{padding:0 20px 24px;}
+    .eyebrow{font-size:11px;letter-spacing:.153em;margin-bottom:16px;}
+    .hero-content h1{font-size:clamp(34px,11.5vw,56px);line-height:.94;letter-spacing:-.017em;}
+
+    /* move the news card up top (under nav) so it never collides with the headline below */
+    .news-card{
+      top:86px;right:16px;left:16px;bottom:auto;
+      width:auto;
+    }
+    .news-card img{height:120px;}
+    .news-card-body{height:auto;padding:12px 10px 12px;}
+    .news-card .tag{font-size:10.5px;}
+    .news-card .headline{font-size:18px;}
+    .news-card .arrow{width:30px;height:30px;font-size:14px;}
+
+    .hero-foot-in{
+      flex-direction:column;align-items:flex-start;gap:6px;
+      font-size:9.5px;letter-spacing:.119em;padding:16px 4px;
+    }
+
+    .below-hero{padding:40px 20px 60px;font-size:13px;}
+  }
+
+  /* ===================== BELIEF STRIP (section 2) ===================== */
+  .belief-strip{
+    container-type:inline-size;
+    background:#fff;
+    padding:110px 40px 0;
+  }
+  .belief-grid{
+    display:grid;grid-template-columns:1fr 1fr;
+    max-width:100%;
+  }
+  .belief-copy{padding-left:clamp(0px,2.6cqw,50px);}
+  .belief-copy p{
+    font-size:clamp(22px,2.14cqw,41px);
+    line-height:1.4;
+    font-weight:300;
+    letter-spacing:-.017em;
+    color:var(--ink);
+    max-width:18em;
+  }
+  .belief-btn{
+    display:inline-flex;align-items:center;gap:10px;
+    margin-top:34px;
+    background:#E6E6E6;
+    color:var(--ink);
+    text-decoration:none;
+    font-size:clamp(13px,.83cqw,16px);
+    font-weight:500;
+    padding:14px 22px;
+    border-radius:8px;
+    transition:background-color .25s ease;
+  }
+  .belief-btn:hover{background:#DAD8D3;}
+  .belief-btn span{transition:transform .25s ease;}
+  .belief-btn:hover span{transform:translateX(3px);}
+
+  @media(max-width:900px){
+    .belief-grid{grid-template-columns:1fr;}
+    .belief-empty{display:none;}
+    .belief-copy{padding-left:0;}
+    .belief-copy p{max-width:none;}
+  }
+  @media(max-width:680px){
+    .belief-strip{padding:64px 20px 0;}
+    .belief-copy p{font-size:clamp(20px,6.5vw,28px);line-height:1.35;}
+    .belief-btn{margin-top:24px;padding:12px 18px;}
+  }
+
+  /* ===================== LOGO MARQUEE ===================== */
+  .logo-marquee{
+    margin-top:200px;
+    padding-bottom:160px;
+    display:flex;flex-direction:column;gap:50px;
+    overflow:hidden;
+  }
+  .logo-row{width:100%;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);}
+  .logo-track{
+    display:flex;align-items:center;
+    width:max-content;
+    gap:clamp(48px,6cqw,96px);
+    will-change:transform;
+  }
+  .logo-track img{
+    height:clamp(32px,5cqw,64px);
+    width:auto;
+    object-fit:contain;
+    flex:none;
+  }
+  .logo-track.scroll-left{animation:scrollLeft 42s linear infinite;}
+  .logo-track.scroll-right{animation:scrollRight 42s linear infinite;}
+  @keyframes scrollLeft{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+  @keyframes scrollRight{from{transform:translateX(-50%);}to{transform:translateX(0);}}
+
+  @media(max-width:680px){
+    .logo-marquee{margin-top:48px;gap:30px;padding-bottom:50px;}
+    .logo-track{gap:36px;}
+    .logo-track img{height:28px;}
+  }
+
+  /* ===================== BADGE STATEMENT (section 3) ===================== */
+  .badge-section{
+    container-type:inline-size;
+    background:#fff;
+    padding:60px 40px 120px;
+  }
+  .badge-head{text-align:center;max-width:1400px;margin:0 auto 60px;}
+  .badge-head .k{
+    font-size:clamp(12px,.83cqw,16px);letter-spacing:.187em;text-transform:uppercase;
+    color:var(--gold);font-weight:700;margin-bottom:22px;
+  }
+  .badge-head h2{
+    font-family:'Inter',system-ui,sans-serif;font-weight:300;
+    font-size:clamp(32px,5.26cqw,101px);line-height:1.05;letter-spacing:-.07em;
+    color:var(--ink);
+  }
+
+  .badge-image{
+    position:relative;
+    max-width:1840px;margin:0 auto;
+    aspect-ratio:1842/742;
+    border-radius:24px;
+    overflow:hidden;
+    display:flex;align-items:center;
+  }
+  .badge-image img{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+    transform-origin:center;will-change:transform;
+  }
+  .badge-quote{
+    position:relative;z-index:1;
+    padding:0 clamp(24px,7.6cqw,146px);
+    max-width:38em;
+  }
+  .badge-quote p{
+    font-size:clamp(20px,2cqw,38px);
+    line-height:1.32;font-weight:300;letter-spacing:-.017em;
+  }
+  .badge-quote p span.w{color:#fff;}
+  .badge-quote p span.g{color:var(--gold-soft);}
+  .badge-quote cite{
+    display:block;margin-top:20px;font-style:normal;
+    font-size:clamp(12px,.72cqw,14px);letter-spacing:.17em;text-transform:uppercase;
+    color:rgba(255,255,255,.55);font-weight:600;
+  }
+
+  .badge-copy{
+    display:grid;grid-template-columns:1fr 1fr;
+    max-width:1840px;margin:70px auto 0;
+  }
+  .badge-copy-col{padding-left:clamp(0px,2.6cqw,50px);display:flex;flex-direction:column;gap:28px;}
+  .badge-copy-col p{
+    font-size:clamp(22px,2.14cqw,41px);
+    line-height:1.4;font-weight:300;letter-spacing:-.037em;color:var(--ink);max-width:20em;
+  }
+
+  @media(max-width:900px){
+    .badge-copy{grid-template-columns:1fr;}
+    .badge-copy-col{padding-left:0;}
+    .badge-copy-col p{max-width:none;}
+  }
+  @media(max-width:680px){
+    .badge-section{padding:50px 20px 70px;}
+    .badge-head{margin-bottom:34px;}
+    .badge-head h2{font-size:clamp(28px,8vw,40px);}
+    .badge-image{border-radius:16px;aspect-ratio:auto;min-height:420px;}
+    .badge-quote{padding:0 22px;}
+    .badge-quote p{font-size:19px;}
+    .badge-copy{margin-top:40px;}
+    .badge-copy-col p{font-size:clamp(20px,6.5vw,28px);line-height:1.35;}
+  }
+
+  /* ===================== SHARED (sections 4-9) ===================== */
+  .sec{container-type:inline-size;background:#fff;padding:120px 40px;}
+  .sec-wrap{max-width:1840px;margin:0 auto;}
+  /* fade-up reveal on scroll */
+  .rv{opacity:0;transform:translateY(34px);transition:opacity .9s cubic-bezier(.22,.61,.36,1),transform .9s cubic-bezier(.22,.61,.36,1);transition-delay:var(--d,0s);will-change:opacity,transform;}
+  .rv.in{opacity:1;transform:none;}
+  @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none;}}
+  .sec-k{font-size:clamp(12px,.83cqw,16px);letter-spacing:.187em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:22px;}
+  .sec-h2{font-family:'Inter',system-ui,sans-serif;font-weight:300;font-size:clamp(24px,3.83cqw,71px);line-height:1.06;letter-spacing:-.037em;color:var(--ink);}
+  .feature-h2{font-family:'Inter',system-ui,sans-serif;font-weight:300;font-size:clamp(32px,5.3cqw,101px);line-height:1.05;letter-spacing:-.07em;color:var(--ink);}
+  .feature-h2 .g{color:var(--gold);}
+  .sec-h2 .g{color:var(--gold);}
+  .pill-btn{display:inline-flex;align-items:center;gap:10px;background:#E6E6E6;color:var(--ink);text-decoration:none;font-size:clamp(13px,.83cqw,16px);font-weight:500;padding:14px 22px;border-radius:8px;transition:background-color .25s;white-space:nowrap;}
+  .pill-btn:hover{background:#DAD8D3;}
+  .pill-btn span{transition:transform .25s;}
+  .pill-btn:hover span{transform:translateX(3px);}
+
+  /* card image hover-zoom (shared) */
+  .card-imgwrap{overflow:hidden;border-radius:16px;line-height:0;}
+  .card-imgwrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.22,.61,.36,1);will-change:transform;}
+  .card-imgwrap:hover img{transform:scale(1.05);}
+
+  /* ---- WHAT WE DO (sec 4) ---- */
+  .wtd-head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:56px;}
+  .wtd-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;}
+  .wtd-card .card-imgwrap{aspect-ratio:564/398;}
+  .wtd-card h3{font-size:clamp(22px,2.4cqw,44px);font-weight:400;letter-spacing:-.017em;color:var(--ink);margin:28px 0 16px;}
+  .wtd-card p{font-size:clamp(14px,1.4cqw,26px);line-height:1.5;letter-spacing:-.017em;color:var(--ink);max-width:22em;}
+
+  /* ---- NUMBERS (sec 5) ---- */
+  .nums-head{text-align:center;margin-bottom:64px;}
+  .nums-grid{display:grid;grid-template-columns:repeat(4,1fr);}
+  .num-cell{padding:6px 0 6px 40px;border-left:1px solid var(--line);}
+  .num-cell:first-child{border-left:none;padding-left:0;}
+  .num-n{font-family:'Inter',system-ui,sans-serif;font-weight:300;font-size:clamp(46px,6.8cqw,130px);line-height:1;letter-spacing:-.0255em;color:var(--ink);}
+  .num-n .plus{font-size:.5em;font-weight:400;vertical-align:middle;margin-left:.04em;letter-spacing:0;}
+  .num-l{margin-top:22px;font-size:clamp(14px,1.4cqw,26px);line-height:1.5;letter-spacing:-.017em;color:var(--ink);max-width:13em;}
+  .nums-sec{padding-top:60px;padding-bottom:60px;}
+  .nums-sec .sec-wrap{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding-top:80px;padding-bottom:80px;}
+
+  /* ---- OUR GROUP (sec 6) ---- */
+  .grp-head{margin-bottom:56px;}
+  .grp-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:24px;}
+  .grp-card .card-imgwrap{height:clamp(360px,36.8cqw,678px);}
+  .grp-tag{font-size:clamp(11px,.72cqw,14px);letter-spacing:.136em;text-transform:uppercase;font-weight:700;color:var(--gold);margin:26px 0 12px;}
+  .grp-card h3{font-size:clamp(22px,2.4cqw,44px);font-weight:400;letter-spacing:-.017em;color:var(--ink);margin-bottom:14px;}
+  .grp-card p{font-size:clamp(14px,1.4cqw,26px);line-height:1.5;letter-spacing:-.017em;color:var(--ink);}
+
+  /* ---- INVESTORS (sec 7) ---- */
+  .inv-head{margin-bottom:44px;padding-bottom:44px;border-bottom:1px solid var(--line);}
+  .inv-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;padding-bottom:56px;border-bottom:1px solid var(--line);}
+  .inv-copy p{font-size:clamp(22px,2.14cqw,41px);line-height:1.4;font-weight:300;letter-spacing:-.017em;color:var(--ink);margin-bottom:40px;}
+  .snap-top{display:flex;justify-content:space-between;align-items:baseline;}
+  .snap-title{font-size:clamp(18px,1.4cqw,27px);font-weight:700;color:var(--ink);}
+  .snap-tick{font-size:clamp(12px,.83cqw,15px);color:#777;}
+  .snap-tick b{color:var(--ink);margin-left:22px;font-weight:600;}
+  .snap-price{text-align:center;padding:54px 0;}
+  .snap-price .p{font-family:'Inter',system-ui,sans-serif;font-weight:300;font-size:clamp(64px,7.6cqw,146px);line-height:1;letter-spacing:-.0255em;color:var(--ink);}
+  .snap-price .u{font-size:clamp(13px,.9cqw,17px);color:#777;margin-left:10px;vertical-align:top;}
+  .snap-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding-top:24px;border-top:1px solid var(--line);}
+  .snap-row .lab{font-size:clamp(9px,.62cqw,11px);letter-spacing:.102em;text-transform:uppercase;color:#999;margin-bottom:8px;}
+  .snap-row .val{font-size:clamp(13px,1cqw,19px);font-weight:600;color:var(--ink);}
+
+  /* ---- CAREERS (sec 8) ---- */
+  .careers-head{text-align:center;margin-bottom:56px;}
+  .careers-media{position:relative;max-width:1840px;margin:0 auto;border-radius:24px;overflow:hidden;aspect-ratio:1842/1086;}
+  .careers-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transform-origin:center;will-change:transform;}
+  .careers-card{position:absolute;left:clamp(20px,2.6cqw,50px);bottom:clamp(20px,2.6cqw,50px);max-width:clamp(300px,32cqw,470px);padding:clamp(24px,2cqw,38px);border-radius:16px;background:rgba(255,255,255,.16);backdrop-filter:blur(20px) saturate(140%);-webkit-backdrop-filter:blur(20px) saturate(140%);}
+  .careers-card p{font-size:clamp(17px,1.56cqw,30px);line-height:1.32;font-weight:300;letter-spacing:-.07em;color:#fff;}
+  .careers-card .pill-btn{margin-top:26px;background:rgba(255,255,255,.9);}
+  .careers-card .pill-btn:hover{background:#fff;}
+
+  /* ---- FOOTER (sec 9) ---- */
+  .foot{background:#000;color:#fff;padding:70px clamp(24px,5vw,80px) 36px;}
+  .foot-wrap{max-width:1840px;margin:0 auto;}
+  .foot-top{display:grid;grid-template-columns:1fr 1.15fr;gap:60px;align-items:start;}
+  .foot-logo img{height:clamp(44px,4.5vw,64px);filter:brightness(0) invert(1);}
+  .foot-belief{margin-top:14px;font-size:clamp(12px,.9vw,15px);font-weight:300;color:var(--gold-soft);}
+  .foot-nav a{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.14);font-size:clamp(17px,1.6vw,30px);font-weight:300;color:#fff;text-decoration:none;transition:padding-left .3s,color .3s;}
+  .foot-nav a:first-child{border-top:1px solid rgba(255,255,255,.14);}
+  .foot-nav a:hover{padding-left:8px;color:var(--gold-soft);}
+  .foot-nav a .ar{font-size:.6em;opacity:.5;}
+  .foot-lower{display:grid;grid-template-columns:1fr 1.15fr;gap:60px;margin-top:70px;}
+  .foot-lower-right{display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px;}
+  .foot-desc{font-size:13px;line-height:1.65;font-weight:300;color:rgba(255,255,255,.85);max-width:26em;}
+  .foot-social{margin-top:18px;display:flex;flex-direction:column;gap:8px;font-size:12px;font-weight:300;color:rgba(255,255,255,.7);}
+  .foot-col h4{font-size:10px;letter-spacing:.17em;text-transform:uppercase;font-weight:300;color:var(--gold-soft);margin-bottom:16px;}
+  .foot-col a{display:block;font-size:13px;font-weight:300;color:rgba(255,255,255,.8);text-decoration:none;margin-bottom:11px;}
+  .foot-col a:hover{color:#fff;}
+  .foot-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-top:60px;padding-top:20px;border-top:1px solid rgba(255,255,255,.1);font-size:11px;font-weight:300;color:rgba(255,255,255,.6);}
+
+  @media(max-width:900px){
+    .sec{padding:70px 20px;}
+    .wtd-head{flex-direction:column;align-items:flex-start;gap:24px;}
+    .wtd-grid{grid-template-columns:1fr;gap:40px;}
+    .wtd-card p{max-width:none;}
+    .nums-grid{grid-template-columns:1fr 1fr;gap:40px 24px;}
+    .num-cell{padding-left:0;border-left:none;}
+    .grp-grid{grid-template-columns:1fr;gap:36px;}
+    .grp-card .card-imgwrap{height:clamp(320px,70vw,480px);}
+    .inv-grid{grid-template-columns:1fr;gap:44px;}
+    .careers-card{position:static;max-width:none;margin:16px;}
+    .foot{padding:60px 20px 32px;}
+    .foot-top{grid-template-columns:1fr;gap:36px;}
+    .foot-lower{grid-template-columns:1fr;gap:32px;}
+    .foot-lower-right{grid-template-columns:1fr 1fr;gap:24px;}
+    .foot-bottom{flex-direction:column;gap:8px;}
+  }
+</style>
+</head>
+<body>
+
+<nav id="siteNav">
+  <div class="nav-in">
+    <a class="nav-logo" href="#">
+      <img src="images/PCCS_logo.svg" alt="PCCS Group">
+    </a>
+    <div class="nav-links">
+      <a href="#">Story</a>
+      <a href="#">What We Do</a>
+      <a href="#">Our Work</a>
+      <a href="#">Our Group</a>
+      <a href="#">Investors</a>
+      <a href="#">Careers</a>
+      <span class="lang">EN&nbsp;·&nbsp;中文</span>
+      <a class="nav-cta" href="#">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<div class="page">
+  <div class="hero-stage" id="heroStage">
+    <div class="hero-frame">
+      <img src="images/hero1.jpg" alt="PCCS — the world wears our work" data-parallax="1.0,0.22,18">
+      <div class="hero-scrim"></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="eyebrow">Crafting the Badge</div>
+      <h1>
+        <span class="line">The World.</span>
+        <span class="line">Wears.</span>
+        <span class="line">Our Work.</span>
+      </h1>
+    </div>
+
+    <div class="news-card">
+      <div class="nc-imgwrap"><img src="images/latest-news-thumbnail.jpg" alt="Latest news"></div>
+      <div class="news-card-body">
+        <span class="tag">Latest News</span>
+        <div class="headline-row">
+          <div class="headline">2025 Annual Report</div>
+          <div class="arrow">↗</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-foot-in">
+    <span>PCCS Group &nbsp;·&nbsp; Est. 1973 &nbsp;·&nbsp; Bursa 6068</span>
+    <span>Design &nbsp;·&nbsp; Craft &nbsp;·&nbsp; Delivery</span>
+  </div>
+</div>
+
+<section class="belief-strip">
+  <div class="belief-grid">
+    <div class="belief-empty"></div>
+    <div class="belief-copy">
+      <p>For fifty years, the world&rsquo;s biggest brands &mdash; in sport and on the street &mdash; have trusted us to craft the marks they live by. The crest over the heart. The label inside the collar. The badge worn with pride.</p>
+      <a class="belief-btn" href="#">Learn More About Us <span>&rarr;</span></a>
+    </div>
+  </div>
+
+  <div class="logo-marquee">
+    <div class="logo-row">
+      <div class="logo-track scroll-left">
+        <img src="images/logo/beneunder.jpg" alt="Beneunder">
+        <img src="images/logo/puma.jpg" alt="Puma">
+        <img src="images/logo/bvb.jpg" alt="Borussia Dortmund">
+        <img src="images/logo/fcbayern.jpg" alt="FC Bayern Munich">
+        <img src="images/logo/bundesliga.jpg" alt="Bundesliga">
+        <img src="images/logo/forest.jpg" alt="Nottingham Forest">
+        <img src="images/logo/newcastle.jpg" alt="Newcastle United">
+        <img src="images/logo/decathlon.jpg" alt="Decathlon">
+        <img src="images/logo/disney.jpg" alt="Disney">
+        <img src="images/logo/beneunder.jpg" alt="Beneunder">
+        <img src="images/logo/puma.jpg" alt="Puma">
+        <img src="images/logo/bvb.jpg" alt="Borussia Dortmund">
+        <img src="images/logo/fcbayern.jpg" alt="FC Bayern Munich">
+        <img src="images/logo/bundesliga.jpg" alt="Bundesliga">
+        <img src="images/logo/forest.jpg" alt="Nottingham Forest">
+        <img src="images/logo/newcastle.jpg" alt="Newcastle United">
+        <img src="images/logo/decathlon.jpg" alt="Decathlon">
+        <img src="images/logo/disney.jpg" alt="Disney">
+      </div>
+    </div>
+    <div class="logo-row">
+      <div class="logo-track scroll-right">
+        <img src="images/logo/lining.jpg" alt="Li-Ning">
+        <img src="images/logo/reebok.jpg" alt="Reebok">
+        <img src="images/logo/adidas.jpg" alt="adidas">
+        <img src="images/logo/leichester.jpg" alt="Leicester City">
+        <img src="images/logo/avfc.jpg" alt="Aston Villa">
+        <img src="images/logo/target.jpg" alt="Target">
+        <img src="images/logo/timberland.jpg" alt="Timberland">
+        <img src="images/logo/champion.jpg" alt="Champion">
+        <img src="images/logo/lining.jpg" alt="Li-Ning">
+        <img src="images/logo/reebok.jpg" alt="Reebok">
+        <img src="images/logo/adidas.jpg" alt="adidas">
+        <img src="images/logo/leichester.jpg" alt="Leicester City">
+        <img src="images/logo/avfc.jpg" alt="Aston Villa">
+        <img src="images/logo/target.jpg" alt="Target">
+        <img src="images/logo/timberland.jpg" alt="Timberland">
+        <img src="images/logo/champion.jpg" alt="Champion">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="badge-section">
+  <div class="badge-head">
+    <div class="k">Crafting the Badge</div>
+    <h2>The Smallest Mark<br>Carries Everything.</h2>
+  </div>
+
+  <div class="badge-image">
+    <img src="images/pccs-embroidery.jpg" alt="PCCS badge embroidery" data-parallax="1.15,0.18,12">
+    <div class="badge-quote">
+      <p><span class="w">&ldquo;We don&rsquo;t make the badge to be seen.</span> <span class="g">We make it to be worn with pride.&rdquo;</span></p>
+      <cite>The PCCS Manifesto</cite>
+    </div>
+  </div>
+
+  <div class="badge-copy">
+    <div></div>
+    <div class="badge-copy-col">
+      <p>It&rsquo;s the part people touch first and trust most &mdash; the mark that turns cloth into something you&rsquo;re proud to put on. The world&rsquo;s biggest names don&rsquo;t hand that to just anyone. For fifty years, they&rsquo;ve handed it to us.</p>
+      <p>We are the makers behind the mark. Every stitch carries someone else&rsquo;s reputation; every detail is a promise kept. A badge is more than a logo &mdash; it&rsquo;s a belief you can wear. Crafting it is the conviction we&rsquo;ve built our name on.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SEC 4: WHAT WE DO ===== -->
+<section class="sec">
+  <div class="sec-wrap">
+    <div class="wtd-head">
+      <div>
+        <div class="sec-k">What To Do</div>
+        <h2 class="sec-h2">Designing. Decorating. Delivering.</h2>
+      </div>
+      <a class="pill-btn" href="#">Explore our craft <span>&rarr;</span></a>
+    </div>
+    <div class="wtd-grid">
+      <article class="wtd-card">
+        <div class="card-imgwrap"><img src="images/what_to_do1.jpg" alt="Design and development"></div>
+        <h3>Design &amp; Development</h3>
+        <p>1,800+ styles a year, 50+ patents, a dedicated R&amp;D centre &mdash; we don&rsquo;t just make what brands imagine. We help them imagine it.</p>
+      </article>
+      <article class="wtd-card">
+        <div class="card-imgwrap"><img src="images/what_to_do2.jpg" alt="Embellishment"></div>
+        <h3>Embellishment</h3>
+        <p>Embroidery, print, sublimation, seamless &mdash; the marks and crests the world&rsquo;s most protected brands trust to our hands. This is the heart of our craft.</p>
+      </article>
+      <article class="wtd-card">
+        <div class="card-imgwrap"><img src="images/what_to_do3.jpg" alt="Manufacturing and delivery"></div>
+        <h3>Manufacturing &amp; Delivery</h3>
+        <p>An orchestrated network across China, Cambodia and Vietnam &mdash; owned facilities and trusted partners, delivering to the world on time, every time.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SEC 5: NUMBERS ===== -->
+<section class="sec nums-sec">
+  <div class="sec-wrap">
+    <div class="nums-head">
+      <div class="sec-k">Fifty Years of Proof</div>
+      <h2 class="feature-h2">Quietly World-Class,<br>All Along.</h2>
+    </div>
+    <div class="nums-grid">
+      <div class="num-cell"><div class="num-n"><span class="nv" data-to="50">50</span><span class="plus">+</span></div><div class="num-l">years crafting for the world&rsquo;s biggest brands</div></div>
+      <div class="num-cell"><div class="num-n"><span class="nv" data-to="1800">1800</span><span class="plus">+</span></div><div class="num-l">styles designed and developed every year</div></div>
+      <div class="num-cell"><div class="num-n"><span class="nv" data-to="30">30</span><span class="plus">+</span></div><div class="num-l">countries our products are sold in</div></div>
+      <div class="num-cell"><div class="num-n"><span class="nv" data-to="3">3</span></div><div class="num-l">manufacturing countries &mdash; China, Cambodia, Vietnam</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SEC 6: OUR GROUP ===== -->
+<section class="sec">
+  <div class="sec-wrap">
+    <div class="grp-head">
+      <div class="sec-k">Our Group</div>
+      <h2 class="feature-h2">One Standard. Growing Fields.</h2>
+    </div>
+    <div class="grp-grid">
+      <article class="grp-card">
+        <div class="card-imgwrap"><img src="images/our_group_1.jpg" alt="Apparel and embellishment"></div>
+        <div class="grp-tag">The Heart</div>
+        <h3>Apparel &amp; Embellishment</h3>
+        <p>The craft engine of the group &mdash; design, embellishment and manufacturing for the world&rsquo;s leading sport and lifestyle brands. Where the badge is made.</p>
+      </article>
+      <article class="grp-card">
+        <div class="card-imgwrap"><img src="images/our_group_2.jpg" alt="Medical"></div>
+        <div class="grp-tag">Growth Arm</div>
+        <h3>Medical</h3>
+        <p>La Prima &mdash; precision medical devices, built with the same exacting standard our craft is known for. A new field, the same hands.</p>
+      </article>
+      <article class="grp-card">
+        <div class="card-imgwrap"><img src="images/our_group_3.jpg" alt="Finance"></div>
+        <div class="grp-tag">Growth Arm</div>
+        <h3>Finance</h3>
+        <p>EZFY &mdash; financial services growing toward its own listing. The same trust, applied to a different promise.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SEC 7: INVESTORS ===== -->
+<section class="sec">
+  <div class="sec-wrap">
+    <div class="inv-head">
+      <div class="sec-k">For Investors</div>
+      <h2 class="sec-h2">From Factory To Platform.<br><span class="g">A Story Worth Watching.</span></h2>
+    </div>
+    <div class="inv-grid">
+      <div class="inv-copy">
+        <p>PCCS is transforming &mdash; from an asset-heavy manufacturer into an asset-light apparel solutions platform that owns the craft, the design, the clients and the IP. Follow the numbers, the milestones and the story here.</p>
+        <a class="pill-btn" href="#">Investor Relations <span>&rarr;</span></a>
+      </div>
+      <div class="snap">
+        <div class="snap-top">
+          <div class="snap-title">Market Snapshot</div>
+          <div class="snap-tick">PCCS Group Berhad <b>6068</b></div>
+        </div>
+        <div class="snap-price"><span class="p">1.28</span><span class="u">MYR</span></div>
+        <div class="snap-row">
+          <div><div class="lab">Day&rsquo;s High</div><div class="val">RM1.38</div></div>
+          <div><div class="lab">Day&rsquo;s Low</div><div class="val">RM1.18</div></div>
+          <div><div class="lab">Day&rsquo;s Volume</div><div class="val">68,888.00</div></div>
+          <div><div class="lab">Last Updated</div><div class="val">8 hr ago</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SEC 8: CAREERS ===== -->
+<section class="sec">
+  <div class="sec-wrap careers-head">
+    <div class="sec-k">Careers</div>
+    <h2 class="feature-h2">You&rsquo;ve Worn Our Work.<br>Now Come Make It.</h2>
+  </div>
+  <div class="careers-media">
+    <img src="images/career.jpg" alt="Join the PCCS team" data-parallax="1.12,0.14,10">
+    <div class="careers-card">
+      <p>Join the hands behind the world&rsquo;s biggest brands &mdash; in design, engineering, craft and beyond. The next fifty years start with you.</p>
+      <a class="pill-btn" href="#">See Open Roles <span>&rarr;</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SEC 9: FOOTER ===== -->
+<footer class="foot">
+  <div class="foot-wrap">
+    <div class="foot-top">
+      <div>
+        <div class="foot-logo"><img src="images/PCCS_logo.svg" alt="PCCS Group"></div>
+        <div class="foot-belief">Crafting the Badge</div>
+      </div>
+      <div class="foot-nav">
+        <a href="#">Story</a>
+        <a href="#">What We Do</a>
+        <a href="#">Our Work</a>
+        <a href="#">Our Group</a>
+        <a href="#">Investors <span class="ar">&#8599;</span></a>
+        <a href="#">Careers</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+    <div class="foot-lower">
+      <div>
+        <div class="foot-desc">Crafting the marks the world&rsquo;s greatest brands are proud to wear. For fifty years, we&rsquo;ve been the master hand behind the badges of sport and apparel &mdash; designing, embellishing, and delivering what matters.</div>
+        <div class="foot-social">
+          <span>&#9993;&nbsp; @pccs-group-berhad-pccs</span>
+          <span>in&nbsp; linkedin.com/company/pccs-group-berhad-pccs</span>
+        </div>
+      </div>
+      <div class="foot-lower-right">
+        <div class="foot-col">
+          <h4>Company</h4>
+          <a href="#">Story</a><a href="#">What We Do</a><a href="#">Our Work</a><a href="#">Our Group</a><a href="#">Global Footprint</a>
+        </div>
+        <div class="foot-col">
+          <h4>Stakeholders</h4>
+          <a href="#">Investors</a><a href="#">Careers</a><a href="#">Sustainability</a><a href="#">Newsroom</a>
+        </div>
+        <div class="foot-col">
+          <h4>Contact</h4>
+          <a href="#">Kuala Lumpur HQ</a><a href="#">enquiry@pccsgroup.net</a><a href="#">EN &middot; &#20013;&#25991;</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; 2026 PCCS Group Berhad (Bursa: 6068). All rights reserved.</span>
+      <span>Proposal by Startfrom X Sdn Bhd. Design mockup &mdash; for internal review only.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const stage = document.getElementById('heroStage');
+  const nav = document.getElementById('siteNav');
+
+  // set the nav's full-width start value precisely, so the pill shrink is a smooth px->px transition
+  function setNavFull(){
+    const padX = innerWidth <= 900 ? 22 : 80;
+    document.documentElement.style.setProperty('--nav-full', (innerWidth - padX * 2) + 'px');
+  }
+  setNavFull();
+  addEventListener('resize', setNavFull);
+
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      stage.classList.add('expanded');
+      setTimeout(() => nav.classList.add('nav-visible'), 550);
+    }, 250);
+  });
+
+  let lastY = 0;
+  addEventListener('scroll', () => {
+    const y = scrollY;
+    if (y > 80) nav.classList.add('nav-scrolled');
+    else if (y < 40) nav.classList.remove('nav-scrolled');
+
+    if (y > 600) {
+      if (y > lastY) nav.classList.add('nav-hidden');
+      else nav.classList.remove('nav-hidden');
+    } else {
+      nav.classList.remove('nav-hidden');
+    }
+    lastY = y;
+  }, {passive:true});
+
+  // ---- scroll-driven parallax (zoom + downward drift) on tagged images ----
+  (function(){
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const items = Array.prototype.slice.call(document.querySelectorAll('[data-parallax]')).map(function(img){
+      const parts = img.dataset.parallax.split(',').map(Number); // base, max, drift%
+      const box = img.closest('.badge-image, .hero-frame, .careers-media') || img.parentElement;
+      return { img: img, box: box, base: parts[0], max: parts[1], drift: parts[2] };
+    });
+    if (!items.length) return;
+    let ticking = false;
+
+    function update(){
+      const vh = innerHeight;
+      items.forEach(function(it){
+        const r = it.box.getBoundingClientRect();
+        let p = (vh - r.top) / (vh + r.height);   // 0 entering -> 1 leaving
+        p = Math.max(0, Math.min(1, p));
+        const scale = (it.base + p * it.max).toFixed(4);
+        const ty = ((p - 0.5) * it.drift).toFixed(2);
+        it.img.style.transform = 'translateY(' + ty + '%) scale(' + scale + ')';
+      });
+      ticking = false;
+    }
+    function onScroll(){ if (!ticking){ ticking = true; requestAnimationFrame(update); } }
+    addEventListener('scroll', onScroll, {passive:true});
+    addEventListener('resize', onScroll, {passive:true});
+    update();
+  })();
+
+  // ---- global fade-up reveal on scroll (all images + text below the hero) ----
+  (function(){
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const sel = '.belief-copy, .badge-head, .badge-image, .badge-copy-col > p,'
+      + '.wtd-head, .wtd-card, .nums-head, .num-cell, .grp-head, .grp-card,'
+      + '.inv-head, .inv-copy, .snap, .careers-head, .careers-media,'
+      + '.foot-top, .foot-lower, .foot-bottom, .logo-row';
+    const els = Array.prototype.slice.call(document.querySelectorAll(sel));
+    els.forEach(el => el.classList.add('rv'));
+    // stagger children within grids
+    document.querySelectorAll('.wtd-grid, .nums-grid, .grp-grid').forEach(grid => {
+      Array.prototype.slice.call(grid.children).forEach((c, i) => c.style.setProperty('--d', (i * 0.1) + 's'));
+    });
+    if (reduce){ els.forEach(el => el.classList.add('in')); return; }
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+    els.forEach(el => io.observe(el));
+  })();
+
+  // ---- count-up on the stats when scrolled into view ----
+  (function(){
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        io.unobserve(e.target);
+        const el = e.target, to = +el.dataset.to, dur = 1500, t0 = performance.now();
+        (function tick(t){
+          const p = Math.min((t - t0) / dur, 1);
+          el.textContent = Math.round((1 - Math.pow(1 - p, 3)) * to);
+          if (p < 1) requestAnimationFrame(tick);
+        })(t0);
+      });
+    }, { threshold: 0.6 });
+    document.querySelectorAll('.nv[data-to]').forEach(el => io.observe(el));
+  })();
+</script>
+
+</body>
+</html>
