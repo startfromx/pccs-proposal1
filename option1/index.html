@@ -4,9 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PCCS — Hero Section (Build Preview)</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231C1C1A'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='21' font-weight='700' fill='%23B8924A' text-anchor='middle'%3EP%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --ink:#1C1C1A; --cream:#FFFFFF; --muted:#1C1C1A;
@@ -14,7 +16,7 @@
     --gold:#B8924A; --gold-soft:#D4B87E;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
-  body{background:var(--cream);color:var(--ink);font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;}
+  body{background:var(--cream);color:var(--ink);font-family:'Inter','Noto Sans SC',system-ui,sans-serif;-webkit-font-smoothing:antialiased;}
 
   /* ===================== PAGE CONTAINER (fixed thin outer margin) ===================== */
   .page{
@@ -113,6 +115,9 @@
   }
   .nav-links a:hover{opacity:1;}
   .lang{font-size:12.5px;color:rgba(255,255,255,.75);letter-spacing:.017em;white-space:nowrap;}
+  .lang-btn{color:rgba(255,255,255,.45);text-decoration:none;transition:color .25s;}
+  .lang-btn.active{color:#fff;}
+  .lang-btn:hover{color:rgba(255,255,255,.8);}
   .nav-cta{
     font-size:13px;font-weight:600;color:var(--ink)!important;
     background:#fff;padding:10px 22px;border-radius:999px;opacity:1!important;
@@ -149,7 +154,7 @@
     color:#fff;font-weight:700;margin-bottom:26px;
   }
   .hero-content h1{
-    font-family:'Inter',system-ui,sans-serif;font-weight:300;
+    font-family:'Inter','Noto Sans SC',system-ui,sans-serif;font-weight:300;
     font-size:clamp(46px,7.94cqw,152px);line-height:.88;letter-spacing:-.034em;
   }
   .hero-content h1 .line{
@@ -342,7 +347,7 @@
     color:var(--gold);font-weight:700;margin-bottom:22px;
   }
   .badge-head h2{
-    font-family:'Inter',system-ui,sans-serif;font-weight:300;
+    font-family:'Inter','Noto Sans SC',system-ui,sans-serif;font-weight:300;
     font-size:clamp(32px,5.26cqw,101px);line-height:1.05;letter-spacing:-.07em;
     color:var(--ink);
   }
@@ -410,8 +415,8 @@
   .rv.in{opacity:1;transform:none;}
   @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none;}}
   .sec-k{font-size:clamp(12px,.83cqw,16px);letter-spacing:.187em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:22px;}
-  .sec-h2{font-family:'Inter',system-ui,sans-serif;font-weight:300;font-size:clamp(24px,3.83cqw,71px);line-height:1.06;letter-spacing:-.037em;color:var(--ink);}
-  .feature-h2{font-family:'Inter',system-ui,sans-serif;font-weight:300;font-size:clamp(32px,5.3cqw,101px);line-height:1.05;letter-spacing:-.07em;color:var(--ink);}
+  .sec-h2{font-family:'Inter','Noto Sans SC',system-ui,sans-serif;font-weight:300;font-size:clamp(24px,3.83cqw,71px);line-height:1.06;letter-spacing:-.037em;color:var(--ink);}
+  .feature-h2{font-family:'Inter','Noto Sans SC',system-ui,sans-serif;font-weight:300;font-size:clamp(32px,5.3cqw,101px);line-height:1.05;letter-spacing:-.07em;color:var(--ink);}
   .feature-h2 .g{color:var(--gold);}
   .sec-h2 .g{color:var(--gold);}
   .pill-btn{display:inline-flex;align-items:center;gap:10px;background:#E6E6E6;color:var(--ink);text-decoration:none;font-size:clamp(13px,.83cqw,16px);font-weight:500;padding:14px 22px;border-radius:8px;transition:background-color .25s;white-space:nowrap;}
@@ -436,7 +441,7 @@
   .nums-grid{display:grid;grid-template-columns:repeat(4,1fr);}
   .num-cell{padding:6px 0 6px 40px;border-left:1px solid var(--line);}
   .num-cell:first-child{border-left:none;padding-left:0;}
-  .num-n{font-family:'Inter',system-ui,sans-serif;font-weight:300;font-size:clamp(46px,6.8cqw,130px);line-height:1;letter-spacing:-.0255em;color:var(--ink);}
+  .num-n{font-family:'Inter','Noto Sans SC',system-ui,sans-serif;font-weight:300;font-size:clamp(46px,6.8cqw,130px);line-height:1;letter-spacing:-.0255em;color:var(--ink);}
   .num-n .plus{font-size:.5em;font-weight:400;vertical-align:middle;margin-left:.04em;letter-spacing:0;}
   .num-l{margin-top:22px;font-size:clamp(14px,1.4cqw,26px);line-height:1.5;letter-spacing:-.017em;color:var(--ink);max-width:13em;}
   .nums-sec{padding-top:60px;padding-bottom:60px;}
@@ -459,7 +464,7 @@
   .snap-tick{font-size:clamp(12px,.83cqw,15px);color:#777;}
   .snap-tick b{color:var(--ink);margin-left:22px;font-weight:600;}
   .snap-price{text-align:center;padding:54px 0;}
-  .snap-price .p{font-family:'Inter',system-ui,sans-serif;font-weight:300;font-size:clamp(64px,7.6cqw,146px);line-height:1;letter-spacing:-.0255em;color:var(--ink);}
+  .snap-price .p{font-family:'Inter','Noto Sans SC',system-ui,sans-serif;font-weight:300;font-size:clamp(64px,7.6cqw,146px);line-height:1;letter-spacing:-.0255em;color:var(--ink);}
   .snap-price .u{font-size:clamp(13px,.9cqw,17px);color:#777;margin-left:10px;vertical-align:top;}
   .snap-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding-top:24px;border-top:1px solid var(--line);}
   .snap-row .lab{font-size:clamp(9px,.62cqw,11px);letter-spacing:.102em;text-transform:uppercase;color:#999;margin-bottom:8px;}
@@ -491,6 +496,8 @@
   .foot-col h4{font-size:10px;letter-spacing:.17em;text-transform:uppercase;font-weight:300;color:var(--gold-soft);margin-bottom:16px;}
   .foot-col a{display:block;font-size:13px;font-weight:300;color:rgba(255,255,255,.8);text-decoration:none;margin-bottom:11px;}
   .foot-col a:hover{color:#fff;}
+  .foot-col .foot-lang{display:block;margin-top:5px;font-size:13px;color:rgba(255,255,255,.55);}
+  .foot-col .foot-lang a{display:inline;margin:0;}
   .foot-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-top:60px;padding-top:20px;border-top:1px solid rgba(255,255,255,.1);font-size:11px;font-weight:300;color:rgba(255,255,255,.6);}
 
   @media(max-width:900px){
@@ -510,6 +517,25 @@
     .foot-lower-right{grid-template-columns:1fr 1fr;gap:24px;}
     .foot-bottom{flex-direction:column;gap:8px;}
   }
+
+  /* ===================== CJK (Chinese) type adjustments ===================== */
+  /* Negative tracking is a Latin refinement — reset it so Han characters aren't cramped. */
+  html[lang="zh-CN"] .hero-content h1,
+  html[lang="zh-CN"] .badge-head h2,
+  html[lang="zh-CN"] .sec-h2,
+  html[lang="zh-CN"] .feature-h2,
+  html[lang="zh-CN"] .num-n,
+  html[lang="zh-CN"] .snap-price .p,
+  html[lang="zh-CN"] .belief-copy p,
+  html[lang="zh-CN"] .badge-quote p,
+  html[lang="zh-CN"] .badge-copy-col p,
+  html[lang="zh-CN"] .inv-copy p,
+  html[lang="zh-CN"] .careers-card p,
+  html[lang="zh-CN"] .wtd-card p,
+  html[lang="zh-CN"] .grp-card p,
+  html[lang="zh-CN"] .num-l{letter-spacing:normal;}
+  /* Give the tight hero headline a touch more leading in Chinese. */
+  html[lang="zh-CN"] .hero-content h1{line-height:1.04;}
 </style>
 </head>
 <body>
@@ -520,14 +546,14 @@
       <img src="images/PCCS_logo.svg" alt="PCCS Group">
     </a>
     <div class="nav-links">
-      <a href="#">Story</a>
-      <a href="#">What We Do</a>
-      <a href="#">Our Work</a>
-      <a href="#">Our Group</a>
-      <a href="#">Investors</a>
-      <a href="#">Careers</a>
-      <span class="lang">EN&nbsp;·&nbsp;中文</span>
-      <a class="nav-cta" href="#">Contact</a>
+      <a href="#" data-t="nav.story">Story</a>
+      <a href="#" data-t="nav.whatwedo">What We Do</a>
+      <a href="#" data-t="nav.ourwork">Our Work</a>
+      <a href="#" data-t="nav.ourgroup">Our Group</a>
+      <a href="#" data-t="nav.investors">Investors</a>
+      <a href="#" data-t="nav.careers">Careers</a>
+      <span class="lang"><a class="lang-btn" data-lang="en" href="index.html">EN</a>&nbsp;·&nbsp;<a class="lang-btn" data-lang="cn" href="cn.html">中文</a></span>
+      <a class="nav-cta" href="#" data-t="nav.contact">Contact</a>
     </div>
   </div>
 </nav>
@@ -540,20 +566,20 @@
     </div>
 
     <div class="hero-content">
-      <div class="eyebrow">Crafting the Badge</div>
+      <div class="eyebrow" data-t="hero.eyebrow">Crafting the Badge</div>
       <h1>
-        <span class="line">The World.</span>
-        <span class="line">Wears.</span>
-        <span class="line">Our Work.</span>
+        <span class="line" data-t="hero.line1">The World.</span>
+        <span class="line" data-t="hero.line2">Wears.</span>
+        <span class="line" data-t="hero.line3">Our Work.</span>
       </h1>
     </div>
 
     <div class="news-card">
       <div class="nc-imgwrap"><img src="images/latest-news-thumbnail.jpg" alt="Latest news"></div>
       <div class="news-card-body">
-        <span class="tag">Latest News</span>
+        <span class="tag" data-t="news.tag">Latest News</span>
         <div class="headline-row">
-          <div class="headline">2025 Annual Report</div>
+          <div class="headline" data-t="news.headline">2025 Annual Report</div>
           <div class="arrow">↗</div>
         </div>
       </div>
@@ -561,8 +587,8 @@
   </div>
 
   <div class="hero-foot-in">
-    <span>PCCS Group &nbsp;·&nbsp; Est. 1973 &nbsp;·&nbsp; Bursa 6068</span>
-    <span>Design &nbsp;·&nbsp; Craft &nbsp;·&nbsp; Delivery</span>
+    <span data-t="hero.foot1">PCCS Group &nbsp;·&nbsp; Est. 1973 &nbsp;·&nbsp; Bursa 6068</span>
+    <span data-t="hero.foot2">Design &nbsp;·&nbsp; Craft &nbsp;·&nbsp; Delivery</span>
   </div>
 </div>
 
@@ -570,8 +596,8 @@
   <div class="belief-grid">
     <div class="belief-empty"></div>
     <div class="belief-copy">
-      <p>For fifty years, the world&rsquo;s biggest brands &mdash; in sport and on the street &mdash; have trusted us to craft the marks they live by. The crest over the heart. The label inside the collar. The badge worn with pride.</p>
-      <a class="belief-btn" href="#">Learn More About Us <span>&rarr;</span></a>
+      <p data-t="belief.body">For fifty years, the world&rsquo;s biggest brands &mdash; in sport and on the street &mdash; have trusted us to craft the marks they live by. The crest over the heart. The label inside the collar. The badge worn with pride.</p>
+      <a class="belief-btn" href="#" data-t="belief.btn">Learn More About Us <span>&rarr;</span></a>
     </div>
   </div>
 
@@ -623,23 +649,23 @@
 
 <section class="badge-section">
   <div class="badge-head">
-    <div class="k">Crafting the Badge</div>
-    <h2>The Smallest Mark<br>Carries Everything.</h2>
+    <div class="k" data-t="badge.eyebrow">Crafting the Badge</div>
+    <h2 data-t="badge.h2">The Smallest Mark<br>Carries Everything.</h2>
   </div>
 
   <div class="badge-image">
     <img src="images/pccs-embroidery.jpg" alt="PCCS badge embroidery" data-parallax="1.15,0.18,12">
     <div class="badge-quote">
-      <p><span class="w">&ldquo;We don&rsquo;t make the badge to be seen.</span> <span class="g">We make it to be worn with pride.&rdquo;</span></p>
-      <cite>The PCCS Manifesto</cite>
+      <p data-t="badge.quote"><span class="w">&ldquo;We don&rsquo;t make the badge to be seen.</span> <span class="g">We make it to be worn with pride.&rdquo;</span></p>
+      <cite data-t="badge.cite">The PCCS Manifesto</cite>
     </div>
   </div>
 
   <div class="badge-copy">
     <div></div>
     <div class="badge-copy-col">
-      <p>It&rsquo;s the part people touch first and trust most &mdash; the mark that turns cloth into something you&rsquo;re proud to put on. The world&rsquo;s biggest names don&rsquo;t hand that to just anyone. For fifty years, they&rsquo;ve handed it to us.</p>
-      <p>We are the makers behind the mark. Every stitch carries someone else&rsquo;s reputation; every detail is a promise kept. A badge is more than a logo &mdash; it&rsquo;s a belief you can wear. Crafting it is the conviction we&rsquo;ve built our name on.</p>
+      <p data-t="badge.body1">It&rsquo;s the part people touch first and trust most &mdash; the mark that turns cloth into something you&rsquo;re proud to put on. The world&rsquo;s biggest names don&rsquo;t hand that to just anyone. For fifty years, they&rsquo;ve handed it to us.</p>
+      <p data-t="badge.body2">We are the makers behind the mark. Every stitch carries someone else&rsquo;s reputation; every detail is a promise kept. A badge is more than a logo &mdash; it&rsquo;s a belief you can wear. Crafting it is the conviction we&rsquo;ve built our name on.</p>
     </div>
   </div>
 </section>
@@ -649,26 +675,26 @@
   <div class="sec-wrap">
     <div class="wtd-head">
       <div>
-        <div class="sec-k">What To Do</div>
-        <h2 class="sec-h2">Designing. Decorating. Delivering.</h2>
+        <div class="sec-k" data-t="wtd.eyebrow">What To Do</div>
+        <h2 class="sec-h2" data-t="wtd.h2">Designing. Decorating. Delivering.</h2>
       </div>
-      <a class="pill-btn" href="#">Explore our craft <span>&rarr;</span></a>
+      <a class="pill-btn" href="#" data-t="wtd.btn">Explore our craft <span>&rarr;</span></a>
     </div>
     <div class="wtd-grid">
       <article class="wtd-card">
         <div class="card-imgwrap"><img src="images/what_to_do1.jpg" alt="Design and development"></div>
-        <h3>Design &amp; Development</h3>
-        <p>1,800+ styles a year, 50+ patents, a dedicated R&amp;D centre &mdash; we don&rsquo;t just make what brands imagine. We help them imagine it.</p>
+        <h3 data-t="wtd1.title">Design &amp; Development</h3>
+        <p data-t="wtd1.body">1,800+ styles a year, 50+ patents, a dedicated R&amp;D centre &mdash; we don&rsquo;t just make what brands imagine. We help them imagine it.</p>
       </article>
       <article class="wtd-card">
         <div class="card-imgwrap"><img src="images/what_to_do2.jpg" alt="Embellishment"></div>
-        <h3>Embellishment</h3>
-        <p>Embroidery, print, sublimation, seamless &mdash; the marks and crests the world&rsquo;s most protected brands trust to our hands. This is the heart of our craft.</p>
+        <h3 data-t="wtd2.title">Embellishment</h3>
+        <p data-t="wtd2.body">Embroidery, print, sublimation, seamless &mdash; the marks and crests the world&rsquo;s most protected brands trust to our hands. This is the heart of our craft.</p>
       </article>
       <article class="wtd-card">
         <div class="card-imgwrap"><img src="images/what_to_do3.jpg" alt="Manufacturing and delivery"></div>
-        <h3>Manufacturing &amp; Delivery</h3>
-        <p>An orchestrated network across China, Cambodia and Vietnam &mdash; owned facilities and trusted partners, delivering to the world on time, every time.</p>
+        <h3 data-t="wtd3.title">Manufacturing &amp; Delivery</h3>
+        <p data-t="wtd3.body">An orchestrated network across China, Cambodia and Vietnam &mdash; owned facilities and trusted partners, delivering to the world on time, every time.</p>
       </article>
     </div>
   </div>
@@ -678,14 +704,14 @@
 <section class="sec nums-sec">
   <div class="sec-wrap">
     <div class="nums-head">
-      <div class="sec-k">Fifty Years of Proof</div>
-      <h2 class="feature-h2">Quietly World-Class,<br>All Along.</h2>
+      <div class="sec-k" data-t="nums.eyebrow">Fifty Years of Proof</div>
+      <h2 class="feature-h2" data-t="nums.h2">Quietly World-Class,<br>All Along.</h2>
     </div>
     <div class="nums-grid">
-      <div class="num-cell"><div class="num-n"><span class="nv" data-to="50">50</span><span class="plus">+</span></div><div class="num-l">years crafting for the world&rsquo;s biggest brands</div></div>
-      <div class="num-cell"><div class="num-n"><span class="nv" data-to="1800">1800</span><span class="plus">+</span></div><div class="num-l">styles designed and developed every year</div></div>
-      <div class="num-cell"><div class="num-n"><span class="nv" data-to="30">30</span><span class="plus">+</span></div><div class="num-l">countries our products are sold in</div></div>
-      <div class="num-cell"><div class="num-n"><span class="nv" data-to="3">3</span></div><div class="num-l">manufacturing countries &mdash; China, Cambodia, Vietnam</div></div>
+      <div class="num-cell"><div class="num-n"><span class="nv" data-to="50">50</span><span class="plus">+</span></div><div class="num-l" data-t="nums.stat1">years crafting for the world&rsquo;s biggest brands</div></div>
+      <div class="num-cell"><div class="num-n"><span class="nv" data-to="1800">1,800</span><span class="plus">+</span></div><div class="num-l" data-t="nums.stat2">styles designed and developed every year</div></div>
+      <div class="num-cell"><div class="num-n"><span class="nv" data-to="30">30</span><span class="plus">+</span></div><div class="num-l" data-t="nums.stat3">countries our products are sold in</div></div>
+      <div class="num-cell"><div class="num-n"><span class="nv" data-to="3">3</span></div><div class="num-l" data-t="nums.stat4">manufacturing countries &mdash; China, Cambodia, Vietnam</div></div>
     </div>
   </div>
 </section>
@@ -694,27 +720,27 @@
 <section class="sec">
   <div class="sec-wrap">
     <div class="grp-head">
-      <div class="sec-k">Our Group</div>
-      <h2 class="feature-h2">One Standard. Growing Fields.</h2>
+      <div class="sec-k" data-t="grp.eyebrow">Our Group</div>
+      <h2 class="feature-h2" data-t="grp.h2">One Standard. Growing Fields.</h2>
     </div>
     <div class="grp-grid">
       <article class="grp-card">
         <div class="card-imgwrap"><img src="images/our_group_1.jpg" alt="Apparel and embellishment"></div>
-        <div class="grp-tag">The Heart</div>
-        <h3>Apparel &amp; Embellishment</h3>
-        <p>The craft engine of the group &mdash; design, embellishment and manufacturing for the world&rsquo;s leading sport and lifestyle brands. Where the badge is made.</p>
+        <div class="grp-tag" data-t="grp1.tag">The Heart</div>
+        <h3 data-t="grp1.title">Apparel &amp; Embellishment</h3>
+        <p data-t="grp1.body">The craft engine of the group &mdash; design, embellishment and manufacturing for the world&rsquo;s leading sport and lifestyle brands. Where the badge is made.</p>
       </article>
       <article class="grp-card">
         <div class="card-imgwrap"><img src="images/our_group_2.jpg" alt="Medical"></div>
-        <div class="grp-tag">Growth Arm</div>
-        <h3>Medical</h3>
-        <p>La Prima &mdash; precision medical devices, built with the same exacting standard our craft is known for. A new field, the same hands.</p>
+        <div class="grp-tag" data-t="grp2.tag">Growth Arm</div>
+        <h3 data-t="grp2.title">Medical</h3>
+        <p data-t="grp2.body">La Prima &mdash; precision medical devices, built with the same exacting standard our craft is known for. A new field, the same hands.</p>
       </article>
       <article class="grp-card">
         <div class="card-imgwrap"><img src="images/our_group_3.jpg" alt="Finance"></div>
-        <div class="grp-tag">Growth Arm</div>
-        <h3>Finance</h3>
-        <p>EZFY &mdash; financial services growing toward its own listing. The same trust, applied to a different promise.</p>
+        <div class="grp-tag" data-t="grp3.tag">Growth Arm</div>
+        <h3 data-t="grp3.title">Finance</h3>
+        <p data-t="grp3.body">EZFY &mdash; financial services growing toward its own listing. The same trust, applied to a different promise.</p>
       </article>
     </div>
   </div>
@@ -724,25 +750,25 @@
 <section class="sec">
   <div class="sec-wrap">
     <div class="inv-head">
-      <div class="sec-k">For Investors</div>
-      <h2 class="sec-h2">From Factory To Platform.<br><span class="g">A Story Worth Watching.</span></h2>
+      <div class="sec-k" data-t="inv.eyebrow">For Investors</div>
+      <h2 class="sec-h2" data-t="inv.h2">From Factory To Platform.<br><span class="g">A Story Worth Watching.</span></h2>
     </div>
     <div class="inv-grid">
       <div class="inv-copy">
-        <p>PCCS is transforming &mdash; from an asset-heavy manufacturer into an asset-light apparel solutions platform that owns the craft, the design, the clients and the IP. Follow the numbers, the milestones and the story here.</p>
-        <a class="pill-btn" href="#">Investor Relations <span>&rarr;</span></a>
+        <p data-t="inv.body">PCCS is transforming &mdash; from an asset-heavy manufacturer into an asset-light apparel solutions platform that owns the craft, the design, the clients and the IP. Follow the numbers, the milestones and the story here.</p>
+        <a class="pill-btn" href="#" data-t="inv.btn">Investor Relations <span>&rarr;</span></a>
       </div>
       <div class="snap">
         <div class="snap-top">
-          <div class="snap-title">Market Snapshot</div>
-          <div class="snap-tick">PCCS Group Berhad <b>6068</b></div>
+          <div class="snap-title" data-t="snap.title">Market Snapshot</div>
+          <div class="snap-tick" data-t="snap.tick">PCCS Group Berhad <b>6068</b></div>
         </div>
         <div class="snap-price"><span class="p">1.28</span><span class="u">MYR</span></div>
         <div class="snap-row">
-          <div><div class="lab">Day&rsquo;s High</div><div class="val">RM1.38</div></div>
-          <div><div class="lab">Day&rsquo;s Low</div><div class="val">RM1.18</div></div>
-          <div><div class="lab">Day&rsquo;s Volume</div><div class="val">68,888.00</div></div>
-          <div><div class="lab">Last Updated</div><div class="val">8 hr ago</div></div>
+          <div><div class="lab" data-t="snap.lab1">Day&rsquo;s High</div><div class="val">RM1.38</div></div>
+          <div><div class="lab" data-t="snap.lab2">Day&rsquo;s Low</div><div class="val">RM1.18</div></div>
+          <div><div class="lab" data-t="snap.lab3">Day&rsquo;s Volume</div><div class="val">68,888.00</div></div>
+          <div><div class="lab" data-t="snap.lab4">Last Updated</div><div class="val">8 hr ago</div></div>
         </div>
       </div>
     </div>
@@ -752,14 +778,14 @@
 <!-- ===== SEC 8: CAREERS ===== -->
 <section class="sec">
   <div class="sec-wrap careers-head">
-    <div class="sec-k">Careers</div>
-    <h2 class="feature-h2">You&rsquo;ve Worn Our Work.<br>Now Come Make It.</h2>
+    <div class="sec-k" data-t="career.eyebrow">Careers</div>
+    <h2 class="feature-h2" data-t="career.h2">You&rsquo;ve Worn Our Work.<br>Now Come Make It.</h2>
   </div>
   <div class="careers-media">
     <img src="images/career.jpg" alt="Join the PCCS team" data-parallax="1.12,0.14,10">
     <div class="careers-card">
-      <p>Join the hands behind the world&rsquo;s biggest brands &mdash; in design, engineering, craft and beyond. The next fifty years start with you.</p>
-      <a class="pill-btn" href="#">See Open Roles <span>&rarr;</span></a>
+      <p data-t="career.body">Join the hands behind the world&rsquo;s biggest brands &mdash; in design, engineering, craft and beyond. The next fifty years start with you.</p>
+      <a class="pill-btn" href="#" data-t="career.btn">See Open Roles <span>&rarr;</span></a>
     </div>
   </div>
 </section>
@@ -770,21 +796,21 @@
     <div class="foot-top">
       <div>
         <div class="foot-logo"><img src="images/PCCS_logo.svg" alt="PCCS Group"></div>
-        <div class="foot-belief">Crafting the Badge</div>
+        <div class="foot-belief" data-t="foot.belief">Crafting the Badge</div>
       </div>
       <div class="foot-nav">
-        <a href="#">Story</a>
-        <a href="#">What We Do</a>
-        <a href="#">Our Work</a>
-        <a href="#">Our Group</a>
-        <a href="#">Investors <span class="ar">&#8599;</span></a>
-        <a href="#">Careers</a>
-        <a href="#">Contact</a>
+        <a href="#" data-t="foot.nav.story">Story</a>
+        <a href="#" data-t="foot.nav.whatwedo">What We Do</a>
+        <a href="#" data-t="foot.nav.ourwork">Our Work</a>
+        <a href="#" data-t="foot.nav.ourgroup">Our Group</a>
+        <a href="#" data-t="foot.nav.investors">Investors <span class="ar">&#8599;</span></a>
+        <a href="#" data-t="foot.nav.careers">Careers</a>
+        <a href="#" data-t="foot.nav.contact">Contact</a>
       </div>
     </div>
     <div class="foot-lower">
       <div>
-        <div class="foot-desc">Crafting the marks the world&rsquo;s greatest brands are proud to wear. For fifty years, we&rsquo;ve been the master hand behind the badges of sport and apparel &mdash; designing, embellishing, and delivering what matters.</div>
+        <div class="foot-desc" data-t="foot.desc">Crafting the marks the world&rsquo;s greatest brands are proud to wear. For fifty years, we&rsquo;ve been the master hand behind the badges of sport and apparel &mdash; designing, embellishing, and delivering what matters.</div>
         <div class="foot-social">
           <span>&#9993;&nbsp; @pccs-group-berhad-pccs</span>
           <span>in&nbsp; linkedin.com/company/pccs-group-berhad-pccs</span>
@@ -792,27 +818,260 @@
       </div>
       <div class="foot-lower-right">
         <div class="foot-col">
-          <h4>Company</h4>
-          <a href="#">Story</a><a href="#">What We Do</a><a href="#">Our Work</a><a href="#">Our Group</a><a href="#">Global Footprint</a>
+          <h4 data-t="foot.h4.company">Company</h4>
+          <a href="#" data-t="foot.link.story">Story</a><a href="#" data-t="foot.link.whatwedo">What We Do</a><a href="#" data-t="foot.link.ourwork">Our Work</a><a href="#" data-t="foot.link.ourgroup">Our Group</a><a href="#" data-t="foot.link.footprint">Global Footprint</a>
         </div>
         <div class="foot-col">
-          <h4>Stakeholders</h4>
-          <a href="#">Investors</a><a href="#">Careers</a><a href="#">Sustainability</a><a href="#">Newsroom</a>
+          <h4 data-t="foot.h4.stakeholders">Stakeholders</h4>
+          <a href="#" data-t="foot.link.investors">Investors</a><a href="#" data-t="foot.link.careers">Careers</a><a href="#" data-t="foot.link.sustainability">Sustainability</a><a href="#" data-t="foot.link.newsroom">Newsroom</a>
         </div>
         <div class="foot-col">
-          <h4>Contact</h4>
-          <a href="#">Kuala Lumpur HQ</a><a href="#">enquiry@pccsgroup.net</a><a href="#">EN &middot; &#20013;&#25991;</a>
+          <h4 data-t="foot.h4.contact">Contact</h4>
+          <a href="#" data-t="foot.link.hq">Kuala Lumpur HQ</a><a href="#">enquiry@pccsgroup.net</a><span class="foot-lang"><a class="lang-btn" data-lang="en" href="index.html">EN</a> · <a class="lang-btn" data-lang="cn" href="cn.html">中文</a></span>
         </div>
       </div>
     </div>
     <div class="foot-bottom">
-      <span>&copy; 2026 PCCS Group Berhad (Bursa: 6068). All rights reserved.</span>
-      <span>Proposal by Startfrom X Sdn Bhd. Design mockup &mdash; for internal review only.</span>
+      <span data-t="foot.copyright">&copy; 2026 PCCS Group Berhad (Bursa: 6068). All rights reserved.</span>
+      <span data-t="foot.proposal">Proposal by Startfrom X Sdn Bhd. Design mockup &mdash; for internal review only.</span>
     </div>
   </div>
 </footer>
 
 <script>
+  /* ============ i18n ============ */
+  const DEFAULT_LANG = 'en';
+
+  const T = {
+    en: {
+      'nav.story': 'Story',
+      'nav.whatwedo': 'What We Do',
+      'nav.ourwork': 'Our Work',
+      'nav.ourgroup': 'Our Group',
+      'nav.investors': 'Investors',
+      'nav.careers': 'Careers',
+      'nav.contact': 'Contact',
+
+      'hero.eyebrow': 'Crafting the Badge',
+      'hero.line1': 'The World.',
+      'hero.line2': 'Wears.',
+      'hero.line3': 'Our Work.',
+      'news.tag': 'Latest News',
+      'news.headline': '2025 Annual Report',
+      'hero.foot1': 'PCCS Group  ·  Est. 1973  ·  Bursa 6068',
+      'hero.foot2': 'Design  ·  Craft  ·  Delivery',
+
+      'belief.body': 'For fifty years, the world’s biggest brands — in sport and on the street — have trusted us to craft the marks they live by. The crest over the heart. The label inside the collar. The badge worn with pride.',
+      'belief.btn': 'Learn More About Us <span>→</span>',
+
+      'badge.eyebrow': 'Crafting the Badge',
+      'badge.h2': 'The Smallest Mark<br>Carries Everything.',
+      'badge.quote': '<span class="w">“We don’t make the badge to be seen.</span> <span class="g">We make it to be worn with pride.”</span>',
+      'badge.cite': 'The PCCS Manifesto',
+      'badge.body1': 'It’s the part people touch first and trust most — the mark that turns cloth into something you’re proud to put on. The world’s biggest names don’t hand that to just anyone. For fifty years, they’ve handed it to us.',
+      'badge.body2': 'We are the makers behind the mark. Every stitch carries someone else’s reputation; every detail is a promise kept. A badge is more than a logo — it’s a belief you can wear. Crafting it is the conviction we’ve built our name on.',
+
+      'wtd.eyebrow': 'What To Do',
+      'wtd.h2': 'Designing. Decorating. Delivering.',
+      'wtd.btn': 'Explore our craft <span>→</span>',
+      'wtd1.title': 'Design & Development',
+      'wtd1.body': '1,800+ styles a year, 50+ patents, a dedicated R&D centre — we don’t just make what brands imagine. We help them imagine it.',
+      'wtd2.title': 'Embellishment',
+      'wtd2.body': 'Embroidery, print, sublimation, seamless — the marks and crests the world’s most protected brands trust to our hands. This is the heart of our craft.',
+      'wtd3.title': 'Manufacturing & Delivery',
+      'wtd3.body': 'An orchestrated network across China, Cambodia and Vietnam — owned facilities and trusted partners, delivering to the world on time, every time.',
+
+      'nums.eyebrow': 'Fifty Years of Proof',
+      'nums.h2': 'Quietly World-Class,<br>All Along.',
+      'nums.stat1': 'years crafting for the world’s biggest brands',
+      'nums.stat2': 'styles designed and developed every year',
+      'nums.stat3': 'countries our products are sold in',
+      'nums.stat4': 'manufacturing countries — China, Cambodia, Vietnam',
+
+      'grp.eyebrow': 'Our Group',
+      'grp.h2': 'One Standard. Growing Fields.',
+      'grp1.tag': 'The Heart',
+      'grp1.title': 'Apparel & Embellishment',
+      'grp1.body': 'The craft engine of the group — design, embellishment and manufacturing for the world’s leading sport and lifestyle brands. Where the badge is made.',
+      'grp2.tag': 'Growth Arm',
+      'grp2.title': 'Medical',
+      'grp2.body': 'La Prima — precision medical devices, built with the same exacting standard our craft is known for. A new field, the same hands.',
+      'grp3.tag': 'Growth Arm',
+      'grp3.title': 'Finance',
+      'grp3.body': 'EZFY — financial services growing toward its own listing. The same trust, applied to a different promise.',
+
+      'inv.eyebrow': 'For Investors',
+      'inv.h2': 'From Factory To Platform.<br><span class="g">A Story Worth Watching.</span>',
+      'inv.body': 'PCCS is transforming — from an asset-heavy manufacturer into an asset-light apparel solutions platform that owns the craft, the design, the clients and the IP. Follow the numbers, the milestones and the story here.',
+      'inv.btn': 'Investor Relations <span>→</span>',
+      'snap.title': 'Market Snapshot',
+      'snap.tick': 'PCCS Group Berhad <b>6068</b>',
+      'snap.lab1': 'Day’s High',
+      'snap.lab2': 'Day’s Low',
+      'snap.lab3': 'Day’s Volume',
+      'snap.lab4': 'Last Updated',
+
+      'career.eyebrow': 'Careers',
+      'career.h2': 'You’ve Worn Our Work.<br>Now Come Make It.',
+      'career.body': 'Join the hands behind the world’s biggest brands — in design, engineering, craft and beyond. The next fifty years start with you.',
+      'career.btn': 'See Open Roles <span>→</span>',
+
+      'foot.belief': 'Crafting the Badge',
+      'foot.nav.story': 'Story',
+      'foot.nav.whatwedo': 'What We Do',
+      'foot.nav.ourwork': 'Our Work',
+      'foot.nav.ourgroup': 'Our Group',
+      'foot.nav.investors': 'Investors <span class="ar">↗</span>',
+      'foot.nav.careers': 'Careers',
+      'foot.nav.contact': 'Contact',
+      'foot.desc': 'Crafting the marks the world’s greatest brands are proud to wear. For fifty years, we’ve been the master hand behind the badges of sport and apparel — designing, embellishing, and delivering what matters.',
+      'foot.h4.company': 'Company',
+      'foot.h4.stakeholders': 'Stakeholders',
+      'foot.h4.contact': 'Contact',
+      'foot.link.story': 'Story',
+      'foot.link.whatwedo': 'What We Do',
+      'foot.link.ourwork': 'Our Work',
+      'foot.link.ourgroup': 'Our Group',
+      'foot.link.footprint': 'Global Footprint',
+      'foot.link.investors': 'Investors',
+      'foot.link.careers': 'Careers',
+      'foot.link.sustainability': 'Sustainability',
+      'foot.link.newsroom': 'Newsroom',
+      'foot.link.hq': 'Kuala Lumpur HQ',
+      'foot.copyright': '© 2026 PCCS Group Berhad (Bursa: 6068). All rights reserved.',
+      'foot.proposal': 'Proposal by Startfrom X Sdn Bhd. Design mockup — for internal review only.',
+    }
+  };
+
+  // CN — full Simplified Chinese copy (2026-07-09). Untranslated keys fall back to T.en.
+  T.cn = Object.assign({}, T.en, {
+    'nav.story': '品牌故事',
+    'nav.whatwedo': '核心业务',
+    'nav.ourwork': '合作案例',
+    'nav.ourgroup': '集团架构',
+    'nav.investors': '投资者关系',
+    'nav.careers': '加入我们',
+    'nav.contact': '联系我们',
+
+    'hero.eyebrow': '匠心铸徽',
+    'hero.line1': '世界，',
+    'hero.line2': '身披我们的',
+    'hero.line3': '匠心。',
+    'news.tag': '最新动态',
+    'news.headline': '2025年度报告',
+    'hero.foot1': 'PCCS集团 · 创立于1973年 · 马交所代码 6068',
+    'hero.foot2': '设计 · 精工 · 交付',
+
+    'belief.body': '五十年来，全球顶尖的运动与街头品牌，都放心将品牌印记交托于我们。那是左胸前的队徽，是衣领内的标签，更是让人引以为傲的荣誉标识。',
+    'belief.btn': '了解更多关于我们 <span>→</span>',
+
+    'badge.eyebrow': '匠心铸徽',
+    'badge.h2': '方寸印记，<br>承载千钧。',
+    'badge.quote': '<span class="w">“我们铸就徽记，不为夺目，</span> <span class="g">只为让人骄傲地佩戴。”</span>',
+    'badge.cite': 'PCCS 品牌宣言',
+    'badge.body1': '它是人们最先触碰、也最信任的部分——正是这个印记，让一块布料化作值得骄傲穿戴的服饰。全球顶尖品牌绝不会将此重任随意交托。五十年来，他们始终选择我们。',
+    'badge.body2': '我们是印记背后的缔造者。每一针都承载着他人的声誉，每一个细节都是兑现的承诺。徽标不仅仅是一个 Logo，更是一种可穿戴的信念。而精工铸就这份信念，正是我们立业的基石。',
+
+    'wtd.eyebrow': '核心业务',
+    'wtd.h2': '设计。精工。交付。',
+    'wtd.btn': '探索我们的工艺 <span>→</span>',
+    'wtd1.title': '设计与研发',
+    'wtd1.body': '每年超1,800款设计，50多项专利，专属研发中心——我们不仅实现品牌的想象，更助力他们激发灵感。',
+    'wtd2.title': '标识饰艺',
+    'wtd2.body': '绣花、印花、热升华、无缝贴合——全球最受瞩目的品牌，将最核心的标识与队徽交托于我们。这正是我们工艺的核心所在。',
+    'wtd3.title': '制造与交付',
+    'wtd3.body': '布局中国、柬埔寨和越南的协同生产网络——自有工厂与信赖的合作伙伴，确保每一次向全球的交付都准时、完美。',
+
+    'nums.eyebrow': '五十载印证 · 传承永续',
+    'nums.h2': '低调深耕，<br>始终世界顶尖。',
+    'nums.stat1': '年 — 服务全球顶尖品牌',
+    'nums.stat2': '款 — 每年设计与研发',
+    'nums.stat3': '个 — 产品销售覆盖国家',
+    'nums.stat4': '个 — 制造基地所在国（中国、柬埔寨、越南）',
+
+    'grp.eyebrow': '集团架构',
+    'grp.h2': '同一标准，多元布局。',
+    'grp1.tag': '核心引擎',
+    'grp1.title': '服装与标识工艺',
+    'grp1.body': '集团的核心工艺引擎——为全球领先的运动与生活方式品牌提供设计、标识饰艺与制造服务。徽记，由此诞生。',
+    'grp2.tag': '增长引擎',
+    'grp2.title': '医疗健康',
+    'grp2.body': 'La Prima——精密医疗器械，秉承我们引以为傲的严苛工艺标准。全新领域，同一匠心。',
+    'grp3.tag': '增长引擎',
+    'grp3.title': '金融服务',
+    'grp3.body': 'EZFY——迈向独立上市的金融服务。同样的信赖，兑现不同的承诺。',
+
+    'inv.eyebrow': '投资者关系',
+    'inv.h2': '从制造工厂到产业平台。<br><span class="g">一段值得瞩目的历程。</span>',
+    'inv.body': 'PCCS正在经历转型——从一家重资产制造商，蜕变为拥有核心工艺、设计、客户与知识产权的轻资产服装解决方案平台。在这里，关注我们的财务数据、发展里程碑与品牌故事。',
+    'inv.btn': '投资者关系 <span>→</span>',
+    'snap.title': '市场快照',
+    'snap.lab1': '日内最高',
+    'snap.lab2': '日内最低',
+    'snap.lab3': '成交量',
+    'snap.lab4': '最近更新',
+
+    'career.eyebrow': '加入我们',
+    'career.h2': '你曾穿戴我们的匠心之作。<br>现在，来亲手缔造它。',
+    'career.body': '加入全球顶尖品牌背后的缔造者团队——涵盖设计、工程、工艺及更多领域。下一个五十年，由你开启。',
+    'career.btn': '查看热招职位 <span>→</span>',
+
+    'foot.belief': '匠心铸徽 · 传承永续',
+    'foot.nav.story': '品牌故事',
+    'foot.nav.whatwedo': '核心业务',
+    'foot.nav.ourwork': '合作案例',
+    'foot.nav.ourgroup': '集团架构',
+    'foot.nav.investors': '投资者关系 <span class="ar">↗</span>',
+    'foot.nav.careers': '加入我们',
+    'foot.nav.contact': '联系我们',
+    'foot.desc': '打造全球顶尖品牌引以为傲的穿戴印记。五十年来，我们始终作为运动与服装领域徽标背后的匠心之手——设计、精工饰艺、交付核心价值。',
+    'foot.h4.company': '公司',
+    'foot.h4.stakeholders': '利益相关方',
+    'foot.h4.contact': '联系方式',
+    'foot.link.story': '品牌故事',
+    'foot.link.whatwedo': '核心业务',
+    'foot.link.ourwork': '合作案例',
+    'foot.link.ourgroup': '集团架构',
+    'foot.link.footprint': '全球布局',
+    'foot.link.investors': '投资者关系',
+    'foot.link.careers': '加入我们',
+    'foot.link.sustainability': '可持续发展',
+    'foot.link.newsroom': '新闻中心',
+    'foot.link.hq': '吉隆坡总部',
+    'foot.copyright': '© 2026 PCCS Group Berhad（马交所代码：6068）。保留所有权利。',
+  });
+
+  function setLang(lang) {
+    var dict = T[lang] || T.en;
+    document.querySelectorAll('[data-t]').forEach(function(el) {
+      var key = el.getAttribute('data-t');
+      if (dict[key] !== undefined) {
+        el.innerHTML = dict[key];
+      }
+    });
+    document.querySelectorAll('.lang-btn').forEach(function(btn) {
+      btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+    });
+    try { localStorage.setItem('pccs-lang', lang); } catch(e) {}
+    document.documentElement.lang = lang === 'cn' ? 'zh-CN' : 'en';
+  }
+
+  // init language
+  (function(){
+    var stored = null;
+    try { stored = localStorage.getItem('pccs-lang'); } catch(e) {}
+    setLang(stored || DEFAULT_LANG);
+
+    document.addEventListener('click', function(e) {
+      var btn = e.target.closest('.lang-btn');
+      if (btn) {
+        e.preventDefault();
+        setLang(btn.getAttribute('data-lang'));
+      }
+    });
+  })();
+
+  /* ============ ORIGINAL JS ============ */
   const stage = document.getElementById('heroStage');
   const nav = document.getElementById('siteNav');
 
@@ -905,7 +1164,7 @@
         const el = e.target, to = +el.dataset.to, dur = 1500, t0 = performance.now();
         (function tick(t){
           const p = Math.min((t - t0) / dur, 1);
-          el.textContent = Math.round((1 - Math.pow(1 - p, 3)) * to);
+          el.textContent = Math.round((1 - Math.pow(1 - p, 3)) * to).toLocaleString('en-US');
           if (p < 1) requestAnimationFrame(tick);
         })(t0);
       });
