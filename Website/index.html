@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>PCCS Group Berhad · Engineering Future</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ─── TOKENS ──────────────────────────────────────────────────────── */
+:root {
+  --green:    #106550;
+  --pine:     #0B463A;
+  --deep:     #08372E;
+  --g300:     #4C8372;
+  --g100:     #B9D2C8;
+  --red:      #E83D30;
+  --mint:     #E0FF2B;
+  --cream:    #F9F7F2;
+  --sand:     #E4ECE7;
+  --stone:    #8E9290;
+  --stonedk:  #4E5F59;
+  --ink:      #1C1C1A;
+  --line:     rgba(28,28,26,.11);
+  --linelt:   rgba(255,255,255,.10);
+}
+
+/* ─── RESET ───────────────────────────────────────────────────────── */
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; font-size:16px; }
+body {
+  font-family:'Inter',sans-serif;
+  background:var(--cream); color:var(--ink);
+  overflow-x:hidden; -webkit-font-smoothing:antialiased;
+}
+a { color:inherit; text-decoration:none; }
+img { display:block; max-width:100%; }
+ul { list-style:none; }
+button { border:none; background:none; cursor:pointer; font:inherit; }
+button:focus-visible, a:focus-visible {
+  outline:3px solid var(--mint);
+  outline-offset:4px;
+}
+
+/* ─── LANG HELPERS ────────────────────────────────────────────────── */
+.cn { display:none; }
+html[data-lang="cn"] .en { display:none; }
+html[data-lang="cn"] .cn { display:revert; }
+html[data-lang="cn"] h1,
+html[data-lang="cn"] h2,
+html[data-lang="cn"] h3,
+html[data-lang="cn"] p,
+html[data-lang="cn"] a,
+html[data-lang="cn"] .stat-label,
+html[data-lang="cn"] .eyebrow {
+  font-family:'Noto Sans SC','Inter',sans-serif;
+  letter-spacing:normal;
+}
+html[data-lang="cn"] h1,
+html[data-lang="cn"] h2 { line-height:1.12; }
+
+/* ─── LAYOUT PRIMITIVES ───────────────────────────────────────────── */
+.container { max-width:1840px; margin:0 auto; padding:0 40px; }
+.section    { padding:96px 0; }
+.section-sm { padding:64px 0; }
+.section-dark  { background:var(--pine); }
+.section-deep  { background:var(--deep); }
+.section-sand  { background:var(--sand); }
+.section-cream { background:var(--cream); }
+section { container-type:inline-size; }
+
+/* ─── TYPE ────────────────────────────────────────────────────────── */
+.eyebrow {
+  font-size:clamp(10px,.65cqw,13px); font-weight:700;
+  letter-spacing:.19em; text-transform:uppercase;
+  color:var(--stonedk); margin-bottom:20px;
+}
+.eyebrow-lt { color:var(--g100); }
+.eyebrow-mint { color:var(--mint); }
+
+.display {
+  font-size:clamp(54px,7.2cqw,128px);
+  font-weight:300; letter-spacing:-.04em; line-height:.93;
+  color:#fff;
+}
+.h2 {
+  font-size:clamp(30px,3.8cqw,68px);
+  font-weight:300; letter-spacing:-.034em; line-height:1.06;
+}
+.h3 {
+  font-size:clamp(17px,1.5cqw,26px);
+  font-weight:500; letter-spacing:-.02em; line-height:1.22;
+}
+.body {
+  font-size:clamp(15px,1.05cqw,18px);
+  font-weight:300; line-height:1.55; letter-spacing:-.01em;
+  color:var(--stonedk);
+}
+.body-lt { color:var(--g100); }
+.body-dk { color:var(--ink); }
+
+/* ─── SCROLL REVEAL ───────────────────────────────────────────────── */
+.rv {
+  opacity:0; transform:translateY(32px);
+  transition:opacity .85s cubic-bezier(.22,.61,.36,1),
+              transform .85s cubic-bezier(.22,.61,.36,1);
+  transition-delay:var(--rv-d,0s);
+}
+.rv.in { opacity:1; transform:none; }
+
+@media (prefers-reduced-motion:reduce) {
+  .rv { transition:none; opacity:1; transform:none; }
+  * { animation-duration:.01ms !important; transition-duration:.01ms !important; }
+}
+
+/* ─── NAV ─────────────────────────────────────────────────────────── */
+#nav {
+  position:fixed; inset:0 0 auto; z-index:200;
+  padding:22px 40px;
+  display:flex; align-items:center; gap:40px;
+  transition:padding .35s, transform .35s;
+}
+#nav::before {
+  content:''; position:absolute; inset:0;
+  background:rgba(18,41,31,.78);
+  backdrop-filter:blur(18px) saturate(150%);
+  -webkit-backdrop-filter:blur(18px) saturate(150%);
+  border-radius:0 0 0 0;
+  opacity:0;
+  transition:opacity .35s, border-radius .35s;
+  pointer-events:none;
+}
+#nav.scrolled { padding:11px 40px; }
+#nav.scrolled::before { opacity:1; border-radius:0 0 14px 14px; }
+#nav.hidden { transform:translateY(-110%); }
+
+.nav-logo {
+  font-size:19px; font-weight:700; letter-spacing:.07em;
+  color:#fff; position:relative; z-index:1; white-space:nowrap;
+  transition:font-size .3s;
+  flex-shrink:0;
+}
+#nav.scrolled .nav-logo { font-size:16px; }
+.nav-logo em { font-style:normal; color:var(--mint); }
+
+.nav-links {
+  display:flex; align-items:center; gap:28px;
+  flex:1; position:relative; z-index:1;
+}
+.nav-links a {
+  font-size:13.5px; font-weight:500;
+  color:rgba(255,255,255,.72);
+  transition:color .2s; white-space:nowrap;
+}
+.nav-links a:hover { color:#fff; }
+
+.nav-end {
+  display:flex; align-items:center; gap:10px;
+  position:relative; z-index:1; margin-left:auto;
+}
+.lang-btn {
+  font-size:12px; font-weight:600; letter-spacing:.07em;
+  color:rgba(255,255,255,.55);
+  border:1px solid rgba(255,255,255,.18); border-radius:999px;
+  padding:5px 13px;
+  transition:background .2s, color .2s, border-color .2s;
+}
+.lang-btn:hover { color:#fff; border-color:rgba(255,255,255,.35); }
+.lang-btn.active {
+  background:rgba(255,255,255,.15); color:#fff;
+  border-color:rgba(255,255,255,.30);
+}
+
+/* ─── HERO ────────────────────────────────────────────────────────── */
+.hero {
+  position:relative; height:100svh; min-height:600px;
+  overflow:hidden; background:var(--deep);
+  display:flex; align-items:flex-end;
+}
+.hero-bg {
+  position:absolute; inset:0;
+  background-image:url("./Video/Generated image 1 (1).png");
+  background-size:400% 200%;
+  background-position:2% 4%;
+  opacity:.48;
+  transform:scale(1.08);
+  will-change:transform;
+  transition:transform 9s cubic-bezier(.25,.46,.45,.94), opacity 1.2s;
+}
+.hero-bg.loaded { transform:scale(1); }
+.hero-scrim {
+  position:absolute; inset:0;
+  background:linear-gradient(
+    to top,
+    var(--deep) 0%,
+    rgba(18,41,31,.72) 38%,
+    rgba(18,41,31,.3) 70%,
+    rgba(18,41,31,.18) 100%
+  );
+}
+.hero-body {
+  position:relative; z-index:2;
+  padding:0 40px 68px; width:100%;
+  max-width:1840px; margin:0 auto;
+}
+.hero h1 {
+  margin-bottom:22px;
+  opacity:0; transform:translateY(28px);
+  transition:opacity .9s .55s, transform .9s .55s;
+}
+.hero h1.in { opacity:1; transform:none; }
+.hero-sub {
+  font-size:clamp(17px,1.55cqw,27px); font-weight:300;
+  color:rgba(255,255,255,.68); letter-spacing:-.01em;
+  opacity:0; transform:translateY(18px);
+  transition:opacity .9s .8s, transform .9s .8s;
+}
+.hero-sub.in { opacity:1; transform:none; }
+
+/* Bursa badge */
+.hero-badge {
+  position:absolute; bottom:68px; right:40px; z-index:2;
+  background:rgba(255,255,255,.12);
+  backdrop-filter:blur(20px) saturate(140%);
+  -webkit-backdrop-filter:blur(20px) saturate(140%);
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:14px; padding:18px 24px; color:#fff;
+  opacity:0; transform:translateY(14px);
+  transition:opacity .7s 1.3s, transform .7s 1.3s;
+}
+.hero-badge.in { opacity:1; transform:none; }
+.hero-badge-label {
+  font-size:10px; font-weight:700; letter-spacing:.17em;
+  text-transform:uppercase; color:var(--mint); margin-bottom:5px;
+}
+.hero-badge-val { font-size:14px; font-weight:500; }
+
+/* ─── THE IDEA ────────────────────────────────────────────────────── */
+.idea-grid {
+  display:grid; grid-template-columns:1fr 2.2fr; gap:64px;
+  align-items:start;
+}
+.idea-quote {
+  font-size:clamp(21px,2.7cqw,50px);
+  font-weight:300; letter-spacing:-.03em; line-height:1.2;
+}
+.idea-quote em { font-style:normal; color:var(--green); }
+
+/* ─── TILES ───────────────────────────────────────────────────────── */
+.tiles-row {
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:14px;
+}
+.tile {
+  border-radius:18px; padding:30px;
+  display:flex; flex-direction:column;
+  justify-content:space-between; min-height:236px;
+  position:relative; overflow:hidden;
+}
+.tile-dark { background:var(--pine); color:#fff; min-height:280px; }
+.tile-sand { background:var(--sand); color:var(--ink); }
+.tile-tag {
+  font-size:10.5px; font-weight:700; letter-spacing:.17em;
+  text-transform:uppercase; margin-bottom:10px;
+}
+.tile-dark .tile-tag { color:var(--mint); }
+.tile-sand .tile-tag { color:var(--green); }
+.tile-name {
+  font-size:clamp(14px,1.2cqw,20px); font-weight:500;
+  letter-spacing:-.015em; line-height:1.25;
+  margin-bottom:6px;
+}
+.tile-note {
+  font-size:12.5px; font-weight:300; line-height:1.45;
+}
+.tile-dark .tile-note { color:var(--g100); }
+.tile-sand .tile-note { color:var(--stonedk); }
+.tile-btn {
+  display:inline-flex; align-items:center; gap:7px;
+  font-size:12.5px; font-weight:500; letter-spacing:.02em;
+  padding:9px 16px; border-radius:8px;
+  align-self:flex-start;
+  transition:background .2s;
+}
+.tile-dark .tile-btn { background:rgba(255,255,255,.11); color:#fff; }
+.tile-dark .tile-btn:hover { background:rgba(255,255,255,.2); }
+.tile-sand .tile-btn { background:var(--green); color:#fff; }
+.tile-sand .tile-btn:hover { background:#2E7A5E; }
+.tile-arrow { transition:transform .2s; display:inline-block; }
+.tile-btn:hover .tile-arrow { transform:translateX(3px); }
+
+/* Subtle texture on primary tile */
+.tile-dark::after {
+  content:'';
+  position:absolute; inset:0;
+  background-image:url("./Video/Generated image 1 (4).png");
+  background-size:500% 300%; background-position:80% 90%;
+  opacity:.14; pointer-events:none;
+}
+
+/* ─── RECOGNITION ─────────────────────────────────────────────────── */
+.recog-text {
+  font-size:clamp(20px,2.5cqw,46px);
+  font-weight:300; letter-spacing:-.025em; line-height:1.2;
+  color:#fff; max-width:900px; margin-bottom:14px;
+}
+.recog-note {
+  font-size:13px; color:rgba(255,255,255,.38); font-style:italic;
+}
+
+/* ─── ENGINEERING PREVIEW ──────────────────────────────────────────── */
+.eng-grid {
+  display:grid; grid-template-columns:1fr 1fr; gap:72px;
+  align-items:start;
+}
+.eng-intro {
+  font-size:clamp(20px,2.2cqw,38px);
+  font-weight:300; letter-spacing:-.03em; line-height:1.18;
+  margin-bottom:18px;
+}
+.eng-lead { margin-bottom:32px; }
+
+/* Chain list */
+.chain { display:flex; flex-direction:column; }
+.chain-row {
+  display:flex; align-items:baseline; gap:16px;
+  padding:14px 0; border-bottom:1px solid var(--line);
+}
+.chain-row:first-child { border-top:1px solid var(--line); }
+.chain-n {
+  font-size:10px; font-weight:700; letter-spacing:.1em;
+  color:var(--stone); min-width:24px; flex-shrink:0;
+}
+.chain-name {
+  font-size:clamp(13.5px,.95cqw,16px);
+  font-weight:500; letter-spacing:-.01em; flex:1;
+}
+.chain-verb {
+  font-size:11px; font-weight:700; letter-spacing:.07em;
+  text-transform:uppercase; color:var(--green); white-space:nowrap;
+}
+
+.eng-cta {
+  margin-top:28px;
+  display:inline-flex; align-items:center; gap:8px;
+  font-size:14px; font-weight:500;
+  padding:11px 20px; border-radius:8px;
+  background:var(--green); color:#fff;
+  transition:background .2s;
+}
+.eng-cta:hover { background:#2E7A5E; }
+.eng-cta .tile-arrow { transition:transform .2s; }
+.eng-cta:hover .tile-arrow { transform:translateX(3px); }
+
+/* Stats */
+.stats-box {
+  border:1px solid var(--line); border-radius:16px; overflow:hidden;
+  display:grid; grid-template-columns:1fr 1fr;
+  margin-bottom:20px;
+}
+.stat-cell {
+  padding:30px 26px;
+  border-right:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+.stat-cell:nth-child(2n) { border-right:none; }
+.stat-cell:nth-child(n+3) { border-bottom:none; }
+.stat-num {
+  font-size:clamp(34px,3.4cqw,60px);
+  font-weight:700; letter-spacing:-.04em; line-height:1;
+  color:var(--green);
+  display:flex; align-items:baseline; gap:3px;
+}
+.stat-sup { font-size:clamp(18px,1.8cqw,30px); }
+.stat-label {
+  font-size:12px; font-weight:500; letter-spacing:.04em;
+  text-transform:uppercase; color:var(--stonedk); margin-top:8px;
+}
+
+/* Engineering image */
+.eng-imgwrap {
+  border-radius:16px; overflow:hidden; height:270px; position:relative;
+}
+.eng-imgwrap img {
+  width:100%; height:100%; object-fit:cover; object-position:25% 25%;
+  transform:scale(1.06); will-change:transform;
+  transition:transform .8s cubic-bezier(.22,.61,.36,1);
+}
+.eng-imgwrap:hover img { transform:scale(1.11); }
+
+/* ─── TEASERS ─────────────────────────────────────────────────────── */
+.teasers-hd { margin-bottom:40px; }
+.teasers-row {
+  display:grid; grid-template-columns:repeat(3,1fr); gap:14px;
+}
+.teaser-card {
+  border-radius:18px; overflow:hidden; min-height:380px;
+  position:relative; display:flex; flex-direction:column;
+  justify-content:flex-end; background:var(--pine);
+}
+.teaser-bg {
+  position:absolute; inset:0;
+  background-size:400% 200%;
+  will-change:transform; transition:transform .8s cubic-bezier(.22,.61,.36,1);
+}
+.teaser-card:hover .teaser-bg { transform:scale(1.04); }
+.teaser-scrim {
+  position:absolute; inset:0;
+  background:linear-gradient(to top, var(--pine) 0%, rgba(18,41,31,.55) 55%, transparent 100%);
+}
+.teaser-body { position:relative; z-index:2; padding:28px; }
+.teaser-tag {
+  font-size:10.5px; font-weight:700; letter-spacing:.17em;
+  text-transform:uppercase; color:var(--mint); margin-bottom:10px;
+}
+.teaser-h {
+  font-size:clamp(16px,1.45cqw,24px); font-weight:500;
+  color:#fff; letter-spacing:-.02em; line-height:1.22;
+  margin-bottom:10px;
+}
+.teaser-p {
+  font-size:13px; font-weight:300;
+  color:rgba(255,255,255,.58); line-height:1.5; margin-bottom:18px;
+}
+.teaser-link {
+  display:inline-flex; align-items:center; gap:7px;
+  font-size:12.5px; font-weight:500; letter-spacing:.02em;
+  color:#fff; padding:9px 16px; border-radius:8px;
+  border:1px solid rgba(255,255,255,.22);
+  transition:background .2s, border-color .2s;
+}
+.teaser-link:hover { background:rgba(255,255,255,.1); border-color:rgba(255,255,255,.4); }
+.teaser-link .tile-arrow { transition:transform .2s; }
+.teaser-link:hover .tile-arrow { transform:translateX(3px); }
+
+/* ─── FOOTER ──────────────────────────────────────────────────────── */
+.footer { background:var(--deep); color:#fff; }
+.footer-main {
+  display:grid; grid-template-columns:1.2fr 1fr; gap:80px;
+  padding:72px 0 56px;
+  border-bottom:1px solid rgba(255,255,255,.07);
+  margin-bottom:40px;
+}
+.footer-logo {
+  font-size:28px; font-weight:700; letter-spacing:.07em;
+  margin-bottom:14px;
+}
+.footer-logo em { font-style:normal; color:var(--mint); }
+.footer-tagline {
+  font-size:clamp(14px,1.05cqw,18px); font-weight:300;
+  color:var(--g100); line-height:1.5; max-width:400px; margin-bottom:20px;
+}
+.footer-about {
+  font-size:14px; font-weight:300; color:rgba(255,255,255,.42);
+  line-height:1.6; max-width:440px;
+}
+.footer-nav { display:flex; flex-direction:column; gap:2px; padding-top:6px; }
+.footer-nav a {
+  display:flex; justify-content:space-between; align-items:center;
+  font-size:15px; font-weight:400; letter-spacing:-.01em;
+  color:rgba(255,255,255,.6);
+  padding:9px 0; border-bottom:1px solid rgba(255,255,255,.06);
+  transition:color .2s, padding-left .2s;
+}
+.footer-nav a .fna { opacity:0; transition:opacity .2s; }
+.footer-nav a:hover { color:#fff; padding-left:5px; }
+.footer-nav a:hover .fna { opacity:1; }
+
+.footer-base {
+  display:flex; justify-content:space-between; align-items:flex-start;
+  padding-bottom:40px; flex-wrap:wrap; gap:20px;
+}
+.footer-contact {
+  font-size:13px; line-height:1.7; color:rgba(255,255,255,.4);
+}
+.footer-contact a { color:var(--mint); transition:color .2s; }
+.footer-contact a:hover { color:#fff; }
+.footer-legal {
+  font-size:12px; color:rgba(255,255,255,.25); text-align:right; line-height:1.6;
+}
+
+/* ─── RESPONSIVE ──────────────────────────────────────────────────── */
+@media (max-width:900px) {
+  .container { padding:0 22px; }
+  .section { padding:70px 0; }
+  #nav { padding:15px 22px; }
+  #nav.scrolled { padding:10px 22px; }
+  .nav-links { display:none; }
+  .hero-body { padding:0 22px 52px; }
+  .hero-badge { display:none; }
+  .idea-grid { grid-template-columns:1fr; gap:28px; }
+  .tiles-row { grid-template-columns:1fr 1fr; }
+  .tiles-row .tile:first-child { grid-column:span 2; }
+  .eng-grid { grid-template-columns:1fr; gap:48px; }
+  .teasers-row { grid-template-columns:1fr; }
+  .footer-main { grid-template-columns:1fr; gap:44px; }
+  .footer-base { flex-direction:column; }
+  .footer-legal { text-align:left; }
+}
+@media (max-width:600px) {
+  .tiles-row { grid-template-columns:1fr; }
+  .tiles-row .tile:first-child { grid-column:span 1; }
+  .stats-box { grid-template-columns:1fr 1fr; }
+  .h2 { line-height:1.08; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ NAV ═══════════════════════════════════════════════════ -->
+<nav id="nav" aria-label="Site navigation">
+  <a href="/" class="nav-logo">PCCS<em>.</em></a>
+  <ul class="nav-links" role="list">
+    <li><a href="#engineering">
+      <span class="en">The Engineering</span><span class="cn">工程能力</span>
+    </a></li>
+    <li><a href="#work">
+      <span class="en">Our Work</span><span class="cn">我们的作品</span>
+    </a></li>
+    <li><a href="#sustainability">
+      <span class="en">Sustainability</span><span class="cn">永续未来</span>
+    </a></li>
+    <li><a href="#group">
+      <span class="en">The Group</span><span class="cn">集团</span>
+    </a></li>
+    <li><a href="#investors">
+      <span class="en">Investors</span><span class="cn">投资者</span>
+    </a></li>
+    <li><a href="#careers">
+      <span class="en">Careers</span><span class="cn">人才招聘</span>
+    </a></li>
+  </ul>
+  <div class="nav-end">
+    <button class="lang-btn active" onclick="setLang('en')" aria-label="English">EN</button>
+    <button class="lang-btn" onclick="setLang('cn')" aria-label="中文">中文</button>
+  </div>
+</nav>
+
+<!-- ═══════════ HERO ══════════════════════════════════════════════════ -->
+<section class="hero" aria-labelledby="hero-h1">
+  <div class="hero-bg" id="heroBg" role="img" aria-label="Technical sportswear manufacturing"></div>
+  <div class="hero-scrim" aria-hidden="true"></div>
+
+  <div class="hero-body">
+    <h1 class="display" id="hero-h1">
+      <span class="en">Engineering<br>Future</span>
+      <span class="cn">以工程，<br>创造可能。</span>
+    </h1>
+    <p class="hero-sub" id="heroSub">
+      <span class="en">The world wears our work.</span>
+      <span class="cn">世界穿着我们的作品。</span>
+    </p>
+  </div>
+
+  <div class="hero-badge" id="heroBadge" aria-label="Bursa Malaysia listing">
+    <div class="hero-badge-label">Bursa Malaysia · 6068</div>
+    <div class="hero-badge-val en">PCCS Group Berhad</div>
+    <div class="hero-badge-val cn">PCCS 集团有限公司</div>
+  </div>
+</section>
+
+<!-- ═══════════ THE IDEA ══════════════════════════════════════════════ -->
+<section class="section section-cream">
+  <div class="container">
+    <div class="idea-grid">
+      <div>
+        <p class="eyebrow rv en">The idea</p>
+        <p class="eyebrow rv cn">核心想法</p>
+      </div>
+      <div>
+        <p class="idea-quote rv">
+          <span class="en">Where others see a garment, a device, a business — we see <em>a problem to be solved,</em> precisely.</span>
+          <span class="cn">一件衣服？我们看到的是<em>一道题</em>。别人看到成品，我们看到一道等着解好的题——而且，得解得漂亮。</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ ONE SYSTEM TILES ══════════════════════════════════════ -->
+<section class="section-sm section-cream" style="padding-top:0;">
+  <div class="container">
+    <p class="eyebrow rv en" style="margin-bottom:18px;">One system — "Engineering ___"</p>
+    <p class="eyebrow rv cn" style="margin-bottom:18px;">一套体系 ——「以工程，……」</p>
+    <div class="tiles-row">
+
+      <!-- Apparel — primary -->
+      <div class="tile tile-dark rv" style="--rv-d:.04s">
+        <div>
+          <div class="tile-tag en">Engineering Apparel</div>
+          <div class="tile-tag cn">每一件，皆以工程铸就</div>
+          <div class="tile-name en">Technical sportswear, fibre to the mark.</div>
+          <div class="tile-name cn">从纤维到标识，一手包办。</div>
+          <div class="tile-note en" style="margin-top:6px;">→ this site</div>
+          <div class="tile-note cn" style="margin-top:6px;">→ 本站</div>
+        </div>
+        <a href="#engineering" class="tile-btn">
+          <span class="en">Explore</span><span class="cn">了解更多</span>
+          <span class="tile-arrow">→</span>
+        </a>
+      </div>
+
+      <!-- Health -->
+      <div class="tile tile-sand rv" style="--rv-d:.09s">
+        <div>
+          <div class="tile-tag en">Engineering Health</div>
+          <div class="tile-tag cn">以专业，护生命</div>
+          <div class="tile-name en">La Prima Medical</div>
+          <div class="tile-name cn">La Prima 医疗</div>
+          <div class="tile-note en" style="margin-top:6px;">→ external</div>
+          <div class="tile-note cn" style="margin-top:6px;">→ 外部</div>
+        </div>
+        <a href="#" class="tile-btn" aria-label="Visit La Prima site">
+          <span class="en">Visit site</span><span class="cn">访问官网</span>
+          <span class="tile-arrow">↗</span>
+        </a>
+      </div>
+
+      <!-- Finance -->
+      <div class="tile tile-sand rv" style="--rv-d:.14s">
+        <div>
+          <div class="tile-tag">Finance</div>
+          <div class="tile-name">EZFY</div>
+          <div class="tile-note en" style="margin-top:6px;">→ external</div>
+          <div class="tile-note cn" style="margin-top:6px;">→ 外部</div>
+        </div>
+        <a href="#" class="tile-btn" aria-label="Visit EZFY site">
+          <span class="en">Visit site</span><span class="cn">访问官网</span>
+          <span class="tile-arrow">↗</span>
+        </a>
+      </div>
+
+      <!-- Hotel -->
+      <div class="tile tile-sand rv" style="--rv-d:.19s">
+        <div>
+          <div class="tile-tag en">Hotel · F&B</div>
+          <div class="tile-tag cn">酒店 · 餐饮</div>
+          <div class="tile-name en">A PCCS Company</div>
+          <div class="tile-name cn">PCCS 旗下公司</div>
+          <div class="tile-note en" style="margin-top:6px;">→ external</div>
+          <div class="tile-note cn" style="margin-top:6px;">→ 外部</div>
+        </div>
+        <a href="#" class="tile-btn">
+          <span class="en">Visit site</span><span class="cn">访问官网</span>
+          <span class="tile-arrow">↗</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ RECOGNITION ═══════════════════════════════════════════ -->
+<section class="section section-deep" id="work">
+  <div class="container">
+    <p class="eyebrow eyebrow-lt rv en">Recognition</p>
+    <p class="eyebrow eyebrow-lt rv cn">认可</p>
+    <p class="recog-text rv">
+      <span class="en">You've worn our work — you just saw someone else's name on it. The kit on the pitch, the crest over the heart, the label inside the collar. That's the job.</span>
+      <span class="cn">你穿过的每一件，可能都出自我们之手。球场上的球衣、胸前的队徽、领口里的标签——都是我们做的。别人的名字在正面闪耀，我们的手艺，藏在每一针里。</span>
+    </p>
+    <p class="recog-note rv en">(Client brands shown only with written permission; anonymous by default.)</p>
+    <p class="recog-note rv cn">（客户品牌仅在获得书面许可后展示；默认匿名。）</p>
+  </div>
+</section>
+
+<!-- ═══════════ ENGINEERING PREVIEW ══════════════════════════════════ -->
+<section class="section section-cream" id="engineering">
+  <div class="container">
+    <p class="eyebrow rv en">The Engineering — a preview</p>
+    <p class="eyebrow rv cn">工程能力预览</p>
+    <div class="eng-grid">
+
+      <!-- Left: intro + chain -->
+      <div>
+        <p class="eng-intro rv">
+          <span class="en">You bring the concept; we engineer everything after it.</span>
+          <span class="cn">你负责概念，我们兑现一切。</span>
+        </p>
+        <p class="body eng-lead rv">
+          <span class="en">Fibre → development → the mark → made at scale.</span>
+          <span class="cn">纤维 → 开发 → 标识 → 量产，一站式全程包办。</span>
+        </p>
+
+        <div class="chain">
+          <div class="chain-row rv" style="--rv-d:.04s">
+            <span class="chain-n">01</span>
+            <span class="chain-name en">Concept &amp; brief</span>
+            <span class="chain-name cn">概念与需求</span>
+            <span class="chain-verb en">Your part; our work starts here</span>
+            <span class="chain-verb cn">你的构想，我们由此启程</span>
+          </div>
+          <div class="chain-row rv" style="--rv-d:.07s">
+            <span class="chain-n">02</span>
+            <span class="chain-name en">Design &amp; tech spec</span>
+            <span class="chain-name cn">设计与技术规格</span>
+            <span class="chain-verb en">Engineered</span>
+            <span class="chain-verb cn">由我们制定</span>
+          </div>
+          <div class="chain-row rv" style="--rv-d:.10s">
+            <span class="chain-n">03</span>
+            <span class="chain-name en">Fabric development</span>
+            <span class="chain-name cn">面料开发</span>
+            <span class="chain-verb en">Developed</span>
+            <span class="chain-verb cn">由我们研发</span>
+          </div>
+          <div class="chain-row rv" style="--rv-d:.13s">
+            <span class="chain-n">04</span>
+            <span class="chain-name en">Pattern &amp; sample</span>
+            <span class="chain-name cn">纸样与样品</span>
+            <span class="chain-verb en">Prototyped</span>
+            <span class="chain-verb cn">由我们打造</span>
+          </div>
+          <div class="chain-row rv" style="--rv-d:.16s">
+            <span class="chain-n">05</span>
+            <span class="chain-name en">The mark &amp; trims</span>
+            <span class="chain-name cn">标识与辅料</span>
+            <span class="chain-verb en">Crafted</span>
+            <span class="chain-verb cn">由我们制作</span>
+          </div>
+          <div class="chain-row rv" style="--rv-d:.19s">
+            <span class="chain-n">06</span>
+            <span class="chain-name en">Testing &amp; compliance</span>
+            <span class="chain-name cn">测试与合规</span>
+            <span class="chain-verb en">Verified</span>
+            <span class="chain-verb cn">由我们把关</span>
+          </div>
+          <div class="chain-row rv" style="--rv-d:.22s">
+            <span class="chain-n">07</span>
+            <span class="chain-name en">Make &amp; QC</span>
+            <span class="chain-name cn">生产与质检</span>
+            <span class="chain-verb en">Manufactured</span>
+            <span class="chain-verb cn">由我们执行</span>
+          </div>
+          <div class="chain-row rv" style="--rv-d:.25s">
+            <span class="chain-n">08</span>
+            <span class="chain-name en">Finish &amp; deliver</span>
+            <span class="chain-name cn">后整与交付</span>
+            <span class="chain-verb en">Delivered</span>
+            <span class="chain-verb cn">由我们完成</span>
+          </div>
+        </div>
+
+        <a href="#" class="eng-cta rv" style="--rv-d:.24s">
+          <span class="en">The full Engineering</span>
+          <span class="cn">完整工程能力</span>
+          <span class="tile-arrow">→</span>
+        </a>
+      </div>
+
+      <!-- Right: stats + image -->
+      <div>
+        <div class="stats-box rv" style="--rv-d:.08s">
+          <div class="stat-cell">
+            <div class="stat-num">
+              <span class="stat-count" data-to="50">0</span><span class="stat-sup">+</span>
+            </div>
+            <div class="stat-label en">Patents</div>
+            <div class="stat-label cn">专利</div>
+          </div>
+          <div class="stat-cell">
+            <div class="stat-num">
+              <span class="stat-count" data-to="100">0</span><span class="stat-sup">+</span>
+            </div>
+            <div class="stat-label en">R&amp;D Staff</div>
+            <div class="stat-label cn">研发人员</div>
+          </div>
+          <div class="stat-cell">
+            <div class="stat-num">
+              <span class="stat-count" data-to="1800">0</span>
+            </div>
+            <div class="stat-label en">Styles / yr</div>
+            <div class="stat-label cn">款 / 年</div>
+          </div>
+          <div class="stat-cell">
+            <div class="stat-num">
+              <span class="stat-count" data-to="67000">0</span>
+            </div>
+            <div class="stat-label en">Samples / yr</div>
+            <div class="stat-label cn">样品 / 年</div>
+          </div>
+        </div>
+
+        <div class="eng-imgwrap rv" style="--rv-d:.14s">
+          <img src="./Video/Generated image 1 (2).png"
+               alt="PCCS engineering — R&D and manufacturing"
+               loading="lazy"
+               data-parallax="1.06,0.09,7">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ THREE TEASERS ══════════════════════════════════════════ -->
+<section class="section section-sand">
+  <div class="container">
+    <div class="teasers-hd">
+      <p class="eyebrow rv en">The Engineering — a preview</p>
+      <p class="eyebrow rv cn">工程能力预览</p>
+      <h2 class="h2 rv" style="max-width:560px;">
+        <span class="en">One system.<br>Many futures.</span>
+        <span class="cn">一套体系。<br>多种未来。</span>
+      </h2>
+    </div>
+
+    <div class="teasers-row">
+
+      <!-- Investors -->
+      <div class="teaser-card rv" id="investors" style="--rv-d:.05s">
+        <div class="teaser-bg" style="background-image:url('./Video/Generated image 1 (4).png');background-position:0% 50%;opacity:.55;"></div>
+        <div class="teaser-scrim"></div>
+        <div class="teaser-body">
+          <div class="teaser-tag en">Investors</div>
+          <div class="teaser-tag cn">投资者</div>
+          <h3 class="teaser-h">
+            <span class="en">We own more of the chain than the market pays for.</span>
+            <span class="cn">股价之外，是我们更深的实力。</span>
+          </h3>
+          <p class="teaser-p">
+            <span class="en">Bursa Main Market · 6068</span>
+            <span class="cn">大马交易所主板 · 代码 6068</span>
+          </p>
+          <a href="#" class="teaser-link">
+            <span class="en">Investor relations</span>
+            <span class="cn">投资者关系</span>
+            <span class="tile-arrow">→</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Careers -->
+      <div class="teaser-card rv" id="careers" style="--rv-d:.10s">
+        <div class="teaser-bg" style="background-image:url('./Video/Generated image 1 (2).png');background-position:25% 25%;opacity:.6;"></div>
+        <div class="teaser-scrim"></div>
+        <div class="teaser-body">
+          <div class="teaser-tag en">Careers</div>
+          <div class="teaser-tag cn">人才招聘</div>
+          <h3 class="teaser-h">
+            <span class="en">Come engineer what the world wears.</span>
+            <span class="cn">与我们同行，定义世界所穿。</span>
+          </h3>
+          <p class="teaser-p">
+            <span class="en">Development · R&amp;D · Manufacturing · Quality</span>
+            <span class="cn">开发 · 研发 · 生产 · 质量与合规</span>
+          </p>
+          <a href="#" class="teaser-link">
+            <span class="en">View roles</span>
+            <span class="cn">查看岗位</span>
+            <span class="tile-arrow">→</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Sustainability -->
+      <div class="teaser-card rv" id="sustainability" style="--rv-d:.15s">
+        <div class="teaser-bg" style="background-image:url('./Video/Generated image 1 (3).png');background-position:50% 100%;opacity:.55;"></div>
+        <div class="teaser-scrim"></div>
+        <div class="teaser-body">
+          <div class="teaser-tag en">Sustainability</div>
+          <div class="teaser-tag cn">永续未来</div>
+          <h3 class="teaser-h">
+            <span class="en">Made responsibly, measured honestly.</span>
+            <span class="cn">说到做到，数字为证。</span>
+          </h3>
+          <p class="teaser-p">
+            <span class="en">Reporting since FY2018 · GRS · OEKO-TEX · Higg FEM</span>
+            <span class="cn">从 FY2018 起按标准报告 · GRS · OEKO-TEX · Higg FEM</span>
+          </p>
+          <a href="#" class="teaser-link">
+            <span class="en">Our commitments</span>
+            <span class="cn">我们的承诺</span>
+            <span class="tile-arrow">→</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═════════════════════════════════════════════════ -->
+<footer class="footer" id="group">
+  <div class="container">
+    <div class="footer-main">
+      <div>
+        <div class="footer-logo">PCCS<em>.</em></div>
+        <p class="footer-tagline en">Engineering Future</p>
+        <p class="footer-tagline cn">以工程，创造可能。</p>
+        <p class="footer-about en">The trusted hand behind the world's top brands. For fifty years we've designed, decorated and delivered the marks worth wearing with pride.</p>
+        <p class="footer-about cn">全球顶级品牌信赖的幕后之手。五十年来，我们设计、装饰、交付那些值得被骄傲穿上的标志。</p>
+      </div>
+      <nav aria-label="Footer navigation">
+        <ul class="footer-nav">
+          <li><a href="#engineering">
+            <span><span class="en">The Engineering</span><span class="cn">工程能力</span></span>
+            <span class="fna">→</span>
+          </a></li>
+          <li><a href="#work">
+            <span><span class="en">Our Work</span><span class="cn">我们的作品</span></span>
+            <span class="fna">→</span>
+          </a></li>
+          <li><a href="#sustainability">
+            <span><span class="en">Sustainability</span><span class="cn">永续未来</span></span>
+            <span class="fna">→</span>
+          </a></li>
+          <li><a href="#group">
+            <span><span class="en">The Group</span><span class="cn">集团</span></span>
+            <span class="fna">→</span>
+          </a></li>
+          <li><a href="#investors">
+            <span><span class="en">Investors</span><span class="cn">投资者</span></span>
+            <span class="fna">→</span>
+          </a></li>
+          <li><a href="#careers">
+            <span><span class="en">Careers</span><span class="cn">人才招聘</span></span>
+            <span class="fna">→</span>
+          </a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="footer-base">
+      <div class="footer-contact">
+        <a href="mailto:enquiry@pccsgroup.net">enquiry@pccsgroup.net</a>
+        &nbsp;·&nbsp; LinkedIn: pccs-group-berhad-pccs
+        &nbsp;·&nbsp; KL HQ
+        &nbsp;·&nbsp; <span class="en">EN</span><span class="cn">中文</span>
+      </div>
+      <div class="footer-legal">
+        © 2026 PCCS Group Berhad · All rights reserved<br>
+        <span class="en">PCCS Group Berhad (Bursa: 6068)</span>
+        <span class="cn">PCCS 集团有限公司（大马交易所：6068）</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════ SCRIPTS ════════════════════════════════════════════════ -->
+<script>
+/* ── Language toggle ──────────────────────────────────────────────── */
+function setLang(lang) {
+  document.documentElement.dataset.lang = lang;
+  document.querySelectorAll('.lang-btn').forEach(function(btn) {
+    btn.classList.toggle('active', btn.textContent.trim() === (lang === 'en' ? 'EN' : '中文'));
+  });
+  try { localStorage.setItem('pccs-lang', lang); } catch(e) {}
+}
+(function() {
+  try {
+    var saved = localStorage.getItem('pccs-lang');
+    if (saved === 'cn') setLang('cn');
+  } catch(e) {}
+})();
+
+/* ── Hero entrance ─────────────────────────────────────────────────── */
+window.addEventListener('load', function() {
+  var bg   = document.getElementById('heroBg');
+  var h1   = document.querySelector('.hero h1');
+  var sub  = document.getElementById('heroSub');
+  var badge = document.getElementById('heroBadge');
+  setTimeout(function() { if (bg) bg.classList.add('loaded'); }, 80);
+  setTimeout(function() { if (h1) h1.classList.add('in'); }, 520);
+  setTimeout(function() { if (sub) sub.classList.add('in'); }, 780);
+  setTimeout(function() { if (badge) badge.classList.add('in'); }, 1100);
+});
+
+/* ── Nav scroll behaviour ──────────────────────────────────────────── */
+(function() {
+  var nav = document.getElementById('nav');
+  var lastY = 0;
+  window.addEventListener('scroll', function() {
+    var y = window.scrollY;
+    nav.classList.toggle('scrolled', y > 70);
+    if (y > 500) {
+      nav.classList.toggle('hidden', y > lastY + 2);
+    } else {
+      nav.classList.remove('hidden');
+    }
+    lastY = y;
+  }, { passive: true });
+})();
+
+/* ── Scroll reveal ─────────────────────────────────────────────────── */
+(function() {
+  if (!('IntersectionObserver' in window)) {
+    document.querySelectorAll('.rv').forEach(function(el) { el.classList.add('in'); });
+    return;
+  }
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.10, rootMargin: '0px 0px -5% 0px' });
+  document.querySelectorAll('.rv').forEach(function(el) { obs.observe(el); });
+})();
+
+/* ── Count-up stats ────────────────────────────────────────────────── */
+(function() {
+  if (window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+  var els = document.querySelectorAll('.stat-count[data-to]');
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (!e.isIntersecting) return;
+      var el = e.target;
+      var target = parseInt(el.dataset.to, 10);
+      var start = performance.now();
+      var dur = 1400;
+      (function tick(now) {
+        var p = Math.min((now - start) / dur, 1);
+        var eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(eased * target).toLocaleString();
+        if (p < 1) requestAnimationFrame(tick);
+      })(start);
+      obs.unobserve(el);
+    });
+  }, { threshold: 0.6 });
+  els.forEach(function(el) { obs.observe(el); });
+})();
+
+/* ── Parallax ──────────────────────────────────────────────────────── */
+(function() {
+  if (window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+  var els = Array.from(document.querySelectorAll('[data-parallax]'));
+  if (!els.length) return;
+  function frame() {
+    var vh = window.innerHeight;
+    els.forEach(function(el) {
+      var parts = el.dataset.parallax.split(',').map(Number);
+      var base = parts[0], maxS = parts[1], drift = parts[2];
+      var rect = el.getBoundingClientRect();
+      var prog = Math.min(Math.max((vh - rect.top) / (vh + rect.height), 0), 1);
+      var scale = base + prog * maxS;
+      var ty = (prog - 0.5) * drift;
+      el.style.transform = 'translateY(' + ty + '%) scale(' + scale + ')';
+    });
+    requestAnimationFrame(frame);
+  }
+  frame();
+})();
+</script>
+</body>
+</html>

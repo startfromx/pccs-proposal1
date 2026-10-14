@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>PCCS — Option 2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
+<style>
+:root{
+  --ink:#1C1C1A;--cream:#FFFFFF;--gold:#B8924A;--gold-soft:#D4B87E;
+  --line:rgba(28,28,26,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{-webkit-font-smoothing:antialiased;}
+body{background:#000;color:#fff;font-family:'Inter',system-ui,sans-serif;overflow-x:hidden;}
+
+/* ============ NAV ============ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;justify-content:center;
+  padding:36px 80px;
+  transition:opacity .8s ease, transform .8s ease;
+}
+nav.nav-hidden{transform:translateY(-110%);opacity:0;pointer-events:none;}
+.nav-in{
+  position:relative;
+  width:100%;
+  max-width:1760px;
+  display:flex;align-items:center;justify-content:space-between;
+  border-radius:999px;
+  transition:max-width .6s cubic-bezier(.4,0,.2,1), padding .6s cubic-bezier(.4,0,.2,1);
+  will-change:max-width;
+}
+.nav-in::before{
+  content:"";position:absolute;inset:0;border-radius:999px;z-index:-1;pointer-events:none;
+  background:rgba(20,20,18,.72);
+  backdrop-filter:blur(16px) saturate(140%);
+  -webkit-backdrop-filter:blur(16px) saturate(140%);
+  box-shadow:0 12px 34px rgba(0,0,0,.24);
+  border:1px solid rgba(255,255,255,.12);
+  opacity:0;
+  transition:opacity .5s ease;
+}
+.nav-logo{display:flex;align-items:center;text-decoration:none;flex-shrink:0;}
+.nav-logo img{height:46px;transition:height .6s cubic-bezier(.4,0,.2,1);filter:brightness(0) invert(1);}
+.nav-links{display:flex;gap:28px;align-items:center;transition:gap .6s cubic-bezier(.4,0,.2,1);}
+.nav-links a{font-size:13.5px;font-weight:500;letter-spacing:.01em;color:#fff;text-decoration:none;opacity:.92;transition:opacity .2s, font-size .6s cubic-bezier(.4,0,.2,1);white-space:nowrap;}
+.nav-links a:hover{opacity:1;}
+.lang{font-size:12.5px;color:rgba(255,255,255,.75);letter-spacing:.02em;white-space:nowrap;}
+.lang-btn{color:rgba(255,255,255,.45);text-decoration:none;transition:color .25s;}
+.lang-btn.active{color:#fff;}
+.lang-btn:hover{color:rgba(255,255,255,.8);}
+.nav-cta{font-size:13px;font-weight:600;color:var(--ink)!important;background:#fff;padding:10px 22px;border-radius:999px;opacity:1!important;}
+
+nav.nav-scrolled .nav-in{max-width:880px;padding:10px 12px 10px 22px;}
+nav.nav-scrolled .nav-in::before{opacity:1;}
+nav.nav-scrolled .nav-logo img{height:30px;}
+nav.nav-scrolled .nav-links{gap:22px;}
+nav.nav-scrolled .nav-links a:not(.nav-cta){font-size:13px;}
+
+@media(max-width:900px){
+  .nav-links a:not(.nav-cta){display:none;}
+  .lang{display:none;}
+  nav{padding:24px 24px;}
+  .nav-logo img{height:34px;}
+}
+
+/* ============ SCROLL SECTIONS ============ */
+.scroll-section{
+  position:relative;
+  width:100%;
+  height:100vh;
+  overflow:hidden;
+}
+.scroll-section .bg{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:cover;
+  will-change:transform;
+}
+.scroll-section .scrim{
+  position:absolute;inset:0;
+  pointer-events:none;
+}
+#sec1 .bg{filter:blur(2px);transform:scale(1.04);}
+#sec1 .scrim{background:linear-gradient(180deg,rgba(0,0,0,.25) 0%,rgba(0,0,0,.05) 35%,rgba(0,0,0,.4) 100%);}
+#sec2 .scrim{background:linear-gradient(180deg,rgba(0,0,0,.2) 0%,rgba(0,0,0,.3) 100%);}
+#sec3 .scrim{background:linear-gradient(0deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,.25) 50%,rgba(0,0,0,.1) 100%);}
+#sec4 .scrim{background:linear-gradient(180deg,rgba(0,0,0,.2) 0%,rgba(0,0,0,.45) 100%);}
+#sec5 .scrim{background:linear-gradient(180deg,rgba(0,0,0,.2) 0%,rgba(0,0,0,.45) 100%);}
+
+.scroll-section .content{
+  position:relative;z-index:2;
+  height:100%;
+  padding:0 clamp(24px,5vw,80px);
+}
+
+/* ============ SHARED TEXT ============ */
+.eyebrow{
+  font-size:clamp(11px,.9vw,16px);letter-spacing:.1em;text-transform:uppercase;
+  font-weight:600;color:var(--gold-soft);margin-bottom:clamp(14px,1.8vh,24px);
+}
+.eyebrow-gold{color:var(--gold-soft);}
+h1,h2{font-weight:300;letter-spacing:-.05em;color:#fff;}
+h1{font-size:clamp(44px,7.5vw,138px);line-height:.92;}
+h2{font-size:clamp(28px,4.8vw,88px);line-height:.95;}
+.line{display:block;}
+.body-text{
+  font-size:clamp(13px,1.05vw,18px);line-height:1.65;font-weight:300;
+  letter-spacing:-.005em;color:rgb(255, 255, 255);
+}
+.quote-text{
+  font-size:clamp(16px,1.6vw,28px);line-height:1.35;font-weight:300;
+  letter-spacing:-.05em;color:rgb(255, 255, 255);
+}
+.quote-text .g{color:var(--gold-soft);}
+cite{
+  display:block;margin-top:16px;font-style:normal;
+  font-size:clamp(12px,.95vw,17px);letter-spacing:0;text-transform:none;
+  color:var(--gold-soft);font-weight:300;
+}
+.cta-btn{
+  display:inline-flex;align-items:center;gap:8px;align-self:flex-start;
+  margin-top:clamp(18px,2vh,32px);padding:11px 22px;border-radius:999px;
+  background:transparent;
+  color:rgba(255,255,255,.9);font-size:clamp(14px,.9vw,16px);font-weight:300;
+  text-decoration:none;border:1px solid rgba(255,255,255,.5);
+  transition:background .25s;
+}
+.cta-btn:hover{background:rgba(255,255,255,.15);}
+
+/* anim-ready state */
+[data-anim]{
+  opacity:0;transform:translateY(35px);filter:blur(8px);
+  will-change:opacity,transform,filter;
+}
+[data-glass]{
+  opacity:0;transform:translateX(-100%);
+  will-change:opacity,transform;
+}
+
+/* scroll indicator */
+.scroll-hint{
+  position:absolute;bottom:clamp(24px,3vh,40px);left:50%;transform:translateX(-50%);
+  z-index:10;display:flex;flex-direction:column;align-items:center;gap:8px;
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:400;
+  color:rgba(255,255,255,.6);
+  animation:scrollBob 2s ease-in-out infinite;
+  transition:opacity .5s;
+}
+.scroll-hint.hide{opacity:0;pointer-events:none;}
+.scroll-hint span.scroll-line{display:block;width:1px;height:24px;background:rgba(255,255,255,.4);}
+@keyframes scrollBob{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(6px);}}
+
+/* ============ SEC 1: HERO ============ */
+#sec1 .content{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:clamp(60px,9vw,140px);
+  padding-bottom:clamp(90px,9vh,140px);
+}
+.hero-left{flex:1;max-width:60%;}
+.hero-right{
+  flex:0 0 auto;
+  max-width:clamp(400px,26vw,480px);
+  padding-bottom:0;
+}
+.hero-right p{
+  font-size:clamp(20px,1.15vw,20px);font-weight:300;line-height:1.6;
+  color:#fff;margin-bottom:20px;
+}
+.hero-right p:last-child{margin-bottom:0;}
+
+/* ============ SEC 2: EMBROIDERY ============ */
+#sec2 .content{
+  display:flex;flex-direction:column;
+  justify-content:center;
+  gap:clamp(40px,7vh,90px);
+  padding-top:clamp(80px,10vh,120px);
+  padding-bottom:clamp(50px,7vh,100px);
+}
+.sec2-head{display:flex;flex-direction:column;}
+
+/* ============ SEC 3: GIRL / BELIEF ============ */
+/* frosted glass panel on the left */
+#sec3 .glass-panel{
+  position:absolute;left:0;top:0;bottom:0;z-index:1;
+  width:clamp(360px,50vw,980px);
+  background:rgba(255,255,255,.06);
+  backdrop-filter:blur(30px) saturate(120%);
+  -webkit-backdrop-filter:blur(30px) saturate(120%);
+  border-right:1px solid rgba(255,255,255,.1);
+}
+#sec3 .content{
+  display:flex;flex-direction:column;
+  justify-content:center;
+  padding-top:clamp(90px,12vh,140px);
+  padding-bottom:clamp(50px,7vh,100px);
+}
+.body-col{
+  max-width:clamp(400px,44vw,860px);
+  display:flex;flex-direction:column;gap:clamp(28px,3.5vh,48px);
+}
+#sec3 .body-text{
+  font-size:clamp(20px,2.3vw,38px);
+  line-height:1.32;letter-spacing:-.02em;font-weight:300;color:#fff;
+}
+
+/* ============ SEC 4: RAIN / WHAT WE DO ============ */
+#sec4 .content{
+  display:flex;align-items:stretch;justify-content:space-between;
+  padding:0;
+}
+.wtd-left{
+  flex:1;display:flex;flex-direction:column;justify-content:flex-end;
+  padding:0 clamp(24px,4vw,70px) clamp(50px,7vh,100px);
+}
+#sec4 .wtd-left h2{font-size:clamp(44px,6.5vw,120px);line-height:.95;}
+/* right glass panel */
+.wtd-right{
+  flex:0 0 clamp(420px,47vw,940px);
+  align-self:stretch;
+  background:rgba(255,255,255,.05);
+  backdrop-filter:blur(30px) saturate(120%);
+  -webkit-backdrop-filter:blur(30px) saturate(120%);
+  border-left:1px solid rgba(255,255,255,.08);
+  display:flex;flex-direction:column;justify-content:center;
+  padding:clamp(80px,10vh,130px) clamp(30px,4vw,90px);
+  will-change:opacity,transform;
+}
+/* accordion */
+.acc-item{
+  position:relative;
+  padding-left:clamp(40px,4vw,80px);
+  border-bottom:1px solid rgba(255,255,255,.15);
+}
+.acc-item:first-child{border-top:1px solid rgba(255, 255, 255, 0);}
+.acc-num{
+  position:absolute;left:0;top:clamp(18px,1.8vw,26px);
+  font-size:clamp(12px,.9vw,15px);color:rgba(255,255,255,.5);font-weight:300;
+}
+.acc-head{padding:clamp(18px,1.8vw,26px) 0;}
+.acc-head h3{
+  font-size:clamp(14px,1.55vw,20px);font-weight:300;letter-spacing:-.02em;color:#fff;
+  transition:font-size .4s ease;
+}
+.acc-item.is-open .acc-head h3{
+  font-size:clamp(20px,2.05vw,36px);
+}
+.acc-body{overflow:hidden;}
+.acc-body p{
+  font-size:clamp(15px,1.15vw,20px);line-height:1.5;font-weight:300;color:#fff;
+  margin:0 0 clamp(20px,2.5vh,32px);
+}
+.acc-img{border-radius:10px;overflow:hidden;line-height:0;margin-bottom:clamp(18px,2.2vh,30px);width:60%;}
+.acc-img img{width:100%;height:auto;display:block;}
+
+/* ============ SEC 5: CAREERS ============ */
+#sec5 .content{
+  display:flex;align-items:stretch;
+  padding:0;
+}
+.glass-career{
+  background:rgba(255,255,255,.08);
+  backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);
+  border-right:1px solid rgba(255,255,255,.12);
+  padding:clamp(36px,4vw,64px);
+  width:clamp(320px,38vw,680px);
+  display:flex;flex-direction:column;justify-content:center;
+}
+.glass-career h2{margin-bottom:clamp(24px,3vh,48px);}
+
+
+/* ============ HERO FOOT ============ */
+.hero-foot{position:relative;z-index:2;background:var(--cream);color:var(--ink);}
+.hero-foot-in{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:18px clamp(24px,5vw,80px);
+  font-size:clamp(9px,.7vw,13px);letter-spacing:.18em;text-transform:uppercase;font-weight:300;
+  border-top:1px solid var(--line);
+}
+
+/* ============ FLAT SECTIONS ============ */
+.nums-section{background:var(--cream);color:var(--ink);padding:clamp(80px,14vh,180px) clamp(24px,5vw,80px);}
+.nums-wrap{max-width:1840px;margin:0 auto;}
+.nums-head{text-align:center;margin-bottom:64px;}
+.nums-head .sec-k{font-size:clamp(11px,.9vw,16px);letter-spacing:.1em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:22px;}
+.nums-head h2{font-weight:300;font-size:clamp(28px,4.2vw,72px);line-height:1.08;letter-spacing:-.03em;color:var(--ink)!important;}
+.nums-grid{display:grid;grid-template-columns:repeat(4,1fr);}
+.num-cell{padding:6px 0 6px 40px;border-left:1px solid var(--line);}
+.num-cell:first-child{border-left:none;padding-left:0;}
+.num-n{font-weight:300;font-size:clamp(40px,6vw,110px);line-height:1;letter-spacing:-.03em;}
+.num-n .plus{font-size:.5em;font-weight:200;vertical-align:middle;}
+.num-l{margin-top:20px;font-size:clamp(12px,1vw,18px);line-height:1.55;font-weight:300;max-width:13em;color:rgba(28,28,26,.75);}
+
+.group-section{background:var(--cream);color:var(--ink);padding:clamp(80px,14vh,180px) clamp(24px,5vw,80px);}
+.grp-wrap{max-width:1840px;margin:0 auto;}
+.grp-head{margin-bottom:50px;}
+.grp-head .sec-k{font-size:clamp(11px,.9vw,16px);letter-spacing:.1em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:20px;}
+.grp-head h2{font-weight:300;font-size:clamp(26px,3.8vw,66px);line-height:1.08;letter-spacing:-.03em;color:var(--ink)!important;}
+.grp-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:24px;}
+.grp-card .card-imgwrap{overflow:hidden;border-radius:14px;line-height:0;height:clamp(280px,34vw,640px);}
+.grp-card .card-imgwrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s ease;}
+.grp-card .card-imgwrap:hover img{transform:scale(1.04);}
+.grp-tag{font-size:clamp(9px,.6vw,11px);letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--gold);margin:22px 0 8px;}
+.grp-card h3{font-size:clamp(16px,1.6vw,30px);font-weight:300;letter-spacing:-.02em;margin-bottom:10px;}
+.grp-card p{font-size:clamp(12px,1vw,16px);line-height:1.55;font-weight:300;color:rgba(28,28,26,.95);}
+
+.inv-section{background:var(--cream);color:var(--ink);padding:clamp(80px,14vh,180px) clamp(24px,5vw,80px);}
+.inv-wrap{max-width:1840px;margin:0 auto;}
+.inv-head{margin-bottom:40px;padding-bottom:40px;border-bottom:1px solid var(--line);}
+.inv-head .sec-k{font-size:clamp(11px,.9vw,16px);letter-spacing:.1em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:20px;}
+.inv-head h2{font-weight:300;font-size:clamp(20px,3vw,52px);line-height:1.1;letter-spacing:-.02em;color:var(--ink)!important;}
+.inv-head h2 .g{color:var(--gold);}
+.inv-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:stretch;padding-bottom:50px;border-bottom:1px solid var(--line);}
+.inv-copy{display:flex;flex-direction:column;}
+.inv-copy .inv-btn{margin-top:auto;align-self:flex-start;}
+.snap{display:flex;flex-direction:column;}
+.snap-row{margin-top:auto;}
+.inv-copy p{font-size:clamp(24px,2.5vw,32px);line-height:1.30;font-weight:300;margin-bottom:36px;color:var(--ink);}
+.inv-btn{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--ink);text-decoration:none;font-size:clamp(14px,.9vw,16px);font-weight:400;padding:11px 22px;border-radius:999px;border:1px solid var(--ink);transition:background .25s;}
+.inv-btn:hover{background:rgba(0,0,0,.05);}
+.snap-top{display:flex;justify-content:space-between;align-items:baseline;}
+.snap-title{font-size:clamp(15px,1.1vw,20px);font-weight:400;}
+.snap-tick{font-size:clamp(11px,.7vw,13px);font-weight:300;color:rgba(28,28,26,.6);}
+.snap-tick b{color:var(--ink);margin-left:20px;font-weight:500;}
+.snap-price{text-align:center;padding:48px 0;}
+.snap-price .p{font-weight:300;font-size:clamp(52px,6.5vw,120px);line-height:1;letter-spacing:-.03em;}
+.snap-price .u{font-size:clamp(12px,.75vw,15px);font-weight:300;color:rgba(28,28,26,.6);margin-left:8px;vertical-align:top;}
+.snap-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding-top:22px;border-top:1px solid var(--line);}
+.snap-row .lab{font-size:clamp(8px,.5vw,10px);letter-spacing:.12em;text-transform:uppercase;color:rgba(28,28,26,.55);font-weight:300;margin-bottom:6px;}
+.snap-row .val{font-size:clamp(12px,.85vw,16px);font-weight:400;}
+
+/* footer */
+.foot{background:#000;color:#fff;padding:70px clamp(24px,5vw,80px) 36px;}
+.foot-wrap{max-width:1840px;margin:0 auto;}
+.foot-top{display:grid;grid-template-columns:1fr 1.15fr;gap:60px;align-items:start;}
+.foot-logo img{height:clamp(44px,4.5vw,64px);filter:brightness(0) invert(1);}
+.foot-belief{margin-top:14px;font-size:clamp(12px,.9vw,15px);font-weight:300;color:var(--gold-soft);}
+.foot-nav a{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.14);font-size:clamp(17px,1.6vw,30px);font-weight:300;color:#fff;text-decoration:none;transition:padding-left .3s,color .3s;}
+.foot-nav a:first-child{border-top:1px solid rgba(255,255,255,.14);}
+.foot-nav a:hover{padding-left:8px;color:var(--gold-soft);}
+.foot-nav a .ar{font-size:.6em;opacity:.5;}
+.foot-lower{display:grid;grid-template-columns:1fr 1.15fr;gap:60px;margin-top:70px;}
+.foot-lower-right{display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px;}
+.foot-desc{font-size:13px;line-height:1.65;font-weight:300;color:rgba(255,255,255,.85);max-width:26em;}
+.foot-social{margin-top:18px;display:flex;flex-direction:column;gap:8px;font-size:12px;font-weight:300;color:rgba(255,255,255,.7);}
+.foot-col h4{font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:300;color:var(--gold-soft);margin-bottom:16px;}
+.foot-col a{display:block;font-size:13px;font-weight:300;color:rgba(255,255,255,.8);text-decoration:none;margin-bottom:11px;}
+.foot-col a:hover{color:#fff;}
+.foot-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-top:60px;padding-top:20px;border-top:1px solid rgba(255,255,255,.1);font-size:11px;font-weight:300;color:rgba(255,255,255,.6);}
+
+/* fade-up for flat sections */
+.rv{opacity:50;transform:translateY(30px);transition:opacity .9s cubic-bezier(.22,.61,.36,1),transform .9s cubic-bezier(.22,.61,.36,1);transition-delay:var(--d,0s);}
+.rv.in{opacity:1;transform:none;}
+
+/* ============ MOBILE ============ */
+@media(max-width:900px){
+  #sec1 .content{flex-direction:column;align-items:flex-start;gap:30px;}
+  .hero-left{max-width:100%;}
+  .hero-right{max-width:100%;}
+  #sec4 .content{flex-direction:column;align-items:flex-start;gap:30px;}
+  .wtd-right{max-width:100%;}
+  .nums-grid{grid-template-columns:1fr 1fr;gap:36px 24px;}
+  .num-cell{padding-left:0;border-left:none;}
+  .grp-grid{grid-template-columns:1fr;gap:32px;}
+  .grp-card .card-imgwrap{height:clamp(240px,55vw,380px);}
+  .inv-grid{grid-template-columns:1fr;gap:40px;}
+  .foot-top{grid-template-columns:1fr;gap:32px;}
+  .foot-lower{grid-template-columns:1fr 1fr;gap:28px;}
+  .foot-bottom{flex-direction:column;gap:6px;}
+}
+@media(max-width:680px){
+  .hero-foot-in{flex-direction:column;align-items:flex-start;gap:5px;font-size:8px;padding:14px 20px;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="siteNav">
+  <div class="nav-in">
+    <a class="nav-logo" href="#"><img src="6PCCS_logo.svg" alt="PCCS Group"></a>
+    <div class="nav-links">
+      <a href="#" data-t="nav.story">Story</a>
+      <a href="#" data-t="nav.whatwedo">What We Do</a>
+      <a href="#" data-t="nav.ourwork">Our Work</a>
+      <a href="#" data-t="nav.ourgroup">Our Group</a>
+      <a href="#" data-t="nav.investors">Investors</a>
+      <a href="#" data-t="nav.careers">Careers</a>
+      <span class="lang"><a class="lang-btn" data-lang="en" href="index.html">EN</a>&nbsp;·&nbsp;<a class="lang-btn" data-lang="cn" href="cn.html">中文</a></span>
+      <a class="nav-cta" href="#" data-t="nav.contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== SECTION 1: HERO ===== -->
+<section class="scroll-section" id="sec1">
+  <img class="bg" src="1hero.jpg" alt="">
+  <div class="scrim"></div>
+  <div class="scroll-hint" id="scrollHint"><span data-t="hero.scroll">Scroll</span><span class="scroll-line"></span></div>
+  <div class="content">
+    <div class="hero-left">
+      <div class="eyebrow" data-t="hero.eyebrow">Crafting the Badge</div>
+      <h1>
+        <span class="line" data-t="hero.line1">The World</span>
+        <span class="line" data-t="hero.line2">Wears Our Work.</span>
+      </h1>
+    </div>
+    <div class="hero-right" data-anim>
+      <p data-t="hero.body">For fifty years, the world&rsquo;s biggest brands &mdash; in sport and on the street &mdash; have trusted us to craft the marks they live by. The crest over the heart. The label inside the collar. The badge worn with pride.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 2: EMBROIDERY ===== -->
+<section class="scroll-section" id="sec2">
+  <img class="bg" src="2Embroidery.jpg" alt="">
+  <div class="scrim"></div>
+  <div class="content">
+    <div class="sec2-head">
+      <h2>
+        <span class="line" data-anim data-t="sec2.line1">The Smallest Mark</span>
+        <span class="line" data-anim data-t="sec2.line2">Carries Everything.</span>
+      </h2>
+    </div>
+    <div>
+      <div class="quote-text" data-anim data-t="sec2.quote">
+        &ldquo;We don&rsquo;t make the badge to be seen.<br>
+        We make it to be worn with pride.&rdquo;
+      </div>
+      <cite data-anim data-t="sec2.cite">The PCCS Manifesto</cite>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 3: GIRL / BELIEF ===== -->
+<section class="scroll-section" id="sec3">
+  <img class="bg" src="3girl.jpg" alt="">
+  <div class="scrim"></div>
+  <div class="glass-panel" data-glass></div>
+  <div class="content">
+    <div class="body-col">
+      <div class="body-text" data-anim data-t="sec3.body1">It&rsquo;s the part people touch first and trust most &mdash; the mark that turns cloth into something you&rsquo;re proud to put on. The world&rsquo;s biggest names don&rsquo;t hand that to just anyone. For fifty years, they&rsquo;ve handed it to us.</div>
+      <div class="body-text" data-anim data-t="sec3.body2">We are the makers behind the mark. Every stitch carries someone else&rsquo;s reputation; every detail is a promise kept. A badge is more than a logo &mdash; it&rsquo;s a belief you can wear. Crafting it is the conviction we&rsquo;ve built our name on.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 4: RAIN / WHAT WE DO ===== -->
+<section class="scroll-section" id="sec4">
+  <img class="bg" src="4rain.jpg" alt="">
+  <div class="scrim"></div>
+  <div class="content">
+    <div class="wtd-left">
+      <div class="eyebrow" data-anim data-t="sec4.eyebrow">What We Do</div>
+      <h2>
+        <span class="line" data-anim data-t="sec4.line1">Designing.</span>
+        <span class="line" data-anim data-t="sec4.line2">Decorating.</span>
+        <span class="line" data-anim data-t="sec4.line3">Delivering.</span>
+      </h2>
+    </div>
+    <div class="wtd-right" data-glass-r>
+      <div class="acc-item" data-acc>
+        <div class="acc-head"><span class="acc-num">01.</span><h3 data-t="acc1.title">Design &amp; Development</h3></div>
+        <div class="acc-body">
+          <p data-t="acc1.body">1,800+ styles a year, 50+ patents, a dedicated R&amp;D centre &mdash; we don&rsquo;t just make what brands imagine. We help them imagine it.</p>
+          <div class="acc-img"><img src="4_1.jpg" alt="Design & Development"></div>
+        </div>
+      </div>
+      <div class="acc-item" data-acc>
+        <div class="acc-head"><span class="acc-num">02.</span><h3 data-t="acc2.title">Embellishment</h3></div>
+        <div class="acc-body">
+          <p data-t="acc2.body">Embroidery, print, sublimation, seamless &mdash; the marks and crests the world&rsquo;s most protected brands trust to our hands.</p>
+          <div class="acc-img"><img src="4_2.jpg" alt="Embellishment"></div>
+        </div>
+      </div>
+      <div class="acc-item" data-acc>
+        <div class="acc-head"><span class="acc-num">03.</span><h3 data-t="acc3.title">Manufacturing &amp; Delivery</h3></div>
+        <div class="acc-body">
+          <p data-t="acc3.body">An orchestrated network across China, Cambodia and Vietnam &mdash; delivering to the world on time, every time.</p>
+          <div class="acc-img"><img src="4_3.jpg" alt="Manufacturing & Delivery"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== NUMBERS ===== -->
+<section class="nums-section">
+  <div class="nums-wrap">
+    <div class="nums-head rv">
+      <div class="sec-k" data-t="nums.eyebrow">Fifty Years of Proof</div>
+      <h2 data-t="nums.h2">Quietly World-Class,<br>All Along.</h2>
+    </div>
+    <div class="nums-grid">
+      <div class="num-cell rv" style="--d:0s"><div class="num-n"><span class="nv" data-to="50">0</span><span class="plus">+</span></div><div class="num-l" data-t="nums.stat1">years crafting for the world&rsquo;s biggest brands</div></div>
+      <div class="num-cell rv" style="--d:.1s"><div class="num-n"><span class="nv" data-to="1800">0</span><span class="plus">+</span></div><div class="num-l" data-t="nums.stat2">styles designed and developed every year</div></div>
+      <div class="num-cell rv" style="--d:.2s"><div class="num-n"><span class="nv" data-to="30">0</span><span class="plus">+</span></div><div class="num-l" data-t="nums.stat3">countries our products are sold in</div></div>
+      <div class="num-cell rv" style="--d:.3s"><div class="num-n"><span class="nv" data-to="3">0</span></div><div class="num-l" data-t="nums.stat4">manufacturing countries &mdash; China, Cambodia, Vietnam</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== OUR GROUP ===== -->
+<section class="group-section">
+  <div class="grp-wrap">
+    <div class="grp-head rv">
+      <div class="sec-k" data-t="grp.eyebrow">Our Group</div>
+      <h2 data-t="grp.h2">One Standard. Growing Fields.</h2>
+    </div>
+    <div class="grp-grid">
+      <article class="grp-card rv" style="--d:0s">
+        <div class="card-imgwrap"><img src="5group_1.jpg" alt="Apparel"></div>
+        <div class="grp-tag" data-t="grp1.tag">The Heart</div>
+        <h3 data-t="grp1.title">Apparel &amp; Embellishment</h3>
+        <p data-t="grp1.body">The craft engine of the group &mdash; design, embellishment and manufacturing for the world&rsquo;s leading sport and lifestyle brands. Where the badge is made.</p>
+      </article>
+      <article class="grp-card rv" style="--d:.12s">
+        <div class="card-imgwrap"><img src="5group_2.jpg" alt="Medical"></div>
+        <div class="grp-tag" data-t="grp2.tag">Growth Arm</div>
+        <h3 data-t="grp2.title">Medical</h3>
+        <p data-t="grp2.body">La Prima &mdash; precision medical devices, built with the same exacting standard our craft is known for.</p>
+      </article>
+      <article class="grp-card rv" style="--d:.24s">
+        <div class="card-imgwrap"><img src="5group_3.jpg" alt="Finance"></div>
+        <div class="grp-tag" data-t="grp3.tag">Growth Arm</div>
+        <h3 data-t="grp3.title">Finance</h3>
+        <p data-t="grp3.body">EZFY &mdash; financial services growing toward its own listing. The same trust, applied to a different promise.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== INVESTORS ===== -->
+<section class="inv-section">
+  <div class="inv-wrap">
+    <div class="inv-head rv">
+      <div class="sec-k" data-t="inv.eyebrow">For Investors</div>
+      <h2 data-t="inv.h2">From Factory To Platform.<br><span class="g">A Story Worth Watching.</span></h2>
+    </div>
+    <div class="inv-grid">
+      <div class="inv-copy rv">
+        <p data-t="inv.body">PCCS is transforming &mdash; from an asset-heavy manufacturer into an asset-light apparel solutions platform that owns the craft, the design, the clients and the IP. Follow the numbers, the milestones and the story here.</p>
+        <a class="inv-btn" href="#" data-t="inv.btn">Investor Relations <span>&rarr;</span></a>
+      </div>
+      <div class="snap rv" style="--d:.1s">
+        <div class="snap-top">
+          <div class="snap-title" data-t="snap.title">Market Snapshot</div>
+          <div class="snap-tick" data-t="snap.tick">PCCS Group Berhad <b>6068</b></div>
+        </div>
+        <div class="snap-price"><span class="p">1.28</span><span class="u">MYR</span></div>
+        <div class="snap-row">
+          <div><div class="lab" data-t="snap.lab1">Day&rsquo;s High</div><div class="val">RM1.38</div></div>
+          <div><div class="lab" data-t="snap.lab2">Day&rsquo;s Low</div><div class="val">RM1.18</div></div>
+          <div><div class="lab" data-t="snap.lab3">Day&rsquo;s Volume</div><div class="val">68,888.00</div></div>
+          <div><div class="lab" data-t="snap.lab4">Last Updated</div><div class="val">8 hr ago</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 5: CAREERS ===== -->
+<section class="scroll-section" id="sec5">
+  <img class="bg" src="7career.jpg" alt="">
+  <div class="scrim"></div>
+  <div class="content">
+    <div class="glass-career" data-glass>
+      <div class="eyebrow" data-anim data-t="career.eyebrow">Careers</div>
+      <h2>
+        <span class="line" data-anim data-t="career.line1">You&rsquo;ve Worn</span>
+        <span class="line" data-anim data-t="career.line2">Our Work.</span>
+        <span class="line" data-anim data-t="career.line3">Now Come</span>
+        <span class="line" data-anim data-t="career.line4">Make It.</span>
+      </h2>
+      <div class="body-text" data-anim data-t="career.body" style="max-width:26em;">Join the hands behind the world&rsquo;s biggest brands &mdash; in design, engineering, craft and beyond. The next fifty years start with you.</div>
+      <a class="cta-btn" href="#" data-anim data-t="career.btn">See Open Roles <span>&rarr;</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="foot">
+  <div class="foot-wrap">
+    <div class="foot-top rv">
+      <div>
+        <div class="foot-logo"><img src="6PCCS_logo.svg" alt="PCCS Group"></div>
+        <div class="foot-belief" data-t="foot.belief">Crafting the Badge</div>
+      </div>
+      <div class="foot-nav">
+        <a href="#" data-t="foot.nav.story">Story</a>
+        <a href="#" data-t="foot.nav.whatwedo">What We Do</a>
+        <a href="#" data-t="foot.nav.ourwork">Our Work</a>
+        <a href="#" data-t="foot.nav.ourgroup">Our Group</a>
+        <a href="#" data-t="foot.nav.investors">Investors <span class="ar">&#8599;</span></a>
+        <a href="#" data-t="foot.nav.careers">Careers</a>
+        <a href="#" data-t="foot.nav.contact">Contact</a>
+      </div>
+    </div>
+    <div class="foot-lower rv" style="--d:.1s">
+      <div>
+        <div class="foot-desc" data-t="foot.desc">Crafting the marks the world&rsquo;s greatest brands are proud to wear. For fifty years, we&rsquo;ve been the master hand behind the badges of sport and apparel &mdash; designing, embellishing, and delivering what matters.</div>
+        <div class="foot-social">
+          <span>&#9993;&nbsp; @pccs-group-berhad-pccs</span>
+          <span>in&nbsp; linkedin.com/company/pccs-group-berhad-pccs</span>
+        </div>
+      </div>
+      <div class="foot-lower-right">
+        <div class="foot-col"><h4 data-t="foot.h4.company">Company</h4><a href="#" data-t="foot.link.story">Story</a><a href="#" data-t="foot.link.whatwedo">What We Do</a><a href="#" data-t="foot.link.ourwork">Our Work</a><a href="#" data-t="foot.link.ourgroup">Our Group</a><a href="#" data-t="foot.link.footprint">Global Footprint</a></div>
+        <div class="foot-col"><h4 data-t="foot.h4.stakeholders">Stakeholders</h4><a href="#" data-t="foot.link.investors">Investors</a><a href="#" data-t="foot.link.careers">Careers</a><a href="#" data-t="foot.link.sustainability">Sustainability</a><a href="#" data-t="foot.link.newsroom">Newsroom</a></div>
+        <div class="foot-col"><h4 data-t="foot.h4.contact">Contact</h4><a href="#" data-t="foot.link.hq">Kuala Lumpur HQ</a><a href="#">enquiry@pccsgroup.net</a><a class="lang-btn" data-lang="en" href="index.html">EN</a> · <a class="lang-btn" data-lang="cn" href="cn.html">中文</a></div>
+      </div>
+    </div>
+    <div class="foot-bottom rv" style="--d:.15s">
+      <span data-t="foot.copyright">&copy; 2026 PCCS Group Berhad.</span>
+      <span data-t="foot.proposal">Proposal by Startfrom X Sdn Bhd. Design mockup &mdash; for internal review only.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ============ i18n ============ */
+const DEFAULT_LANG = 'en';
+
+const T = {
+  en: {
+    'nav.story': 'Story',
+    'nav.whatwedo': 'What We Do',
+    'nav.ourwork': 'Our Work',
+    'nav.ourgroup': 'Our Group',
+    'nav.investors': 'Investors',
+    'nav.careers': 'Careers',
+    'nav.contact': 'Contact',
+
+    'hero.scroll': 'Scroll',
+    'hero.eyebrow': 'Crafting the Badge',
+    'hero.line1': 'The World',
+    'hero.line2': 'Wears Our Work.',
+    'hero.body': 'For fifty years, the world’s biggest brands — in sport and on the street — have trusted us to craft the marks they live by. The crest over the heart. The label inside the collar. The badge worn with pride.',
+
+    'sec2.line1': 'The Smallest Mark',
+    'sec2.line2': 'Carries Everything.',
+    'sec2.quote': '“We don’t make the badge to be seen.<br>We make it to be worn with pride.”',
+    'sec2.cite': 'The PCCS Manifesto',
+
+    'sec3.body1': 'It’s the part people touch first and trust most — the mark that turns cloth into something you’re proud to put on. The world’s biggest names don’t hand that to just anyone. For fifty years, they’ve handed it to us.',
+    'sec3.body2': 'We are the makers behind the mark. Every stitch carries someone else’s reputation; every detail is a promise kept. A badge is more than a logo — it’s a belief you can wear. Crafting it is the conviction we’ve built our name on.',
+
+    'sec4.eyebrow': 'What We Do',
+    'sec4.line1': 'Designing.',
+    'sec4.line2': 'Decorating.',
+    'sec4.line3': 'Delivering.',
+    'acc1.title': 'Design & Development',
+    'acc1.body': '1,800+ styles a year, 50+ patents, a dedicated R&D centre — we don’t just make what brands imagine. We help them imagine it.',
+    'acc2.title': 'Embellishment',
+    'acc2.body': 'Embroidery, print, sublimation, seamless — the marks and crests the world’s most protected brands trust to our hands.',
+    'acc3.title': 'Manufacturing & Delivery',
+    'acc3.body': 'An orchestrated network across China, Cambodia and Vietnam — delivering to the world on time, every time.',
+
+    'nums.eyebrow': 'Fifty Years of Proof',
+    'nums.h2': 'Quietly World-Class,<br>All Along.',
+    'nums.stat1': 'years crafting for the world’s biggest brands',
+    'nums.stat2': 'styles designed and developed every year',
+    'nums.stat3': 'countries our products are sold in',
+    'nums.stat4': 'manufacturing countries — China, Cambodia, Vietnam',
+
+    'grp.eyebrow': 'Our Group',
+    'grp.h2': 'One Standard. Growing Fields.',
+    'grp1.tag': 'The Heart',
+    'grp1.title': 'Apparel & Embellishment',
+    'grp1.body': 'The craft engine of the group — design, embellishment and manufacturing for the world’s leading sport and lifestyle brands. Where the badge is made.',
+    'grp2.tag': 'Growth Arm',
+    'grp2.title': 'Medical',
+    'grp2.body': 'La Prima — precision medical devices, built with the same exacting standard our craft is known for.',
+    'grp3.tag': 'Growth Arm',
+    'grp3.title': 'Finance',
+    'grp3.body': 'EZFY — financial services growing toward its own listing. The same trust, applied to a different promise.',
+
+    'inv.eyebrow': 'For Investors',
+    'inv.h2': 'From Factory To Platform.<br><span class="g">A Story Worth Watching.</span>',
+    'inv.body': 'PCCS is transforming — from an asset-heavy manufacturer into an asset-light apparel solutions platform that owns the craft, the design, the clients and the IP. Follow the numbers, the milestones and the story here.',
+    'inv.btn': 'Investor Relations <span>→</span>',
+    'snap.title': 'Market Snapshot',
+    'snap.tick': 'PCCS Group Berhad <b>6068</b>',
+    'snap.lab1': 'Day’s High',
+    'snap.lab2': 'Day’s Low',
+    'snap.lab3': 'Day’s Volume',
+    'snap.lab4': 'Last Updated',
+
+    'career.eyebrow': 'Careers',
+    'career.line1': 'You’ve Worn',
+    'career.line2': 'Our Work.',
+    'career.line3': 'Now Come',
+    'career.line4': 'Make It.',
+    'career.body': 'Join the hands behind the world’s biggest brands — in design, engineering, craft and beyond. The next fifty years start with you.',
+    'career.btn': 'See Open Roles <span>→</span>',
+
+    'foot.belief': 'Crafting the Badge',
+    'foot.nav.story': 'Story',
+    'foot.nav.whatwedo': 'What We Do',
+    'foot.nav.ourwork': 'Our Work',
+    'foot.nav.ourgroup': 'Our Group',
+    'foot.nav.investors': 'Investors <span class="ar">↗</span>',
+    'foot.nav.careers': 'Careers',
+    'foot.nav.contact': 'Contact',
+    'foot.desc': 'Crafting the marks the world’s greatest brands are proud to wear. For fifty years, we’ve been the master hand behind the badges of sport and apparel — designing, embellishing, and delivering what matters.',
+    'foot.h4.company': 'Company',
+    'foot.h4.stakeholders': 'Stakeholders',
+    'foot.h4.contact': 'Contact',
+    'foot.link.story': 'Story',
+    'foot.link.whatwedo': 'What We Do',
+    'foot.link.ourwork': 'Our Work',
+    'foot.link.ourgroup': 'Our Group',
+    'foot.link.footprint': 'Global Footprint',
+    'foot.link.investors': 'Investors',
+    'foot.link.careers': 'Careers',
+    'foot.link.sustainability': 'Sustainability',
+    'foot.link.newsroom': 'Newsroom',
+    'foot.link.hq': 'Kuala Lumpur HQ',
+    'foot.copyright': '© 2026 PCCS Group Berhad.',
+    'foot.proposal': 'Proposal by Startfrom X Sdn Bhd. Design mockup — for internal review only.',
+  }
+};
+
+// CN = copy of EN for now — replace values with Chinese copy later
+T.cn = Object.assign({}, T.en, {
+  // Example — uncomment and replace when Chinese copy is ready:
+  // 'hero.eyebrow': '打造徽章',
+  // 'hero.line1': '全世界',
+  // 'hero.line2': '穿戴我们的作品。',
+});
+
+function setLang(lang) {
+  const dict = T[lang] || T.en;
+  document.querySelectorAll('[data-t]').forEach(function(el) {
+    var key = el.getAttribute('data-t');
+    if (dict[key] !== undefined) {
+      el.innerHTML = dict[key];
+    }
+  });
+  document.querySelectorAll('.lang-btn').forEach(function(btn) {
+    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+  });
+  try { localStorage.setItem('pccs-lang', lang); } catch(e) {}
+  document.documentElement.lang = lang === 'cn' ? 'zh-CN' : 'en';
+}
+
+// init language
+(function(){
+  var stored = null;
+  try { stored = localStorage.getItem('pccs-lang'); } catch(e) {}
+  setLang(stored || DEFAULT_LANG);
+
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest('.lang-btn');
+    if (btn) {
+      e.preventDefault();
+      setLang(btn.getAttribute('data-lang'));
+    }
+  });
+})();
+
+/* ============ GSAP ============ */
+gsap.registerPlugin(ScrollTrigger);
+
+/* ============ NAV ============ */
+const nav = document.getElementById('siteNav');
+let lastY=0;
+addEventListener('scroll',()=>{
+  const y=scrollY;
+  if(y>80) nav.classList.add('nav-scrolled');
+  else if(y<40) nav.classList.remove('nav-scrolled');
+  if(y>600){
+    if(y>lastY) nav.classList.add('nav-hidden');
+    else nav.classList.remove('nav-hidden');
+  } else {
+    nav.classList.remove('nav-hidden');
+  }
+  lastY=y;
+  if(y>50) document.getElementById('scrollHint').classList.add('hide');
+  else document.getElementById('scrollHint').classList.remove('hide');
+},{passive:true});
+
+/* ============ PINNED SCROLL SECTIONS ============ */
+function buildSection(sectionId){
+  const section = document.getElementById(sectionId);
+  if(!section) return;
+  const items = section.querySelectorAll('[data-anim]');
+  const n = items.length;
+
+  const tl = gsap.timeline({
+    scrollTrigger:{
+      trigger: section,
+      start: 'top top',
+      end: ()=> '+=' + (innerHeight * (0.8 + n * 0.5)),
+      scrub: 0.4,
+      pin: true,
+      anticipatePin: 1,
+    }
+  });
+
+  // glass panel (if any) slides in from left first
+  const glass = section.querySelector('[data-glass]');
+  let offset = 0;
+  if(glass){
+    tl.to(glass, {
+      opacity:1, x:0,
+      duration: 1.2,
+      ease:'power3.out'
+    }, 0);
+    offset = 1;
+  }
+
+  // each element: blur → sharp, slide up → position, one by one
+  items.forEach((item, i) => {
+    tl.to(item, {
+      opacity:1, y:0, filter:'blur(0px)',
+      duration: 1,
+      ease:'power2.out'
+    }, offset + i * 0.9);
+  });
+
+  // hold at end so user can read
+  tl.to({}, {duration: 1.5}, offset + n * 0.9);
+}
+
+// SEC1 HERO: bg sharpens + body copy fades in on scroll
+(function(){
+  const sec = document.getElementById('sec1');
+  const bg = sec.querySelector('.bg');
+  const body = sec.querySelector('.hero-right');
+  const tl = gsap.timeline({
+    scrollTrigger:{
+      trigger:sec, start:'top top',
+      end:'+='+innerHeight*1.2,
+      scrub:0.4, pin:true, anticipatePin:1
+    }
+  });
+  tl.to(bg, {filter:'blur(0px)', scale:1, duration:1.5, ease:'power2.out'}, 0);
+  tl.to(body, {opacity:1, y:0, filter:'blur(0px)', duration:1, ease:'power2.out'}, 0.3);
+  tl.to({}, {duration:1}, 1.5);
+})();
+buildSection('sec2');
+buildSection('sec3');
+buildSec4();
+buildSection('sec5');
+
+/* ============ SEC 4: ACCORDION (custom) ============ */
+function buildSec4(){
+  const section = document.getElementById('sec4');
+  if(!section) return;
+  const heads = section.querySelectorAll('.wtd-left [data-anim]');
+  const glass = section.querySelector('[data-glass-r]');
+  const bodies = gsap.utils.toArray(section.querySelectorAll('.acc-body'));
+
+  // initial states
+  gsap.set(glass, {opacity:0, xPercent:100});
+  gsap.set(bodies[0], {height:'auto', opacity:1});
+  gsap.set([bodies[1], bodies[2]], {height:0, opacity:0});
+
+  const accItems = gsap.utils.toArray(section.querySelectorAll('.acc-item'));
+  accItems[0].classList.add('is-open');
+
+  const tl = gsap.timeline({
+    scrollTrigger:{
+      trigger: section,
+      start:'top top',
+      end: ()=> '+=' + (innerHeight * 4),
+      scrub: 0.4,
+      pin: true,
+      anticipatePin: 1,
+      onUpdate:()=>{
+        bodies.forEach((b,i)=>{
+          const open = parseFloat(gsap.getProperty(b,'opacity')) > 0.5;
+          accItems[i].classList.toggle('is-open', open);
+        });
+      }
+    }
+  });
+
+  // 1) headline lines appear one by one
+  heads.forEach((el,i)=>{
+    tl.to(el, {opacity:1, y:0, filter:'blur(0px)', duration:0.8, ease:'power2.out'}, i*0.5);
+  });
+
+  // 2) glass panel slides in from the right
+  tl.to(glass, {opacity:1, xPercent:0, duration:1.2, ease:'power3.out'}, 1.6);
+
+  // hold on item 1
+  tl.to({}, {duration:1.2});
+
+  // 3) collapse item 1, expand item 2
+  tl.to(bodies[0], {height:0, opacity:0, duration:1, ease:'power2.inOut'}, '>');
+  tl.to(bodies[1], {height:'auto', opacity:1, duration:1, ease:'power2.inOut'}, '<');
+  tl.to({}, {duration:1.2});
+
+  // 4) collapse item 2, expand item 3
+  tl.to(bodies[1], {height:0, opacity:0, duration:1, ease:'power2.inOut'}, '>');
+  tl.to(bodies[2], {height:'auto', opacity:1, duration:1, ease:'power2.inOut'}, '<');
+  tl.to({}, {duration:1.5});
+}
+
+/* ============ FLAT SECTION REVEALS ============ */
+const rvIO = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');rvIO.unobserve(e.target);}});
+},{threshold:0.12,rootMargin:'0px 0px -6% 0px'});
+document.querySelectorAll('.rv').forEach(el=>rvIO.observe(el));
+
+/* ============ COUNT-UP ============ */
+const numIO = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting)return;
+    numIO.unobserve(e.target);
+    const el=e.target,to=+el.dataset.to,dur=1500,t0=performance.now();
+    (function tick(t){
+      const p=Math.min((t-t0)/dur,1);
+      el.textContent=Math.round((1-Math.pow(1-p,3))*to);
+      if(p<1)requestAnimationFrame(tick);
+    })(t0);
+  });
+},{threshold:0.6});
+document.querySelectorAll('.nv[data-to]').forEach(el=>numIO.observe(el));
+</script>
+
+</body>
+</html>

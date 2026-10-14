@@ -1,0 +1,1416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>PCCS Group Berhad · Engineering Future</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23006450'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='21' font-weight='700' fill='%23FFFFFF' text-anchor='middle'%3EP%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#111111; --cream:#FFFFFF; --muted:#4F5553;
+    --line:rgba(17,17,17,.14);
+    --green:#006450; --green-dark:#234B3D; --green-soft:#ABC1B9;
+    --mint:#8AFFD7; --red:#D84236; --grey:#E5E5E5;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--cream);color:var(--ink);font-family:'Inter','Noto Sans SC',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  a:focus-visible{outline:3px solid var(--red);outline-offset:4px;border-radius:4px;}
+
+  /* ===================== PAGE CONTAINER (fixed thin outer margin) ===================== */
+  .page{
+    padding:24px 40px 0;
+  }
+
+  /* ===================== HERO STAGE ===================== */
+  .hero-stage{
+    position:relative;
+    height:88vh;
+    min-height:600px;
+    overflow:hidden;
+    border-radius:28px;
+    display:flex;align-items:center;justify-content:center;
+    background:var(--cream);
+    container-type:inline-size;
+    container-name:hero;
+  }
+
+  .hero-frame{
+    position:relative;
+    width:34%;
+    height:46%;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 30px 80px rgba(0,0,0,.18);
+    transition:
+      width 1.3s cubic-bezier(.65,0,.15,1),
+      height 1.3s cubic-bezier(.65,0,.15,1),
+      border-radius .9s cubic-bezier(.65,0,.15,1) .1s;
+  }
+  .hero-stage.expanded .hero-frame{
+    width:100%;
+    height:100%;
+    border-radius:28px;
+  }
+
+  .hero-frame img{
+    position:absolute;inset:0;
+    width:100%;height:100%;
+    object-fit:cover;
+    object-position:center 38%;
+    transform-origin:center;
+    will-change:transform;
+  }
+
+  /* subtle dark gradient only for text legibility - no colour tint added */
+  .hero-scrim{
+    position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(0,0,0,.05) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,.35) 100%);
+    opacity:0;
+    transition:opacity 1s ease .5s;
+  }
+  .hero-stage.expanded .hero-scrim{opacity:1;}
+
+  /* ===================== NAV ===================== */
+  nav{
+    position:fixed;top:36px;left:0;right:0;z-index:100;
+    display:flex;justify-content:center;
+    padding:0 80px;
+    opacity:0;
+    transform:translateY(-14px);
+    pointer-events:none;
+    transition:opacity .8s ease, transform .8s ease;
+  }
+  nav.nav-visible{opacity:1;transform:translateY(0);pointer-events:auto;}
+  nav.nav-hidden{transform:translateY(-110%);opacity:0;pointer-events:none;}
+
+  .nav-in{
+    position:relative;
+    width:100%;
+    max-width:var(--nav-full,1760px);
+    display:flex;align-items:center;justify-content:space-between;
+    border-radius:999px;
+    transition:max-width .6s cubic-bezier(.4,0,.2,1), padding .6s cubic-bezier(.4,0,.2,1);
+    will-change:max-width;
+  }
+  /* dark blurred pill background — fades in via opacity (compositor-smooth) */
+  .nav-in::before{
+    content:"";position:absolute;inset:0;border-radius:999px;z-index:-1;pointer-events:none;
+    background:rgba(20,20,18,.72);
+    backdrop-filter:blur(16px) saturate(140%);
+    -webkit-backdrop-filter:blur(16px) saturate(140%);
+    box-shadow:0 12px 34px rgba(0,0,0,.24);
+    opacity:0;
+    transition:opacity .5s ease;
+  }
+  .nav-logo{display:flex;align-items:center;text-decoration:none;}
+  .nav-logo img{height:46px;transition:height .6s cubic-bezier(.4,0,.2,1);filter:brightness(0) invert(1);max-width:160px;}
+  .nav-links{display:flex;gap:28px;align-items:center;transition:gap .6s cubic-bezier(.4,0,.2,1);}
+  .nav-links a{
+    font-size:13.5px;font-weight:500;letter-spacing:.0085em;
+    color:#fff;text-decoration:none;opacity:.92;
+    transition:opacity .2s, font-size .6s cubic-bezier(.4,0,.2,1);
+    white-space:nowrap;
+  }
+  .nav-links a:hover{opacity:1;}
+  .lang{font-size:12.5px;color:rgba(255,255,255,.75);letter-spacing:.017em;white-space:nowrap;}
+  .lang-btn{color:rgba(255,255,255,.45);text-decoration:none;transition:color .25s;}
+  .lang-btn.active{color:#fff;}
+  .lang-btn:hover{color:rgba(255,255,255,.8);}
+  .nav-cta{
+    font-size:13px;font-weight:600;color:var(--ink)!important;
+    background:#fff;padding:10px 22px;border-radius:999px;opacity:1!important;
+  }
+  .nav-cta:hover{background:var(--red);color:#fff!important;}
+  .nav-menu-toggle{
+    display:none;align-items:center;gap:18px;
+    min-height:44px;padding:0 18px;border:0;border-radius:999px;
+    background:#000;color:#fff;font:inherit;font-size:14px;font-weight:500;
+    cursor:pointer;
+  }
+  .nav-menu-toggle .menu-symbol{font-size:24px;font-weight:300;line-height:1;}
+  nav.menu-open .nav-menu-toggle .menu-symbol{font-size:0;}
+  nav.menu-open .nav-menu-toggle .menu-symbol::after{content:'×';font-size:27px;}
+  .mobile-menu{
+    position:fixed;inset:0;z-index:90;overflow:auto;
+    padding:112px clamp(24px,8vw,120px) 48px;
+    background:rgba(0,0,0,.94);color:#fff;
+    backdrop-filter:blur(22px) saturate(115%);
+    -webkit-backdrop-filter:blur(22px) saturate(115%);
+    opacity:0;pointer-events:none;transform:translateY(-18px);
+    transition:opacity .4s ease, transform .4s cubic-bezier(.22,.61,.36,1);
+  }
+  .mobile-menu.open{opacity:1;pointer-events:auto;transform:none;}
+  .mobile-menu-inner{max-width:900px;margin:0 auto;}
+  .mobile-menu-links{display:flex;flex-direction:column;}
+  .mobile-menu-links a{
+    display:flex;align-items:center;justify-content:space-between;
+    min-height:76px;border-top:1px solid rgba(255,255,255,.22);
+    color:#fff;text-decoration:none;font-size:clamp(28px,5vw,54px);
+    font-weight:300;letter-spacing:-.035em;
+  }
+  .mobile-menu-links a:last-child{border-bottom:1px solid rgba(255,255,255,.22);}
+  .mobile-menu-links a::after{content:'↗';font-size:.45em;opacity:.65;}
+  .mobile-menu-foot{display:flex;justify-content:space-between;gap:20px;margin-top:34px;color:rgba(255,255,255,.58);font-size:13px;}
+  body.menu-open{overflow:hidden;}
+
+  /* SCROLLED state: nav shrinks into a centered pill — all props ease in unison */
+  nav.nav-scrolled .nav-in{
+    max-width:880px;
+    padding:10px 12px 10px 22px;
+  }
+  nav.nav-scrolled .nav-in::before{opacity:1;}
+  nav.nav-scrolled .nav-logo img{height:30px;}
+  nav.nav-scrolled .nav-links{gap:22px;}
+  nav.nav-scrolled .nav-links a:not(.nav-cta){font-size:13px;}
+
+  @media(max-width:900px){
+    .nav-links{display:none;}
+    .nav-menu-toggle{display:inline-flex;}
+    nav{top:22px;padding:0 24px;}
+  }
+
+  @media(min-width:681px) and (max-width:1200px){
+    nav{top:32px;padding:0 56px;}
+    .nav-links{gap:16px;}
+    .nav-links a{font-size:12px;}
+    .nav-cta{padding:9px 16px;}
+  }
+
+  /* ===================== TABLET HERO STACK ===================== */
+  @media(min-width:681px) and (max-width:1100px){
+    .hero-content{
+      right:0;
+      bottom:clamp(300px,31vh,420px);
+      padding:0 40px;
+    }
+    .hero-content h1{max-width:100%;}
+    .news-card{
+      right:40px;
+      bottom:36px;
+      width:min(520px,calc(100% - 80px));
+    }
+  }
+
+  /* ===================== HERO CONTENT ===================== */
+  .hero-content{
+    position:absolute;left:0;right:0;bottom:0;
+    padding:clamp(110px,12vh,180px) 40px 48px;
+    color:#fff;
+    opacity:0;
+    transition:opacity .9s ease .9s;
+  }
+  .hero-stage.expanded .hero-content{opacity:1;}
+
+  .eyebrow{
+    font-size:clamp(12px,.83cqw,16px);letter-spacing:.187em;text-transform:uppercase;
+    color:#fff;font-weight:700;margin-bottom:26px;
+  }
+  .hero-content h1{
+    font-family:'Inter','Noto Sans SC',system-ui,sans-serif;font-weight:300;
+    font-size:clamp(46px,7.94cqw,152px);line-height:.88;letter-spacing:-.034em;
+  }
+  .hero-content h1 .line{
+    display:block;
+    opacity:0;transform:translateY(28px);
+    transition:opacity .8s cubic-bezier(.22,.61,.36,1), transform .8s cubic-bezier(.22,.61,.36,1);
+  }
+  .hero-stage.expanded .hero-content h1 .line{opacity:1;transform:none;}
+  .hero-content h1 .line:nth-child(1){transition-delay:1.15s;}
+  .hero-content h1 .line:nth-child(2){transition-delay:1.28s;}
+  .hero-content h1 .line:nth-child(3){transition-delay:1.41s;}
+  .hero-subline{
+    margin-top:28px;
+    max-width:560px;
+    font-size:clamp(18px,1.45cqw,28px);
+    line-height:1.15;
+    letter-spacing:-.018em;
+    color:rgba(255,255,255,.92);
+    opacity:0;transform:translateY(18px);
+    transition:opacity .8s cubic-bezier(.22,.61,.36,1) 1.46s, transform .8s cubic-bezier(.22,.61,.36,1) 1.46s;
+  }
+  .hero-stage.expanded .hero-subline{opacity:1;transform:none;}
+
+  /* ===================== NEWS CARD (light frosted glass) ===================== */
+  .news-card{
+    position:absolute;right:2.08cqw;bottom:4.17cqw;
+    width:clamp(280px,20.42cqw,392px);
+    padding:8px;
+    border-radius:8px;
+    background:rgba(255,255,255,.22);
+    backdrop-filter:blur(18px) saturate(140%);
+    -webkit-backdrop-filter:blur(18px) saturate(140%);
+    box-shadow:0 24px 60px rgba(0,0,0,.22);
+    opacity:0;transform:translateY(20px);
+    transition:opacity .9s cubic-bezier(.22,.61,.36,1) 1.55s, transform .9s cubic-bezier(.22,.61,.36,1) 1.55s;
+  }
+  .hero-stage.expanded .news-card{opacity:1;transform:none;}
+  .nc-imgwrap{overflow:hidden;border-radius:4px;line-height:0;}
+  .news-card img{width:100%;height:clamp(160px,13.02cqw,250px);object-fit:cover;display:block;
+    transition:transform .7s cubic-bezier(.22,.61,.36,1);will-change:transform;}
+  .news-card:hover img{transform:scale(1.08);}
+  .news-card-body{
+    height:clamp(140px,9.84cqw,189px);
+    padding:14px 8px 8px;
+    display:flex;flex-direction:column;justify-content:space-between;
+    position:relative;
+  }
+  .news-card .tag{
+    font-size:clamp(11px,.68cqw,13px);letter-spacing:.119em;text-transform:uppercase;
+    color:var(--red);font-weight:700;display:block;
+    opacity:.9;
+  }
+  .news-card .headline-row{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;}
+  .news-card .headline{font-size:clamp(20px,1.56cqw,30px);line-height:1.15;color:#fff;font-weight:700;}
+  .news-card .arrow{
+    flex:none;
+    width:clamp(34px,2.29cqw,44px);height:clamp(34px,2.29cqw,44px);border-radius:6px;
+    background:rgba(255,255,255,.3);
+    display:flex;align-items:center;justify-content:center;
+    color:#fff;font-size:18px;
+  }
+
+  /* ===================== FOOTER STRIP (below the card, on plain page) ===================== */
+  .hero-foot-in{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:20px 4px;font-size:14px;letter-spacing:.153em;text-transform:uppercase;
+    font-weight:700;
+    color:var(--muted);
+    border-top:1px solid var(--line);
+    margin-top:0;
+  }
+
+  /* ===================== SPACER ===================== */
+  .below-hero{
+    max-width:1400px;margin:0 auto;
+    padding:60px 32px 90px;
+    color:var(--muted);
+    font-size:14px;
+  }
+
+  /* ===================== MOBILE (phones) ===================== */
+  @media(max-width:680px){
+    .page{padding:14px 14px 0;}
+    .hero-stage{border-radius:18px;min-height:680px;}
+    .hero-frame{border-radius:16px;}
+    .hero-stage.expanded .hero-frame{border-radius:18px;}
+
+    nav{top:18px;padding:0 18px;}
+    .nav-logo img{height:34px;}
+
+    .hero-content{
+      bottom:400px;
+      padding:0 20px;
+    }
+    .eyebrow{font-size:11px;letter-spacing:.153em;margin-bottom:16px;}
+    .hero-content h1{font-size:clamp(34px,11.5vw,56px);line-height:.94;letter-spacing:-.017em;}
+
+    /* move the news card up top (under nav) so it never collides with the headline below */
+    .news-card{
+      top:auto;right:auto;left:20px;bottom:24px;
+      width:min(360px,calc(100% - 40px));
+    }
+    .news-card img{height:auto;aspect-ratio:376 / 245;object-fit:cover;}
+    .news-card-body{height:auto;padding:12px 10px 12px;}
+    .news-card .tag{font-size:10.5px;}
+    .news-card .headline{font-size:18px;}
+    .news-card .arrow{width:30px;height:30px;font-size:14px;}
+
+    .hero-foot-in{
+      flex-direction:column;align-items:flex-start;gap:6px;
+      font-size:9.5px;letter-spacing:.119em;padding:16px 4px;
+    }
+
+    .below-hero{padding:40px 20px 60px;font-size:13px;}
+  }
+
+  @media(max-width:420px){
+    .page{padding:10px 10px 0;}
+    .hero-stage{min-height:620px;}
+    nav{top:16px;padding:0 16px;}
+    .nav-logo img{height:30px;max-width:128px;}
+    .nav-menu-toggle{padding:0 14px;gap:13px;font-size:13px;}
+    .hero-content{padding:0 16px 20px;}
+    .hero-content h1{font-size:clamp(31px,11vw,44px);}
+    .hero-content{bottom:370px;}
+    .news-card{top:auto;right:auto;left:12px;bottom:20px;width:min(360px,calc(100% - 24px));}
+    .news-card img{height:94px;}
+    .hero-foot-in{font-size:8px;letter-spacing:.08em;}
+    .mobile-menu{padding:96px 18px 32px;}
+    .mobile-menu-links a{min-height:62px;font-size:30px;}
+  }
+
+  /* ===================== BELIEF STRIP (section 2) ===================== */
+  .belief-strip{
+    container-type:inline-size;
+    background:#fff;
+    padding:110px 40px 0;
+  }
+  .belief-grid{
+    display:grid;grid-template-columns:1fr 1fr;
+    max-width:100%;
+  }
+  .belief-copy{padding-left:clamp(0px,2.6cqw,50px);}
+  .belief-copy p{
+    font-size:clamp(22px,2.14cqw,41px);
+    line-height:1.4;
+    font-weight:300;
+    letter-spacing:-.017em;
+    color:var(--ink);
+    max-width:18em;
+  }
+  .belief-btn{
+    display:inline-flex;align-items:center;gap:10px;
+    margin-top:34px;
+    background:var(--grey);
+    color:var(--ink);
+    text-decoration:none;
+    font-size:clamp(13px,.83cqw,16px);
+    font-weight:500;
+    padding:14px 22px;
+    border-radius:8px;
+    transition:background-color .25s ease;
+  }
+  .belief-btn:hover{background:var(--green);color:#fff;}
+  .belief-btn span{transition:transform .25s ease;}
+  .belief-btn:hover span{transform:translateX(3px);}
+
+  @media(max-width:900px){
+    .belief-grid{grid-template-columns:1fr;}
+    .belief-empty{display:none;}
+    .belief-copy{padding-left:0;}
+    .belief-copy p{max-width:none;}
+  }
+  @media(max-width:680px){
+    .belief-strip{padding:64px 20px 0;}
+    .belief-copy p{font-size:clamp(20px,6.5vw,28px);line-height:1.35;}
+    .belief-btn{margin-top:24px;padding:12px 18px;}
+  }
+
+  /* ===================== LOGO MARQUEE ===================== */
+  .logo-marquee{
+    margin-top:200px;
+    padding-bottom:160px;
+    display:flex;flex-direction:column;gap:50px;
+    overflow:hidden;
+  }
+  .logo-row{width:100%;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);}
+  .logo-track{
+    display:flex;align-items:center;
+    width:max-content;
+    gap:clamp(48px,6cqw,96px);
+    will-change:transform;
+  }
+  .logo-track img{
+    height:clamp(32px,5cqw,64px);
+    width:auto;
+    object-fit:contain;
+    flex:none;
+  }
+  .logo-track.scroll-left{animation:scrollLeft 42s linear infinite;}
+  .logo-track.scroll-right{animation:scrollRight 42s linear infinite;}
+  @keyframes scrollLeft{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+  @keyframes scrollRight{from{transform:translateX(-50%);}to{transform:translateX(0);}}
+
+  @media(max-width:680px){
+    .logo-marquee{margin-top:48px;gap:30px;padding-bottom:50px;}
+    .logo-track{gap:36px;}
+    .logo-track img{height:28px;}
+  }
+
+  /* ===================== BADGE STATEMENT (section 3) ===================== */
+  .badge-section{
+    container-type:inline-size;
+    background:#fff;
+    padding:60px 40px 120px;
+  }
+  .badge-head{text-align:center;max-width:1400px;margin:0 auto 60px;}
+  .badge-head .k{
+    font-size:clamp(12px,.83cqw,16px);letter-spacing:.187em;text-transform:uppercase;
+    color:var(--green);font-weight:700;margin-bottom:22px;
+  }
+  .badge-head h2{
+    font-family:'Inter','Noto Sans SC',system-ui,sans-serif;font-weight:300;
+    font-size:clamp(32px,5.26cqw,101px);line-height:1.05;letter-spacing:-.07em;
+    color:var(--ink);
+  }
+
+  .badge-image{
+    position:relative;
+    max-width:1840px;margin:0 auto;
+    aspect-ratio:1842/742;
+    border-radius:24px;
+    overflow:hidden;
+    display:flex;align-items:center;
+  }
+  .badge-image img{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+    transform-origin:center;will-change:transform;
+  }
+  .badge-quote{
+    position:relative;z-index:1;
+    padding:0 clamp(24px,7.6cqw,146px);
+    max-width:38em;
+  }
+  .badge-quote p{
+    font-size:clamp(20px,2cqw,38px);
+    line-height:1.32;font-weight:300;letter-spacing:-.017em;
+  }
+  .badge-quote p span.w{color:#fff;}
+  .badge-quote p span.g{color:var(--mint);}
+  .badge-quote cite{
+    display:block;margin-top:20px;font-style:normal;
+    font-size:clamp(12px,.72cqw,14px);letter-spacing:.17em;text-transform:uppercase;
+    color:rgba(255,255,255,.55);font-weight:600;
+  }
+
+  .badge-copy{
+    display:grid;grid-template-columns:1fr 1fr;
+    max-width:1840px;margin:70px auto 0;
+  }
+  .badge-copy-col{padding-left:clamp(0px,2.6cqw,50px);display:flex;flex-direction:column;gap:28px;}
+  .badge-copy-col p{
+    font-size:clamp(22px,2.14cqw,41px);
+    line-height:1.4;font-weight:300;letter-spacing:-.037em;color:var(--ink);max-width:20em;
+  }
+
+  @media(max-width:900px){
+    .badge-copy{grid-template-columns:1fr;}
+    .badge-copy-col{padding-left:0;}
+    .badge-copy-col p{max-width:none;}
+  }
+  @media(max-width:680px){
+    .badge-section{padding:50px 20px 70px;}
+    .badge-head{margin-bottom:34px;}
+    .badge-head h2{font-size:clamp(28px,8vw,40px);}
+    .badge-image{border-radius:16px;aspect-ratio:auto;min-height:420px;}
+    .badge-quote{padding:0 22px;}
+    .badge-quote p{font-size:19px;}
+    .badge-copy{margin-top:40px;}
+    .badge-copy-col p{font-size:clamp(20px,6.5vw,28px);line-height:1.35;}
+  }
+
+  /* ===================== SHARED (sections 4-9) ===================== */
+  .sec{container-type:inline-size;background:#fff;padding:120px 40px;}
+  .sec-wrap{max-width:1840px;margin:0 auto;}
+  /* fade-up reveal on scroll */
+  .rv{opacity:0;transform:translateY(34px);transition:opacity .9s cubic-bezier(.22,.61,.36,1),transform .9s cubic-bezier(.22,.61,.36,1);transition-delay:var(--d,0s);will-change:opacity,transform;}
+  .rv.in{opacity:1;transform:none;}
+  @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none;}}
+  .sec-k{font-size:clamp(12px,.83cqw,16px);letter-spacing:.187em;text-transform:uppercase;color:var(--green);font-weight:700;margin-bottom:22px;}
+  .sec-h2{font-family:'Inter','Noto Sans SC',system-ui,sans-serif;font-weight:300;font-size:clamp(24px,3.83cqw,71px);line-height:1.06;letter-spacing:-.037em;color:var(--ink);}
+  .feature-h2{font-family:'Inter','Noto Sans SC',system-ui,sans-serif;font-weight:300;font-size:clamp(32px,5.3cqw,101px);line-height:1.05;letter-spacing:-.07em;color:var(--ink);}
+  .feature-h2 .g{color:var(--green);}
+  .sec-h2 .g{color:var(--green);}
+  .pill-btn{display:inline-flex;align-items:center;gap:10px;background:var(--grey);color:var(--ink);text-decoration:none;font-size:clamp(13px,.83cqw,16px);font-weight:500;padding:14px 22px;border-radius:8px;transition:background-color .25s, color .25s;white-space:nowrap;}
+  .pill-btn:hover{background:var(--green);color:#fff;}
+  .pill-btn span{transition:transform .25s;}
+  .pill-btn:hover span{transform:translateX(3px);}
+
+  /* card image hover-zoom (shared) */
+  .card-imgwrap{overflow:hidden;border-radius:16px;line-height:0;}
+  .card-imgwrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.22,.61,.36,1);will-change:transform;}
+  .card-imgwrap:hover img{transform:scale(1.05);}
+
+  /* ---- WHAT WE DO (sec 4) ---- */
+  .wtd-head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:56px;}
+  .wtd-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;}
+  .wtd-card .card-imgwrap{aspect-ratio:564/398;}
+  .wtd-card h3{font-size:clamp(22px,2.4cqw,44px);font-weight:400;letter-spacing:-.017em;color:var(--ink);margin:28px 0 16px;}
+  .wtd-card p{font-size:clamp(14px,1.4cqw,26px);line-height:1.5;letter-spacing:-.017em;color:var(--ink);max-width:22em;}
+
+  /* ---- NUMBERS (sec 5) ---- */
+  .nums-head{text-align:center;margin-bottom:64px;}
+  .nums-grid{display:grid;grid-template-columns:repeat(4,1fr);}
+  .num-cell{padding:6px 0 6px 40px;border-left:1px solid var(--line);}
+  .num-cell:first-child{border-left:none;padding-left:0;}
+  .num-n{font-family:'Inter','Noto Sans SC',system-ui,sans-serif;font-weight:300;font-size:clamp(46px,6.8cqw,130px);line-height:1;letter-spacing:-.0255em;color:var(--ink);}
+  .num-n .plus{font-size:.5em;font-weight:400;vertical-align:middle;margin-left:.04em;letter-spacing:0;}
+  .num-l{margin-top:22px;font-size:clamp(14px,1.4cqw,26px);line-height:1.5;letter-spacing:-.017em;color:var(--ink);max-width:13em;}
+  .nums-sec{padding-top:60px;padding-bottom:60px;}
+  .nums-sec .sec-wrap{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding-top:80px;padding-bottom:80px;}
+  [id]{scroll-margin-top:96px;}
+
+  /* ---- SUSTAINABILITY (sec 7) ---- */
+  .sustainability-sec{background:#f7f7f5;}
+  .sustainability-head{display:block;margin-bottom:64px;}
+  .sustainability-head .feature-h2{max-width:720px;}
+  .sustainability-head .feature-h2{margin-top:24px;}
+  .sustainability-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+  .sustainability-copy > p{font-size:clamp(22px,2.14cqw,41px);line-height:1.4;font-weight:300;letter-spacing:-.017em;max-width:18em;}
+  .sustainability-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:56px;padding-top:22px;border-top:1px solid var(--line);}
+  .sustainability-stats div{display:flex;flex-direction:column;gap:8px;}
+  .sustainability-stats strong{font-size:clamp(22px,2.5cqw,48px);font-weight:400;letter-spacing:-.04em;}
+  .sustainability-stats span{font-size:clamp(11px,.8cqw,14px);line-height:1.35;color:var(--muted);}
+  .sustainability-panel{padding:clamp(24px,3cqw,54px);background:#111;color:#fff;border-radius:20px;}
+  .sustainability-panel-label{font-size:clamp(11px,.75cqw,14px);letter-spacing:.17em;text-transform:uppercase;color:var(--mint);font-weight:700;margin-bottom:26px;}
+  .sustainability-list{display:flex;flex-direction:column;}
+  .sustainability-list > div{display:grid;grid-template-columns:34px 1fr;column-gap:14px;row-gap:5px;padding:18px 0;border-top:1px solid rgba(255,255,255,.16);}
+  .sustainability-list > div:first-child{border-top:0;padding-top:0;}
+  .sustainability-list span{grid-row:span 2;color:var(--mint);font-size:12px;font-weight:600;padding-top:3px;}
+  .sustainability-list strong{font-size:clamp(16px,1.25cqw,22px);font-weight:500;}
+  .sustainability-list em{font-size:clamp(12px,.9cqw,15px);line-height:1.45;color:rgba(255,255,255,.68);font-style:normal;}
+  .sustainability-certifications{margin-top:28px;padding-top:22px;border-top:1px solid rgba(255,255,255,.16);font-size:clamp(11px,.85cqw,14px);line-height:1.55;color:rgba(255,255,255,.68);}
+  .sustainability-footnote{margin-top:34px;font-size:12px;letter-spacing:.03em;color:#777;}
+
+  /* ---- OUR GROUP (sec 6) ---- */
+  .grp-head{margin-bottom:56px;}
+  .grp-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:24px;}
+  .grp-card .card-imgwrap{height:clamp(360px,36.8cqw,678px);}
+  .grp-tag{font-size:clamp(11px,.72cqw,14px);letter-spacing:.136em;text-transform:uppercase;font-weight:700;color:var(--green);margin:26px 0 12px;}
+  .grp-card h3{font-size:clamp(22px,2.4cqw,44px);font-weight:400;letter-spacing:-.017em;color:var(--ink);margin-bottom:14px;}
+  .grp-card p{font-size:clamp(14px,1.4cqw,26px);line-height:1.5;letter-spacing:-.017em;color:var(--ink);}
+
+  /* ---- INVESTORS (sec 7) ---- */
+  .inv-head{margin-bottom:44px;padding-bottom:44px;border-bottom:1px solid var(--line);}
+  .inv-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;padding-bottom:56px;border-bottom:1px solid var(--line);}
+  .inv-copy p{font-size:clamp(22px,2.14cqw,41px);line-height:1.4;font-weight:300;letter-spacing:-.017em;color:var(--ink);margin-bottom:40px;}
+  .snap-top{display:flex;justify-content:space-between;align-items:baseline;}
+  .snap-title{font-size:clamp(18px,1.4cqw,27px);font-weight:700;color:var(--ink);}
+  .snap-tick{font-size:clamp(12px,.83cqw,15px);color:#777;}
+  .snap-tick b{color:var(--ink);margin-left:22px;font-weight:600;}
+  .snap-price{text-align:center;padding:54px 0;}
+  .snap-price .p{font-family:'Inter','Noto Sans SC',system-ui,sans-serif;font-weight:300;font-size:clamp(64px,7.6cqw,146px);line-height:1;letter-spacing:-.0255em;color:var(--ink);}
+  .snap-price .u{font-size:clamp(13px,.9cqw,17px);color:#777;margin-left:10px;vertical-align:top;}
+  .snap-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding-top:24px;border-top:1px solid var(--line);}
+  .snap-row .lab{font-size:clamp(9px,.62cqw,11px);letter-spacing:.102em;text-transform:uppercase;color:#999;margin-bottom:8px;}
+  .snap-row .val{font-size:clamp(13px,1cqw,19px);font-weight:600;color:var(--ink);}
+
+  /* ---- CAREERS (sec 8) ---- */
+  .careers-head{text-align:center;margin-bottom:56px;}
+  .careers-media{position:relative;max-width:1840px;margin:0 auto;border-radius:24px;overflow:hidden;aspect-ratio:1842/1086;}
+  .careers-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transform-origin:center;will-change:transform;}
+  .careers-card{position:absolute;left:clamp(20px,2.6cqw,50px);bottom:clamp(20px,2.6cqw,50px);max-width:clamp(300px,32cqw,470px);padding:clamp(24px,2cqw,38px);border-radius:16px;background:rgba(255,255,255,.16);backdrop-filter:blur(20px) saturate(140%);-webkit-backdrop-filter:blur(20px) saturate(140%);}
+  .careers-card p{font-size:clamp(17px,1.56cqw,30px);line-height:1.32;font-weight:300;letter-spacing:-.07em;color:#fff;}
+  .careers-card .pill-btn{margin-top:26px;background:rgba(255,255,255,.9);}
+  .careers-card .pill-btn:hover{background:#fff;}
+
+  /* ---- FOOTER (sec 9) ---- */
+  .foot{background:#000;color:#fff;padding:70px clamp(24px,5vw,80px) 36px;}
+  .foot-wrap{max-width:1840px;margin:0 auto;}
+  .foot-top{display:grid;grid-template-columns:1fr 1.15fr;gap:60px;align-items:start;}
+  .foot-logo img{height:clamp(44px,4.5vw,64px);filter:brightness(0) invert(1);}
+  .foot-belief{margin-top:14px;font-size:clamp(12px,.9vw,15px);font-weight:300;color:var(--mint);}
+  .foot-nav a{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.14);font-size:clamp(17px,1.6vw,30px);font-weight:300;color:#fff;text-decoration:none;transition:padding-left .3s,color .3s;}
+  .foot-nav a:first-child{border-top:1px solid rgba(255,255,255,.14);}
+  .foot-nav a:hover{padding-left:8px;color:var(--red);}
+  .foot-nav a .ar{font-size:.6em;opacity:.5;}
+  .foot-lower{display:grid;grid-template-columns:1fr 1.15fr;gap:60px;margin-top:70px;}
+  .foot-lower-right{display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px;}
+  .foot-desc{font-size:13px;line-height:1.65;font-weight:300;color:rgba(255,255,255,.85);max-width:26em;}
+  .foot-social{margin-top:18px;display:flex;flex-direction:column;gap:8px;font-size:12px;font-weight:300;color:rgba(255,255,255,.7);}
+  .foot-col h4{font-size:10px;letter-spacing:.17em;text-transform:uppercase;font-weight:300;color:var(--mint);margin-bottom:16px;}
+  .foot-col a{display:block;font-size:13px;font-weight:300;color:rgba(255,255,255,.8);text-decoration:none;margin-bottom:11px;}
+  .foot-col a:hover{color:#fff;}
+  .foot-col .foot-lang{display:block;margin-top:5px;font-size:13px;color:rgba(255,255,255,.55);}
+  .foot-col .foot-lang a{display:inline;margin:0;}
+  .foot-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-top:60px;padding-top:20px;border-top:1px solid rgba(255,255,255,.1);font-size:11px;font-weight:300;color:rgba(255,255,255,.6);}
+
+  @media(max-width:900px){
+    .sec{padding:70px 20px;}
+    .wtd-head{flex-direction:column;align-items:flex-start;gap:24px;}
+    .wtd-grid{grid-template-columns:1fr;gap:40px;}
+    .wtd-card p{max-width:none;}
+    .nums-grid{grid-template-columns:1fr 1fr;gap:40px 24px;}
+    .num-cell{padding-left:0;border-left:none;}
+    .grp-grid{grid-template-columns:1fr;gap:36px;}
+    .grp-card .card-imgwrap{height:clamp(320px,70vw,480px);}
+    .sustainability-head{display:block;margin-bottom:40px;}
+    .sustainability-grid{grid-template-columns:1fr;gap:44px;}
+    .inv-grid{grid-template-columns:1fr;gap:44px;}
+    .careers-card{position:static;max-width:none;margin:16px;}
+    .foot{padding:60px 20px 32px;}
+    .foot-top{grid-template-columns:1fr;gap:36px;}
+    .foot-lower{grid-template-columns:1fr;gap:32px;}
+    .foot-lower-right{grid-template-columns:1fr 1fr;gap:24px;}
+    .foot-bottom{flex-direction:column;gap:8px;}
+  }
+
+  @media(max-width:560px){
+    .logo-track.scroll-left,.logo-track.scroll-right{animation-duration:32s;}
+    .logo-marquee{margin-top:44px;}
+    .badge-image{min-height:360px;}
+    .badge-quote{padding:0 18px;}
+    .badge-copy-col{gap:22px;}
+    .snap-top{display:block;}
+    .snap-tick{margin-top:8px;}
+    .snap-price{padding:38px 0;}
+    .snap-row{grid-template-columns:1fr 1fr;row-gap:22px;}
+    .sustainability-stats{gap:12px;margin-top:40px;}
+    .sustainability-stats strong{font-size:clamp(18px,5vw,28px);}
+    .sustainability-panel{border-radius:14px;padding:22px 18px;}
+    .careers-media{border-radius:16px;aspect-ratio:4/5;}
+    .careers-card{margin:10px;padding:20px;border-radius:12px;}
+    .foot-lower-right{grid-template-columns:1fr;gap:28px;}
+  }
+
+  /* ===================== CJK (Chinese) type adjustments ===================== */
+  /* Negative tracking is a Latin refinement — reset it so Han characters aren't cramped. */
+  html[lang="zh-CN"] .hero-content h1,
+  html[lang="zh-CN"] .badge-head h2,
+  html[lang="zh-CN"] .sec-h2,
+  html[lang="zh-CN"] .feature-h2,
+  html[lang="zh-CN"] .num-n,
+  html[lang="zh-CN"] .snap-price .p,
+  html[lang="zh-CN"] .belief-copy p,
+  html[lang="zh-CN"] .badge-quote p,
+  html[lang="zh-CN"] .badge-copy-col p,
+  html[lang="zh-CN"] .inv-copy p,
+  html[lang="zh-CN"] .careers-card p,
+  html[lang="zh-CN"] .wtd-card p,
+  html[lang="zh-CN"] .grp-card p,
+  html[lang="zh-CN"] .num-l{letter-spacing:normal;}
+  /* Give the tight hero headline a touch more leading in Chinese. */
+  html[lang="zh-CN"] .hero-content h1{line-height:1.04;}
+</style>
+</head>
+<body>
+
+<nav id="siteNav">
+  <div class="nav-in">
+    <a class="nav-logo" href="#">
+      <img src="images/PCCS_logo.svg" alt="PCCS Group">
+    </a>
+    <div class="nav-links">
+      <a href="#story" data-t="nav.story">Story</a>
+      <a href="#engineering" data-t="nav.whatwedo">What We Do</a>
+      <a href="#ourwork" data-t="nav.ourwork">Our Work</a>
+      <a href="#group" data-t="nav.ourgroup">Our Group</a>
+      <a href="#sustainability" data-t="nav.sustainability">Sustainability</a>
+      <a href="#investors" data-t="nav.investors">Investors</a>
+      <a href="#careers" data-t="nav.careers">Careers</a>
+      <span class="lang"><a class="lang-btn" data-lang="en" href="index.html">EN</a>&nbsp;·&nbsp;<a class="lang-btn" data-lang="cn" href="cn.html">中文</a></span>
+      <a class="nav-cta" href="#contact" data-t="nav.contact">Contact</a>
+    </div>
+    <button class="nav-menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="mobileMenu">
+      <span data-t="nav.menu">Menu</span><span class="menu-symbol" aria-hidden="true">+</span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <div class="mobile-menu-inner">
+    <div class="mobile-menu-links">
+      <a href="#story" data-t="nav.story">Story</a>
+      <a href="#engineering" data-t="nav.whatwedo">What We Do</a>
+      <a href="#ourwork" data-t="nav.ourwork">Our Work</a>
+      <a href="#group" data-t="nav.ourgroup">Our Group</a>
+      <a href="#sustainability" data-t="nav.sustainability">Sustainability</a>
+      <a href="#investors" data-t="nav.investors">Investors</a>
+      <a href="#careers" data-t="nav.careers">Careers</a>
+      <a href="#contact" data-t="nav.contact">Contact</a>
+    </div>
+    <div class="mobile-menu-foot">
+      <span>Engineering Future</span>
+      <span><a class="lang-btn" data-lang="en" href="index.html">EN</a> · <a class="lang-btn" data-lang="cn" href="cn.html">中文</a></span>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+  <div class="hero-stage" id="heroStage">
+    <div class="hero-frame">
+      <img src="images/hero1.jpg" alt="PCCS — the world wears our work" data-parallax="1.0,0.22,18">
+      <div class="hero-scrim"></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="eyebrow" data-t="hero.eyebrow">PCCS Group</div>
+      <h1>
+        <span class="line" data-t="hero.line1">Engineering</span>
+        <span class="line" data-t="hero.line2">Future</span>
+      </h1>
+      <p class="hero-subline" data-t="hero.subline">The world wears our work.</p>
+    </div>
+
+    <div class="news-card">
+      <div class="nc-imgwrap"><img src="images/latest-news-thumbnail.jpg" alt="Latest news"></div>
+      <div class="news-card-body">
+        <span class="tag" data-t="news.tag">NEEDS PCCS INPUT</span>
+        <div class="headline-row">
+          <div class="headline" data-t="news.headline">NEEDS PCCS INPUT</div>
+          <div class="arrow">↗</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-foot-in">
+    <span data-t="hero.foot1">PCCS Group &nbsp;·&nbsp; Est. 1973 &nbsp;·&nbsp; Bursa 6068</span>
+    <span data-t="hero.foot2">Design &nbsp;·&nbsp; Craft &nbsp;·&nbsp; Delivery</span>
+  </div>
+</div>
+
+<section class="belief-strip" id="story">
+  <div class="belief-grid">
+    <div class="belief-empty"></div>
+    <div class="belief-copy">
+      <p data-t="belief.body">Behind the brands people wear is a chain of ideas, details and delivery. From the kit on the pitch to the label inside the collar, we help turn concepts into products people can trust.</p>
+      <a class="belief-btn" href="#" data-t="belief.btn">Learn More About Us <span>&rarr;</span></a>
+    </div>
+  </div>
+
+  <div class="logo-marquee">
+    <div class="logo-row">
+      <div class="logo-track scroll-left">
+        <img src="images/logo/beneunder.jpg" alt="Beneunder">
+        <img src="images/logo/puma.jpg" alt="Puma">
+        <img src="images/logo/bvb.jpg" alt="Borussia Dortmund">
+        <img src="images/logo/fcbayern.jpg" alt="FC Bayern Munich">
+        <img src="images/logo/bundesliga.jpg" alt="Bundesliga">
+        <img src="images/logo/forest.jpg" alt="Nottingham Forest">
+        <img src="images/logo/newcastle.jpg" alt="Newcastle United">
+        <img src="images/logo/decathlon.jpg" alt="Decathlon">
+        <img src="images/logo/disney.jpg" alt="Disney">
+        <img src="images/logo/beneunder.jpg" alt="Beneunder">
+        <img src="images/logo/puma.jpg" alt="Puma">
+        <img src="images/logo/bvb.jpg" alt="Borussia Dortmund">
+        <img src="images/logo/fcbayern.jpg" alt="FC Bayern Munich">
+        <img src="images/logo/bundesliga.jpg" alt="Bundesliga">
+        <img src="images/logo/forest.jpg" alt="Nottingham Forest">
+        <img src="images/logo/newcastle.jpg" alt="Newcastle United">
+        <img src="images/logo/decathlon.jpg" alt="Decathlon">
+        <img src="images/logo/disney.jpg" alt="Disney">
+      </div>
+    </div>
+    <div class="logo-row">
+      <div class="logo-track scroll-right">
+        <img src="images/logo/lining.jpg" alt="Li-Ning">
+        <img src="images/logo/reebok.jpg" alt="Reebok">
+        <img src="images/logo/adidas.jpg" alt="adidas">
+        <img src="images/logo/leichester.jpg" alt="Leicester City">
+        <img src="images/logo/avfc.jpg" alt="Aston Villa">
+        <img src="images/logo/target.jpg" alt="Target">
+        <img src="images/logo/timberland.jpg" alt="Timberland">
+        <img src="images/logo/champion.jpg" alt="Champion">
+        <img src="images/logo/lining.jpg" alt="Li-Ning">
+        <img src="images/logo/reebok.jpg" alt="Reebok">
+        <img src="images/logo/adidas.jpg" alt="adidas">
+        <img src="images/logo/leichester.jpg" alt="Leicester City">
+        <img src="images/logo/avfc.jpg" alt="Aston Villa">
+        <img src="images/logo/target.jpg" alt="Target">
+        <img src="images/logo/timberland.jpg" alt="Timberland">
+        <img src="images/logo/champion.jpg" alt="Champion">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="badge-section" id="ourwork">
+  <div class="badge-head">
+    <div class="k" data-t="badge.eyebrow">The Mark</div>
+    <h2 data-t="badge.h2">The Smallest Mark<br>Carries Everything.</h2>
+  </div>
+
+  <div class="badge-image">
+    <img src="images/pccs-embroidery.jpg" alt="PCCS badge embroidery" data-parallax="1.15,0.18,12">
+    <div class="badge-quote">
+      <p data-t="badge.quote"><span class="w">&ldquo;We don&rsquo;t make the badge to be seen.</span> <span class="g">We make it to be worn with pride.&rdquo;</span></p>
+      <cite data-t="badge.cite">The PCCS Manifesto</cite>
+    </div>
+  </div>
+
+  <div class="badge-copy">
+    <div></div>
+    <div class="badge-copy-col">
+      <p data-t="badge.body1">It&rsquo;s the part people touch first and trust most &mdash; the mark that turns cloth into something you&rsquo;re proud to put on. The world&rsquo;s biggest names don&rsquo;t hand that to just anyone. For fifty years, they&rsquo;ve handed it to us.</p>
+      <p data-t="badge.body2">Anyone can cut cloth. The official crest is entrusted only to a maker who meets the brand&rsquo;s standards &mdash; that&rsquo;s us.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SEC 4: WHAT WE DO ===== -->
+<section class="sec" id="engineering">
+  <div class="sec-wrap">
+    <div class="wtd-head">
+      <div>
+        <div class="sec-k" data-t="wtd.eyebrow">The Engineering</div>
+        <h2 class="sec-h2" data-t="wtd.h2">You bring the concept.<br>We engineer everything after it.</h2>
+      </div>
+      <a class="pill-btn" href="#" data-t="wtd.btn">Explore our craft <span>&rarr;</span></a>
+    </div>
+    <div class="wtd-grid">
+      <article class="wtd-card">
+        <div class="card-imgwrap"><img src="images/what_to_do1.jpg" alt="Design and development"></div>
+        <h3 data-t="wtd1.title">Design &amp; Development</h3>
+        <p data-t="wtd1.body">An idea isn&rsquo;t a product until it&rsquo;s engineered. We turn your brief, sketch, or reference into a technical package a factory can build and samples you can approve.</p>
+      </article>
+      <article class="wtd-card">
+        <div class="card-imgwrap"><img src="images/what_to_do2.jpg" alt="Embellishment"></div>
+        <h3 data-t="wtd2.title">Embellishment</h3>
+        <p data-t="wtd2.body">Embroidery, print, sublimation, seamless &mdash; the marks and crests the world&rsquo;s most protected brands trust to our hands. This is the heart of our craft.</p>
+      </article>
+      <article class="wtd-card">
+        <div class="card-imgwrap"><img src="images/what_to_do3.jpg" alt="Manufacturing and delivery"></div>
+        <h3 data-t="wtd3.title">Manufacturing &amp; Delivery</h3>
+        <p data-t="wtd3.body">Quality isn&rsquo;t a final inspection &mdash; it&rsquo;s built in from the cut. We check inline, during production, and before shipment.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SEC 5: NUMBERS ===== -->
+<section class="sec nums-sec">
+  <div class="sec-wrap">
+    <div class="nums-head">
+      <div class="sec-k" data-t="nums.eyebrow">Fifty Years of Proof</div>
+      <h2 class="feature-h2" data-t="nums.h2">Measured. Proven.<br>Built to last.</h2>
+    </div>
+    <div class="nums-grid">
+      <div class="num-cell"><div class="num-n"><span class="nv" data-to="50">50</span><span class="plus">+</span></div><div class="num-l" data-t="nums.stat1">patents</div></div>
+      <div class="num-cell"><div class="num-n"><span class="nv" data-to="100">100</span><span class="plus">+</span></div><div class="num-l" data-t="nums.stat2">R&amp;D staff</div></div>
+      <div class="num-cell"><div class="num-n"><span class="nv" data-to="1800">1,800</span></div><div class="num-l" data-t="nums.stat3">styles / yr</div></div>
+      <div class="num-cell"><div class="num-n"><span class="nv" data-to="67000">67,000</span></div><div class="num-l" data-t="nums.stat4">samples / yr</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SEC 6: OUR GROUP ===== -->
+<section class="sec" id="group">
+  <div class="sec-wrap">
+    <div class="grp-head">
+      <div class="sec-k" data-t="grp.eyebrow">Our Group</div>
+      <h2 class="feature-h2" data-t="grp.h2">One discipline.<br>Many futures.</h2>
+    </div>
+    <div class="grp-grid">
+      <article class="grp-card">
+        <div class="card-imgwrap"><img src="images/our_group_1.jpg" alt="Apparel and embellishment"></div>
+        <div class="grp-tag" data-t="grp1.tag">The Heart</div>
+        <h3 data-t="grp1.title">Apparel &amp; Embellishment</h3>
+        <p data-t="grp1.body">The craft engine of the group &mdash; design, embellishment and manufacturing for the world&rsquo;s leading sport and lifestyle brands. Where the badge is made.</p>
+      </article>
+      <article class="grp-card">
+        <div class="card-imgwrap"><img src="images/our_group_2.jpg" alt="Medical"></div>
+        <div class="grp-tag" data-t="grp2.tag">Growth Arm</div>
+        <h3 data-t="grp2.title">Medical</h3>
+        <p data-t="grp2.body">La Prima &mdash; precision medical devices, built with the same exacting standard our craft is known for. A new field, the same hands.</p>
+      </article>
+      <article class="grp-card">
+        <div class="card-imgwrap"><img src="images/our_group_3.jpg" alt="Finance"></div>
+        <div class="grp-tag" data-t="grp3.tag">Growth Arm</div>
+        <h3 data-t="grp3.title">Finance</h3>
+        <p data-t="grp3.body">NEEDS PCCS INPUT &mdash; external business details and destination link.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SEC 7: SUSTAINABILITY ===== -->
+<section class="sec sustainability-sec" id="sustainability">
+  <div class="sec-wrap">
+    <div class="sustainability-head">
+      <div class="sec-k" data-t="sus.eyebrow">Sustainability</div>
+      <h2 class="feature-h2" data-t="sus.h2">Made responsibly,<br><span class="g">measured honestly.</span></h2>
+    </div>
+    <div class="sustainability-grid">
+      <div class="sustainability-copy">
+        <p data-t="sus.body">PCCS has reported sustainability since FY2018, to Bursa Malaysia&rsquo;s standard. The numbers are audited, not aspirational.</p>
+        <div class="sustainability-stats" aria-label="Sustainability metrics">
+          <div><strong>4,659.20</strong><span data-t="sus.stat1">tCO₂e GHG</span></div>
+          <div><strong>55,813.15</strong><span data-t="sus.stat2">GJ energy</span></div>
+          <div><strong>1.87M</strong><span data-t="sus.stat3">kWh renewable solar</span></div>
+        </div>
+      </div>
+      <div class="sustainability-panel">
+        <div class="sustainability-panel-label" data-t="sus.focus">Focus areas</div>
+        <div class="sustainability-list">
+          <div><span>01</span><strong data-t="sus.focus1">Ethical Business</strong><em>Governance · anti-corruption · responsible sourcing</em></div>
+          <div><span>02</span><strong data-t="sus.focus2">Environmental Sustainability</strong><em>Measured, then reduced.</em></div>
+          <div><span>03</span><strong data-t="sus.focus3">Social Stability</strong><em>A safe floor and a fair one.</em></div>
+          <div><span>04</span><strong data-t="sus.focus4">Reporting &amp; Metrics</strong><em>To standard since 2018.</em></div>
+        </div>
+        <div class="sustainability-certifications" data-t="sus.cert">Frameworks &amp; certifications: GRS · RCS · OEKO-TEX · ZDHC · Higg FEM · WRAP Gold 2025 · Cambodia Green Industry Awards 2025 (Silver).</div>
+      </div>
+    </div>
+    <div class="sustainability-footnote" data-t="sus.note">Community examples and milestone actions: NEEDS PCCS INPUT</div>
+  </div>
+</section>
+
+<!-- ===== SEC 8: INVESTORS ===== -->
+<section class="sec" id="investors">
+  <div class="sec-wrap">
+    <div class="inv-head">
+      <div class="sec-k" data-t="inv.eyebrow">For Investors</div>
+      <h2 class="sec-h2" data-t="inv.h2">From Factory To Platform.<br><span class="g">A Story Worth Watching.</span></h2>
+    </div>
+    <div class="inv-grid">
+      <div class="inv-copy">
+        <p data-t="inv.body">PCCS manufactures technical sportswear for the world&rsquo;s biggest brands &mdash; and increasingly owns the higher-value parts of the chain: development, the mark, and now fabric. This expanding capability gives PCCS a clear path from cut-and-sew manufacturing to a broader product and materials platform.</p>
+        <a class="pill-btn" href="#" data-t="inv.btn">Investor Relations <span>&rarr;</span></a>
+      </div>
+      <div class="snap">
+        <div class="snap-top">
+          <div class="snap-title" data-t="snap.title">NEEDS PCCS INPUT</div>
+          <div class="snap-tick" data-t="snap.tick">PCCS Group Berhad <b>6068</b></div>
+        </div>
+        <div class="snap-price"><span class="p" style="font-size:clamp(24px,3vw,54px);">NEEDS PCCS INPUT</span></div>
+        <div class="snap-row">
+          <div><div class="lab" data-t="snap.lab1">Current price</div><div class="val">NEEDS PCCS INPUT</div></div>
+          <div><div class="lab" data-t="snap.lab2">Financial data</div><div class="val">NEEDS PCCS INPUT</div></div>
+          <div><div class="lab" data-t="snap.lab3">Live data feed</div><div class="val">NEEDS PCCS INPUT</div></div>
+          <div><div class="lab" data-t="snap.lab4">Approval</div><div class="val">CFO / compliance</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SEC 9: CAREERS ===== -->
+<section class="sec" id="careers">
+  <div class="sec-wrap careers-head">
+    <div class="sec-k" data-t="career.eyebrow">Careers</div>
+    <h2 class="feature-h2" data-t="career.h2">You&rsquo;ve Worn Our Work.<br>Now Come Make It.</h2>
+  </div>
+  <div class="careers-media">
+    <img src="images/career.jpg" alt="Join the PCCS team" data-parallax="1.12,0.14,10">
+    <div class="careers-card">
+      <p data-t="career.body">Join the hands behind the world&rsquo;s biggest brands &mdash; in design, engineering, craft and beyond. The next fifty years start with you.</p>
+      <a class="pill-btn" href="#" data-t="career.btn">See Open Roles <span>&rarr;</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SEC 10: FOOTER ===== -->
+<footer class="foot" id="contact">
+  <div class="foot-wrap">
+    <div class="foot-top">
+      <div>
+        <div class="foot-logo"><img src="images/PCCS_logo.svg" alt="PCCS Group"></div>
+        <div class="foot-belief" data-t="foot.belief">Engineering Future</div>
+      </div>
+      <div class="foot-nav">
+        <a href="#story" data-t="foot.nav.story">Story</a>
+        <a href="#engineering" data-t="foot.nav.whatwedo">What We Do</a>
+        <a href="#ourwork" data-t="foot.nav.ourwork">Our Work</a>
+        <a href="#group" data-t="foot.nav.ourgroup">Our Group</a>
+        <a href="#investors" data-t="foot.nav.investors">Investors <span class="ar">&#8599;</span></a>
+        <a href="#careers" data-t="foot.nav.careers">Careers</a>
+        <a href="#contact" data-t="foot.nav.contact">Contact</a>
+      </div>
+    </div>
+    <div class="foot-lower">
+      <div>
+        <div class="foot-desc" data-t="foot.desc">The trusted hand behind the world&rsquo;s top brands. For fifty years we&rsquo;ve designed, decorated and delivered the marks worth wearing with pride.</div>
+        <div class="foot-social">
+          <span>&#9993;&nbsp; @pccs-group-berhad-pccs</span>
+          <span>in&nbsp; linkedin.com/company/pccs-group-berhad-pccs</span>
+        </div>
+      </div>
+      <div class="foot-lower-right">
+        <div class="foot-col">
+          <h4 data-t="foot.h4.company">Company</h4>
+          <a href="#" data-t="foot.link.story">Story</a><a href="#" data-t="foot.link.whatwedo">What We Do</a><a href="#" data-t="foot.link.ourwork">Our Work</a><a href="#" data-t="foot.link.ourgroup">Our Group</a><a href="#" data-t="foot.link.footprint">Global Footprint</a>
+        </div>
+        <div class="foot-col">
+          <h4 data-t="foot.h4.stakeholders">Stakeholders</h4>
+          <a href="#investors" data-t="foot.link.investors">Investors</a><a href="#careers" data-t="foot.link.careers">Careers</a><a href="#sustainability" data-t="foot.link.sustainability">Sustainability</a><a href="#" data-t="foot.link.newsroom">Newsroom</a>
+        </div>
+        <div class="foot-col">
+          <h4 data-t="foot.h4.contact">Contact</h4>
+          <a href="#" data-t="foot.link.hq">Kuala Lumpur HQ</a><a href="#">enquiry@pccsgroup.net</a><span class="foot-lang"><a class="lang-btn" data-lang="en" href="index.html">EN</a> · <a class="lang-btn" data-lang="cn" href="cn.html">中文</a></span>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span data-t="foot.copyright">&copy; 2026 PCCS Group Berhad (Bursa: 6068). All rights reserved.</span>
+      <span data-t="foot.proposal">Proposal by Startfrom X Sdn Bhd. Design mockup &mdash; for internal review only.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* ============ i18n ============ */
+  const DEFAULT_LANG = 'en';
+
+  const T = {
+    en: {
+      'nav.story': 'Story',
+      'nav.whatwedo': 'What We Do',
+      'nav.ourwork': 'Our Work',
+      'nav.ourgroup': 'Our Group',
+      'nav.sustainability': 'Sustainability',
+      'nav.investors': 'Investors',
+      'nav.careers': 'Careers',
+      'nav.contact': 'Contact',
+      'nav.menu': 'Menu',
+
+      'hero.eyebrow': 'PCCS Group',
+      'hero.line1': 'Engineering',
+      'hero.line2': 'Future',
+      'hero.subline': 'The world wears our work.',
+      'news.tag': 'NEEDS PCCS INPUT',
+      'news.headline': 'NEEDS PCCS INPUT',
+      'hero.foot1': 'PCCS Group  ·  Est. 1973  ·  Bursa 6068',
+      'hero.foot2': 'Design  ·  Craft  ·  Delivery',
+
+      'belief.body': 'Behind the brands people wear is a chain of ideas, details and delivery. From the kit on the pitch to the label inside the collar, we help turn concepts into products people can trust.',
+      'belief.btn': 'The Engineering <span>→</span>',
+
+      'badge.eyebrow': 'The Mark',
+      'badge.h2': 'You own the badge.<br>We make it worthy of it.',
+      'badge.quote': '<span class="w">A badge has to survive years of wear and fifty washes</span> <span class="g">without cracking, lifting or fading.</span>',
+      'badge.cite': 'Engineering, not decoration',
+      'badge.body1': 'A logo has to survive years of wear and fifty washes without cracking, lifting, or losing its edge. That’s engineering, not decoration.',
+      'badge.body2': 'Anyone can cut cloth. The official crest is entrusted only to a maker who meets the brand’s standards — that’s us.',
+
+      'wtd.eyebrow': 'The Engineering',
+      'wtd.h2': 'You bring the concept.<br>We engineer everything after it.',
+      'wtd.btn': 'The full Engineering <span>→</span>',
+      'wtd1.title': 'Development',
+      'wtd1.body': 'An idea isn’t a product until it’s engineered. We turn your brief, sketch, or reference into a technical package a factory can build and samples you can approve.',
+      'wtd2.title': 'Material / Fabric',
+      'wtd2.body': 'Performance starts at the yarn. Stretch, wicking, weight, durability — every property is decided in the fabric, before a panel is cut.',
+      'wtd3.title': 'Make & Quality',
+      'wtd3.body': 'Quality isn’t a final inspection — it’s built in from the cut. We check inline, during production, and before shipment.',
+
+      'nums.eyebrow': 'The Engineering — a preview',
+      'nums.h2': 'Measured. Proven.<br>Built to last.',
+      'nums.stat1': 'patents',
+      'nums.stat2': 'R&amp;D staff',
+      'nums.stat3': 'styles / yr',
+      'nums.stat4': 'samples / yr',
+
+      'sus.eyebrow': 'Sustainability',
+      'sus.h2': 'Made responsibly,<br><span class="g">measured honestly.</span>',
+      'sus.body': 'PCCS has reported sustainability since FY2018, to Bursa Malaysia’s standard. The numbers are audited, not aspirational.',
+      'sus.stat1': 'tCO₂e GHG',
+      'sus.stat2': 'GJ energy',
+      'sus.stat3': 'kWh renewable solar',
+      'sus.focus': 'Focus areas',
+      'sus.focus1': 'Ethical Business',
+      'sus.focus2': 'Environmental Sustainability',
+      'sus.focus3': 'Social Stability',
+      'sus.focus4': 'Reporting & Metrics',
+      'sus.cert': 'Frameworks & certifications: GRS · RCS · OEKO-TEX · ZDHC · Higg FEM · WRAP Gold 2025 · Cambodia Green Industry Awards 2025 (Silver).',
+      'sus.note': 'Community examples and milestone actions: NEEDS PCCS INPUT',
+
+      'grp.eyebrow': 'One system — “Engineering Future”',
+      'grp.h2': 'One discipline.<br>Many futures.',
+      'grp1.tag': 'Engineering Apparel',
+      'grp1.title': 'Technical sportswear',
+      'grp1.body': 'From fibre to the mark — engineered, developed, prototyped, crafted, verified, manufactured, and delivered.',
+      'grp2.tag': 'Engineering Health',
+      'grp2.title': 'La Prima Medical',
+      'grp2.body': 'NEEDS PCCS INPUT — external business details and destination link.',
+      'grp3.tag': 'Finance',
+      'grp3.title': 'EZFY',
+      'grp3.body': 'NEEDS PCCS INPUT — external business details and destination link.',
+
+      'inv.eyebrow': 'Investors',
+      'inv.h2': 'We own more of the chain<br><span class="g">than the market pays for.</span>',
+      'inv.body': 'PCCS manufactures technical sportswear for the world’s biggest brands — and increasingly owns the higher-value parts of the chain: development, the mark, and now fabric. This expanding capability gives PCCS a clear path from cut-and-sew manufacturing to a broader product and materials platform.',
+      'inv.btn': 'Investor Relations <span>→</span>',
+      'snap.title': 'NEEDS PCCS INPUT',
+      'snap.tick': 'PCCS Group Berhad <b>6068</b>',
+      'snap.lab1': 'Day’s High',
+      'snap.lab2': 'Day’s Low',
+      'snap.lab3': 'Day’s Volume',
+      'snap.lab4': 'Last Updated',
+
+      'career.eyebrow': 'Careers',
+      'career.h2': 'Come engineer what<br>the world wears.',
+      'career.body': 'The world’s biggest sports brands are made here — by the people who cut, knit, print, sew, test and ship them. That’s not factory work. That’s engineering, at the scale of millions.',
+      'career.btn': 'NEEDS PCCS INPUT <span>→</span>',
+
+      'foot.belief': 'Engineering Future',
+      'foot.nav.story': 'Story',
+      'foot.nav.whatwedo': 'What We Do',
+      'foot.nav.ourwork': 'Our Work',
+      'foot.nav.ourgroup': 'Our Group',
+      'foot.nav.investors': 'Investors <span class="ar">↗</span>',
+      'foot.nav.careers': 'Careers',
+      'foot.nav.contact': 'Contact',
+      'foot.desc': 'The trusted hand behind the world’s top brands. For fifty years we’ve designed, decorated and delivered the marks worth wearing with pride.',
+      'foot.h4.company': 'Company',
+      'foot.h4.stakeholders': 'Stakeholders',
+      'foot.h4.contact': 'Contact',
+      'foot.link.story': 'Story',
+      'foot.link.whatwedo': 'What We Do',
+      'foot.link.ourwork': 'Our Work',
+      'foot.link.ourgroup': 'Our Group',
+      'foot.link.footprint': 'Global Footprint',
+      'foot.link.investors': 'Investors',
+      'foot.link.careers': 'Careers',
+      'foot.link.sustainability': 'Sustainability',
+      'foot.link.newsroom': 'Newsroom',
+      'foot.link.hq': 'Kuala Lumpur HQ',
+      'foot.copyright': '© 2026 PCCS Group Berhad (Bursa: 6068). All rights reserved.',
+      'foot.proposal': 'Proposal by Startfrom X Sdn Bhd. Design mockup — for internal review only.',
+    }
+  };
+
+  // CN — full Simplified Chinese copy (2026-07-09). Untranslated keys fall back to T.en.
+  T.cn = Object.assign({}, T.en, {
+    'nav.story': '品牌故事',
+    'nav.whatwedo': '核心业务',
+    'nav.ourwork': '合作案例',
+    'nav.ourgroup': '集团架构',
+    'nav.sustainability': '永续未来',
+    'nav.investors': '投资者关系',
+    'nav.careers': '加入我们',
+    'nav.contact': '联系我们',
+    'nav.menu': '菜单',
+
+    'hero.eyebrow': 'PCCS集团',
+    'hero.line1': '以工程，',
+    'hero.line2': '创造可能',
+    'hero.subline': '世界穿着我们的作品。',
+    'news.tag': 'NEEDS PCCS INPUT',
+    'news.headline': 'NEEDS PCCS INPUT',
+    'hero.foot1': 'PCCS集团 · 创立于1973年 · 马交所代码 6068',
+    'hero.foot2': '设计 · 精工 · 交付',
+
+    'belief.body': '人们所穿的品牌背后，是由创意、细节与交付组成的完整链路。从球场上的球衣到领口里的标签，我们帮助客户将概念转化为值得信赖的产品。',
+    'belief.btn': '工程能力 <span>→</span>',
+
+    'badge.eyebrow': '标识工艺',
+    'badge.h2': '你赋予徽章意义，<br>我们赋予它品质。',
+    'badge.quote': '<span class="w">一枚徽章，须经得起长年穿着与五十次洗涤，</span> <span class="g">不开裂、不翘边、不褪色。</span>',
+    'badge.cite': '这是工程，不是装饰',
+    'badge.body1': '一枚标识，最见真章。一个标志须经得起长年穿着与五十次洗涤，不开裂、不翘边、不褪色。这是工程，而非装饰。',
+    'badge.body2': '裁布人人皆可，官方队徽却只托付给达到品牌标准的制造者——而这份资格，属于我们。',
+
+    'wtd.eyebrow': '工程能力',
+    'wtd.h2': '你负责构想，<br>技术实现交给我们。',
+    'wtd.btn': '完整工程能力 <span>→</span>',
+    'wtd1.title': '产品开发',
+    'wtd1.body': '好点子，只有变成可量产的技术方案，才算真正的好产品。我们将需求、草图或参考转化为工厂可投产的技术流程，以及供你审定的实物样品。',
+    'wtd2.title': '材料选型',
+    'wtd2.body': '性能，始于纱线。弹力、吸湿、克重、耐用——每项性能都在面料中定型，早于第一片衣片的裁剪。',
+    'wtd3.title': '制造与质量',
+    'wtd3.body': '质量并非最后一道检验，而是从裁剪起就融入每一道工序。我们于产线在线检验、生产途中抽检、出货之前终检。',
+
+    'nums.eyebrow': '工程能力预览',
+    'nums.h2': '量过，证过，<br>经得起时间。',
+    'nums.stat1': '专利',
+    'nums.stat2': '研发人员',
+    'nums.stat3': '款 / 年',
+    'nums.stat4': '样品 / 年',
+
+    'sus.eyebrow': '永续未来',
+    'sus.h2': '说到做到，<br><span class="g">数字为证。</span>',
+    'sus.body': '从 FY2018 起，PCCS 就按大马交易所的标准做可持续报告。数字是审过的，不是喊出来的。',
+    'sus.stat1': '吨 CO₂e 温室气体',
+    'sus.stat2': '吉焦能源',
+    'sus.stat3': '千瓦时可再生太阳能',
+    'sus.focus': '四大焦点',
+    'sus.focus1': '商业道德',
+    'sus.focus2': '环境可持续',
+    'sus.focus3': '社会稳定',
+    'sus.focus4': '报告与指标',
+    'sus.cert': '框架与认证：GRS · RCS · OEKO-TEX · ZDHC · Higg FEM · 柬埔寨 Better Factories · WRAP 金奖 2025 · 柬埔寨绿色工业奖 2025（银奖）。',
+    'sus.note': '社区案例与里程碑实际行动：NEEDS PCCS INPUT',
+
+    'grp.eyebrow': '一套体系 ——「以工程，创造可能」',
+    'grp.h2': '一门专业，<br>多种未来。',
+    'grp1.tag': '每一件，皆以工程铸就',
+    'grp1.title': '科技运动服',
+    'grp1.body': '从纤维到标识，一手包办——设计、研发、打样、制作、验证、生产与交付。',
+    'grp2.tag': '以专业，护生命',
+    'grp2.title': 'La Prima 医疗',
+    'grp2.body': 'NEEDS PCCS INPUT —— 外部业务详情与链接。',
+    'grp3.tag': '金融',
+    'grp3.title': 'EZFY',
+    'grp3.body': 'NEEDS PCCS INPUT —— 外部业务详情与链接。',
+
+    'inv.eyebrow': '投资者',
+    'inv.h2': '这条产业链，我们握得<br><span class="g">比股价更长。</span>',
+    'inv.body': 'PCCS 为全球最大的品牌制造技术运动服——并正逐步掌握产业链中更具价值的环节：开发、标识，如今还有面料。随着能力边界不断拓展，PCCS 正从裁剪缝纫制造商，走向更完整的产品与材料平台。',
+    'inv.btn': '投资者关系 <span>→</span>',
+    'snap.title': 'NEEDS PCCS INPUT',
+    'snap.lab1': '当前股价',
+    'snap.lab2': '财务数据',
+    'snap.lab3': '实时数据接入',
+    'snap.lab4': '发布审批',
+
+    'career.eyebrow': '人才招聘',
+    'career.h2': '来吧，让世界<br>穿上你的作品。',
+    'career.body': '全球最大的运动品牌，就在这里铸就出来——由那些裁剪、织造、印花、缝制、测试和发货的人。那不是工厂活，那是工程，以百万计的规模。',
+    'career.btn': 'NEEDS PCCS INPUT <span>→</span>',
+
+    'foot.belief': '以工程，创造可能',
+    'foot.nav.story': '品牌故事',
+    'foot.nav.whatwedo': '核心业务',
+    'foot.nav.ourwork': '合作案例',
+    'foot.nav.ourgroup': '集团架构',
+    'foot.nav.investors': '投资者关系 <span class="ar">↗</span>',
+    'foot.nav.careers': '加入我们',
+    'foot.nav.contact': '联系我们',
+    'foot.desc': '全球顶级品牌信赖的幕后之手。五十年来，我们设计、装饰、交付那些值得被骄傲穿上的标志。',
+    'foot.h4.company': '公司',
+    'foot.h4.stakeholders': '利益相关方',
+    'foot.h4.contact': '联系方式',
+    'foot.link.story': '品牌故事',
+    'foot.link.whatwedo': '核心业务',
+    'foot.link.ourwork': '合作案例',
+    'foot.link.ourgroup': '集团架构',
+    'foot.link.footprint': '全球布局',
+    'foot.link.investors': '投资者关系',
+    'foot.link.careers': '加入我们',
+    'foot.link.sustainability': '可持续发展',
+    'foot.link.newsroom': '新闻中心',
+    'foot.link.hq': '吉隆坡总部',
+    'foot.copyright': '© 2026 PCCS Group Berhad（马交所代码：6068）。保留所有权利。',
+  });
+
+  function setLang(lang) {
+    var dict = T[lang] || T.en;
+    document.querySelectorAll('[data-t]').forEach(function(el) {
+      var key = el.getAttribute('data-t');
+      if (dict[key] !== undefined) {
+        el.innerHTML = dict[key];
+      }
+    });
+    document.querySelectorAll('.lang-btn').forEach(function(btn) {
+      btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+    });
+    try { localStorage.setItem('pccs-lang', lang); } catch(e) {}
+    document.documentElement.lang = lang === 'cn' ? 'zh-CN' : 'en';
+  }
+
+  // init language
+  (function(){
+    var stored = null;
+    try { stored = localStorage.getItem('pccs-lang'); } catch(e) {}
+    setLang(stored || DEFAULT_LANG);
+
+    document.addEventListener('click', function(e) {
+      var btn = e.target.closest('.lang-btn');
+      if (btn) {
+        e.preventDefault();
+        setLang(btn.getAttribute('data-lang'));
+      }
+    });
+  })();
+
+  /* ============ ORIGINAL JS ============ */
+  const stage = document.getElementById('heroStage');
+  const nav = document.getElementById('siteNav');
+  const menuToggle = document.getElementById('menuToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  function setMenu(open){
+    nav.classList.toggle('menu-open', open);
+    mobileMenu.classList.toggle('open', open);
+    mobileMenu.setAttribute('aria-hidden', String(!open));
+    menuToggle.setAttribute('aria-expanded', String(open));
+    document.body.classList.toggle('menu-open', open);
+  }
+
+  menuToggle.addEventListener('click', function(){
+    setMenu(!nav.classList.contains('menu-open'));
+  });
+  mobileMenu.addEventListener('click', function(e){
+    if (e.target.closest('a')) setMenu(false);
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && nav.classList.contains('menu-open')) setMenu(false);
+  });
+
+  // set the nav's full-width start value precisely, so the pill shrink is a smooth px->px transition
+  function setNavFull(){
+    const padX = innerWidth <= 900 ? 22 : 80;
+    document.documentElement.style.setProperty('--nav-full', (innerWidth - padX * 2) + 'px');
+  }
+  setNavFull();
+  addEventListener('resize', function(){
+    setNavFull();
+    if (innerWidth > 900 && nav.classList.contains('menu-open')) setMenu(false);
+  });
+
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      stage.classList.add('expanded');
+      setTimeout(() => nav.classList.add('nav-visible'), 550);
+    }, 250);
+  });
+
+  let lastY = 0;
+  addEventListener('scroll', () => {
+    const y = scrollY;
+    if (y > 80) nav.classList.add('nav-scrolled');
+    else if (y < 40) nav.classList.remove('nav-scrolled');
+
+    if (y > 600) {
+      if (y > lastY) nav.classList.add('nav-hidden');
+      else nav.classList.remove('nav-hidden');
+    } else {
+      nav.classList.remove('nav-hidden');
+    }
+    lastY = y;
+  }, {passive:true});
+
+  // ---- scroll-driven parallax (zoom + downward drift) on tagged images ----
+  (function(){
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const items = Array.prototype.slice.call(document.querySelectorAll('[data-parallax]')).map(function(img){
+      const parts = img.dataset.parallax.split(',').map(Number); // base, max, drift%
+      const box = img.closest('.badge-image, .hero-frame, .careers-media') || img.parentElement;
+      return { img: img, box: box, base: parts[0], max: parts[1], drift: parts[2] };
+    });
+    if (!items.length) return;
+    let ticking = false;
+
+    function update(){
+      const vh = innerHeight;
+      items.forEach(function(it){
+        const r = it.box.getBoundingClientRect();
+        let p = (vh - r.top) / (vh + r.height);   // 0 entering -> 1 leaving
+        p = Math.max(0, Math.min(1, p));
+        const scale = (it.base + p * it.max).toFixed(4);
+        const ty = ((p - 0.5) * it.drift).toFixed(2);
+        it.img.style.transform = 'translateY(' + ty + '%) scale(' + scale + ')';
+      });
+      ticking = false;
+    }
+    function onScroll(){ if (!ticking){ ticking = true; requestAnimationFrame(update); } }
+    addEventListener('scroll', onScroll, {passive:true});
+    addEventListener('resize', onScroll, {passive:true});
+    update();
+  })();
+
+  // ---- global fade-up reveal on scroll (all images + text below the hero) ----
+  (function(){
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const sel = '.belief-copy, .badge-head, .badge-image, .badge-copy-col > p,'
+      + '.wtd-head, .wtd-card, .nums-head, .num-cell, .grp-head, .grp-card,'
+      + '.inv-head, .inv-copy, .snap, .careers-head, .careers-media,'
+      + '.foot-top, .foot-lower, .foot-bottom, .logo-row';
+    const els = Array.prototype.slice.call(document.querySelectorAll(sel));
+    els.forEach(el => el.classList.add('rv'));
+    // stagger children within grids
+    document.querySelectorAll('.wtd-grid, .nums-grid, .grp-grid').forEach(grid => {
+      Array.prototype.slice.call(grid.children).forEach((c, i) => c.style.setProperty('--d', (i * 0.1) + 's'));
+    });
+    if (reduce){ els.forEach(el => el.classList.add('in')); return; }
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+    els.forEach(el => io.observe(el));
+  })();
+
+  // ---- count-up on the stats when scrolled into view ----
+  (function(){
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        io.unobserve(e.target);
+        const el = e.target, to = +el.dataset.to, dur = 1500, t0 = performance.now();
+        (function tick(t){
+          const p = Math.min((t - t0) / dur, 1);
+          el.textContent = Math.round((1 - Math.pow(1 - p, 3)) * to).toLocaleString('en-US');
+          if (p < 1) requestAnimationFrame(tick);
+        })(t0);
+      });
+    }, { threshold: 0.6 });
+    document.querySelectorAll('.nv[data-to]').forEach(el => io.observe(el));
+  })();
+</script>
+
+</body>
+</html>
