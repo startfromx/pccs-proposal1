@@ -157,3 +157,16 @@ Ask before changing:
 - Customer logos
 - GitHub
 - Deployment or production hosting
+
+## Current static page architecture
+
+The active Option 1 site now has a shared presentation layer and independent page documents:
+
+- download code/pccs-proposal1-main/option1/index.html — Home page.
+- download code/pccs-proposal1-main/option1/assets/css/pccs.css — shared design system and responsive section styles.
+- download code/pccs-proposal1-main/option1/assets/css/pccs-pages.css — standalone page layout styles.
+- download code/pccs-proposal1-main/option1/assets/js/pccs-home.js — Home-only animation, language and menu behavior.
+- download code/pccs-proposal1-main/option1/assets/js/pccs-pages.js — shared standalone-page menu behavior.
+- download code/pccs-proposal1-main/option1/pages/ — independent page files for Engineering, Our Work, Our Group, Sustainability, Investors and Careers.
+
+Page agents should edit only their assigned file under pages/ plus page-specific assets. Shared CSS and JavaScript changes should be coordinated through the Manager because they affect every page.

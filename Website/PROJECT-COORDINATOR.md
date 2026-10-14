@@ -39,3 +39,14 @@ Human approval is required before changing approved copy, investor or sustainabi
 ## Handoff format
 
 Every agent reports what it reviewed, what it produced, files changed, unresolved questions, `NEEDS PCCS INPUT` items, and the recommended next agent.
+
+## Current implementation structure
+
+- Home source: download code/pccs-proposal1-main/option1/index.html
+- Shared styles: download code/pccs-proposal1-main/option1/assets/css/pccs.css
+- Standalone-page styles: download code/pccs-proposal1-main/option1/assets/css/pccs-pages.css
+- Home behavior: download code/pccs-proposal1-main/option1/assets/js/pccs-home.js
+- Standalone-page behavior: download code/pccs-proposal1-main/option1/assets/js/pccs-pages.js
+- Independent page work files: download code/pccs-proposal1-main/option1/pages/
+
+Page specialists should work in their assigned page file. The Manager owns shared CSS, shared JavaScript, navigation, approved copy, and integration back into Home.
