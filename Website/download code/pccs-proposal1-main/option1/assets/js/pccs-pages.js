@@ -1,4 +1,10 @@
 (function(){
+  var icon = document.querySelector('link[rel="icon"]') || document.createElement('link');
+  icon.rel = 'icon';
+  icon.type = 'image/svg+xml';
+  icon.href = new URL('../../images/PCCS_logo.svg', document.currentScript.src).href;
+  if (!icon.parentNode) document.head.appendChild(icon);
+
   var toggle = document.querySelector('[data-page-menu-toggle]');
   var menu = document.querySelector('[data-page-menu]');
   if (!toggle || !menu) return;

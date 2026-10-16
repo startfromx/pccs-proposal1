@@ -1,3 +1,76 @@
+  /* ============ GLOBAL NAV INJECTION ============
+     Single source of truth for nav + mobile menu.
+     Auto-detects root (index.html) vs pages/ subpages.
+     To add/change a nav item, edit only this block.
+  ============================================== */
+  (function(){
+    var loc  = window.location.pathname;
+    var file = loc.split('/').pop() || 'index.html';
+    var sub  = loc.indexOf('/pages/') !== -1;
+    var r    = sub ? '../' : '';          // prefix to reach site root
+    var p    = sub ? '' : 'pages/';      // prefix to reach pages/
+    var langEn = sub ? file : 'index.html';
+    var langCn = sub ? file : 'cn.html';
+    var contact = sub ? '../index.html#contact' : '#contact';
+    var story   = sub ? '../index.html#story'   : '#story';
+
+    function lnk(href, key, match) {
+      return '<a href="' + href + '" data-t="' + key + '"' +
+             (match && file === match ? ' aria-current="page"' : '') + '></a>';
+    }
+
+    var nav =
+      '<nav id="siteNav"><div class="nav-in">' +
+        '<a class="nav-logo" href="' + r + 'index.html"><img src="' + r + 'images/PCCS_logo.svg" alt="PCCS Group"></a>' +
+        '<div class="nav-links">' +
+          '<a href="' + story + '" data-t="nav.story"></a>' +
+          lnk(p+'engineering.html',   'nav.whatwedo',      'engineering.html') +
+          lnk(p+'our-work.html',      'nav.ourwork',       'our-work.html') +
+          lnk(p+'group.html',         'nav.ourgroup',      'group.html') +
+          lnk(p+'sustainability.html','nav.sustainability', 'sustainability.html') +
+          lnk(p+'investors.html',     'nav.investors',     'investors.html') +
+          lnk(p+'careers.html',       'nav.careers',       'careers.html') +
+          '<span class="lang">' +
+            '<a class="lang-btn" data-lang="en" href="' + langEn + '">EN</a>&nbsp;·&nbsp;' +
+            '<a class="lang-btn" data-lang="cn" href="' + langCn + '">中文</a>' +
+          '</span>' +
+          '<a class="nav-cta" href="' + contact + '" data-t="nav.contact"></a>' +
+        '</div>' +
+        '<button class="nav-menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="mobileMenu">' +
+          '<span data-t="nav.menu"></span><span class="menu-symbol" aria-hidden="true">+</span>' +
+        '</button>' +
+      '</div></nav>' +
+      '<div class="mobile-menu" id="mobileMenu" aria-hidden="true"><div class="mobile-menu-inner">' +
+        '<div class="mobile-menu-links">' +
+          '<a href="' + story + '" data-t="nav.story"></a>' +
+          '<a href="' + p + 'engineering.html" data-t="nav.whatwedo"></a>' +
+          '<a href="' + p + 'our-work.html" data-t="nav.ourwork"></a>' +
+          '<a href="' + p + 'group.html" data-t="nav.ourgroup"></a>' +
+          '<a href="' + p + 'sustainability.html" data-t="nav.sustainability"></a>' +
+          '<a href="' + p + 'investors.html" data-t="nav.investors"></a>' +
+          '<a href="' + p + 'careers.html" data-t="nav.careers"></a>' +
+          '<a href="' + contact + '" data-t="nav.contact"></a>' +
+        '</div>' +
+        '<div class="mobile-menu-foot">' +
+          '<span>Engineering Future</span>' +
+          '<span>' +
+            '<a class="lang-btn" data-lang="en" href="' + langEn + '">EN</a> · ' +
+            '<a class="lang-btn" data-lang="cn" href="' + langCn + '">中文</a>' +
+          '</span>' +
+        '</div>' +
+      '</div></div>';
+
+    document.body.insertAdjacentHTML('afterbegin', nav);
+  })();
+
+  /* ============ FAVICON ============ */
+  (function(){
+    var icon = document.querySelector('link[rel="icon"]') || document.createElement('link');
+    icon.rel = 'icon';
+    icon.type = 'image/svg+xml';
+    icon.href = new URL('../../images/PCCS_logo.svg', document.currentScript.src).href;
+    if (!icon.parentNode) document.head.appendChild(icon);
+  })();
 
   /* ============ i18n ============ */
   const DEFAULT_LANG = 'en';
@@ -387,3 +460,27 @@
     document.querySelectorAll('.nv[data-to]').forEach(el => io.observe(el));
   })();
 
+  // ---- sustainability community examples slider ----
+  (function(){
+    const track = document.querySelector('[data-community-track]');
+    const prev = document.querySelector('[data-community-prev]');
+    const next = document.querySelector('[data-community-next]');
+    const count = document.querySelector('[data-community-count]');
+    if (!track || !prev || !next) return;
+    const cards = Array.prototype.slice.call(track.children);
+    function step(){
+      const card = cards[0];
+      if (!card) return 0;
+      return card.getBoundingClientRect().width + 24;
+    }
+    function updateCount(){
+      if (!count) return;
+      const index = Math.min(cards.length - 1, Math.round(track.scrollLeft / Math.max(step(), 1)));
+      count.textContent = String(index + 1).padStart(2, '0') + ' / ' + String(cards.length).padStart(2, '0');
+    }
+    prev.addEventListener('click', function(){ track.scrollBy({left:-step(), behavior:'smooth'}); });
+    next.addEventListener('click', function(){ track.scrollBy({left:step(), behavior:'smooth'}); });
+    track.addEventListener('scroll', updateCount, {passive:true});
+    addEventListener('resize', updateCount, {passive:true});
+    updateCount();
+  })();

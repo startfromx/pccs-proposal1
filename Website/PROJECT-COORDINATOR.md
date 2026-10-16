@@ -50,3 +50,24 @@ Every agent reports what it reviewed, what it produced, files changed, unresolve
 - Independent page work files: download code/pccs-proposal1-main/option1/pages/
 
 Page specialists should work in their assigned page file. The Manager owns shared CSS, shared JavaScript, navigation, approved copy, and integration back into Home.
+
+## Live pages and link map (2026-10-15)
+
+These pages are approved and navigable. All nav links must use these exact paths.
+
+| Page | File (from option1 root) | Branch | Status |
+|---|---|---|---|
+| Home | index.html | main | Live |
+| Sustainability | pages/sustainability.html | pccs-sustainability | Live |
+| What We Do | pages/engineering.html | pccs-engineering | In progress |
+| Our Work | pages/our-work.html | pccs-our-work | In progress |
+| Our Group | pages/group.html | pccs-group | In progress |
+| Investors | pages/investors.html | pccs-investors | In progress |
+| Careers | pages/careers.html | pccs-careers | In progress |
+
+### Nav link rules
+
+- From `index.html`: page links use `pages/<file>.html`; same-page section anchors use `#sectionId`
+- From `pages/*.html`: Home is `../index.html`; page siblings are `<file>.html` (no path prefix); Home sections are `../index.html#sectionId`
+- Story has no dedicated page yet — links to `#story` / `../index.html#story` until a Story page is built
+- Unbuilt pages may keep their `href` target but should not be linked from live navigation until merged into main

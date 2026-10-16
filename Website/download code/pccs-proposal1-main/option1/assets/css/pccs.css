@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
 
   :root{
     --ink:#111111; --cream:#FFFFFF; --muted:#4F5553;
@@ -71,10 +72,10 @@
     opacity:0;
     transform:translateY(-14px);
     pointer-events:none;
-    transition:opacity .8s ease, transform .8s ease;
+    transition:opacity .8s ease, transform .3s cubic-bezier(.4,0,.2,1);
   }
   nav.nav-visible{opacity:1;transform:translateY(0);pointer-events:auto;}
-  nav.nav-hidden{transform:translateY(-110%);opacity:0;pointer-events:none;}
+  nav.nav-hidden{transform:translateY(-200%);pointer-events:none;}
 
   .nav-in{
     position:relative;
@@ -422,7 +423,7 @@
     color:var(--green);font-weight:700;margin-bottom:22px;
   }
   .badge-head h2{
-    font-family:'Inter','Noto Sans SC',system-ui,sans-serif;font-weight:300;
+    font-family:'Inter','Noto Sans SC',system-ui,sans-serif;font-weight:400;
     font-size:clamp(32px,5.26cqw,101px);line-height:1.05;letter-spacing:-.07em;
     color:var(--ink);
   }
@@ -490,8 +491,8 @@
   .rv.in{opacity:1;transform:none;}
   @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none;}}
   .sec-k{font-size:clamp(12px,.83cqw,16px);letter-spacing:.187em;text-transform:uppercase;color:var(--green);font-weight:700;margin-bottom:22px;}
-  .sec-h2{font-family:'Inter','Noto Sans SC',system-ui,sans-serif;font-weight:300;font-size:clamp(24px,3.83cqw,71px);line-height:1.06;letter-spacing:-.037em;color:var(--ink);}
-  .feature-h2{font-family:'Inter','Noto Sans SC',system-ui,sans-serif;font-weight:300;font-size:clamp(32px,5.3cqw,101px);line-height:1.05;letter-spacing:-.07em;color:var(--ink);}
+  .sec-h2{font-family:'Inter','Noto Sans SC',system-ui,sans-serif;font-weight:400;font-size:clamp(24px,3.83cqw,71px);line-height:1.06;letter-spacing:-.037em;color:var(--ink);}
+  .feature-h2{font-family:'Inter','Noto Sans SC',system-ui,sans-serif;font-weight:400;font-size:clamp(32px,5.3cqw,101px);line-height:1.05;letter-spacing:-.07em;color:var(--ink);}
   .feature-h2 .g{color:var(--green);}
   .sec-h2 .g{color:var(--green);}
   .pill-btn{display:inline-flex;align-items:center;gap:10px;background:var(--grey);color:var(--ink);text-decoration:none;font-size:clamp(13px,.83cqw,16px);font-weight:500;padding:14px 22px;border-radius:8px;transition:background-color .25s, color .25s;white-space:nowrap;}
@@ -544,6 +545,7 @@
   .sustainability-list em{font-size:clamp(12px,.9cqw,15px);line-height:1.45;color:rgba(255,255,255,.68);font-style:normal;}
   .sustainability-certifications{margin-top:28px;padding-top:22px;border-top:1px solid rgba(255,255,255,.16);font-size:clamp(11px,.85cqw,14px);line-height:1.55;color:rgba(255,255,255,.68);}
   .sustainability-footnote{margin-top:34px;font-size:12px;letter-spacing:.03em;color:#777;}
+  .sustainability-footnote + .pill-btn{margin-top:26px;}
 
   /* ---- OUR GROUP (sec 6) ---- */
   .grp-head{margin-bottom:56px;}
@@ -654,4 +656,3 @@
   html[lang="zh-CN"] .num-l{letter-spacing:normal;}
   /* Give the tight hero headline a touch more leading in Chinese. */
   html[lang="zh-CN"] .hero-content h1{line-height:1.04;}
-
