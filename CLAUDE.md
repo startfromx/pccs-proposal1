@@ -1,5 +1,19 @@
 # PCCS Website — Agent Instructions
 
+## Start here — read these files first
+
+Before writing a single line of code, read in this exact order:
+
+1. `Website/AGENTS.md` — project rules and approval gates
+2. `Website/PROJECT-COORDINATOR.md` — current status, live pages, link map
+3. `Website/planning/PCCS-website-requirements.md`
+4. `Website/planning/PCCS-global-components.md`
+5. `Website/planning/PCCS-visual-direction-brief.md`
+6. `Website/agents/page-implementation-prompt.md` — page build template
+7. `Website/Copysheet/Website Copy PCCS Group.pdf` — approved copy (source of truth)
+8. Your assigned page file (current state — see assignment below)
+9. `Website/download code/pccs-proposal1-main/option1/assets/css/pccs.css` — global design system
+
 ## Project
 
 PCCS Group corporate website. Working directory:
@@ -9,7 +23,7 @@ All paths below are relative to that directory unless stated otherwise.
 
 ## Your page assignment
 
-Run this first to identify your page:
+Run this to identify your page:
 
 ```bash
 git branch --show-current
@@ -24,20 +38,6 @@ git branch --show-current
 | `pccs-group` | `pages/group.html` |
 | `pccs-investors` | `pages/investors.html` |
 | `pccs-careers` | `pages/careers.html` |
-
-## Read before doing anything
-
-In this order — do not skip:
-
-1. `Website/AGENTS.md`
-2. `Website/PROJECT-COORDINATOR.md`
-3. `Website/planning/PCCS-website-requirements.md`
-4. `Website/planning/PCCS-global-components.md`
-5. `Website/planning/PCCS-visual-direction-brief.md`
-6. `Website/agents/page-implementation-prompt.md`
-7. `Website/Copysheet/Website Copy PCCS Group.pdf`
-8. Your assigned page file (current state)
-9. `assets/css/pccs.css` (global design system)
 
 ## Shared files — do not modify
 
