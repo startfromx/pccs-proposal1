@@ -1,4 +1,1378 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Careers · PCCS Group</title><link rel="stylesheet" href="../assets/css/pccs.css"><link rel="stylesheet" href="../assets/css/pccs-pages.css"></head>
-<body class="page-document"><header class="page-nav"><a href="../index.html"><img src="../images/PCCS_logo.svg" alt="PCCS Group"></a><nav class="page-nav-links" aria-label="Primary navigation"><a href="engineering.html">What We Do</a><a href="our-work.html">Our Work</a><a href="group.html">Our Group</a><a href="sustainability.html">Sustainability</a><a href="investors.html">Investors</a><a href="careers.html">Careers</a><a href="../index.html#contact">Contact</a></nav><button class="page-nav-toggle" type="button" data-page-menu-toggle aria-expanded="false">Menu +</button></header><nav class="page-menu" data-page-menu aria-label="Mobile navigation"><a href="../index.html">Home</a><a href="engineering.html">What We Do</a><a href="our-work.html">Our Work</a><a href="group.html">Our Group</a><a href="sustainability.html">Sustainability</a><a href="investors.html">Investors</a><a href="careers.html">Careers</a></nav><main class="page-main"><div class="page-kicker">Careers</div><h1 class="page-title">Come engineer what<br><span class="accent">the world wears.</span></h1><p class="page-lead">The world’s biggest sports brands are made here — by the people who cut, knit, print, sew, test and ship them. That’s not factory work. That’s engineering, at the scale of millions.</p><div class="page-grid"><article class="page-card"><img src="../images/career.jpg" alt="Join the PCCS team"><h2>Make what the world wears</h2><p>Join the hands behind the world’s biggest brands — in design, engineering, craft and beyond.</p></article><article class="page-card"><h2>The next fifty years</h2><p>NEEDS PCCS INPUT — careers details, open roles and application destination.</p></article></div></main><footer class="page-footer">PCCS Group · Careers</footer><script src="../assets/js/pccs-pages.js"></script></body></html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Careers · PCCS Group</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23006450'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='21' font-weight='700' fill='%23FFFFFF' text-anchor='middle'%3EP%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/pccs.css">
+<link rel="stylesheet" href="../assets/css/pccs-pages.css">
+<style>
+/* =====================================================================
+   CAREERS PAGE — page-specific styles only
+   Shared tokens from pccs.css / pccs-pages.css are NOT duplicated.
+   ===================================================================== */
+
+/* ─────────────────────────────────────────────
+   NAV / PAGE FRAME
+───────────────────────────────────────────── */
+body.page-document {
+  background: #fff;
+}
+
+/* ─────────────────────────────────────────────
+   1. HERO — full-bleed career.jpg with frosted glass card
+───────────────────────────────────────────── */
+.cr-hero-wrap {
+  padding: 24px 40px 0;
+}
+.cr-hero {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 7;
+  min-height: 440px;
+  border-radius: 28px;
+  overflow: hidden;
+  background: #0d1a14;
+}
+.cr-hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  transform: scale(1.04);
+  transition: transform 1.4s cubic-bezier(.22,.61,.36,1);
+  will-change: transform;
+}
+.cr-hero.is-loaded .cr-hero-img {
+  transform: scale(1);
+}
+
+/* gradient scrim — bottom heavy for text legibility */
+.cr-hero-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,.04) 0%,
+    rgba(0,0,0,.0) 28%,
+    rgba(0,0,0,.52) 100%
+  );
+  z-index: 1;
+}
+
+/* frosted glass card — bottom left, fades in with hero */
+.cr-hero-card {
+  position: absolute;
+  left: clamp(24px, 3.5vw, 64px);
+  bottom: clamp(28px, 4vw, 64px);
+  z-index: 2;
+  max-width: clamp(300px, 38vw, 560px);
+  padding: clamp(28px, 2.8vw, 48px);
+  border-radius: 20px;
+  background: rgba(255,255,255,.14);
+  border: 1px solid rgba(255,255,255,.22);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  box-shadow: 0 18px 55px rgba(0,0,0,.22);
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity .9s cubic-bezier(.22,.61,.36,1) .75s,
+    transform .9s cubic-bezier(.22,.61,.36,1) .75s;
+}
+.cr-hero.is-loaded .cr-hero-card {
+  opacity: 1;
+  transform: none;
+}
+
+/* eyebrow inside card */
+.cr-hero-eyebrow {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .19em;
+  text-transform: uppercase;
+  color: var(--mint);
+  margin-bottom: 18px;
+  opacity: 0;
+  transition: opacity .7s ease .95s;
+}
+.cr-hero.is-loaded .cr-hero-eyebrow {
+  opacity: 1;
+}
+
+/* main headline inside hero card */
+.cr-hero-h1 {
+  color: #fff;
+  margin: 0;
+}
+.cr-hero-h1 .line {
+  display: block;
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity .8s cubic-bezier(.22,.61,.36,1),
+    transform .8s cubic-bezier(.22,.61,.36,1);
+}
+.cr-hero.is-loaded .cr-hero-h1 .line:nth-child(1) { opacity: 1; transform: none; transition-delay: 1.0s; }
+.cr-hero.is-loaded .cr-hero-h1 .line:nth-child(2) { opacity: 1; transform: none; transition-delay: 1.12s; }
+
+/* accent tint in headline */
+.cr-hero-h1 .accent {
+  color: var(--mint);
+}
+
+/* Chinese headline variant — weight 300, no negative tracking */
+.cr-hero-h1-zh {
+  color: #fff;
+  display: none;
+  margin: 0;
+}
+html[lang="zh-CN"] .cr-hero-h1 { display: none; }
+html[lang="zh-CN"] .cr-hero-h1-zh { display: block; }
+
+/* ─────────────────────────────────────────────
+   PAGE BODY — shared wrapper for sections 2–5
+───────────────────────────────────────────── */
+.cr-page {
+  width: min(calc(100% - 2 * clamp(20px,5vw,80px)), 1840px);
+  margin: 0 auto;
+}
+
+/* ─────────────────────────────────────────────
+   2. BELIEF — two large editorial paragraphs
+───────────────────────────────────────────── */
+.cr-belief {
+  padding: clamp(80px, 10vw, 160px) 0 clamp(72px, 9vw, 140px);
+  border-bottom: 1px solid var(--line);
+}
+.cr-belief-kicker {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .19em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 40px;
+}
+.cr-belief-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 5vw, 100px);
+  align-items: start;
+}
+.cr-belief-lead {
+  font-family: 'Inter', 'Noto Sans SC', system-ui, sans-serif;
+  font-weight: 300;
+  font-size: clamp(20px, 2.1vw, 40px);
+  line-height: 1.42;
+  letter-spacing: -.022em;
+  color: var(--ink);
+}
+/* Chinese reset */
+html[lang="zh-CN"] .cr-belief-lead { letter-spacing: .02em; line-height: 1.65; }
+
+/* ─────────────────────────────────────────────
+   3. VALUES — 4-column ruled grid
+───────────────────────────────────────────── */
+.cr-values {
+  padding: clamp(72px, 9vw, 140px) 0;
+  border-bottom: 1px solid var(--line);
+}
+.cr-values-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(24px, 5vw, 100px);
+  align-items: end;
+  margin-bottom: clamp(48px, 6vw, 96px);
+}
+.cr-values-kicker {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .19em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 18px;
+}
+.cr-values-h2 {
+  font-family: 'Inter', 'Noto Sans SC', system-ui, sans-serif;
+  font-weight: 300;
+  font-size: clamp(32px, 4.5vw, 86px);
+  line-height: 1.0;
+  letter-spacing: -.055em;
+  color: var(--ink);
+}
+html[lang="zh-CN"] .cr-values-h2 { letter-spacing: 0; }
+
+.cr-values-intro {
+  font-size: clamp(16px, 1.3vw, 24px);
+  line-height: 1.55;
+  font-weight: 300;
+  color: var(--muted);
+  max-width: 28em;
+  align-self: end;
+}
+html[lang="zh-CN"] .cr-values-intro { letter-spacing: .02em; }
+
+/* grid */
+.cr-values-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--line);
+}
+.cr-value-item {
+  padding: clamp(28px, 3vw, 52px) clamp(20px, 2.5vw, 44px) clamp(28px, 3vw, 52px) 0;
+  border-right: 1px solid var(--line);
+  transition: background .3s;
+}
+.cr-value-item:last-child {
+  border-right: none;
+}
+.cr-value-item + .cr-value-item {
+  padding-left: clamp(20px, 2.5vw, 44px);
+}
+.cr-value-item:hover {
+  background: #f9f9f8;
+}
+.cr-value-num {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .17em;
+  color: var(--green);
+  text-transform: uppercase;
+  margin-bottom: clamp(20px, 2.5vw, 40px);
+}
+.cr-value-name {
+  font-family: 'Inter', 'Noto Sans SC', system-ui, sans-serif;
+  font-weight: 300;
+  font-size: clamp(28px, 3vw, 56px);
+  line-height: .97;
+  letter-spacing: -.045em;
+  color: var(--ink);
+  margin-bottom: clamp(14px, 1.5vw, 24px);
+}
+html[lang="zh-CN"] .cr-value-name { letter-spacing: 0; }
+.cr-value-desc {
+  font-size: clamp(14px, 1.1vw, 20px);
+  line-height: 1.55;
+  color: var(--muted);
+}
+html[lang="zh-CN"] .cr-value-desc { letter-spacing: .01em; }
+
+/* ─────────────────────────────────────────────
+   4. DISCIPLINES — horizontal drag rail
+───────────────────────────────────────────── */
+.cr-disciplines {
+  padding: clamp(72px, 9vw, 140px) 0;
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+}
+.cr-disciplines-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  margin-bottom: clamp(40px, 5vw, 80px);
+}
+.cr-disciplines-title-block {
+  max-width: 520px;
+}
+.cr-disciplines-kicker {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .19em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 18px;
+}
+.cr-disciplines-h2 {
+  font-family: 'Inter', 'Noto Sans SC', system-ui, sans-serif;
+  font-weight: 300;
+  font-size: clamp(28px, 3.5vw, 68px);
+  line-height: 1.02;
+  letter-spacing: -.045em;
+  color: var(--ink);
+}
+html[lang="zh-CN"] .cr-disciplines-h2 { letter-spacing: 0; }
+
+/* drag hint */
+.cr-drag-hint {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--muted);
+  letter-spacing: .03em;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.cr-drag-hint::before {
+  content: '';
+  display: inline-block;
+  width: 32px;
+  height: 1px;
+  background: var(--muted);
+  opacity: .55;
+}
+
+/* rail container — overflow handles drag scroll */
+.cr-rail-outer {
+  position: relative;
+  /* fade mask edges */
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 4%, #000 96%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, #000 4%, #000 96%, transparent 100%);
+}
+.cr-rail {
+  display: flex;
+  gap: clamp(16px, 2vw, 28px);
+  cursor: grab;
+  user-select: none;
+  -webkit-overflow-scrolling: touch;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-bottom: 4px;
+}
+.cr-rail::-webkit-scrollbar { display: none; }
+.cr-rail.is-dragging { cursor: grabbing; }
+
+/* discipline card */
+.cr-disc-card {
+  flex: none;
+  width: clamp(260px, 28vw, 400px);
+  padding: clamp(28px, 2.8vw, 48px);
+  border-top: 1px solid var(--line);
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 16px rgba(0,0,0,.05);
+  transition: transform .3s cubic-bezier(.22,.61,.36,1), box-shadow .3s;
+}
+.cr-disc-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,.11);
+}
+
+.cr-disc-n {
+  display: block;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 300;
+  font-size: clamp(52px, 6vw, 100px);
+  line-height: 1;
+  letter-spacing: -.06em;
+  color: #e8e8e8;
+  margin-bottom: clamp(16px, 2vw, 28px);
+  pointer-events: none;
+}
+.cr-disc-name {
+  font-family: 'Inter', 'Noto Sans SC', system-ui, sans-serif;
+  font-weight: 300;
+  font-size: clamp(20px, 2.2vw, 38px);
+  line-height: 1.08;
+  letter-spacing: -.03em;
+  color: var(--ink);
+  margin-bottom: clamp(12px, 1.5vw, 20px);
+}
+html[lang="zh-CN"] .cr-disc-name { letter-spacing: 0; }
+.cr-disc-desc {
+  font-size: clamp(13px, 1vw, 17px);
+  line-height: 1.55;
+  color: var(--muted);
+}
+html[lang="zh-CN"] .cr-disc-desc { letter-spacing: .01em; }
+
+/* progress dots */
+.cr-rail-dots {
+  display: flex;
+  gap: 6px;
+  margin-top: 32px;
+  justify-content: center;
+}
+.cr-rail-dot {
+  width: 24px;
+  height: 3px;
+  border-radius: 999px;
+  background: var(--grey);
+  transition: background .3s, width .3s;
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+}
+.cr-rail-dot.active {
+  background: var(--green);
+  width: 40px;
+}
+
+/* ─────────────────────────────────────────────
+   5. CRAFT IMAGES — triptych grid (visual proof)
+───────────────────────────────────────────── */
+.cr-craft {
+  padding: clamp(72px, 9vw, 140px) 0;
+  border-bottom: 1px solid var(--line);
+}
+.cr-craft-header {
+  margin-bottom: clamp(40px, 5vw, 72px);
+}
+.cr-craft-kicker {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .19em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 18px;
+}
+.cr-craft-h2 {
+  font-family: 'Inter', 'Noto Sans SC', system-ui, sans-serif;
+  font-weight: 300;
+  font-size: clamp(28px, 3.5vw, 68px);
+  line-height: 1.03;
+  letter-spacing: -.045em;
+  color: var(--ink);
+  max-width: 14em;
+}
+html[lang="zh-CN"] .cr-craft-h2 { letter-spacing: 0; }
+
+.cr-craft-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: clamp(14px, 1.8vw, 24px);
+  align-items: start;
+}
+.cr-craft-img-wrap {
+  overflow: hidden;
+  border-radius: 16px;
+  line-height: 0;
+  position: relative;
+}
+/* tall card on left */
+.cr-craft-img-wrap:first-child {
+  aspect-ratio: 4 / 5;
+  border-radius: 20px;
+}
+.cr-craft-img-wrap:not(:first-child) {
+  aspect-ratio: 3 / 4;
+}
+.cr-craft-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .8s cubic-bezier(.22,.61,.36,1);
+  will-change: transform;
+}
+.cr-craft-img-wrap:hover img {
+  transform: scale(1.05);
+}
+
+/* caption chips */
+.cr-craft-cap {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  background: rgba(255,255,255,.18);
+  border: 1px solid rgba(255,255,255,.26);
+  backdrop-filter: blur(12px) saturate(120%);
+  -webkit-backdrop-filter: blur(12px) saturate(120%);
+  border-radius: 999px;
+  padding: 7px 16px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .08em;
+  color: #fff;
+  white-space: nowrap;
+}
+
+/* ─────────────────────────────────────────────
+   6. CTA — full-bleed pccs-embroidery.jpg with dark glass card
+───────────────────────────────────────────── */
+.cr-cta {
+  padding: clamp(72px, 9vw, 140px) 0 clamp(88px, 11vw, 160px);
+}
+.cr-cta-media {
+  position: relative;
+  border-radius: 28px;
+  overflow: hidden;
+  aspect-ratio: 16 / 6.5;
+  min-height: 320px;
+  background: #0d1e17;
+}
+.cr-cta-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 60%;
+  opacity: .72;
+  transform-origin: center;
+  will-change: transform;
+}
+.cr-cta-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    130deg,
+    rgba(0, 40, 30, .64) 0%,
+    rgba(0, 0, 0, .22) 100%
+  );
+}
+.cr-cta-inner {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: clamp(28px, 5.5vw, 90px);
+}
+.cr-cta-tagline {
+  font-family: 'Inter', 'Noto Sans SC', system-ui, sans-serif;
+  font-weight: 300;
+  font-size: clamp(26px, 3.2vw, 58px);
+  line-height: 1.12;
+  letter-spacing: -.038em;
+  color: #fff;
+  max-width: 18em;
+  margin-bottom: clamp(24px, 3vw, 48px);
+}
+html[lang="zh-CN"] .cr-cta-tagline { letter-spacing: 0; line-height: 1.4; }
+.cr-cta-tagline .cr-accent {
+  color: var(--mint);
+}
+
+/* CTA button — white with ink text, greens on hover */
+.cr-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255,255,255,.92);
+  color: var(--ink);
+  text-decoration: none;
+  font-size: clamp(13px, 1vw, 17px);
+  font-weight: 500;
+  padding: 15px 28px;
+  border-radius: 999px;
+  transition: background .25s, color .25s, transform .25s;
+  align-self: flex-start;
+}
+.cr-cta-btn:hover {
+  background: var(--mint);
+  color: #002a1e;
+  transform: translateX(3px);
+}
+.cr-cta-btn-arrow {
+  font-size: 1em;
+  transition: transform .25s;
+}
+.cr-cta-btn:hover .cr-cta-btn-arrow {
+  transform: translate(3px, -3px);
+}
+
+/* NEEDS PCCS INPUT notice */
+.cr-input-note {
+  margin-top: clamp(28px, 3vw, 48px);
+  padding: 18px 24px;
+  border: 1px dashed var(--red);
+  border-radius: 10px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+.cr-input-note strong {
+  color: var(--red);
+  font-weight: 600;
+}
+
+/* ─────────────────────────────────────────────
+   FOOTER (careers-specific overrides)
+───────────────────────────────────────────── */
+.cr-footer {
+  background: #000;
+  color: #fff;
+  padding: 56px clamp(20px, 5vw, 80px) 32px;
+}
+.cr-footer-wrap {
+  max-width: 1840px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  flex-wrap: wrap;
+  border-top: 1px solid rgba(255,255,255,.12);
+  padding-top: 32px;
+}
+.cr-footer-logo img {
+  height: 40px;
+  filter: brightness(0) invert(1);
+  margin-bottom: 10px;
+}
+.cr-footer-tagline {
+  font-size: 12px;
+  color: var(--mint);
+  font-weight: 300;
+  letter-spacing: .05em;
+}
+.cr-footer-links {
+  display: flex;
+  gap: clamp(20px, 3vw, 40px);
+  flex-wrap: wrap;
+  align-items: center;
+}
+.cr-footer-links a {
+  color: rgba(255,255,255,.65);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: .02em;
+  transition: color .22s;
+}
+.cr-footer-links a:hover,
+.cr-footer-links a[aria-current="page"] {
+  color: #fff;
+}
+.cr-footer-copy {
+  width: 100%;
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255,255,255,.1);
+  font-size: 11px;
+  font-weight: 300;
+  color: rgba(255,255,255,.42);
+  letter-spacing: .02em;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* ─────────────────────────────────────────────
+   LANGUAGE TOGGLES (Chinese visibility)
+───────────────────────────────────────────── */
+.cr-zh { display: none; }
+html[lang="zh-CN"] .cr-en { display: none; }
+html[lang="zh-CN"] .cr-zh { display: block; }
+
+/* inline span variant */
+span.cr-zh { display: none; }
+html[lang="zh-CN"] span.cr-en { display: none; }
+html[lang="zh-CN"] span.cr-zh { display: inline; }
+
+/* ─────────────────────────────────────────────
+   SCROLL REVEAL (.rv — matches pccs.css but scoped
+   to avoid double-declaration conflict on shared pages)
+───────────────────────────────────────────── */
+/* pccs.css already declares .rv globally; we only need
+   the reduced-motion override here if the page loads
+   without the home CSS. Both declarations are idempotent. */
+@media (prefers-reduced-motion: reduce) {
+  .cr-hero-img,
+  .cr-hero-card,
+  .cr-hero-eyebrow,
+  .cr-hero-h1 .line {
+    transform: none !important;
+    opacity: 1 !important;
+    transition: none !important;
+  }
+  .cr-craft-img-wrap img,
+  .cr-cta-img {
+    transition: none;
+  }
+  .cr-disc-card {
+    transition: none;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   RESPONSIVE — TABLET (681px–1100px)
+───────────────────────────────────────────── */
+@media (min-width: 681px) and (max-width: 1100px) {
+  .cr-hero-wrap { padding: 20px 24px 0; }
+  .cr-hero { aspect-ratio: 16 / 8; border-radius: 22px; }
+  .cr-hero-card { max-width: min(440px, calc(100% - 48px)); }
+
+  .cr-belief-grid { grid-template-columns: 1fr; gap: 24px; }
+  .cr-values-header { grid-template-columns: 1fr; gap: 20px; }
+  .cr-values-grid { grid-template-columns: repeat(2, 1fr); }
+  /* value card grid border corrections at 2-col */
+  .cr-value-item:nth-child(2) { border-right: none; }
+  .cr-value-item:nth-child(3) {
+    border-right: 1px solid var(--line);
+    padding-left: 0;
+    border-top: 1px solid var(--line);
+  }
+  .cr-value-item:nth-child(4) {
+    border-right: none;
+    border-top: 1px solid var(--line);
+  }
+
+  .cr-disciplines-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .cr-drag-hint { align-self: flex-start; }
+
+  .cr-craft-grid { grid-template-columns: 1fr 1fr; }
+  .cr-craft-img-wrap:first-child { grid-column: span 2; aspect-ratio: 16 / 7; border-radius: 16px; }
+
+  .cr-cta-media { aspect-ratio: 16 / 7.5; border-radius: 22px; }
+}
+
+/* ─────────────────────────────────────────────
+   RESPONSIVE — MOBILE (≤680px)
+───────────────────────────────────────────── */
+@media (max-width: 680px) {
+  .cr-hero-wrap { padding: 14px 14px 0; }
+  .cr-hero {
+    aspect-ratio: 3 / 4;
+    min-height: 480px;
+    border-radius: 18px;
+  }
+  .cr-hero-card {
+    left: 16px;
+    bottom: 16px;
+    max-width: calc(100% - 32px);
+    border-radius: 14px;
+    padding: 22px;
+    backdrop-filter: blur(12px) saturate(120%);
+    -webkit-backdrop-filter: blur(12px) saturate(120%);
+  }
+  .cr-belief-grid { grid-template-columns: 1fr; gap: 20px; }
+  .cr-belief-lead { font-size: clamp(18px, 5.5vw, 26px); }
+
+  .cr-values-header { grid-template-columns: 1fr; gap: 16px; }
+  .cr-values-h2 { font-size: clamp(28px, 9vw, 48px); letter-spacing: -.035em; }
+  .cr-values-grid { grid-template-columns: 1fr; }
+  .cr-value-item {
+    border-right: none;
+    padding-right: 0;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--line);
+  }
+  .cr-value-item + .cr-value-item {
+    padding-left: 0;
+    border-top: none;
+  }
+  .cr-value-item:last-child { border-bottom: none; }
+  .cr-value-name { font-size: clamp(26px, 8.5vw, 40px); }
+
+  .cr-disciplines-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .cr-disciplines-h2 { font-size: clamp(24px, 8vw, 40px); letter-spacing: -.03em; }
+  .cr-drag-hint { display: none; }
+  .cr-disc-card { width: clamp(240px, 72vw, 300px); }
+  /* no mask fade on mobile — small viewport clips naturally */
+  .cr-rail-outer { mask-image: none; -webkit-mask-image: none; }
+
+  .cr-craft-grid { grid-template-columns: 1fr; gap: 12px; }
+  .cr-craft-img-wrap:first-child { aspect-ratio: 4 / 3; border-radius: 14px; }
+  .cr-craft-img-wrap:not(:first-child) { aspect-ratio: 16 / 9; }
+  .cr-craft-h2 { font-size: clamp(24px, 7.5vw, 40px); letter-spacing: -.03em; }
+
+  .cr-cta-media {
+    aspect-ratio: 3 / 4;
+    min-height: 400px;
+    border-radius: 18px;
+  }
+  .cr-cta-inner {
+    justify-content: flex-end;
+    padding-bottom: clamp(28px, 8vw, 56px);
+  }
+  .cr-cta-tagline { font-size: clamp(22px, 7vw, 36px); }
+
+  .cr-footer-wrap { flex-direction: column; align-items: flex-start; gap: 28px; }
+  .cr-footer-links { gap: 16px; }
+}
+
+@media (max-width: 420px) {
+  .cr-hero { border-radius: 14px; }
+  .cr-hero-card { border-radius: 10px; }
+  .cr-cta-media { border-radius: 14px; }
+}
+
+/* Use the shared Home / Sustainability hero motion, geometry, and headline treatment. */
+.cr-hero.hero-stage { height: 88vh; min-height: 600px; aspect-ratio: auto; background: var(--cream); }
+.cr-hero.hero-stage .cr-hero-eyebrow { font-size: clamp(12px,.83cqw,16px); letter-spacing: .187em; text-transform: uppercase; color: #fff; font-weight: 700; margin-bottom: 26px; opacity: 0; transform: translateY(20px); transition: opacity .8s cubic-bezier(.22,.61,.36,1) .5s, transform .8s cubic-bezier(.22,.61,.36,1) .5s; }
+.cr-hero.hero-stage.expanded .cr-hero-eyebrow { opacity: 1; transform: none; }
+.cr-hero.hero-stage .cr-hero-h1 { font-family: 'Inter','Noto Sans SC',system-ui,sans-serif; font-weight: 300; font-size: clamp(46px,7.94vw,152px); line-height: .88; letter-spacing: -.034em; margin: 0 0 0 -12px; }
+.cr-hero.hero-stage .cr-hero-h1 .accent { color: var(--mint); }
+.cr-hero.hero-stage .cr-hero-h1.cr-zh { display: none; }
+html[lang="zh-CN"] .cr-hero.hero-stage .cr-hero-h1.cr-en { display: none; }
+html[lang="zh-CN"] .cr-hero.hero-stage .cr-hero-h1.cr-zh { display: block; }
+.cr-hero.hero-stage .cr-hero-h1 .line { opacity: 0; transform: translateY(28px); transition: opacity .8s cubic-bezier(.22,.61,.36,1), transform .8s cubic-bezier(.22,.61,.36,1); }
+.cr-hero.hero-stage.expanded .cr-hero-h1 .line { opacity: 1; transform: none; }
+.cr-hero.hero-stage .cr-hero-h1 .line:nth-child(1) { transition-delay: 1.15s; }
+.cr-hero.hero-stage .cr-hero-h1 .line:nth-child(2) { transition-delay: 1.28s; }
+@media (max-width: 680px) {
+  .cr-hero.hero-stage { height: 88vh; min-height: 680px; aspect-ratio: auto; }
+  .cr-hero.hero-stage .cr-hero-h1 { font-size: clamp(34px,11.5vw,56px); line-height: .94; letter-spacing: -.017em; margin-left: 0; }
+}
+@media (max-width: 420px) {
+  .cr-hero.hero-stage { min-height: 620px; }
+  .cr-hero.hero-stage .cr-hero-h1 { font-size: clamp(31px,11vw,44px); }
+}
+</style>
+</head>
+<body class="page-document">
+
+<!-- ===== MAIN ===== -->
+<main id="main-content">
+
+  <!-- ──────────────────────────────────────────
+       1. HERO — career.jpg with frosted glass card
+  ────────────────────────────────────────────── -->
+  <div class="page">
+    <div class="hero-stage cr-hero site-hero" id="heroStage"
+         role="img"
+         aria-label="Careers at PCCS Group — Come engineer what the world wears">
+      <div class="hero-frame">
+        <img src="../images/hero1.jpg"
+             data-parallax="1.0,0.22,18"
+             alt=""
+             aria-hidden="true"
+             loading="eager"
+             fetchpriority="high">
+        <div class="hero-scrim" aria-hidden="true"></div>
+      </div>
+
+      <div class="hero-content">
+        <div class="eyebrow cr-hero-eyebrow">
+          <span class="cr-en">Careers at PCCS</span>
+          <span class="cr-zh" lang="zh-CN">加入 PCCS</span>
+        </div>
+
+        <!-- English headline -->
+        <h1 class="cr-hero-h1 cr-en" lang="en">
+          <span class="line">Engineer</span>
+          <span class="line accent">impact.</span>
+        </h1>
+
+        <!-- Chinese headline -->
+        <h1 class="cr-hero-h1 cr-zh" lang="zh-CN">
+          <span class="line">来吧，让世界</span>
+          <span class="line accent">穿上你的作品。</span>
+        </h1>
+      </div>
+
+    </div>
+  </div>
+  <!-- end hero -->
+
+  <!-- ──────────────────────────────────────────
+       2. BELIEF — two large editorial lead paragraphs
+  ────────────────────────────────────────────── -->
+  <div class="cr-page">
+    <section class="cr-belief" aria-labelledby="cr-belief-heading">
+
+      <p class="cr-belief-kicker rv" style="--d:.06s;">
+        <span class="cr-en">Careers</span>
+        <span class="cr-zh" lang="zh-CN">招聘</span>
+      </p>
+
+      <div class="cr-belief-grid">
+        <!-- left paragraph -->
+        <div class="rv" style="--d:.12s;">
+          <p class="cr-belief-lead cr-en">
+            The world&rsquo;s biggest sports brands are made here &mdash;
+            by the people who cut, knit, print, sew, test and ship them.
+            That&rsquo;s not factory work.
+            That&rsquo;s engineering, at the scale of millions.
+          </p>
+          <p class="cr-belief-lead cr-zh" lang="zh-CN">
+            世界最大的运动品牌在这里诞生——由那些裁剪、针织、印刷、缝制、测试和交付它们的人完成。
+            这不是流水线工作，这是以百万计规模进行的工程实践。
+          </p>
+        </div>
+
+        <!-- right paragraph -->
+        <div class="rv" style="--d:.20s;">
+          <p class="cr-belief-lead cr-en">
+            Engineering isn&rsquo;t just the lab.
+            A pattern that fits, a stitch that holds,
+            a mark that survives fifty washes &mdash;
+            every one is an exact decision.
+            Whatever your role, you&rsquo;re doing engineering.
+          </p>
+          <p class="cr-belief-lead cr-zh" lang="zh-CN">
+            工程不只在实验室。
+            一个合身的版型、一针扎实的缝线、一个经过五十次洗涤仍清晰的标记——每一个都是精准的决定。
+            无论你担任什么角色，你都在做工程。
+          </p>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ──────────────────────────────────────────
+         3. VALUES — 4-column ruled grid
+    ────────────────────────────────────────────── -->
+    <section class="cr-values" aria-labelledby="cr-values-heading">
+
+      <div class="cr-values-header">
+        <div class="rv" style="--d:.06s;">
+          <p class="cr-values-kicker">
+            <span class="cr-en">Our Values</span>
+            <span class="cr-zh" lang="zh-CN">我们的价值观</span>
+          </p>
+          <h2 class="cr-values-h2" id="cr-values-heading">
+            <span class="cr-en">What we<br>hold to.</span>
+            <span class="cr-zh" lang="zh-CN">我们坚守<br>的准则。</span>
+          </h2>
+        </div>
+        <p class="cr-values-intro rv" style="--d:.14s;">
+          <span class="cr-en">
+            Four principles that guide every decision —
+            from how we source fabric to how we build teams.
+          </span>
+          <span class="cr-zh" lang="zh-CN">
+            四项原则指导每一个决策——
+            从我们如何采购面料，到我们如何组建团队。
+          </span>
+        </p>
+      </div>
+
+      <div class="cr-values-grid">
+        <article class="cr-value-item rv" style="--d:.08s;">
+          <span class="cr-value-num">01</span>
+          <h3 class="cr-value-name cr-en">Passion</h3>
+          <h3 class="cr-value-name cr-zh" lang="zh-CN">热情</h3>
+          <p class="cr-value-desc cr-en">We solve what others just supply.</p>
+          <p class="cr-value-desc cr-zh" lang="zh-CN">我们解决问题，而非仅仅供货。</p>
+        </article>
+
+        <article class="cr-value-item rv" style="--d:.15s;">
+          <span class="cr-value-num">02</span>
+          <h3 class="cr-value-name cr-en">Care</h3>
+          <h3 class="cr-value-name cr-zh" lang="zh-CN">用心</h3>
+          <p class="cr-value-desc cr-en">We leave nothing to chance.</p>
+          <p class="cr-value-desc cr-zh" lang="zh-CN">我们不将任何事情交给偶然。</p>
+        </article>
+
+        <article class="cr-value-item rv" style="--d:.22s;">
+          <span class="cr-value-num">03</span>
+          <h3 class="cr-value-name cr-en">Commitment</h3>
+          <h3 class="cr-value-name cr-zh" lang="zh-CN">承诺</h3>
+          <p class="cr-value-desc cr-en">We hold the standard, order after order.</p>
+          <p class="cr-value-desc cr-zh" lang="zh-CN">我们坚守标准，每一个订单皆如此。</p>
+        </article>
+
+        <article class="cr-value-item rv" style="--d:.29s;">
+          <span class="cr-value-num">04</span>
+          <h3 class="cr-value-name cr-en">Sustainability</h3>
+          <h3 class="cr-value-name cr-zh" lang="zh-CN">可持续性</h3>
+          <p class="cr-value-desc cr-en">We build without costing tomorrow.</p>
+          <p class="cr-value-desc cr-zh" lang="zh-CN">我们在不透支未来的前提下持续发展。</p>
+        </article>
+      </div>
+
+    </section>
+
+    <!-- ──────────────────────────────────────────
+         4. DISCIPLINES — horizontal drag rail
+    ────────────────────────────────────────────── -->
+    <section class="cr-disciplines" aria-labelledby="cr-disc-heading">
+
+      <div class="cr-disciplines-header rv" style="--d:.05s;">
+        <div class="cr-disciplines-title-block">
+          <p class="cr-disciplines-kicker">
+            <span class="cr-en">Disciplines</span>
+            <span class="cr-zh" lang="zh-CN">职能领域</span>
+          </p>
+          <h2 class="cr-disciplines-h2" id="cr-disc-heading">
+            <span class="cr-en">Where you<br>could work.</span>
+            <span class="cr-zh" lang="zh-CN">你可以<br>加入的领域。</span>
+          </h2>
+        </div>
+        <p class="cr-drag-hint" aria-hidden="true">
+          <span class="cr-en">Drag to explore</span>
+          <span class="cr-zh" lang="zh-CN">拖动浏览</span>
+        </p>
+      </div>
+
+      <div class="cr-rail-outer" id="crRailOuter">
+        <div class="cr-rail" id="crRail" role="list" aria-label="Role disciplines">
+
+          <article class="cr-disc-card" role="listitem">
+            <span class="cr-disc-n" aria-hidden="true">01</span>
+            <h3 class="cr-disc-name">
+              <span class="cr-en">Development &amp; Design</span>
+              <span class="cr-zh" lang="zh-CN">开发与设计</span>
+            </h3>
+            <p class="cr-disc-desc cr-en">
+              Turning a brief into a technical package a factory can build.
+            </p>
+            <p class="cr-disc-desc cr-zh" lang="zh-CN">
+              将设计概念转化为可供工厂生产的技术规格。
+            </p>
+          </article>
+
+          <article class="cr-disc-card" role="listitem">
+            <span class="cr-disc-n" aria-hidden="true">02</span>
+            <h3 class="cr-disc-name">
+              <span class="cr-en">R&amp;D / Material</span>
+              <span class="cr-zh" lang="zh-CN">研发 / 材料</span>
+            </h3>
+            <p class="cr-disc-desc cr-en">
+              Finding the fabrics and finishes that meet the brief exactly.
+            </p>
+            <p class="cr-disc-desc cr-zh" lang="zh-CN">
+              寻找符合设计要求的面料与工艺处理方案。
+            </p>
+          </article>
+
+          <article class="cr-disc-card" role="listitem">
+            <span class="cr-disc-n" aria-hidden="true">03</span>
+            <h3 class="cr-disc-name">
+              <span class="cr-en">Pattern &amp; Sampling</span>
+              <span class="cr-zh" lang="zh-CN">版型与打样</span>
+            </h3>
+            <p class="cr-disc-desc cr-en">
+              The precision decisions that make a garment fit the way it should.
+            </p>
+            <p class="cr-disc-desc cr-zh" lang="zh-CN">
+              决定服装合身度的精准工程决策。
+            </p>
+          </article>
+
+          <article class="cr-disc-card" role="listitem">
+            <span class="cr-disc-n" aria-hidden="true">04</span>
+            <h3 class="cr-disc-name">
+              <span class="cr-en">The Mark</span>
+              <span class="cr-zh" lang="zh-CN">品牌标记</span>
+            </h3>
+            <p class="cr-disc-desc cr-en">
+              Embroidery, print and embellishment — the trusted craft at the heart of PCCS.
+            </p>
+            <p class="cr-disc-desc cr-zh" lang="zh-CN">
+              刺绣、印刷与装饰——PCCS 核心工艺的精华所在。
+            </p>
+          </article>
+
+          <article class="cr-disc-card" role="listitem">
+            <span class="cr-disc-n" aria-hidden="true">05</span>
+            <h3 class="cr-disc-name">
+              <span class="cr-en">Quality &amp; Compliance</span>
+              <span class="cr-zh" lang="zh-CN">质量与合规</span>
+            </h3>
+            <p class="cr-disc-desc cr-en">
+              Holding every product to a standard the world&rsquo;s top brands have trusted for fifty years.
+            </p>
+            <p class="cr-disc-desc cr-zh" lang="zh-CN">
+              确保每件产品达到全球顶级品牌五十年来信任的标准。
+            </p>
+          </article>
+
+          <article class="cr-disc-card" role="listitem">
+            <span class="cr-disc-n" aria-hidden="true">06</span>
+            <h3 class="cr-disc-name">
+              <span class="cr-en">Production</span>
+              <span class="cr-zh" lang="zh-CN">生产</span>
+            </h3>
+            <p class="cr-disc-desc cr-en">
+              Manufacturing at scale — from cut to ship, quality built in at every stage.
+            </p>
+            <p class="cr-disc-desc cr-zh" lang="zh-CN">
+              大规模生产运营——从裁剪到出货，每个环节均内建质量管控。
+            </p>
+          </article>
+
+          <article class="cr-disc-card" role="listitem">
+            <span class="cr-disc-n" aria-hidden="true">07</span>
+            <h3 class="cr-disc-name">
+              <span class="cr-en">Corporate</span>
+              <span class="cr-zh" lang="zh-CN">企业职能</span>
+            </h3>
+            <p class="cr-disc-desc cr-en">
+              Finance, HR, legal, sustainability — the functions that keep a group of this scale running.
+            </p>
+            <p class="cr-disc-desc cr-zh" lang="zh-CN">
+              财务、人力资源、法律、可持续发展——支撑集团高效运营的职能部门。
+            </p>
+          </article>
+
+        </div>
+        <!-- end rail -->
+
+        <!-- progress indicator dots -->
+        <div class="cr-rail-dots" role="tablist" aria-label="Discipline navigation">
+          <button class="cr-rail-dot active" data-idx="0" role="tab" aria-label="Discipline 1"></button>
+          <button class="cr-rail-dot" data-idx="1" role="tab" aria-label="Discipline 2"></button>
+          <button class="cr-rail-dot" data-idx="2" role="tab" aria-label="Discipline 3"></button>
+          <button class="cr-rail-dot" data-idx="3" role="tab" aria-label="Discipline 4"></button>
+          <button class="cr-rail-dot" data-idx="4" role="tab" aria-label="Discipline 5"></button>
+          <button class="cr-rail-dot" data-idx="5" role="tab" aria-label="Discipline 6"></button>
+          <button class="cr-rail-dot" data-idx="6" role="tab" aria-label="Discipline 7"></button>
+        </div>
+
+      </div>
+      <!-- end rail-outer -->
+
+    </section>
+
+    <!-- ──────────────────────────────────────────
+         5. CRAFT IMAGES — triptych (visual proof of work)
+    ────────────────────────────────────────────── -->
+    <section class="cr-craft" aria-labelledby="cr-craft-heading">
+
+      <div class="cr-craft-header rv" style="--d:.06s;">
+        <p class="cr-craft-kicker">
+          <span class="cr-en">The Work</span>
+          <span class="cr-zh" lang="zh-CN">我们的工作</span>
+        </p>
+        <h2 class="cr-craft-h2" id="cr-craft-heading">
+          <span class="cr-en">Every detail<br>is an exact decision.</span>
+          <span class="cr-zh" lang="zh-CN">每一个细节<br>都是精准的决定。</span>
+        </h2>
+      </div>
+
+      <div class="cr-craft-grid">
+
+        <div class="cr-craft-img-wrap rv" style="--d:.08s;">
+          <img src="../images/what_to_do1.jpg"
+               alt="PCCS design and development process — translating concepts into technical packages"
+               loading="lazy">
+          <span class="cr-craft-cap">
+            <span class="cr-en">Development</span>
+            <span class="cr-zh" lang="zh-CN">开发</span>
+          </span>
+        </div>
+
+        <div class="cr-craft-img-wrap rv" style="--d:.16s;">
+          <img src="../images/what_to_do2.jpg"
+               alt="PCCS embellishment craft — embroidery and badge making"
+               loading="lazy">
+          <span class="cr-craft-cap">
+            <span class="cr-en">The Mark</span>
+            <span class="cr-zh" lang="zh-CN">品牌标记</span>
+          </span>
+        </div>
+
+        <div class="cr-craft-img-wrap rv" style="--d:.24s;">
+          <img src="../images/what_to_do3.jpg"
+               alt="PCCS manufacturing and quality control"
+               loading="lazy">
+          <span class="cr-craft-cap">
+            <span class="cr-en">Production</span>
+            <span class="cr-zh" lang="zh-CN">生产</span>
+          </span>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ──────────────────────────────────────────
+         6. CTA — pccs-embroidery.jpg, dark overlay, glass CTA
+    ────────────────────────────────────────────── -->
+    <section class="cr-cta rv" style="--d:.05s;" aria-labelledby="cr-cta-heading">
+
+      <div class="cr-cta-media">
+        <img class="cr-cta-img"
+             src="../images/pccs-embroidery.jpg"
+             alt="PCCS precision craft — embroidery at the heart of what we make"
+             loading="lazy">
+        <div class="cr-cta-overlay" aria-hidden="true"></div>
+
+        <div class="cr-cta-inner">
+          <p class="cr-cta-tagline" id="cr-cta-heading">
+            <span class="cr-en">
+              Join the hands behind<br>
+              the world&rsquo;s biggest brands.<br>
+              <span class="cr-accent">The next fifty years start with you.</span>
+            </span>
+            <span class="cr-zh" lang="zh-CN">
+              加入那双在世界最大品牌背后的手。<br>
+              <span class="cr-accent">未来的五十年，从你开始。</span>
+            </span>
+          </p>
+
+          <!-- CTA button — destination NEEDS PCCS INPUT -->
+          <a class="cr-cta-btn"
+             href="#cr-open-roles"
+             aria-describedby="cr-input-note-text">
+            <span class="cr-en">See Open Roles</span>
+            <span class="cr-zh" lang="zh-CN">查看招聘职位</span>
+            <span class="cr-cta-btn-arrow" aria-hidden="true">&#8599;</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- NEEDS PCCS INPUT: open roles destination + listing -->
+      <div class="cr-input-note" id="cr-open-roles">
+        <span id="cr-input-note-text">
+          <strong>NEEDS PCCS INPUT</strong>&nbsp;&mdash;&nbsp;
+          Open roles listing, recruitment portal URL, and application contact have not yet been provided.
+          Replace this block with the approved destination before publication.
+        </span>
+      </div>
+
+    </section>
+
+  </div>
+  <!-- end cr-page -->
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+
+<!-- ===== SCRIPTS ===== -->
+<script src="../assets/js/pccs-home.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  /* ── 1. SCROLL REVEAL via IntersectionObserver ── */
+  var mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var reduced = mq && mq.matches;
+
+  var rvItems = document.querySelectorAll('.rv');
+  if (reduced || !window.IntersectionObserver) {
+    rvItems.forEach(function (el) { el.classList.add('in'); });
+  } else {
+    var rvObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          rvObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    rvItems.forEach(function (el) { rvObs.observe(el); });
+  }
+
+  /* ── 3. DISCIPLINE RAIL: drag-scroll + dot indicators ── */
+  var rail = document.getElementById('crRail');
+  var dots = document.querySelectorAll('.cr-rail-dot');
+  if (!rail) return;
+
+  /* drag state */
+  var isDragging = false;
+  var startX = 0;
+  var scrollLeft = 0;
+  var velX = 0;
+  var lastX = 0;
+  var lastT = 0;
+  var rafId = null;
+
+  function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
+
+  rail.addEventListener('mousedown', function (e) {
+    isDragging = true;
+    startX = e.pageX - rail.offsetLeft;
+    scrollLeft = rail.scrollLeft;
+    velX = 0;
+    lastX = e.pageX;
+    lastT = Date.now();
+    rail.classList.add('is-dragging');
+    e.preventDefault();
+  });
+  document.addEventListener('mouseup', function () {
+    if (!isDragging) return;
+    isDragging = false;
+    rail.classList.remove('is-dragging');
+    launchMomentum();
+  });
+  document.addEventListener('mousemove', function (e) {
+    if (!isDragging) return;
+    var now = Date.now();
+    var dx = e.pageX - lastX;
+    var dt = now - lastT || 1;
+    velX = dx / dt * 16; /* normalize to ~60fps frame */
+    lastX = e.pageX;
+    lastT = now;
+    var x = e.pageX - rail.offsetLeft;
+    var walk = (x - startX) * 1.2;
+    rail.scrollLeft = scrollLeft - walk;
+    updateDots();
+  });
+
+  /* touch */
+  var touchStartX = 0;
+  var touchScrollLeft = 0;
+  rail.addEventListener('touchstart', function (e) {
+    touchStartX = e.touches[0].pageX;
+    touchScrollLeft = rail.scrollLeft;
+    velX = 0;
+    lastX = e.touches[0].pageX;
+    lastT = Date.now();
+  }, { passive: true });
+  rail.addEventListener('touchmove', function (e) {
+    var now = Date.now();
+    var dx = e.touches[0].pageX - lastX;
+    var dt = now - lastT || 1;
+    velX = dx / dt * 16;
+    lastX = e.touches[0].pageX;
+    lastT = now;
+    var walk = (e.touches[0].pageX - touchStartX) * 1.1;
+    rail.scrollLeft = touchScrollLeft - walk;
+    updateDots();
+  }, { passive: true });
+  rail.addEventListener('touchend', launchMomentum, { passive: true });
+
+  /* momentum */
+  function launchMomentum() {
+    if (reduced) return;
+    if (rafId) cancelAnimationFrame(rafId);
+    function step() {
+      if (Math.abs(velX) < 0.5) return;
+      rail.scrollLeft -= velX;
+      velX *= 0.88;
+      updateDots();
+      rafId = requestAnimationFrame(step);
+    }
+    rafId = requestAnimationFrame(step);
+  }
+
+  /* dot navigation */
+  function updateDots() {
+    var cards = rail.querySelectorAll('.cr-disc-card');
+    if (!cards.length) return;
+    var cardW = cards[0].offsetWidth;
+    var gap = parseInt(getComputedStyle(rail).gap || '24', 10);
+    var idx = Math.round(rail.scrollLeft / (cardW + gap));
+    idx = clamp(idx, 0, cards.length - 1);
+    dots.forEach(function (d, i) {
+      d.classList.toggle('active', i === idx);
+    });
+  }
+
+  dots.forEach(function (dot) {
+    dot.addEventListener('click', function () {
+      var idx = parseInt(dot.dataset.idx, 10);
+      var cards = rail.querySelectorAll('.cr-disc-card');
+      if (!cards[idx]) return;
+      var gap = parseInt(getComputedStyle(rail).gap || '24', 10);
+      var target = idx * (cards[0].offsetWidth + gap);
+      rail.scrollTo({ left: target, behavior: 'smooth' });
+      dots.forEach(function (d, i) { d.classList.toggle('active', i === idx); });
+    });
+  });
+
+  /* update dots on native scroll too */
+  rail.addEventListener('scroll', updateDots, { passive: true });
+
+  /* ── 4. CTA IMAGE: subtle parallax on scroll ── */
+  if (!reduced) {
+    var ctaImg = document.querySelector('.cr-cta-img');
+    if (ctaImg && window.IntersectionObserver) {
+      var ctaVisible = false;
+      var ctaObs = new IntersectionObserver(function (entries) {
+        ctaVisible = entries[0].isIntersecting;
+      }, { threshold: 0 });
+      ctaObs.observe(ctaImg.parentElement);
+      window.addEventListener('scroll', function () {
+        if (!ctaVisible) return;
+        var rect = ctaImg.parentElement.getBoundingClientRect();
+        var progress = clamp(-rect.top / (window.innerHeight + rect.height), 0, 1);
+        var shift = (progress - 0.5) * 12; /* ±6% */
+        ctaImg.style.transform = 'translateY(' + shift + '%)';
+      }, { passive: true });
+    }
+  }
+
+})();
+</script>
+</body>
+</html>

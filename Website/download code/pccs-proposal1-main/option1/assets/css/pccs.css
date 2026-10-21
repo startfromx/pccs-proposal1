@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
 
   :root{
     --ink:#111111; --cream:#FFFFFF; --muted:#4F5553;
@@ -34,7 +33,8 @@
     height:46%;
     border-radius:20px;
     overflow:hidden;
-    box-shadow:0 30px 80px rgba(0,0,0,.18);
+    /* Keep the opening frame visually clean on the white background. */
+    box-shadow:none;
     transition:
       width 1.3s cubic-bezier(.65,0,.15,1),
       height 1.3s cubic-bezier(.65,0,.15,1),
@@ -63,6 +63,13 @@
     transition:opacity 1s ease .5s;
   }
   .hero-stage.expanded .hero-scrim{opacity:1;}
+
+  /* Home hero image has a light field behind the headline; keep the fabric visible while adding readable contrast. */
+  .site-hero .hero-scrim{
+    background:
+      linear-gradient(90deg, rgba(5,28,20,.38) 0%, rgba(5,28,20,.24) 34%, rgba(5,28,20,.07) 72%, rgba(5,28,20,.02) 100%),
+      linear-gradient(180deg, rgba(0,0,0,.03) 0%, rgba(0,0,0,0) 48%, rgba(0,0,0,.12) 100%);
+  }
 
   /* ===================== NAV ===================== */
   nav{
@@ -106,6 +113,12 @@
     white-space:nowrap;
   }
   .nav-links a:hover{opacity:1;}
+  .nav-links a[aria-current="page"]{
+    color:var(--mint);
+    font-weight:650;
+    opacity:1;
+    letter-spacing:.025em;
+  }
   .lang{font-size:12.5px;color:rgba(255,255,255,.75);letter-spacing:.017em;white-space:nowrap;}
   .lang-btn{color:rgba(255,255,255,.45);text-decoration:none;transition:color .25s;}
   .lang-btn.active{color:#fff;}
@@ -121,6 +134,7 @@
     background:#000;color:#fff;font:inherit;font-size:14px;font-weight:500;
     cursor:pointer;
   }
+  .mobile-menu-links a[aria-current="page"]{color:var(--mint);font-weight:650;}
   .nav-menu-toggle .menu-symbol{font-size:24px;font-weight:300;line-height:1;}
   nav.menu-open .nav-menu-toggle .menu-symbol{font-size:0;}
   nav.menu-open .nav-menu-toggle .menu-symbol::after{content:'×';font-size:27px;}
@@ -201,8 +215,11 @@
   }
   .hero-content h1{
     font-family:'Inter','Noto Sans SC',system-ui,sans-serif;font-weight:300;
-    font-size:clamp(46px,7.94cqw,152px);line-height:.88;letter-spacing:-.034em;
+    font-size:clamp(46px,7.94vw,152px);line-height:.88;letter-spacing:-.034em;
+    /* Keep the headline on the shared hero-content alignment line. */
+    margin-left:-12px;
   }
+  .hero-content h1 .g{color:var(--mint);}
   .hero-content h1 .line{
     display:block;
     opacity:0;transform:translateY(28px);
@@ -236,6 +253,7 @@
     box-shadow:0 24px 60px rgba(0,0,0,.22);
     opacity:0;transform:translateY(20px);
     transition:opacity .9s cubic-bezier(.22,.61,.36,1) 1.55s, transform .9s cubic-bezier(.22,.61,.36,1) 1.55s;
+    color:inherit;text-decoration:none;
   }
   .hero-stage.expanded .news-card{opacity:1;transform:none;}
   .nc-imgwrap{overflow:hidden;border-radius:4px;line-height:0;}
@@ -296,7 +314,7 @@
       padding:0 20px;
     }
     .eyebrow{font-size:11px;letter-spacing:.153em;margin-bottom:16px;}
-    .hero-content h1{font-size:clamp(34px,11.5vw,56px);line-height:.94;letter-spacing:-.017em;}
+    .hero-content h1{font-size:clamp(34px,11.5vw,56px);line-height:.94;letter-spacing:-.017em;margin-left:0;}
 
     /* move the news card up top (under nav) so it never collides with the headline below */
     .news-card{
@@ -423,7 +441,7 @@
     color:var(--green);font-weight:700;margin-bottom:22px;
   }
   .badge-head h2{
-    font-family:'Inter','Noto Sans SC',system-ui,sans-serif;font-weight:400;
+    font-family:'Inter','Noto Sans SC',system-ui,sans-serif;font-weight:300;
     font-size:clamp(32px,5.26cqw,101px);line-height:1.05;letter-spacing:-.07em;
     color:var(--ink);
   }
@@ -491,8 +509,8 @@
   .rv.in{opacity:1;transform:none;}
   @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none;}}
   .sec-k{font-size:clamp(12px,.83cqw,16px);letter-spacing:.187em;text-transform:uppercase;color:var(--green);font-weight:700;margin-bottom:22px;}
-  .sec-h2{font-family:'Inter','Noto Sans SC',system-ui,sans-serif;font-weight:400;font-size:clamp(24px,3.83cqw,71px);line-height:1.06;letter-spacing:-.037em;color:var(--ink);}
-  .feature-h2{font-family:'Inter','Noto Sans SC',system-ui,sans-serif;font-weight:400;font-size:clamp(32px,5.3cqw,101px);line-height:1.05;letter-spacing:-.07em;color:var(--ink);}
+  .sec-h2{font-family:'Inter','Noto Sans SC',system-ui,sans-serif;font-weight:300;font-size:clamp(24px,3.83cqw,71px);line-height:1.06;letter-spacing:-.037em;color:var(--ink);}
+  .feature-h2{font-family:'Inter','Noto Sans SC',system-ui,sans-serif;font-weight:300;font-size:clamp(32px,5.3cqw,101px);line-height:1.05;letter-spacing:-.07em;color:var(--ink);}
   .feature-h2 .g{color:var(--green);}
   .sec-h2 .g{color:var(--green);}
   .pill-btn{display:inline-flex;align-items:center;gap:10px;background:var(--grey);color:var(--ink);text-decoration:none;font-size:clamp(13px,.83cqw,16px);font-weight:500;padding:14px 22px;border-radius:8px;transition:background-color .25s, color .25s;white-space:nowrap;}
@@ -514,6 +532,7 @@
 
   /* ---- NUMBERS (sec 5) ---- */
   .nums-head{text-align:center;margin-bottom:64px;}
+  .nums-head .feature-h2 .line{display:block;}
   .nums-grid{display:grid;grid-template-columns:repeat(4,1fr);}
   .num-cell{padding:6px 0 6px 40px;border-left:1px solid var(--line);}
   .num-cell:first-child{border-left:none;padding-left:0;}
@@ -545,7 +564,6 @@
   .sustainability-list em{font-size:clamp(12px,.9cqw,15px);line-height:1.45;color:rgba(255,255,255,.68);font-style:normal;}
   .sustainability-certifications{margin-top:28px;padding-top:22px;border-top:1px solid rgba(255,255,255,.16);font-size:clamp(11px,.85cqw,14px);line-height:1.55;color:rgba(255,255,255,.68);}
   .sustainability-footnote{margin-top:34px;font-size:12px;letter-spacing:.03em;color:#777;}
-  .sustainability-footnote + .pill-btn{margin-top:26px;}
 
   /* ---- OUR GROUP (sec 6) ---- */
   .grp-head{margin-bottom:56px;}
@@ -554,6 +572,7 @@
   .grp-tag{font-size:clamp(11px,.72cqw,14px);letter-spacing:.136em;text-transform:uppercase;font-weight:700;color:var(--green);margin:26px 0 12px;}
   .grp-card h3{font-size:clamp(22px,2.4cqw,44px);font-weight:400;letter-spacing:-.017em;color:var(--ink);margin-bottom:14px;}
   .grp-card p{font-size:clamp(14px,1.4cqw,26px);line-height:1.5;letter-spacing:-.017em;color:var(--ink);}
+  .grp-card-link{display:block;color:inherit;text-decoration:none;}
 
   /* ---- INVESTORS (sec 7) ---- */
   .inv-head{margin-bottom:44px;padding-bottom:44px;border-bottom:1px solid var(--line);}
@@ -575,9 +594,9 @@
   .careers-media{position:relative;max-width:1840px;margin:0 auto;border-radius:24px;overflow:hidden;aspect-ratio:1842/1086;}
   .careers-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transform-origin:center;will-change:transform;}
   .careers-card{position:absolute;left:clamp(20px,2.6cqw,50px);bottom:clamp(20px,2.6cqw,50px);max-width:clamp(300px,32cqw,470px);padding:clamp(24px,2cqw,38px);border-radius:16px;background:rgba(255,255,255,.16);backdrop-filter:blur(20px) saturate(140%);-webkit-backdrop-filter:blur(20px) saturate(140%);}
-  .careers-card p{font-size:clamp(17px,1.56cqw,30px);line-height:1.32;font-weight:300;letter-spacing:-.07em;color:#fff;}
+  .careers-card p{font-size:clamp(17px,1.56cqw,30px);line-height:1.32;font-weight:300;letter-spacing:-.017em;color:#fff;}
   .careers-card .pill-btn{margin-top:26px;background:rgba(255,255,255,.9);}
-  .careers-card .pill-btn:hover{background:#fff;}
+  .careers-card .pill-btn:hover{background:var(--green);color:#fff;}
 
   /* ---- FOOTER (sec 9) ---- */
   .foot{background:#000;color:#fff;padding:70px clamp(24px,5vw,80px) 36px;}

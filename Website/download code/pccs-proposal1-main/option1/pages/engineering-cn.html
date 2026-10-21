@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-lang="cn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>The Engineering · PCCS Group</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23006450'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='21' font-weight='700' fill='%23FFFFFF' text-anchor='middle'%3EP%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/pccs.css">
+<link rel="stylesheet" href="../assets/css/pccs-pages.css">
+<style>
+/* ====================================================
+   Engineering page — page-specific styles only
+   All shared tokens (--green, --red, --ink, etc.) come
+   from pccs.css.  Shared layout from pccs-pages.css.
+   ==================================================== */
+
+/* ─── Local tokens ─── */
+:root {
+  --eng-radius: 24px;
+  --eng-radius-sm: 16px;
+  --eng-pad-v: clamp(88px, 11vw, 168px);
+  --eng-pad-h: clamp(20px, 5vw, 80px);
+  --eng-max: 1840px;
+}
+
+/* ─── Chain section ─── */
+.eng-chain-outer {
+  max-width: var(--eng-max);
+  margin: 0 auto;
+}
+.eng-chain-header {
+  margin-bottom: 52px;
+}
+.eng-chain-header .sec-k { margin-bottom: 18px; }
+.eng-chain-header .sec-h2 {
+  max-width: 860px;
+  margin-bottom: 16px;
+}
+.eng-chain-intro {
+  font-size: clamp(15px, 1.2vw, 21px);
+  line-height: 1.6;
+  color: var(--muted);
+  max-width: 58em;
+}
+.eng-chain-intro .bi-zh {
+  display: block;
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: .88em;
+  letter-spacing: normal;
+  margin-top: 4px;
+}
+
+/* Drag rail */
+.eng-rail-track {
+  position: relative;
+  margin: 0 calc(-1 * var(--eng-pad-h));
+  padding: 0 var(--eng-pad-h);
+  overflow: hidden;
+}
+.eng-rail-overflow {
+  overflow: hidden;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.eng-rail-overflow.grabbing { cursor: grabbing; }
+.eng-rail {
+  display: flex;
+  gap: 16px;
+  padding-bottom: 6px;
+  will-change: transform;
+}
+.chain-card {
+  flex: 0 0 clamp(220px, 22vw, 320px);
+  border-radius: 16px;
+  padding: 28px 24px 24px;
+  border: 1px solid var(--line);
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: box-shadow .3s, transform .3s;
+  position: relative;
+}
+.chain-card:hover {
+  box-shadow: 0 10px 32px rgba(0,0,0,.10);
+  transform: translateY(-3px);
+}
+.chain-card.is-client {
+  background: #f7f7f5;
+}
+.chain-card-num {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--green);
+}
+.chain-card-name {
+  font-size: clamp(15px, 1.4vw, 22px);
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.25;
+  letter-spacing: -.015em;
+}
+.chain-card-zh {
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: clamp(12px, .95vw, 15px);
+  color: var(--muted);
+  letter-spacing: normal;
+}
+.chain-card-tag {
+  margin-top: auto;
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 4px;
+  background: #edecea;
+  color: var(--muted);
+}
+.chain-card.is-client .chain-card-tag {
+  background: transparent;
+  border: 1px solid var(--line);
+}
+.chain-card-arrow {
+  position: absolute;
+  right: -9px;
+  top: 28px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  color: var(--green);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Rail navigation */
+.eng-rail-nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 28px;
+}
+.eng-rail-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--ink);
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background .25s, color .25s, border-color .25s;
+  flex-shrink: 0;
+}
+.eng-rail-btn:hover {
+  background: var(--ink);
+  color: #fff;
+  border-color: var(--ink);
+}
+.eng-rail-btn:disabled {
+  opacity: .3;
+  pointer-events: none;
+}
+.eng-rail-progress {
+  flex: 1;
+  height: 3px;
+  background: var(--line);
+  border-radius: 99px;
+  overflow: hidden;
+  max-width: 320px;
+}
+.eng-rail-progress-fill {
+  height: 100%;
+  background: var(--green);
+  border-radius: 99px;
+  transition: width .4s cubic-bezier(.22,.61,.36,1);
+  width: 0%;
+}
+
+/* ─── Stats band ─── */
+.eng-stats-band {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 64px 0;
+  margin-top: 72px;
+}
+.eng-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  max-width: var(--eng-max);
+  margin: 0 auto;
+}
+.eng-stat {
+  padding: 0 0 0 36px;
+  border-left: 1px solid var(--line);
+}
+.eng-stat:first-child {
+  border-left: none;
+  padding-left: 0;
+}
+.eng-stat-n {
+  font-family: 'Inter', 'Noto Sans SC', system-ui, sans-serif;
+  font-size: clamp(48px, 7vw, 130px);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -.03em;
+  color: var(--ink);
+}
+.eng-stat-n sup {
+  font-size: .44em;
+  font-weight: 400;
+  vertical-align: middle;
+  letter-spacing: 0;
+  margin-left: .04em;
+}
+.eng-stat-label {
+  margin-top: 18px;
+  font-size: clamp(14px, 1.2vw, 22px);
+  line-height: 1.45;
+  color: var(--ink);
+  max-width: 13em;
+}
+.eng-stat-zh {
+  display: block;
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: .82em;
+  color: var(--muted);
+  letter-spacing: normal;
+  margin-top: 3px;
+}
+
+/* ─── Sub-section shared ─── */
+.eng-subsec-outer {
+  max-width: var(--eng-max);
+  margin: 0 auto;
+}
+.eng-subsec {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 80px;
+  align-items: start;
+}
+.eng-subsec.eng-reverse {
+  grid-template-columns: 2fr 3fr;
+}
+.eng-subsec.eng-reverse .eng-subsec-text {
+  order: 2;
+}
+.eng-subsec.eng-reverse .eng-subsec-img {
+  order: 1;
+}
+
+.eng-subsec-kicker {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .19em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 20px;
+}
+.eng-subsec-h2 {
+  font-size: clamp(28px, 3.2vw, 60px);
+  font-weight: 300;
+  line-height: 1.08;
+  letter-spacing: -.04em;
+  color: var(--ink);
+  margin-bottom: 24px;
+}
+.eng-subsec-lead {
+  font-size: clamp(18px, 1.7vw, 30px);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.32;
+  letter-spacing: -.02em;
+  color: var(--ink);
+  margin-bottom: 20px;
+}
+.eng-subsec-lead-zh {
+  display: block;
+  font-family: 'Noto Sans SC', sans-serif;
+  font-style: normal;
+  font-size: .88em;
+  letter-spacing: normal;
+  color: var(--muted);
+  margin-top: 6px;
+}
+.eng-subsec-body {
+  font-size: clamp(15px, 1.25vw, 22px);
+  line-height: 1.68;
+  color: var(--ink);
+  margin-bottom: 20px;
+  max-width: 36em;
+}
+.eng-subsec-body-zh {
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: clamp(14px, 1.1vw, 20px);
+  line-height: 1.75;
+  color: var(--muted);
+  letter-spacing: normal;
+  margin-bottom: 28px;
+  max-width: 34em;
+}
+.eng-subsec-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+.eng-pill {
+  display: inline-block;
+  padding: 5px 11px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: #f5f5f3;
+  font-size: clamp(10px, .72vw, 12px);
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Image block */
+.eng-subsec-img {
+  border-radius: 20px;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  position: relative;
+}
+.eng-subsec-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 1s cubic-bezier(.22,.61,.36,1);
+  will-change: transform;
+}
+.eng-subsec-img:hover img {
+  transform: scale(1.05);
+}
+
+/* ─── Statement strip ─── */
+.eng-statement {
+  background: #111;
+  color: #fff;
+  padding: clamp(64px, 8vw, 120px) var(--eng-pad-h);
+  text-align: center;
+}
+.eng-statement-inner {
+  max-width: 940px;
+  margin: 0 auto;
+}
+.eng-statement-kicker {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .19em;
+  text-transform: uppercase;
+  color: var(--mint);
+  margin-bottom: 24px;
+}
+.eng-statement-h2 {
+  font-size: clamp(32px, 4.8vw, 88px);
+  font-weight: 300;
+  line-height: 1.06;
+  letter-spacing: -.04em;
+  color: #fff;
+  margin-bottom: 24px;
+}
+.eng-statement-h2 .accent { color: var(--mint); }
+.eng-statement-body {
+  font-size: clamp(16px, 1.4vw, 26px);
+  font-weight: 300;
+  line-height: 1.6;
+  color: rgba(255,255,255,.75);
+  max-width: 26em;
+  margin: 0 auto 10px;
+  text-wrap: balance;
+}
+.eng-statement-body-zh {
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: clamp(14px, 1.15vw, 20px);
+  line-height: 1.75;
+  color: rgba(255,255,255,.5);
+  letter-spacing: normal;
+  max-width: 40em;
+  margin: 0 auto;
+}
+
+/* ─── The Mark — dark panel layout ─── */
+.eng-mark-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border-radius: 20px;
+  overflow: hidden;
+  max-width: var(--eng-max);
+  margin: 0 auto;
+}
+.eng-mark-panel {
+  background: #111;
+  color: #fff;
+  padding: clamp(36px, 4vw, 64px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 480px;
+}
+.eng-mark-panel .eng-subsec-kicker { color: var(--mint); }
+.eng-mark-panel .eng-subsec-h2 {
+  color: #fff;
+  margin-bottom: 20px;
+}
+.eng-mark-panel .eng-subsec-lead {
+  color: rgba(255,255,255,.8);
+  margin-bottom: 16px;
+}
+.eng-mark-panel .eng-subsec-body {
+  color: rgba(255,255,255,.72);
+  max-width: none;
+}
+.eng-mark-panel .eng-subsec-body-zh {
+  color: rgba(255,255,255,.45);
+}
+.eng-mark-panel .eng-subsec-pills {
+  border-top-color: rgba(255,255,255,.14);
+}
+.eng-mark-panel .eng-pill {
+  background: rgba(255,255,255,.07);
+  border-color: rgba(255,255,255,.14);
+  color: rgba(255,255,255,.65);
+}
+.eng-mark-img {
+  overflow: hidden;
+  aspect-ratio: auto;
+  min-height: 480px;
+  position: relative;
+}
+.eng-mark-img img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1s cubic-bezier(.22,.61,.36,1);
+}
+.eng-mark-img:hover img {
+  transform: scale(1.05);
+}
+
+/* ─── Finish & Deliver strip ─── */
+.eng-finish-strip {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  aspect-ratio: 16 / 5;
+  min-height: 240px;
+  background: #111;
+  display: flex;
+  align-items: center;
+  max-width: var(--eng-max);
+  margin: 0 auto;
+}
+.eng-finish-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: .38;
+}
+.eng-finish-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0,0,0,.7) 0%, rgba(0,0,0,.1) 100%);
+}
+.eng-finish-content {
+  position: relative;
+  z-index: 1;
+  padding: clamp(28px, 4.5vw, 72px);
+  max-width: 860px;
+}
+.eng-finish-content .eng-subsec-kicker { color: var(--mint); }
+.eng-finish-content .eng-subsec-h2 {
+  color: #fff;
+  margin-bottom: 16px;
+}
+.eng-finish-content .eng-subsec-body {
+  color: rgba(255,255,255,.78);
+  margin-bottom: 8px;
+  max-width: none;
+}
+.eng-finish-content .eng-subsec-body-zh {
+  color: rgba(255,255,255,.48);
+  margin-bottom: 0;
+}
+
+/* ─── Explore More cards ─── */
+.eng-explore-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.eng-explore-card {
+  border-top: 1px solid var(--line);
+  padding-top: 22px;
+  transition: transform .3s cubic-bezier(.22,.61,.36,1);
+}
+.eng-explore-card:hover {
+  transform: translateY(-4px);
+}
+.eng-explore-imgwrap {
+  overflow: hidden;
+  border-radius: var(--eng-radius-sm);
+  aspect-ratio: 4 / 3;
+  margin-bottom: 22px;
+}
+.eng-explore-imgwrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .8s cubic-bezier(.22,.61,.36,1);
+}
+.eng-explore-card:hover .eng-explore-imgwrap img {
+  transform: scale(1.05);
+}
+.eng-explore-h3 {
+  font-size: clamp(20px, 1.9vw, 36px);
+  font-weight: 400;
+  letter-spacing: -.02em;
+  margin-bottom: 10px;
+  color: var(--ink);
+}
+.eng-explore-p {
+  font-size: clamp(14px, 1.1vw, 20px);
+  line-height: 1.55;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+/* ─── Scroll reveal (local override — same as pccs.css .rv) ─── */
+/* pccs.css already defines .rv/.rv.in — reuse them, no redefinition needed */
+
+/* ─── Responsive ─── */
+@media (max-width: 1200px) {
+  .eng-subsec {
+    grid-template-columns: 1fr 1fr;
+  }
+  .eng-subsec.eng-reverse {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .eng-hero { aspect-ratio: auto; min-height: 460px; border-radius: 18px; }
+  .eng-subsec,
+  .eng-subsec.eng-reverse {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .eng-subsec.eng-reverse .eng-subsec-text { order: 0; }
+  .eng-subsec.eng-reverse .eng-subsec-img { order: 0; }
+  .eng-stats-grid { grid-template-columns: 1fr 1fr; gap: 40px 28px; }
+  .eng-stat { padding-left: 0; border-left: none; }
+  .eng-mark-wrap { grid-template-columns: 1fr; }
+  .eng-mark-img { min-height: 320px; aspect-ratio: 16/9; }
+  .eng-finish-strip { aspect-ratio: auto; min-height: 320px; border-radius: 16px; }
+  .eng-explore-grid { grid-template-columns: 1fr; gap: 48px; }
+}
+
+@media (max-width: 680px) {
+  .eng-hero { min-height: 380px; border-radius: 16px; }
+  .eng-stats-grid { grid-template-columns: 1fr 1fr; }
+  .eng-stat-n { font-size: clamp(42px, 11vw, 72px); }
+  .eng-mark-panel { min-height: auto; }
+  .eng-finish-strip { border-radius: 14px; min-height: 280px; }
+  .eng-chain-intro { font-size: clamp(14px, 4vw, 18px); }
+  .chain-card { flex-basis: clamp(200px, 78vw, 280px); }
+}
+
+@media (max-width: 480px) {
+  .eng-stats-grid { grid-template-columns: 1fr; gap: 36px; }
+  .eng-stat-n { font-size: clamp(48px, 14vw, 80px); }
+  .chain-card { flex-basis: clamp(200px, 85vw, 260px); }
+}
+</style>
+</head>
+<body class="page-document engineering-page">
+
+<!-- ===== MAIN ===== -->
+<main class="page-main">
+
+<div class="page">
+
+  <!-- ══════════════════════════════════════════════════
+       §1  HERO
+       ══════════════════════════════════════════════════ -->
+  <section aria-label="The Engineering overview">
+    <div class="hero-stage site-hero" id="heroStage">
+      <div class="hero-frame">
+      <img
+           src="../images/home-hero-sage.png"
+           data-parallax="1.0,0.22,18"
+           alt="流动的鼠尾草绿色面料与纤维">
+      <div class="hero-scrim" aria-hidden="true"></div>
+      </div>
+      <div class="hero-content">
+        <div class="eyebrow eng-hero-kicker">工程能力</div>
+        <h1 class="eng-hero-h1">
+          <span class="line">你的概念。</span>
+          <span class="line"><span class="accent">我们的工程能力。</span></span>
+        </h1>
+        <p class="hero-subline eng-hero-lead">
+          你的概念，是一切的起点。真正的挑战，在于把它转化为百万件成品：有品牌、有技术、能承受五十次洗涤。面料、版型、标识，缺一不可。这条链，PCCS 自有的环节正越来越精。
+        </p>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+  <!-- ══════════════════════════════════════════════════
+       §2  THE CHAIN — horizontal drag rail
+       ══════════════════════════════════════════════════ -->
+  <section class="sec" style="padding-bottom: 0;" aria-label="The engineering chain">
+    <div class="eng-chain-outer">
+
+      <div class="eng-chain-header rv">
+        <div class="sec-k">全链路</div>
+        <h2 class="sec-h2">从概念到交付，<br>PCCS 工程化掌控全链路。</h2>
+        <p class="eng-chain-intro rv" style="--d:.08s">
+          八个环节，每一步都决定成败。我们精通其中最关键的部分。
+        </p>
+      </div>
+
+      <!-- Drag rail -->
+      <div class="eng-rail-track rv" style="--d:.12s">
+        <div class="eng-rail-overflow" id="chainRailOverflow" role="region" aria-label="Engineering chain steps — drag or use arrow buttons to navigate" tabindex="0">
+          <ol class="eng-rail" id="chainRail" aria-label="Engineering chain steps">
+
+            <li class="chain-card is-client">
+              <div class="chain-card-num" aria-label="Step 1">01</div>
+              <div class="chain-card-name">概念与需求</div>
+              <div class="chain-card-zh">概念与需求</div>
+              <div class="chain-card-tag">客户负责</div>
+              <div class="chain-card-arrow" aria-hidden="true">→</div>
+            </li>
+
+            <li class="chain-card">
+              <div class="chain-card-num" aria-label="Step 2">02</div>
+              <div class="chain-card-name">设计与技术规格</div>
+              <div class="chain-card-zh">设计与技术规格</div>
+              <div class="chain-card-tag">已工程化</div>
+              <div class="chain-card-arrow" aria-hidden="true">→</div>
+            </li>
+
+            <li class="chain-card">
+              <div class="chain-card-num" aria-label="Step 3">03</div>
+              <div class="chain-card-name">面料开发</div>
+              <div class="chain-card-zh">面料开发</div>
+              <div class="chain-card-tag">已开发</div>
+              <div class="chain-card-arrow" aria-hidden="true">→</div>
+            </li>
+
+            <li class="chain-card">
+              <div class="chain-card-num" aria-label="Step 4">04</div>
+              <div class="chain-card-name">纸样与样品</div>
+              <div class="chain-card-zh">纸样与样品</div>
+              <div class="chain-card-tag">已打样</div>
+              <div class="chain-card-arrow" aria-hidden="true">→</div>
+            </li>
+
+            <li class="chain-card">
+              <div class="chain-card-num" aria-label="Step 5">05</div>
+              <div class="chain-card-name">标识与辅料</div>
+              <div class="chain-card-zh">标识与辅料</div>
+              <div class="chain-card-tag">已制作</div>
+              <div class="chain-card-arrow" aria-hidden="true">→</div>
+            </li>
+
+            <li class="chain-card">
+              <div class="chain-card-num" aria-label="Step 6">06</div>
+              <div class="chain-card-name">测试与合规</div>
+              <div class="chain-card-zh">测试与合规</div>
+              <div class="chain-card-tag">已验证</div>
+              <div class="chain-card-arrow" aria-hidden="true">→</div>
+            </li>
+
+            <li class="chain-card">
+              <div class="chain-card-num" aria-label="Step 7">07</div>
+              <div class="chain-card-name">生产与质检</div>
+              <div class="chain-card-zh">生产与质检</div>
+              <div class="chain-card-tag">已生产</div>
+              <div class="chain-card-arrow" aria-hidden="true">→</div>
+            </li>
+
+            <li class="chain-card">
+              <div class="chain-card-num" aria-label="Step 8">08</div>
+              <div class="chain-card-name">后整与交付</div>
+              <div class="chain-card-zh">后整与交付</div>
+              <div class="chain-card-tag">已交付</div>
+            </li>
+
+          </ol>
+        </div>
+
+        <!-- Rail navigation controls -->
+        <div class="eng-rail-nav rv" style="--d:.18s">
+          <button class="eng-rail-btn" id="chainPrev" aria-label="Previous steps" disabled>&#8592;</button>
+          <div class="eng-rail-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="chainProgressBar" aria-label="Chain position">
+            <div class="eng-rail-progress-fill" id="chainProgressFill"></div>
+          </div>
+          <button class="eng-rail-btn" id="chainNext" aria-label="Next steps">&#8594;</button>
+        </div>
+      </div>
+
+      <!-- Stats band -->
+      <div class="eng-stats-band">
+        <div class="eng-stats-grid">
+          <div class="eng-stat rv" style="--d:.04s">
+            <div class="eng-stat-n">50<sup>+</sup></div>
+            <div class="eng-stat-label">
+              专利
+            </div>
+          </div>
+          <div class="eng-stat rv" style="--d:.10s">
+            <div class="eng-stat-n">100<sup>+</sup></div>
+            <div class="eng-stat-label">
+              研发人员
+            </div>
+          </div>
+          <div class="eng-stat rv" style="--d:.16s">
+            <div class="eng-stat-n">1,800</div>
+            <div class="eng-stat-label">
+              每年款数
+            </div>
+          </div>
+          <div class="eng-stat rv" style="--d:.22s">
+            <div class="eng-stat-n">67,000</div>
+            <div class="eng-stat-label">
+              每年样品
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       §3  DEVELOPMENT
+       ══════════════════════════════════════════════════ -->
+  <section class="sec" id="development" aria-labelledby="dev-h2">
+    <div class="eng-subsec-outer">
+      <div class="eng-subsec">
+
+        <div class="eng-subsec-text">
+          <div class="eng-subsec-kicker rv" style="--d:.00s">产品开发</div>
+          <h2 class="eng-subsec-h2 rv" id="dev-h2" style="--d:.07s">
+            好点子，只有变成<br>可量产的技术方案。
+          </h2>
+          <p class="eng-subsec-lead rv" style="--d:.12s">
+            The bridge between the drawing and the line.
+            <span class="eng-subsec-lead-zh">好点子，只有变成可量产的技术方案，才算真正的好产品。</span>
+          </p>
+          <p class="eng-subsec-body rv" style="--d:.17s">
+            You bring a brief, a sketch, a reference. We turn it into a technical package a factory can build and samples you can approve.
+          </p>
+          <p class="eng-subsec-body-zh rv" style="--d:.20s">
+            你带来一份需求、一张草图、一个参考。我们将它转化为工厂可直接投产的技术流程，以及供你审定的实物样品——从图纸到生产线之间的每一步，由我们衔接落实。
+          </p>
+          <div class="eng-subsec-pills rv" style="--d:.24s" aria-label="Development statistics">
+            <span class="eng-pill">100+ 名研发人员</span>
+            <span class="eng-pill">每年 3,000+ 款样品</span>
+            <span class="eng-pill">每年 340+ 个 3D 纸样</span>
+            <span class="eng-pill">覆盖 30+ 个国家</span>
+          </div>
+        </div>
+
+        <div class="eng-subsec-img rv" style="--d:.10s">
+          <img src="../images/what_to_do1.jpg"
+               alt="PCCS R&amp;D team turning concepts into technical packages"
+               loading="lazy">
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       §4  MATERIAL / FABRIC
+       ══════════════════════════════════════════════════ -->
+  <section class="sec" id="material" style="background: #f7f7f5;" aria-labelledby="mat-h2">
+    <div class="eng-subsec-outer">
+      <div class="eng-subsec eng-reverse">
+
+        <div class="eng-subsec-text">
+          <div class="eng-subsec-kicker rv" style="--d:.00s">材料选型</div>
+          <h2 class="eng-subsec-h2 rv" id="mat-h2" style="--d:.07s">
+            性能，<br>始于纱线。
+          </h2>
+          <p class="eng-subsec-lead rv" style="--d:.12s">
+            We develop it to your spec and handle the mill side for you.
+            <span class="eng-subsec-lead-zh">性能，始于纱线。你不必选厂、验厂，交由我们。</span>
+          </p>
+          <p class="eng-subsec-body rv" style="--d:.17s">
+            Stretch, wicking, weight, durability — every property is decided in the fabric, before a panel is cut. You don&rsquo;t source a mill. We do.
+          </p>
+          <p class="eng-subsec-body-zh rv" style="--d:.20s">
+            弹力、吸湿、克重、耐用——每项性能都在面料中定型，早于第一片衣片的裁剪。我们按你的规格开发面料，并全程对接工厂。选厂、验厂之事，你不必太费心，交由我们。
+          </p>
+          <div class="eng-subsec-pills rv" style="--d:.24s" aria-label="Fabric certifications and statistics">
+            <span class="eng-pill">约 1,500 吨面料 / 月</span>
+            <span class="eng-pill">GRS</span>
+            <span class="eng-pill">RCS</span>
+            <span class="eng-pill">OEKO-TEX</span>
+            <span class="eng-pill">ZDHC</span>
+            <span class="eng-pill">Higg FEM</span>
+            <span class="eng-pill">越南面料厂扩建中</span>
+          </div>
+        </div>
+
+        <div class="eng-subsec-img rv" style="--d:.10s">
+          <img src="../images/what_to_do2.jpg"
+               alt="PCCS fabric mill — material development, Vietnam"
+               loading="lazy">
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       §5  STATEMENT INTERLUDE
+       ══════════════════════════════════════════════════ -->
+  <section class="eng-statement" aria-label="Engineering statement">
+    <div class="eng-statement-inner">
+      <div class="eng-statement-kicker rv" style="--d:.00s">以工程，创造可能</div>
+      <h2 class="eng-statement-h2 rv" style="--d:.08s">
+        这条链的强度，<br>取决于最薄弱的一环。
+      </h2>
+      <p class="eng-statement-body rv" style="--d:.14s">
+        这正是 PCCS 不断扩大自主掌控环节的原因——我们多掌控一个环节，你的品牌就少承担一份风险。
+      </p>
+      
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       §6  THE MARK
+       ══════════════════════════════════════════════════ -->
+  <section class="sec" id="the-mark" aria-labelledby="mark-h2">
+    <div class="eng-mark-wrap rv" style="--d:.06s">
+
+      <div class="eng-mark-panel">
+        <div>
+          <div class="eng-subsec-kicker">标识工艺</div>
+          <h2 class="eng-subsec-h2" id="mark-h2">
+            一枚标识，须经得起<br>长年穿着与五十次洗涤。
+          </h2>
+          <p class="eng-subsec-lead">
+            Without cracking, lifting, or losing its edge.
+            <span class="eng-subsec-lead-zh">不开裂、不翘边、不脱色。这是工程，而非装饰。</span>
+          </p>
+          <p class="eng-subsec-body">
+            That&rsquo;s engineering, not decoration. We make marks that hold — the same capability the world&rsquo;s biggest brands buy from us directly.
+          </p>
+          <p class="eng-subsec-body-zh">
+            一枚标识，最见真章。我们制作的标识，历久如新——这份能力，正是全球顶级品牌直接向我们采购的原因。
+          </p>
+        </div>
+        <div class="eng-subsec-pills" aria-label="The Mark capabilities">
+          <span class="eng-pill">50+ 项专利</span>
+          <span class="eng-pill">刺绣</span>
+          <span class="eng-pill">印花</span>
+          <span class="eng-pill">热升华</span>
+          <span class="eng-pill">无缝工艺</span>
+          <span class="eng-pill">官方队徽</span>
+        </div>
+      </div>
+
+      <div class="eng-mark-img rv" style="--d:.12s">
+        <img src="../images/pccs-embroidery.jpg"
+             alt="PCCS badge embroidery — marks built to survive fifty washes"
+             loading="lazy">
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       §7  MAKE & QUALITY
+       ══════════════════════════════════════════════════ -->
+  <section class="sec" id="make-quality" style="background: #f7f7f5;" aria-labelledby="make-h2">
+    <div class="eng-subsec-outer">
+      <div class="eng-subsec eng-reverse">
+
+        <div class="eng-subsec-text">
+          <div class="eng-subsec-kicker rv" style="--d:.00s">制造与质量</div>
+          <h2 class="eng-subsec-h2 rv" id="make-h2" style="--d:.07s">
+            质量并非最后一道<br>检验，而是从裁剪起就融入。
+          </h2>
+          <p class="eng-subsec-lead rv" style="--d:.12s">
+            Fifty years on the floor. Every garment counts.
+            <span class="eng-subsec-lead-zh">产量越大，越要件件精准。</span>
+          </p>
+          <p class="eng-subsec-body rv" style="--d:.17s">
+            We check inline, during production, and before shipment. China for China, Cambodia and Vietnam for the West.
+          </p>
+          <p class="eng-subsec-body-zh rv" style="--d:.20s">
+            质量并非最后一道检验，而是从裁剪起就融入每一道工序。我们于产线在线检验、生产途中抽检、出货之前终检。中国产能供应中国市场，柬埔寨与越南则面向西方市场。
+          </p>
+          <div class="eng-subsec-pills rv" style="--d:.24s" aria-label="Make and quality statistics">
+            <span class="eng-pill">在生产一线 50 年</span>
+            <span class="eng-pill">10+ 个生产基地</span>
+            <span class="eng-pill">360+ 条生产线</span>
+            <span class="eng-pill">每月约 470 万件成衣</span>
+          </div>
+        </div>
+
+        <div class="eng-subsec-img rv" style="--d:.10s">
+          <img src="../images/what_to_do3.jpg"
+               alt="PCCS production lines — quality control built in from the cut"
+               loading="lazy">
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       §8  FINISH & DELIVER
+       ══════════════════════════════════════════════════ -->
+  <section class="sec" id="finish-deliver" aria-labelledby="finish-h2">
+    <div class="eng-finish-strip rv" style="--d:.06s">
+      <img class="eng-finish-img"
+           src="../images/career.jpg"
+           alt=""
+           aria-hidden="true"
+           loading="lazy">
+      <div class="eng-finish-scrim" aria-hidden="true"></div>
+      <div class="eng-finish-content">
+        <div class="eng-subsec-kicker">后整与交付</div>
+        <h2 class="eng-subsec-h2" id="finish-h2">
+          零售即用，准时交付。
+        </h2>
+        <p class="eng-subsec-body">
+          Finish, pack to spec, export and deliver — tracked. The last mile handled.
+        </p>
+        <p class="eng-subsec-body-zh">
+          后整理、按规格包装、出口报关与配送，全程可追踪。最后一公里，由我们全程掌控。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       §9  EXPLORE MORE
+       ══════════════════════════════════════════════════ -->
+  <section class="sec" style="padding-top: 80px; padding-bottom: 80px;" aria-label="Explore more">
+    <div style="max-width: var(--eng-max); margin: 0 auto;">
+
+      <div class="rv" style="--d:.00s">
+        <div class="sec-k" style="margin-bottom: 36px;">Explore More</div>
+      </div>
+
+      <div class="eng-explore-grid" role="list">
+
+        <article class="eng-explore-card rv" style="--d:.06s" role="listitem">
+          <div class="eng-explore-imgwrap">
+            <img src="../images/our_group_1.jpg"
+                 alt="Our Work — case studies and sectors"
+                 loading="lazy">
+          </div>
+          <h2 class="eng-explore-h3">Our Work</h2>
+          <p class="eng-explore-p">The name behind the names. Football, sport, lifestyle — fifty years of making what others claim.</p>
+          <a class="pill-btn" href="our-work-cn.html">See our work <span>&rarr;</span></a>
+        </article>
+
+        <article class="eng-explore-card rv" style="--d:.12s" role="listitem">
+          <div class="eng-explore-imgwrap">
+            <img src="../images/our_group_2.jpg"
+                 alt="Sustainability — measured commitments"
+                 loading="lazy">
+          </div>
+          <h2 class="eng-explore-h3">Sustainability</h2>
+          <p class="eng-explore-p">Made responsibly, measured honestly. Reporting to Bursa standard since FY2018.</p>
+          <a class="pill-btn" href="sustainability-cn.html">Our commitments <span>&rarr;</span></a>
+        </article>
+
+        <article class="eng-explore-card rv" style="--d:.18s" role="listitem">
+          <div class="eng-explore-imgwrap">
+            <img src="../images/career.jpg"
+                 alt="Careers — come engineer what the world wears"
+                 loading="lazy">
+          </div>
+          <h2 class="eng-explore-h3">Careers</h2>
+          <p class="eng-explore-p">Come engineer what the world wears. Whatever your role, every decision you make is engineering.</p>
+          <a class="pill-btn" href="careers-cn.html">See open roles <span>&rarr;</span></a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+
+<!-- ===== SCRIPTS ===== -->
+<script src="../assets/js/pccs-home.js"></script>
+<script>
+/* =====================================================================
+   Engineering page — hero load animation + chain drag rail + scroll reveal
+   All animations respect prefers-reduced-motion via CSS (transition:none)
+   and via JS guard below.
+   ===================================================================== */
+(function () {
+  'use strict';
+
+  /* ── prefers-reduced-motion guard ── */
+  var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ── Scroll reveal ── */
+  if ('IntersectionObserver' in window && !reducedMotion) {
+    var revealObserver = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -6% 0px' }
+    );
+    document.querySelectorAll('.rv').forEach(function (el) {
+      revealObserver.observe(el);
+    });
+  } else {
+    /* Fallback: show everything */
+    document.querySelectorAll('.rv').forEach(function (el) {
+      el.classList.add('in');
+    });
+  }
+
+  /* ── Chain drag rail ── */
+  var overflow = document.getElementById('chainRailOverflow');
+  var rail = document.getElementById('chainRail');
+  var prevBtn = document.getElementById('chainPrev');
+  var nextBtn = document.getElementById('chainNext');
+  var progressFill = document.getElementById('chainProgressFill');
+  var progressBar = document.getElementById('chainProgressBar');
+
+  if (!overflow || !rail || !prevBtn || !nextBtn) return;
+
+  var isDragging = false;
+  var startX = 0;
+  var scrollStart = 0;
+  var CARD_STEP = 0; /* computed below */
+  var currentOffset = 0;
+  var maxOffset = 0;
+
+  function getCardStep() {
+    var first = rail.querySelector('.chain-card');
+    if (!first) return 280;
+    return first.offsetWidth + 16; /* card width + gap */
+  }
+
+  function getMaxOffset() {
+    return Math.max(0, rail.scrollWidth - overflow.offsetWidth);
+  }
+
+  function clamp(val, min, max) {
+    return Math.min(Math.max(val, min), max);
+  }
+
+  function applyOffset(offset, animate) {
+    maxOffset = getMaxOffset();
+    offset = clamp(offset, 0, maxOffset);
+    currentOffset = offset;
+    rail.style.transition = animate ? 'transform .5s cubic-bezier(.22,.61,.36,1)' : 'none';
+    rail.style.transform = 'translateX(' + (-offset) + 'px)';
+    updateControls();
+  }
+
+  function updateControls() {
+    maxOffset = getMaxOffset();
+    prevBtn.disabled = currentOffset <= 0;
+    nextBtn.disabled = currentOffset >= maxOffset;
+    var pct = maxOffset > 0 ? (currentOffset / maxOffset) * 100 : 0;
+    progressFill.style.width = pct + '%';
+    if (progressBar) {
+      progressBar.setAttribute('aria-valuenow', Math.round(pct));
+    }
+  }
+
+  /* Pointer / mouse drag */
+  overflow.addEventListener('pointerdown', function (e) {
+    isDragging = true;
+    startX = e.clientX;
+    scrollStart = currentOffset;
+    overflow.classList.add('grabbing');
+    overflow.setPointerCapture(e.pointerId);
+  });
+
+  overflow.addEventListener('pointermove', function (e) {
+    if (!isDragging) return;
+    var delta = startX - e.clientX;
+    applyOffset(scrollStart + delta, false);
+  });
+
+  function endDrag() {
+    if (!isDragging) return;
+    isDragging = false;
+    overflow.classList.remove('grabbing');
+    /* Snap to nearest card */
+    CARD_STEP = getCardStep();
+    var snapped = Math.round(currentOffset / CARD_STEP) * CARD_STEP;
+    applyOffset(snapped, true);
+  }
+
+  overflow.addEventListener('pointerup', endDrag);
+  overflow.addEventListener('pointercancel', endDrag);
+
+  /* Touch passthrough (for mobile momentum feel) */
+  overflow.addEventListener('touchstart', function (e) {
+    startX = e.touches[0].clientX;
+    scrollStart = currentOffset;
+  }, { passive: true });
+
+  overflow.addEventListener('touchmove', function (e) {
+    var delta = startX - e.touches[0].clientX;
+    applyOffset(scrollStart + delta, false);
+  }, { passive: true });
+
+  overflow.addEventListener('touchend', endDrag);
+
+  /* Arrow button navigation */
+  prevBtn.addEventListener('click', function () {
+    CARD_STEP = getCardStep();
+    applyOffset(currentOffset - CARD_STEP * 3, true);
+  });
+
+  nextBtn.addEventListener('click', function () {
+    CARD_STEP = getCardStep();
+    applyOffset(currentOffset + CARD_STEP * 3, true);
+  });
+
+  /* Keyboard navigation on the overflow container */
+  overflow.addEventListener('keydown', function (e) {
+    CARD_STEP = getCardStep();
+    if (e.key === 'ArrowRight') { applyOffset(currentOffset + CARD_STEP, true); e.preventDefault(); }
+    if (e.key === 'ArrowLeft')  { applyOffset(currentOffset - CARD_STEP, true); e.preventDefault(); }
+    if (e.key === 'Home')       { applyOffset(0, true); e.preventDefault(); }
+    if (e.key === 'End')        { applyOffset(getMaxOffset(), true); e.preventDefault(); }
+  });
+
+  /* Prevent link/click fire after drag */
+  overflow.addEventListener('click', function (e) {
+    if (Math.abs(currentOffset - scrollStart) > 4) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  });
+
+  /* Resize recalc */
+  window.addEventListener('resize', function () {
+    applyOffset(currentOffset, false);
+  });
+
+  /* Init */
+  updateControls();
+
+})();
+</script>
+</body>
+</html>

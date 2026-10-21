@@ -1,4 +1,1559 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Our Group · PCCS Group</title><link rel="stylesheet" href="../assets/css/pccs.css"><link rel="stylesheet" href="../assets/css/pccs-pages.css"></head>
-<body class="page-document"><header class="page-nav"><a href="../index.html"><img src="../images/PCCS_logo.svg" alt="PCCS Group"></a><nav class="page-nav-links" aria-label="Primary navigation"><a href="engineering.html">What We Do</a><a href="our-work.html">Our Work</a><a href="group.html">Our Group</a><a href="sustainability.html">Sustainability</a><a href="investors.html">Investors</a><a href="careers.html">Careers</a><a href="../index.html#contact">Contact</a></nav><button class="page-nav-toggle" type="button" data-page-menu-toggle aria-expanded="false">Menu +</button></header><nav class="page-menu" data-page-menu aria-label="Mobile navigation"><a href="../index.html">Home</a><a href="engineering.html">What We Do</a><a href="our-work.html">Our Work</a><a href="group.html">Our Group</a><a href="sustainability.html">Sustainability</a><a href="investors.html">Investors</a><a href="careers.html">Careers</a></nav><main class="page-main"><div class="page-kicker">One system — “Engineering Future”</div><h1 class="page-title">One discipline.<br><span class="accent">Many futures.</span></h1><p class="page-lead">From fibre to the mark — engineered, developed, prototyped, crafted, verified, manufactured, and delivered.</p><div class="page-grid"><article class="page-card"><img src="../images/our_group_1.jpg" alt="Technical sportswear"><h2>Technical sportswear</h2><p>Engineering apparel for the world’s leading sport and lifestyle brands.</p></article><article class="page-card"><img src="../images/our_group_2.jpg" alt="La Prima Medical"><h2>La Prima Medical</h2><p>NEEDS PCCS INPUT — external business details and destination link.</p></article><article class="page-card"><img src="../images/our_group_3.jpg" alt="EZFY"><h2>EZFY</h2><p>NEEDS PCCS INPUT — external business details and destination link.</p></article></div></main><footer class="page-footer">PCCS Group · Our Group</footer><script src="../assets/js/pccs-pages.js"></script></body></html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Our Group · PCCS Group Berhad</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23006450'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='21' font-weight='700' fill='%23FFFFFF' text-anchor='middle'%3EP%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/pccs.css">
+  <link rel="stylesheet" href="../assets/css/pccs-pages.css">
+
+  <style>
+    /* ═══════════════════════════════════════════════════════════════════════════
+       group.html — page-specific styles
+       All variables and base classes come from pccs.css / pccs-pages.css.
+       This block handles layout and motion unique to this page only.
+    ════════════════════════════════════════════════════════════════════════════ */
+
+    /* ── Scroll-reveal utility (mirrors Home page .rv) ──────────────────────── */
+    .rv-g {
+      opacity: 0;
+      transform: translateY(24px);
+      transition:
+        opacity  .75s cubic-bezier(.22,.61,.36,1),
+        transform .75s cubic-bezier(.22,.61,.36,1);
+      transition-delay: var(--d, 0s);
+      will-change: opacity, transform;
+    }
+    .rv-g.in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      .rv-g { opacity: 1; transform: none; transition: none; }
+    }
+
+    /* ─────────────────────────────────────────────────────────────────────────
+       SECTION 1 — HERO
+       Full-bleed, matches the .page/.hero-stage wrapper style from Home.
+    ───────────────────────────────────────────────────────────────────────── */
+    .grp-page-outer {
+      padding: 24px 40px 0;
+    }
+    .grp-hero {
+      position: relative;
+      overflow: hidden;
+      border-radius: 28px;
+      height: 88vh;
+      min-height: 600px;
+      background: #0a0a0a;
+      container-type: inline-size;
+    }
+    /* Parallax image */
+    .grp-hero-img {
+      position: absolute; inset: 0;
+      width: 100%; height: 112%;
+      object-fit: cover;
+      object-position: center 30%;
+      transform-origin: center top;
+      transform: translateY(0) scale(1.04);
+      will-change: transform;
+      transition: transform 1s cubic-bezier(.22,.61,.36,1);
+    }
+    .grp-hero.hero-loaded .grp-hero-img {
+      transform: translateY(0) scale(1);
+    }
+    /* Scrim — protects both the transparent navigation and the bottom copy */
+    .grp-hero-scrim {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(180deg,
+          rgba(0,0,0,.38) 0%,
+          rgba(0,0,0,.18) 20%,
+          rgba(0,0,0,0) 42%),
+        linear-gradient(180deg,
+          rgba(0,0,0,.02) 0%,
+          rgba(0,0,0,0) 38%,
+          rgba(0,0,0,.55) 78%,
+          rgba(0,0,0,.78) 100%);
+    }
+    /* Content anchored to bottom-left */
+    .grp-hero-content {
+      position: absolute; left: 0; right: 0; bottom: 0;
+      padding: 0 clamp(28px,4.5cqw,80px) clamp(48px,6cqw,96px);
+      color: #fff;
+    }
+    .grp-hero-eyebrow {
+      font-size: clamp(11px, .8cqw, 14px);
+      letter-spacing: .19em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--mint);
+      margin-bottom: 22px;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity .7s ease .55s, transform .7s cubic-bezier(.22,.61,.36,1) .55s;
+    }
+    .grp-hero.hero-loaded .grp-hero-eyebrow { opacity: 1; transform: none; }
+
+    .grp-hero-h1 {
+      font-family: 'Inter', 'Noto Sans SC', system-ui, sans-serif;
+      font-weight: 300;
+      font-size: clamp(46px, 7.8cqw, 148px);
+      line-height: .92;
+      letter-spacing: -.038em;
+      color: #fff;
+      max-width: 14em;
+    }
+    .grp-hero-h1 .line {
+      display: block;
+      overflow: hidden;
+    }
+    .grp-hero-h1 .line-inner {
+      display: block;
+      opacity: 0;
+      transform: translateY(30px);
+      transition:
+        opacity  .82s cubic-bezier(.22,.61,.36,1),
+        transform .82s cubic-bezier(.22,.61,.36,1);
+    }
+    .grp-hero.hero-loaded .grp-hero-h1 .line:nth-child(1) .line-inner { opacity:1; transform:none; transition-delay:.68s; }
+    .grp-hero.hero-loaded .grp-hero-h1 .line:nth-child(2) .line-inner { opacity:1; transform:none; transition-delay:.82s; }
+    .grp-hero.hero-loaded .grp-hero-h1 .line:nth-child(3) .line-inner { opacity:1; transform:none; transition-delay:.96s; }
+
+    .grp-hero-h1 em { font-style: normal; color: var(--mint); }
+
+    /* Glass card — floating bottom-right, shows group manifesto tagline */
+    .grp-hero-card {
+      position: absolute;
+      right: clamp(20px, 2.6cqw, 48px);
+      bottom: clamp(20px, 4.2cqw, 64px);
+      width: clamp(260px, 20cqw, 380px);
+      padding: clamp(20px, 1.8cqw, 32px);
+      border-radius: 16px;
+      background: rgba(255,255,255,.14);
+      border: 1px solid rgba(255,255,255,.22);
+      backdrop-filter: blur(18px) saturate(140%);
+      -webkit-backdrop-filter: blur(18px) saturate(140%);
+      box-shadow: 0 18px 55px rgba(0,0,0,.22);
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .9s cubic-bezier(.22,.61,.36,1) 1.3s,
+                  transform .9s cubic-bezier(.22,.61,.36,1) 1.3s;
+    }
+    .grp-hero.hero-loaded .grp-hero-card { opacity: 1; transform: none; }
+    .grp-hero-card-label {
+      font-size: clamp(10px, .72cqw, 12px);
+      letter-spacing: .17em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--mint);
+      margin-bottom: 12px;
+    }
+    .grp-hero-card-quote {
+      font-size: clamp(16px, 1.36cqw, 24px);
+      font-weight: 300;
+      line-height: 1.38;
+      letter-spacing: -.022em;
+      color: #fff;
+    }
+    .grp-hero-card-cn {
+      margin-top: 10px;
+      font-size: clamp(12px, .85cqw, 14px);
+      font-weight: 300;
+      color: rgba(255,255,255,.55);
+      line-height: 1.5;
+    }
+
+    /* Hero foot strip */
+    .grp-hero-foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 4px;
+      font-size: 14px;
+      letter-spacing: .153em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      margin-top: 0;
+    }
+
+    /* ─────────────────────────────────────────────────────────────────────────
+       SECTION 2 — MANIFESTO SPLIT
+       Asymmetric: large editorial text left, image with quote-overlay right.
+    ───────────────────────────────────────────────────────────────────────── */
+    .manifesto-sec {
+      padding: clamp(88px, 12vw, 180px) clamp(24px, 5vw, 80px);
+      background: #fff;
+      container-type: inline-size;
+    }
+    .manifesto-wrap {
+      max-width: 1840px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(48px, 6cqw, 120px);
+      align-items: start;
+    }
+    .manifesto-left {}
+    .manifesto-kicker {
+      font-size: clamp(11px, .8cqw, 14px);
+      letter-spacing: .19em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--green);
+      margin-bottom: 28px;
+    }
+    .manifesto-h2 {
+      font-family: 'Inter', 'Noto Sans SC', system-ui, sans-serif;
+      font-weight: 300;
+      font-size: clamp(32px, 4.2cqw, 76px);
+      line-height: 1.02;
+      letter-spacing: -.048em;
+      color: var(--ink);
+      margin-bottom: 40px;
+    }
+    .manifesto-body {
+      font-size: clamp(17px, 1.38cqw, 24px);
+      font-weight: 300;
+      line-height: 1.65;
+      letter-spacing: -.012em;
+      color: var(--ink);
+      max-width: 36em;
+    }
+    .manifesto-body p + p { margin-top: 1.2em; }
+    .manifesto-body-cn {
+      margin-top: 1.6em;
+      font-size: clamp(13px, 1cqw, 17px);
+      line-height: 1.7;
+      color: var(--muted);
+    }
+    .manifesto-sign {
+      margin-top: 40px;
+      font-size: clamp(20px, 2cqw, 36px);
+      font-weight: 300;
+      letter-spacing: -.03em;
+      color: var(--green);
+      line-height: 1.2;
+    }
+    /* Right column: image with embedded quote overlay */
+    .manifesto-right {
+      position: relative;
+    }
+    .manifesto-imgwrap {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      aspect-ratio: 3 / 4;
+    }
+    .manifesto-imgwrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+      display: block;
+      transform: scale(1.04);
+      transition: transform 1s cubic-bezier(.22,.61,.36,1);
+      will-change: transform;
+    }
+    .manifesto-imgwrap.in img { transform: scale(1); }
+    .manifesto-img-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 45%, rgba(0,0,0,.72) 100%);
+    }
+    .manifesto-img-caption {
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      padding: clamp(20px, 2.4cqw, 40px) clamp(18px, 2.2cqw, 36px);
+      color: #fff;
+    }
+    .manifesto-img-caption-q {
+      font-size: clamp(17px, 1.4cqw, 24px);
+      font-weight: 300;
+      line-height: 1.38;
+      letter-spacing: -.018em;
+      margin-bottom: 10px;
+    }
+    .manifesto-img-caption-cn {
+      font-size: clamp(12px, .85cqw, 15px);
+      font-weight: 300;
+      color: rgba(255,255,255,.58);
+      line-height: 1.5;
+    }
+
+    /* ─────────────────────────────────────────────────────────────────────────
+       SECTION 3 — ONE SYSTEM (dark)
+       The group arms. Asymmetric grid (2fr 1fr 1fr) on dark ground.
+    ───────────────────────────────────────────────────────────────────────── */
+    .onesys-sec {
+      background: #111;
+      padding: clamp(88px, 11vw, 160px) clamp(24px, 5vw, 80px);
+      container-type: inline-size;
+    }
+    .onesys-wrap {
+      max-width: 1840px;
+      margin: 0 auto;
+    }
+    .onesys-header {
+      margin-bottom: clamp(48px, 6cqw, 88px);
+    }
+    .onesys-kicker {
+      font-size: clamp(11px, .8cqw, 14px);
+      letter-spacing: .19em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--mint);
+      margin-bottom: 24px;
+    }
+    .onesys-h2 {
+      font-family: 'Inter', 'Noto Sans SC', system-ui, sans-serif;
+      font-weight: 300;
+      font-size: clamp(32px, 4.8cqw, 86px);
+      line-height: 1.04;
+      letter-spacing: -.055em;
+      color: #fff;
+      max-width: 16em;
+    }
+    .onesys-h2 em { font-style: normal; color: var(--mint); }
+    /* Asymmetric grid: first card is 2× wide, has image top */
+    .onesys-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 16px;
+    }
+    /* Cards share one balanced row on wide screens. */
+    .onesys-card {
+      position: relative;
+      border-radius: 16px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+      transition: background .35s, transform .3s cubic-bezier(.22,.61,.36,1),
+                  box-shadow .3s;
+    }
+    .onesys-card:hover {
+      background: rgba(255,255,255,.1);
+      transform: translateY(-4px);
+      box-shadow: 0 24px 60px rgba(0,0,0,.38);
+    }
+    .onesys-card:focus-visible {
+      outline: 3px solid var(--mint);
+      outline-offset: 2px;
+    }
+    /* First card gets the image header */
+    .onesys-card--primary {
+      grid-row: auto;
+    }
+    .onesys-card-img {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 16 / 9;
+      flex: none;
+    }
+    .onesys-card-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .8s cubic-bezier(.22,.61,.36,1);
+      will-change: transform;
+    }
+    .onesys-card:hover .onesys-card-img img { transform: scale(1.05); }
+    .onesys-card-img-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,.55) 100%);
+    }
+    .onesys-card-body {
+      padding: clamp(22px, 2cqw, 36px) clamp(20px, 1.8cqw, 32px) clamp(24px, 2.2cqw, 40px);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex: 1;
+    }
+    .onesys-card-tag {
+      font-size: clamp(10px, .7cqw, 12px);
+      letter-spacing: .17em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--mint);
+    }
+    .onesys-card-tag--this { color: var(--mint); }
+    .onesys-card-tag--ext { color: rgba(255,255,255,.42); }
+    .onesys-card h3 {
+      font-size: clamp(20px, 1.9cqw, 34px);
+      font-weight: 400;
+      letter-spacing: -.025em;
+      color: #fff;
+      line-height: 1.2;
+    }
+    .onesys-card p {
+      font-size: clamp(14px, 1.08cqw, 19px);
+      line-height: 1.58;
+      font-weight: 300;
+      color: rgba(255,255,255,.62);
+      max-width: 30em;
+    }
+    .onesys-card-cn {
+      font-size: clamp(12px, .82cqw, 14px);
+      color: rgba(255,255,255,.35);
+      font-weight: 300;
+      line-height: 1.5;
+    }
+    .onesys-card-link {
+      margin-top: auto;
+      padding-top: 16px;
+      font-size: clamp(12px, .85cqw, 14px);
+      letter-spacing: .05em;
+      color: rgba(255,255,255,.38);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color .25s;
+    }
+    .onesys-card-link .ar {
+      display: inline-flex;
+      transition: transform .25s cubic-bezier(.22,.61,.36,1);
+    }
+    .onesys-card:hover .onesys-card-link { color: var(--mint); }
+    .onesys-card:hover .onesys-card-link .ar { transform: translateX(3px); }
+
+    /* ─────────────────────────────────────────────────────────────────────────
+       SECTION 4 — LARGE STATEMENT (between dark and story)
+       Full-bleed PCCS green horizontal rule + large number proof strip
+    ───────────────────────────────────────────────────────────────────────── */
+    .proof-strip {
+      background: #fff;
+      padding: clamp(72px, 9vw, 140px) clamp(24px, 5vw, 80px);
+      container-type: inline-size;
+    }
+    .proof-wrap {
+      max-width: 1840px;
+      margin: 0 auto;
+    }
+    .proof-statement {
+      max-width: 18em;
+      font-family: 'Inter', 'Noto Sans SC', system-ui, sans-serif;
+      font-weight: 300;
+      font-size: clamp(32px, 4.8cqw, 86px);
+      line-height: 1.04;
+      letter-spacing: -.055em;
+      color: var(--ink);
+      border-top: 2px solid var(--ink);
+      padding-top: clamp(28px, 3.5cqw, 52px);
+      margin-bottom: clamp(56px, 7cqw, 110px);
+    }
+    .proof-statement em {
+      font-style: normal;
+      color: var(--green);
+    }
+    .proof-nums {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--line);
+    }
+    .proof-num {
+      padding: clamp(24px, 2.8cqw, 50px) 0 clamp(24px, 2.8cqw, 50px) clamp(16px, 2cqw, 36px);
+      border-right: 1px solid var(--line);
+    }
+    .proof-num:first-child { padding-left: 0; border-right: 1px solid var(--line); }
+    .proof-num:last-child { border-right: none; }
+    .proof-num-n {
+      font-family: 'Inter', 'Noto Sans SC', system-ui, sans-serif;
+      font-weight: 300;
+      font-size: clamp(44px, 6.4cqw, 120px);
+      line-height: 1;
+      letter-spacing: -.028em;
+      color: var(--ink);
+    }
+    .proof-num-n .plus {
+      font-size: .48em;
+      font-weight: 400;
+      vertical-align: middle;
+      margin-left: .05em;
+      letter-spacing: 0;
+    }
+    .proof-num-l {
+      margin-top: 18px;
+      font-size: clamp(13px, 1.2cqw, 22px);
+      line-height: 1.45;
+      letter-spacing: -.012em;
+      color: var(--muted);
+    }
+
+    /* ─────────────────────────────────────────────────────────────────────────
+       SECTION 5 — OUR STORY TIMELINE
+    ───────────────────────────────────────────────────────────────────────── */
+    .story-sec {
+      padding: clamp(88px, 11vw, 160px) clamp(24px, 5vw, 80px);
+      background: #f7f7f5;
+      container-type: inline-size;
+    }
+    .story-wrap {
+      max-width: 1840px;
+      margin: 0 auto;
+    }
+    .story-head {
+      margin-bottom: clamp(48px, 5.5cqw, 88px);
+    }
+    .story-kicker {
+      font-size: clamp(11px, .8cqw, 14px);
+      letter-spacing: .19em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--green);
+      margin-bottom: 24px;
+    }
+    .story-h2 {
+      font-family: 'Inter', 'Noto Sans SC', system-ui, sans-serif;
+      font-weight: 300;
+      font-size: clamp(30px, 4.2cqw, 76px);
+      line-height: 1.04;
+      letter-spacing: -.048em;
+      color: var(--ink);
+    }
+    .story-sub {
+      margin-top: 16px;
+      font-size: clamp(14px, 1.1cqw, 18px);
+      font-weight: 300;
+      color: var(--muted);
+      letter-spacing: -.01em;
+    }
+    /* Timeline table */
+    .timeline {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .timeline thead tr { border-bottom: 2px solid var(--ink); }
+    .timeline thead th {
+      text-align: left;
+      font-size: clamp(10px, .75cqw, 13px);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--muted);
+      padding-bottom: 14px;
+    }
+    .timeline thead th:first-child { width: 110px; }
+    .timeline tbody tr { border-bottom: 1px solid var(--line); }
+    .timeline tbody tr:last-child { border-bottom: 2px solid var(--ink); }
+    .timeline td {
+      padding: clamp(14px, 1.6cqw, 28px) 0;
+      vertical-align: top;
+    }
+    .timeline td:first-child {
+      font-size: clamp(14px, 1.1cqw, 19px);
+      font-weight: 600;
+      color: var(--green);
+      letter-spacing: -.01em;
+      width: 110px;
+      padding-right: 28px;
+      white-space: nowrap;
+    }
+    .timeline td.tl-en {
+      font-size: clamp(14px, 1.15cqw, 20px);
+      font-weight: 300;
+      color: var(--ink);
+      line-height: 1.52;
+      padding-right: 36px;
+    }
+    .timeline td.tl-cn {
+      font-size: clamp(13px, 1cqw, 17px);
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.58;
+    }
+    .timeline tbody tr.tl-today td:first-child { color: var(--ink); font-weight: 700; }
+    .timeline tbody tr.tl-today td { background: #eeeee9; }
+
+    /* ─────────────────────────────────────────────────────────────────────────
+       SECTION 6 — GLOBAL FOOTPRINT
+    ───────────────────────────────────────────────────────────────────────── */
+    .footprint-sec {
+      padding: clamp(88px, 11vw, 160px) clamp(24px, 5vw, 80px);
+      background: #fff;
+      container-type: inline-size;
+    }
+    .footprint-wrap {
+      max-width: 1840px;
+      margin: 0 auto;
+    }
+    .footprint-head {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(40px, 5cqw, 100px);
+      align-items: end;
+      margin-bottom: clamp(48px, 6cqw, 88px);
+    }
+    .footprint-kicker {
+      font-size: clamp(11px, .8cqw, 14px);
+      letter-spacing: .19em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--green);
+      margin-bottom: 22px;
+    }
+    .footprint-h2 {
+      font-family: 'Inter', 'Noto Sans SC', system-ui, sans-serif;
+      font-weight: 300;
+      font-size: clamp(30px, 4.2cqw, 76px);
+      line-height: 1.04;
+      letter-spacing: -.048em;
+      color: var(--ink);
+    }
+    .footprint-desc {
+      font-size: clamp(16px, 1.28cqw, 22px);
+      font-weight: 300;
+      line-height: 1.65;
+      letter-spacing: -.012em;
+      color: var(--muted);
+      max-width: 30em;
+      align-self: end;
+    }
+    .footprint-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .footprint-card {
+      min-height: 270px;
+      padding: clamp(22px, 2.2cqw, 42px) clamp(20px, 2cqw, 38px);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: background .25s;
+    }
+    .footprint-card:hover { background: #f9f9f8; }
+    .footprint-num {
+      font-size: clamp(11px, .8cqw, 13px);
+      font-weight: 700;
+      letter-spacing: .12em;
+      color: var(--green);
+      margin-bottom: 4px;
+    }
+    .footprint-location {
+      font-size: clamp(20px, 1.9cqw, 34px);
+      font-weight: 400;
+      letter-spacing: -.028em;
+      color: var(--ink);
+      line-height: 1.1;
+    }
+    .footprint-cn {
+      font-size: clamp(12px, .9cqw, 16px);
+      color: var(--muted);
+      font-weight: 300;
+    }
+    .footprint-role {
+      margin-top: 6px;
+      font-size: clamp(13px, 1cqw, 17px);
+      line-height: 1.5;
+      font-weight: 500;
+      color: var(--ink);
+      letter-spacing: -.01em;
+    }
+    .footprint-detail {
+      font-size: clamp(12px, .9cqw, 15px);
+      line-height: 1.62;
+      color: var(--muted);
+      font-weight: 300;
+    }
+    .footprint-logos {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      gap: clamp(14px, 1.6cqw, 28px);
+      margin: 4px 0 2px;
+    }
+    .footprint-logo {
+      width: auto;
+      max-width: 42%;
+      height: clamp(42px, 4.4cqw, 72px);
+      object-fit: contain;
+      object-position: left center;
+      mix-blend-mode: multiply;
+    }
+    .footprint-logo--wide { max-width: 58%; }
+    .footprint-logo--small { height: clamp(34px, 3.4cqw, 58px); }
+    .footprint-card--china { border-top: 4px solid #ef3d35; }
+    .footprint-card--cambodia { border-top: 4px solid #72b347; }
+    .footprint-card--vietnam { border-top: 4px solid #f7b91b; }
+    .footprint-card--malaysia { border-top: 4px solid #5897d1; }
+    .footprint-card--hongkong { border-top: 4px solid #ef3d35; }
+    .footprint-card--singapore { border-top: 4px solid #70d2e1; }
+    .footprint-unit { margin-top: 2px; }
+    .footprint-unit + .footprint-unit { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--line); }
+    .footprint-unit-label { font-size: clamp(11px, .78cqw, 13px); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+
+    /* ─────────────────────────────────────────────────────────────────────────
+       SECTION 7 — LEADERSHIP TILES + DETAIL MODAL
+    ───────────────────────────────────────────────────────────────────────── */
+    .leadership-sec { background:#f7f7f5; padding:clamp(88px,11vw,160px) clamp(24px,5vw,80px); container-type:inline-size; }
+    .leadership-wrap { max-width:1840px; margin:0 auto; }
+    .leadership-head { margin-bottom:clamp(36px,4vw,64px); }
+    .leadership-kicker,.leader-modal-kicker { font-size:clamp(11px,.8cqw,14px); letter-spacing:.19em; text-transform:uppercase; font-weight:700; color:var(--green); margin-bottom:22px; }
+    .leadership-h2 { font-family:'Inter','Noto Sans SC',system-ui,sans-serif; font-weight:300; font-size:clamp(34px,5.2cqw,88px); line-height:1.02; letter-spacing:-.055em; color:var(--ink); }
+    .leadership-intro { margin-top:22px; max-width:38em; color:var(--muted); font-size:clamp(15px,1.2cqw,21px); line-height:1.55; font-weight:300; }
+    .leaders-meta { display:flex; justify-content:space-between; gap:20px; align-items:center; border-top:1px solid var(--line); padding:16px 0; margin-bottom:2px; }
+    .leaders-filter,.leaders-count { font-size:clamp(10px,.75cqw,12px); letter-spacing:.14em; text-transform:uppercase; font-weight:600; color:var(--muted); }
+    .leaders-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:2px; }
+    .leader-card { appearance:none; border:0; padding:0; margin:0; text-align:left; background:#fff; color:var(--ink); cursor:pointer; overflow:hidden; border-radius:16px; transition:transform .3s ease, background .3s ease; }
+    .leader-card:hover,.leader-card:focus-visible { transform:translateY(-6px); background:#fff; outline:none; }
+    .leader-card:focus-visible { box-shadow:0 0 0 3px var(--green); }
+    .leader-photo { display:block; aspect-ratio:4/5; overflow:hidden; background:#ddd; }
+    .leader-photo img { display:block; width:100%; height:100%; object-fit:cover; filter:saturate(.82); transition:transform .45s ease, filter .45s ease; }
+    .leader-card:hover .leader-photo img,.leader-card:focus-visible .leader-photo img { transform:scale(1.04); filter:saturate(1); }
+    .leader-card-body { display:block; padding:20px 18px 22px; min-height:116px; }
+    .leader-card-name { display:block; font-size:clamp(17px,1.45cqw,25px); line-height:1.1; letter-spacing:-.025em; font-weight:500; }
+    .leader-card-role { display:block; margin-top:10px; color:var(--muted); font-size:clamp(11px,.9cqw,14px); line-height:1.42; font-weight:300; }
+    /* Editorial leader modal — black canvas, oversized type and staged entrance. */
+    .leader-modal { position:fixed; inset:0; z-index:1000; display:grid; place-items:center; padding:4px clamp(10px,3vw,48px); background:rgba(10,10,10,.58); backdrop-filter:blur(5px); -webkit-backdrop-filter:blur(5px); opacity:0; visibility:hidden; pointer-events:none; transition:opacity .38s ease, visibility .38s ease; }
+    .leader-modal.is-open { opacity:1; visibility:visible; pointer-events:auto; }
+    .leader-modal-panel { position:relative; display:grid; box-sizing:border-box; container-type:inline-size; grid-template-columns:minmax(310px,31%) minmax(0,1fr); grid-template-rows:auto minmax(300px,max-content) minmax(0,1fr); column-gap:clamp(32px,5cqw,96px); row-gap:clamp(18px,2.2cqw,34px); width:min(1680px,100%); height:min(96vh,1120px); overflow:hidden; padding:clamp(24px,2cqw,42px) clamp(26px,2.5cqw,54px) clamp(26px,2.8cqw,48px); border-radius:26px; background:#050505; color:#fff; transform:translateY(34px) scale(.965); clip-path:inset(4% 0 0 0 round 26px); transition:transform .72s cubic-bezier(.22,.61,.36,1), clip-path .72s cubic-bezier(.22,.61,.36,1); }
+    .leader-modal.is-open .leader-modal-panel { transform:none; clip-path:inset(0 round 26px); }
+    .leader-modal-top { grid-column:1 / -1; display:flex; justify-content:space-between; gap:32px; padding-right:clamp(74px,8vw,142px); color:rgba(255,255,255,.82); font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:clamp(10px,.7vw,14px); line-height:1.2; letter-spacing:.03em; text-transform:uppercase; opacity:0; transform:translateY(-12px); transition:opacity .5s ease .18s, transform .5s ease .18s; }
+    .leader-modal.is-open .leader-modal-top { opacity:1; transform:none; }
+    .leader-modal-company { text-align:right; }
+    .leader-modal-name { grid-column:1 / -1; align-self:start; height:auto; min-width:0; margin:0; max-width:none; font-family:'Inter','Noto Sans SC',system-ui,sans-serif; font-weight:300; font-size:clamp(52px,7.6cqw,146px); line-height:.86; letter-spacing:-.078em; color:#fff; white-space:nowrap; opacity:0; transform:translateY(34px); transition:opacity .72s cubic-bezier(.22,.61,.36,1) .22s, transform .72s cubic-bezier(.22,.61,.36,1) .22s; }
+    .leader-modal.is-open .leader-modal-name { opacity:1; transform:none; }
+    .leader-modal-photo { grid-column:1; grid-row:3; align-self:end; width:100%; aspect-ratio:4 / 5; min-height:0; overflow:hidden; border-radius:15px; background:#1e252b; opacity:0; transform:translateY(32px); transition:opacity .72s cubic-bezier(.22,.61,.36,1) .34s, transform .72s cubic-bezier(.22,.61,.36,1) .34s; }
+    .leader-modal.is-open .leader-modal-photo { opacity:1; transform:none; }
+    .leader-modal-photo img { width:100%; height:100%; min-height:0; display:block; object-fit:cover; object-position:center top; filter:saturate(.92) contrast(1.04); }
+    .leader-modal-copy { grid-column:2; grid-row:3; align-self:end; min-width:0; max-width:620px; padding:0 0 clamp(10px,2vw,34px); opacity:0; transform:translateY(28px); transition:opacity .7s cubic-bezier(.22,.61,.36,1) .48s, transform .7s cubic-bezier(.22,.61,.36,1) .48s; }
+    .leader-modal.is-open .leader-modal-copy { opacity:1; transform:none; }
+    .leader-modal-kicker { margin-bottom:18px; color:rgba(255,255,255,.58); font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:clamp(10px,.7vw,14px); letter-spacing:.08em; }
+    .leader-modal-role { margin-top:14px; color:rgba(255,255,255,.48); font-size:clamp(12px,1vw,17px); line-height:1.4; font-weight:400; }
+    .leader-modal-bio { margin:28px 0 0; max-width:35em; color:rgba(255,255,255,.56); font-size:clamp(14px,1.1vw,19px); line-height:1.52; font-weight:300; }
+    .leader-modal-close { position:absolute; top:22px; right:22px; z-index:2; width:clamp(58px,8vw,132px); height:clamp(58px,8vw,132px); border:0; padding:0; background:transparent; color:transparent; font-size:0; line-height:0; cursor:pointer; }
+    .leader-modal-close::before,.leader-modal-close::after { content:""; position:absolute; left:50%; top:50%; width:100%; height:2px; background:#fff; transform-origin:center; transition:transform .35s ease, background .25s ease; }
+    .leader-modal-close::before { transform:translate(-50%,-50%) rotate(45deg); }
+    .leader-modal-close::after { transform:translate(-50%,-50%) rotate(-45deg); }
+    .leader-modal-close:hover::before,.leader-modal-close:focus-visible::before { transform:translate(-50%,-50%) rotate(135deg); }
+    .leader-modal-close:hover::after,.leader-modal-close:focus-visible::after { transform:translate(-50%,-50%) rotate(-135deg); }
+    .leader-modal-close:hover::before,.leader-modal-close:hover::after,.leader-modal-close:focus-visible::before,.leader-modal-close:focus-visible::after { background:var(--mint); }
+    .leader-modal-close:focus-visible { outline:2px solid var(--mint); outline-offset:6px; }
+    html.leader-modal-open { overflow:hidden; }
+    @media (max-width:900px) { .leaders-grid { grid-template-columns:repeat(3,1fr); } }
+    @media (max-width:680px) {
+      .leaders-grid { grid-template-columns:repeat(2,1fr); }
+      .leader-card-body { padding:15px 13px 17px; min-height:105px; }
+      .leader-modal { padding:10px; }
+      .leader-modal-panel { display:block; height:min(94vh,900px); max-height:calc(100vh - 20px); padding:22px 22px 28px; border-radius:20px; overflow-y:auto; overflow-x:hidden; }
+      .leader-modal-top { padding-right:58px; margin-bottom:18px; }
+      .leader-modal-name { height:clamp(128px,30vw,220px); max-width:8ch; margin-bottom:18px; font-size:clamp(58px,16vw,108px); white-space:normal; }
+      .leader-modal-photo { width:100%; min-height:0; height:auto; aspect-ratio:4 / 5; margin-bottom:28px; }
+      .leader-modal-copy { padding:0 2px 4px; }
+      .leader-modal-close { top:16px; right:16px; width:48px; height:48px; }
+    }
+
+    /* ─────────────────────────────────────────────────────────────────────────
+       SECTION 8 — VALUES (PCCS acronym) — Full-bleed green
+    ───────────────────────────────────────────────────────────────────────── */
+    .values-sec {
+      background: var(--green);
+      padding: clamp(88px, 11vw, 160px) clamp(24px, 5vw, 80px);
+      container-type: inline-size;
+    }
+    .values-wrap {
+      max-width: 1840px;
+      margin: 0 auto;
+    }
+    .values-kicker {
+      font-size: clamp(11px, .8cqw, 14px);
+      letter-spacing: .19em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: rgba(255,255,255,.65);
+      margin-bottom: 22px;
+    }
+    .values-intro {
+      font-family: 'Inter', 'Noto Sans SC', system-ui, sans-serif;
+      font-weight: 300;
+      font-size: clamp(28px, 4cqw, 72px);
+      line-height: 1.06;
+      letter-spacing: -.048em;
+      color: #fff;
+      max-width: 18em;
+      margin-bottom: clamp(48px, 6cqw, 96px);
+    }
+    .values-intro-cn {
+      display: block;
+      font-size: .65em;
+      color: rgba(255,255,255,.72);
+      margin-top: .35em;
+      letter-spacing: -.02em;
+    }
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      border: 1px solid rgba(255,255,255,.16);
+    }
+    .values-item {
+      padding: clamp(28px, 2.8cqw, 48px) clamp(22px, 2.2cqw, 38px);
+      border-right: 1px solid rgba(255,255,255,.16);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .values-item:last-child { border-right: none; }
+    .values-letter {
+      font-size: clamp(48px, 6cqw, 108px);
+      font-weight: 700;
+      color: rgba(255,255,255,.14);
+      line-height: 1;
+      letter-spacing: -.05em;
+    }
+    .values-name {
+      font-size: clamp(17px, 1.5cqw, 27px);
+      font-weight: 500;
+      color: #fff;
+      letter-spacing: -.02em;
+    }
+    .values-desc {
+      font-size: clamp(13px, 1cqw, 17px);
+      line-height: 1.58;
+      color: rgba(255,255,255,.7);
+      font-weight: 300;
+    }
+    .values-vision {
+      margin-top: clamp(40px, 5cqw, 72px);
+      padding-top: clamp(28px, 3cqw, 44px);
+      border-top: 1px solid rgba(255,255,255,.2);
+      font-size: clamp(13px, 1.05cqw, 18px);
+      font-weight: 300;
+      color: rgba(255,255,255,.52);
+      line-height: 1.62;
+      max-width: 48em;
+    }
+
+    /* ─────────────────────────────────────────────────────────────────────────
+       SECTION 9 — CTA BRIDGE
+    ───────────────────────────────────────────────────────────────────────── */
+    .group-cta-sec {
+      background: #fff;
+      padding: clamp(88px, 11vw, 160px) clamp(24px, 5vw, 80px);
+      container-type: inline-size;
+    }
+    .group-cta-wrap {
+      max-width: 1840px;
+      margin: 0 auto;
+    }
+    .group-cta-inner {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 48px;
+      flex-wrap: wrap;
+      border-top: 1px solid var(--line);
+      padding-top: clamp(40px, 5cqw, 72px);
+    }
+    .group-cta-h2 {
+      font-family: 'Inter', 'Noto Sans SC', system-ui, sans-serif;
+      font-weight: 300;
+      font-size: clamp(26px, 3.4cqw, 60px);
+      line-height: 1.06;
+      letter-spacing: -.045em;
+      color: var(--ink);
+      max-width: 16em;
+    }
+    .group-cta-sub {
+      margin-top: 14px;
+      font-size: clamp(14px, 1.1cqw, 18px);
+      font-weight: 300;
+      color: var(--muted);
+      max-width: 32em;
+      line-height: 1.6;
+    }
+    .group-cta-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: flex-end;
+    }
+
+    /* ─────────────────────────────────────────────────────────────────────────
+       RESPONSIVE — Tablet (max 1100px)
+    ───────────────────────────────────────────────────────────────────────── */
+    @media (max-width: 1100px) {
+      .onesys-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .onesys-card--primary {
+        grid-column: span 2;
+        grid-row: auto;
+      }
+      .onesys-card-img {
+        aspect-ratio: 16 / 7;
+      }
+      .values-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .values-item:nth-child(2) { border-right: none; }
+      .values-item:nth-child(3) {
+        border-right: 1px solid rgba(255,255,255,.16);
+        border-top: 1px solid rgba(255,255,255,.16);
+      }
+      .values-item:last-child {
+        border-right: none;
+        border-top: 1px solid rgba(255,255,255,.16);
+      }
+      .proof-nums {
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+      }
+      .proof-num:nth-child(2) { border-right: none; }
+      .proof-num:nth-child(3) {
+        border-right: 1px solid var(--line);
+        border-top: 1px solid var(--line);
+        padding-left: 0;
+      }
+      .proof-num:nth-child(4) {
+        border-right: none;
+        border-top: 1px solid var(--line);
+      }
+      .footprint-head {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ─────────────────────────────────────────────────────────────────────────
+       RESPONSIVE — Tablet narrow + large mobile (max 900px)
+    ───────────────────────────────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .grp-page-outer { padding: 16px 20px 0; }
+      .grp-hero { border-radius: 20px; height: 72vh; min-height: 480px; }
+      .manifesto-wrap { grid-template-columns: 1fr; gap: 48px; }
+      .manifesto-right { display: none; } /* hide image column on tablet */
+      .footprint-grid { grid-template-columns: 1fr 1fr; }
+      /* timeline: hide Chinese column on medium screens */
+      .tl-cn-col { display: none; }
+      .leadership-table td:nth-child(3) { display: none; }
+    }
+
+    /* ─────────────────────────────────────────────────────────────────────────
+       RESPONSIVE — Mobile (max 680px)
+    ───────────────────────────────────────────────────────────────────────── */
+    @media (max-width: 680px) {
+      .grp-page-outer { padding: 12px 12px 0; }
+      .grp-hero {
+        border-radius: 16px;
+        height: auto;
+        aspect-ratio: 3 / 2;
+        min-height: 280px;
+      }
+      .grp-hero-card {
+        position: static;
+        margin: 12px 12px 0;
+        width: auto;
+        border-radius: 12px;
+        background: rgba(20,20,18,.85);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+      .grp-hero-foot {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+        font-size: 9px;
+        letter-spacing: .1em;
+        padding: 14px 4px;
+      }
+      .onesys-grid { grid-template-columns: 1fr; }
+      .onesys-card--primary { grid-column: auto; }
+      .onesys-card-img { aspect-ratio: 16 / 9; }
+      .proof-nums { grid-template-columns: 1fr 1fr; }
+      .proof-num { padding-left: 0; border-right: none; border-top: 1px solid var(--line); }
+      .proof-num:nth-child(1), .proof-num:nth-child(2) { border-top: none; border-right: none; }
+      .proof-num:nth-child(2) { border-left: 1px solid var(--line); padding-left: 16px; }
+      .proof-num:nth-child(4) { border-left: 1px solid var(--line); padding-left: 16px; }
+      .footprint-grid { grid-template-columns: 1fr; }
+      .values-grid { grid-template-columns: 1fr; border: none; gap: 0; }
+      .values-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,.16); }
+      .values-item:last-child { border-bottom: none; }
+      .group-cta-inner { flex-direction: column; align-items: flex-start; }
+      .group-cta-pills { width: 100%; }
+      .group-cta-pills .pill-btn { flex: 1; min-width: 140px; justify-content: center; }
+      /* Timeline mobile: stack cells */
+      .timeline thead { display: none; }
+      .timeline tbody tr { display: block; padding: 18px 0; border-bottom: 1px solid var(--line); }
+      .timeline td { display: block; width: 100% !important; padding: 2px 0; }
+      .timeline td:first-child { font-size: clamp(13px, 3.8vw, 16px); margin-bottom: 4px; width: 100% !important; padding-right: 0; }
+      .timeline td.tl-en { font-size: clamp(14px, 4.2vw, 17px); padding-right: 0; }
+      .tl-cn { display: none; }
+      /* Leadership mobile: stack */
+      .leadership-table thead { display: none; }
+      .leadership-table tbody tr { display: block; border-bottom: 1px solid var(--line); padding: 16px 0; }
+      .leadership-table td { display: block; padding: 2px 0; width: 100% !important; min-width: 0; white-space: normal; }
+      .leadership-table td:first-child { font-size: clamp(15px, 4.5vw, 18px); font-weight: 600; }
+      .leadership-table td:nth-child(2) { font-size: clamp(13px, 3.8vw, 15px); color: var(--muted); }
+      .leadership-table td:nth-child(3) { display: none; }
+    }
+
+    @media (max-width: 420px) {
+      .grp-page-outer { padding: 10px 10px 0; }
+      .grp-hero { border-radius: 14px; min-height: 240px; }
+    }
+
+    /* ── CJK tracking reset ─────────────────────────────────────────────────── */
+    html[lang="zh-CN"] .grp-hero-h1,
+    html[lang="zh-CN"] .manifesto-h2,
+    html[lang="zh-CN"] .onesys-h2,
+    html[lang="zh-CN"] .proof-statement,
+    html[lang="zh-CN"] .story-h2,
+    html[lang="zh-CN"] .footprint-h2,
+    html[lang="zh-CN"] .leadership-h2,
+    html[lang="zh-CN"] .values-intro,
+    html[lang="zh-CN"] .group-cta-h2 {
+      letter-spacing: normal;
+    }
+
+    /* Use the shared Home / Sustainability hero motion and geometry. */
+    .grp-hero.hero-stage { height: 88vh; min-height: 600px; aspect-ratio: auto; background: var(--cream); }
+    .grp-hero.hero-stage .grp-hero-eyebrow { opacity: 1; transform: none; }
+    .grp-hero.hero-stage .grp-hero-h1 .line-inner { opacity: 1; transform: none; transition: none; }
+    .grp-hero.hero-stage.expanded .grp-hero-card { opacity: 1; transform: none; }
+    @media (max-width: 680px) {
+      .grp-hero.hero-stage { height: 88vh; min-height: 680px; aspect-ratio: auto; }
+      .grp-hero.hero-stage .grp-hero-card {
+        position: absolute;
+        right: 16px;
+        bottom: 16px;
+        width: min(340px, calc(100% - 32px));
+        margin: 0;
+      }
+    }
+    @media (max-width: 420px) {
+      .grp-hero.hero-stage { min-height: 620px; }
+    }
+  </style>
+</head>
+<body class="page-document">
+
+  <!-- ══ SECTION 1: HERO ════════════════════════════════════════════════════ -->
+  <div class="page">
+    <div class="hero-stage grp-hero site-hero" id="heroStage" role="img" aria-label="PCCS Group — one discipline, many futures">
+      <div class="hero-frame">
+        <img src="../images/group/group-hero-cross-business.png" data-parallax="1.0,0.22,18" alt="Cross-business apparel samples including sportswear, healthcare and hospitality garments" aria-hidden="true">
+        <div class="hero-scrim" aria-hidden="true"></div>
+      </div>
+
+      <div class="hero-content">
+        <div class="eyebrow grp-hero-eyebrow">PCCS Group</div>
+        <h1 class="grp-hero-h1">
+          <span class="line">One system.</span>
+          <span class="line g">Many futures.</span>
+        </h1>
+      </div>
+
+      <!-- Floating glass card -->
+      <div class="grp-hero-card" aria-hidden="true">
+        <div class="grp-hero-card-label">The Group</div>
+        <div class="grp-hero-card-quote">
+          Engineering-led. Fifty years deep. Growing beyond cloth.
+        </div>
+      </div>
+    </div>
+
+    <div class="grp-hero-foot" aria-hidden="true">
+      <span>PCCS Group Berhad &nbsp;·&nbsp; Est. 1973 &nbsp;·&nbsp; Bursa 6068</span>
+      <span>Passion &nbsp;·&nbsp; Care &nbsp;·&nbsp; Commitment &nbsp;·&nbsp; Sustainability</span>
+    </div>
+  </div>
+
+  <!-- ══ Main content ════════════════════════════════════════════════════════ -->
+  <main id="main-content">
+
+    <!-- ── SECTION 2: MANIFESTO SPLIT ────────────────────────────────────── -->
+    <section class="manifesto-sec" aria-labelledby="manifesto-h2">
+      <div class="manifesto-wrap">
+
+        <div class="manifesto-left">
+          <div class="rv-g">
+            <div class="manifesto-kicker">The Manifesto</div>
+            <h2 class="manifesto-h2" id="manifesto-h2">
+              Some companies<br>chase the future.<br>We engineer it.
+            </h2>
+          </div>
+          <div class="rv-g" style="--d:.1s">
+            <div class="manifesto-body">
+              <p>
+                Where others see a garment, a device, a business &mdash; we see a problem to be solved, precisely.
+              </p>
+              <p>
+                Not fashion. Not luck. Engineering. Measured, proven, built to last.
+                And it reaches further than cloth now &mdash; into health, into how people live,
+                into whatever the next fifty years demand.
+              </p>
+              <p>
+                One discipline. Many futures.
+              </p>
+            </div>
+            <div class="manifesto-sign">PCCS. Engineering Future.</div>
+          </div>
+        </div>
+
+        <!-- Right column: image with quote -->
+        <div class="manifesto-right rv-g" style="--d:.18s">
+          <div class="manifesto-imgwrap">
+            <img src="../images/our_group_2.jpg"
+                 alt="PCCS craftsmanship — the mark behind the marks">
+            <div class="manifesto-img-overlay" aria-hidden="true"></div>
+            <div class="manifesto-img-caption" aria-hidden="true">
+              <div class="manifesto-img-caption-q">
+                &ldquo;The world&rsquo;s biggest brands don&rsquo;t hand that to just anyone. For fifty years, they&rsquo;ve handed it to us.&rdquo;
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── SECTION 3: ONE SYSTEM (dark) ──────────────────────────────────── -->
+    <section class="onesys-sec" aria-labelledby="onesys-h2">
+      <div class="onesys-wrap">
+
+        <div class="onesys-header">
+          <div class="onesys-kicker rv-g">One system</div>
+          <h2 class="onesys-h2 rv-g" id="onesys-h2" style="--d:.1s">
+            Engineering<br><em>Future.</em>
+          </h2>
+        </div>
+
+        <div class="onesys-grid" role="list">
+
+          <!-- Card 1: Engineering Apparel — primary, 2× wide with image -->
+          <a href="../index.html" class="onesys-card onesys-card--primary rv-g" style="--d:.08s" role="listitem" aria-label="Engineering Apparel — explore this site">
+            <div class="onesys-card-img">
+              <img src="../images/our_group_3.jpg" alt="Engineering Apparel — technical sportswear">
+              <div class="onesys-card-img-overlay" aria-hidden="true"></div>
+            </div>
+            <div class="onesys-card-body">
+              <div class="onesys-card-tag onesys-card-tag--this">This site</div>
+              <h3>Engineering Apparel</h3>
+              <p>Technical sportswear, from fibre to the mark. The full chain: fabric, development, the badge, quality and delivery for the world&rsquo;s leading sport and lifestyle brands.</p>
+              <div class="onesys-card-link">
+                Explore this site <span class="ar" aria-hidden="true">↗</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Card 2: Engineering Health — La Prima -->
+          <div class="onesys-card rv-g" style="--d:.16s" role="listitem">
+            <div class="onesys-card-body">
+              <div class="onesys-card-tag onesys-card-tag--ext">Group arm</div>
+              <h3>Engineering Health</h3>
+              <p>La Prima &mdash; precision medical devices, built with the same exacting standard our craft is known for. A new field, the same hands.</p>
+              <a class="onesys-card-link" href="https://www.laprimamedical.com/" target="_blank" rel="noopener" aria-label="Visit La Prima Medical">
+                Visit La Prima Medical <span class="ar" aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Card 3: Finance — EZFY -->
+          <div class="onesys-card rv-g" style="--d:.24s" role="listitem">
+            <div class="onesys-card-body">
+              <div class="onesys-card-tag onesys-card-tag--ext">Group arm</div>
+              <h3>Finance — EZFY</h3>
+              <p>A simpler way to access auto, personal and medical equipment financing, with insurance support.</p>
+              <a class="onesys-card-link" href="https://ezfygroup.com/" target="_blank" rel="noopener" aria-label="Visit EZFY">
+                Visit EZFY <span class="ar" aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SECTION 4: PROOF NUMBERS ──────────────────────────────────────── -->
+    <section class="proof-strip" aria-label="Engineering proof — by the numbers">
+      <div class="proof-wrap">
+
+        <div class="proof-statement rv-g">
+          Fifty years.<br><em>Engineered,</em><br>not inherited.
+        </div>
+
+        <div class="proof-nums" role="list">
+          <div class="proof-num rv-g" style="--d:.06s" role="listitem">
+            <div class="proof-num-n"><span class="nv" data-to="50">50</span><span class="plus">+</span></div>
+            <div class="proof-num-l">patents</div>
+          </div>
+          <div class="proof-num rv-g" style="--d:.12s" role="listitem">
+            <div class="proof-num-n"><span class="nv" data-to="100">100</span><span class="plus">+</span></div>
+            <div class="proof-num-l">R&amp;D staff</div>
+          </div>
+          <div class="proof-num rv-g" style="--d:.18s" role="listitem">
+            <div class="proof-num-n"><span class="nv" data-to="1800">1,800</span></div>
+            <div class="proof-num-l">styles / yr</div>
+          </div>
+          <div class="proof-num rv-g" style="--d:.24s" role="listitem">
+            <div class="proof-num-n"><span class="nv" data-to="67000">67,000</span></div>
+            <div class="proof-num-l">samples / yr</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── SECTION 5: OUR STORY TIMELINE ─────────────────────────────────── -->
+    <section class="story-sec" aria-labelledby="story-h2">
+      <div class="story-wrap">
+
+        <div class="story-head rv-g">
+          <div class="story-kicker">Our Story</div>
+          <h2 class="story-h2" id="story-h2">
+            From three sewing machines<br>to the world&rsquo;s pitches.
+          </h2>
+        </div>
+
+        <table class="timeline rv-g" style="--d:.1s">
+          <thead>
+            <tr>
+              <th scope="col">Year</th>
+              <th scope="col">Milestone</th>
+              <th scope="col">Milestone</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1973</td>
+              <td class="tl-en">Three second-hand sewing machines, Batu Pahat.</td>
+            </tr>
+            <tr>
+              <td>1981</td>
+              <td class="tl-en">Becomes Perusahaan Chan Choo Sing &mdash; PCCS.</td>
+            </tr>
+            <tr>
+              <td>1983</td>
+              <td class="tl-en">Adds embellishment &mdash; the mark begins.</td>
+            </tr>
+            <tr>
+              <td>1993&ndash;95</td>
+              <td class="tl-en">Forms as a group; lists on Bursa Malaysia (6068).</td>
+            </tr>
+            <tr>
+              <td>1998</td>
+              <td class="tl-en">First overseas manufacturing &mdash; Cambodia.</td>
+            </tr>
+            <tr>
+              <td>2005</td>
+              <td class="tl-en">China operations &mdash; PCCS Garments, Suzhou.</td>
+            </tr>
+            <tr>
+              <td>2015</td>
+              <td class="tl-en">Seamless garments capability (PSG, Cambodia).</td>
+            </tr>
+            <tr>
+              <td>2020</td>
+              <td class="tl-en">Adds medical arm &mdash; La Prima.</td>
+            </tr>
+            <tr>
+              <td>2024</td>
+              <td class="tl-en">Vietnam fabric mill &mdash; the last link in the chain.</td>
+            </tr>
+            <tr class="tl-today">
+              <td>Today</td>
+              <td class="tl-en">Integrated maker across four countries. &rarr; Engineering Future.</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </section>
+
+    <!-- ── SECTION 6: GLOBAL FOOTPRINT ───────────────────────────────────── -->
+    <section class="footprint-sec" aria-labelledby="footprint-h2">
+      <div class="footprint-wrap">
+
+        <div class="footprint-head">
+          <div class="rv-g">
+            <div class="footprint-kicker">Global Footprint</div>
+            <h2 class="footprint-h2" id="footprint-h2">
+              Operations across<br>six locations.
+            </h2>
+          </div>
+          <p class="footprint-desc rv-g" style="--d:.1s">
+            From Batu Pahat to Suzhou, from Phnom Penh to Binh Thuan &mdash;
+            one integrated production chain spanning four manufacturing countries
+            and two financial hubs.
+          </p>
+        </div>
+
+        <div class="footprint-grid">
+
+          <div class="footprint-card footprint-card--china rv-g" style="--d:.05s">
+            <div class="footprint-num">01</div>
+            <div class="footprint-location">China</div>
+            <div class="footprint-unit"><div class="footprint-unit-label">Suzhou · Manufacturing</div><div class="footprint-logos"><img class="footprint-logo footprint-logo--wide" src="../images/group/subsidiaries/sgl-pccs-garments-suzhou-2048.png" alt="SGL PCCS Garments Suzhou"></div></div>
+            <div class="footprint-unit"><div class="footprint-unit-label">Shandong · Manufacturing</div><div class="footprint-logos"><img class="footprint-logo footprint-logo--wide" src="../images/group/subsidiaries/sgl-pccs-garments-shandong-2048.png" alt="SGL PCCS Garments Shandong"></div></div>
+            <div class="footprint-unit"><div class="footprint-unit-label">Shanghai · Design &amp; development</div><div class="footprint-logos"><img class="footprint-logo" src="../images/group/subsidiaries/thirty-three-2048.png" alt="Thirty Three"></div></div>
+          </div>
+
+          <div class="footprint-card footprint-card--cambodia rv-g" style="--d:.1s">
+            <div class="footprint-num">02</div>
+            <div class="footprint-location">Cambodia</div>
+            <div class="footprint-unit"><div class="footprint-unit-label">Manufacturing</div><div class="footprint-logos"><img class="footprint-logo" src="../images/group/subsidiaries/whd-2048.png" alt="WHD"><img class="footprint-logo" src="../images/group/subsidiaries/thirty-three-2048.png" alt="Thirty Three"></div></div>
+            <div class="footprint-unit"><div class="footprint-unit-label">Embellishment</div><div class="footprint-logos"><img class="footprint-logo" src="../images/group/subsidiaries/bs-2048.png" alt="BS"><img class="footprint-logo" src="../images/group/subsidiaries/pg-perfect-seamless-2048.png" alt="PG Perfect Seamless"></div></div>
+          </div>
+
+          <div class="footprint-card footprint-card--vietnam rv-g" style="--d:.15s">
+            <div class="footprint-num">03</div>
+            <div class="footprint-location">Vietnam</div>
+            <div class="footprint-role">Manufacturing facilities</div>
+            <div class="footprint-detail">Binh Thuan garment and fabric operations. Vietnam subsidiary logos are pending source artwork.</div>
+          </div>
+
+          <div class="footprint-card footprint-card--malaysia rv-g" style="--d:.2s">
+            <div class="footprint-num">04</div>
+            <div class="footprint-location">Malaysia</div>
+            <div class="footprint-unit"><div class="footprint-unit-label">HQ &amp; corporate office · Marketing</div><div class="footprint-logos"><img class="footprint-logo" src="../images/group/subsidiaries/pccs-logo-color-2048.png" alt="PCCS"></div></div>
+            <div class="footprint-unit"><div class="footprint-unit-label">Medical equipment</div><div class="footprint-logos"><img class="footprint-logo" src="../images/group/subsidiaries/la-prima-2048.png" alt="La Prima"></div></div>
+            <div class="footprint-unit"><div class="footprint-unit-label">Financing &amp; insurance</div><div class="footprint-logos"><img class="footprint-logo" src="../images/group/subsidiaries/ezfy-2048.png" alt="Ezfy"></div></div>
+          </div>
+
+          <div class="footprint-card footprint-card--hongkong rv-g" style="--d:.25s">
+            <div class="footprint-num">05</div>
+            <div class="footprint-location">Hong Kong</div>
+            <div class="footprint-role">Financial hub</div>
+            <div class="footprint-logos"><img class="footprint-logo" src="../images/group/subsidiaries/hk-2048.png" alt="HK"></div>
+          </div>
+
+          <div class="footprint-card footprint-card--singapore rv-g" style="--d:.3s">
+            <div class="footprint-num">06</div>
+            <div class="footprint-location">Singapore</div>
+            <div class="footprint-role">Medical equipment</div>
+            <div class="footprint-logos"><img class="footprint-logo" src="../images/group/subsidiaries/la-prima-2048.png" alt="La Prima"></div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── SECTION 7: LEADERSHIP ─────────────────────────────────────────── -->
+    <section class="leadership-sec" aria-labelledby="leadership-h2">
+      <div class="leadership-wrap">
+
+        <div class="leadership-head rv-g">
+          <div class="leadership-kicker">Leadership</div>
+          <h2 class="leadership-h2" id="leadership-h2">The people behind<br>the decisions.</h2>
+          <p class="leadership-intro">Eight directors. One standard of care, accountability and long-term judgment.</p>
+        </div>
+        <div class="leaders-meta rv-g" style="--d:.08s"><span class="leaders-filter">Board of Directors</span><span class="leaders-count">8 profiles</span></div>
+        <div class="leaders-grid rv-g" style="--d:.1s" role="list">
+          <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/piong-yew-peng.jpg" data-leader-name="Piong Yew Peng" data-leader-role="Senior Independent Non-Executive Chairman" data-leader-bio="Piong Yew Peng joined the Board as an Independent Non-Executive Director in 2015 and was redesignated Senior Independent Non-Executive Chairman in 2023. He holds a Bachelor of Business (Accounting) from RMIT University, is a member of the Malaysian Institute of Accountants and a fellow of CPA Australia, and has more than 30 years of audit and accounting experience. He also serves as a director of The Pay Fong School Berhad, Premier Pay Fong Foundation and Memorial Venture Berhad, and attended all four Board meetings in FY2026."><span class="leader-photo"><img src="../images/group/leaders/piong-yew-peng.jpg" alt="Piong Yew Peng"></span><span class="leader-card-body"><span class="leader-card-name">Piong Yew Peng</span><span class="leader-card-role">Senior Independent Non-Executive Chairman</span></span></button>
+          <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/chan-wee-kiang.jpg" data-leader-name="Chan Wee Kiang" data-leader-role="Group Managing Director" data-leader-bio="Chan Wee Kiang joined the Board as Group Managing Director in 2020. He holds a Bachelor of Commerce (Accounting and Finance) from Monash University and began his career with La Prima Medtech in 2002. He progressed from Marketing Executive to Group Marketing Manager, Deputy Group General Manager and then Group Managing Director. He is a substantial shareholder of PCCS and attended all four Board meetings in FY2026."><span class="leader-photo"><img src="../images/group/leaders/chan-wee-kiang.jpg" alt="Chan Wee Kiang"></span><span class="leader-card-body"><span class="leader-card-name">Chan Wee Kiang</span><span class="leader-card-role">Group Managing Director</span></span></button>
+          <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/chan-wee-boon.jpg" data-leader-name="Chan Wee Boon" data-leader-role="Executive Director" data-leader-bio="Chan Wee Boon joined the Board as an Executive Director in 2020. He holds a Bachelor of Civil Engineering from Monash University, began his career as a project manager in China and Penang, and joined PCCS in 2010. He led the Label and Packaging Division before becoming Group General Manager in 2014 and Executive Director in 2020. He attended all four Board meetings in FY2026."><span class="leader-photo"><img src="../images/group/leaders/chan-wee-boon.jpg" alt="Chan Wee Boon"></span><span class="leader-card-body"><span class="leader-card-name">Chan Wee Boon</span><span class="leader-card-role">Executive Director</span></span></button>
+          <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/chan-chow-tek.jpg" data-leader-name="Chan Chow Tek" data-leader-role="Non-Independent Non-Executive Director" data-leader-bio="Chan Chow Tek joined the Board in 1995 and was redesignated Non-Independent Non-Executive Director in 2020. With more than 50 years in textile and apparel marketing, he made PCCS’s first export order in 1981, helped grow export sales and played a major role in developing the Group’s garment business. He attended three of four Board meetings in FY2026."><span class="leader-photo"><img src="../images/group/leaders/chan-chow-tek.jpg" alt="Chan Chow Tek"></span><span class="leader-card-body"><span class="leader-card-name">Chan Chow Tek</span><span class="leader-card-role">Non-Independent Non-Executive Director</span></span></button>
+          <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/chan-chor-ngiak.jpg" data-leader-name="Dato’ Chan Chor Ngiak" data-leader-role="Non-Independent Non-Executive Director" data-leader-bio="Dato’ Chan Chor Ngiak has served as a Non-Independent Non-Executive Director since 1995 and sits on the Audit, Nomination and Remuneration Committees. He began in marketing in 1980, is Honorary President of the Chinese Chamber of Commerce in Batu Pahat and Chairman of the Chinese Association in Parit Raja, and was conferred the D.I.M.P. title of Dato’. He attended all four Board meetings in FY2026."><span class="leader-photo"><img src="../images/group/leaders/chan-chor-ngiak.jpg" alt="Dato’ Chan Chor Ngiak"></span><span class="leader-card-body"><span class="leader-card-name">Dato’ Chan Chor Ngiak</span><span class="leader-card-role">Non-Independent Non-Executive Director</span></span></button>
+          <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/chan-chor-ang.jpg" data-leader-name="Chan Chor Ang" data-leader-role="Non-Independent Non-Executive Director" data-leader-bio="Chan Chor Ang has served as a Non-Independent Non-Executive Director since 1995. He joined La Prima Medtech in 1981, became Factory Manager at Jusca Garments in 1985, and brings more than 40 years of textile and garment experience. He attended all four Board meetings in FY2026."><span class="leader-photo"><img src="../images/group/leaders/chan-chor-ang.jpg" alt="Chan Chor Ang"></span><span class="leader-card-body"><span class="leader-card-name">Chan Chor Ang</span><span class="leader-card-role">Non-Independent Non-Executive Director</span></span></button>
+          <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/joyce-wong-ai-may.jpg" data-leader-name="Joyce Wong Ai May" data-leader-role="Independent Non-Executive Director" data-leader-bio="Joyce Wong Ai May joined the Board in 2020 and chairs the Audit and Nomination Committees. A Bachelor of Commerce graduate and member of MIA, IIA Malaysia and CPA Australia, she has worked across securities, accounting and consulting, founded JWC Consulting, and serves on the boards and audit committees of several public companies. She attended all four Board meetings in FY2026."><span class="leader-photo"><img src="../images/group/leaders/joyce-wong-ai-may.jpg" alt="Joyce Wong Ai May"></span><span class="leader-card-body"><span class="leader-card-name">Joyce Wong Ai May</span><span class="leader-card-role">Independent Non-Executive Director</span></span></button>
+          <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/tang-lai-huat.jpg" data-leader-name="Tang Lai Huat" data-leader-role="Corporate Controller" data-leader-bio="Dr. Tang Lai Huat was appointed Financial Controller of PCCS Group Berhad in 2016 and Corporate Controller in 2018. He leads the Corporate Office and the Group’s finance and accounting functions, with responsibility extending across strategic deployment, credit, medical equipment and new business. He holds doctorates in business administration, a Master of Public Administration from Tsinghua University, an EMBA from Tsinghua University, an EMBA from City University of Hong Kong, an MBA, ACCA qualification and an executive certificate in financial strategies for cross-border expansion from Harvard Business School and Peking University. His career includes audit and consulting, manufacturing operations, LimKokWing University and JIT Textiles. He also serves as Vice Chairman of Chung De Classics Education Association Malaysia and sits on the board of Faire Berhad."><span class="leader-photo"><img src="../images/group/leaders/tang-lai-huat.jpg" alt="Tang Lai Huat"></span><span class="leader-card-body"><span class="leader-card-name">Tang Lai Huat</span><span class="leader-card-role">Corporate Controller</span></span></button>
+        </div>
+        <div class="leader-modal" data-leader-modal aria-hidden="true">
+          <div class="leader-modal-panel" role="dialog" aria-modal="true" aria-labelledby="leader-modal-name">
+            <button class="leader-modal-close" type="button" data-leader-close aria-label="Close">&times;</button>
+            <div class="leader-modal-top" aria-hidden="true">
+              <span>Board of Directors</span>
+              <span class="leader-modal-company">PCCS Group Berhad</span>
+            </div>
+            <h3 class="leader-modal-name" id="leader-modal-name" data-leader-modal-name></h3>
+            <div class="leader-modal-photo"><img data-leader-modal-image src="" alt=""></div>
+            <div class="leader-modal-copy">
+              <div class="leader-modal-kicker">Board of Directors</div>
+              <div class="leader-modal-role" data-leader-modal-role></div>
+              <p class="leader-modal-bio" data-leader-modal-bio></p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── SECTION 8: VALUES (PCCS acronym) ──────────────────────────────── -->
+    <section class="values-sec" aria-labelledby="values-h2">
+      <div class="values-wrap">
+
+        <div class="values-kicker rv-g">Our Values</div>
+        <p class="values-intro rv-g" id="values-h2" style="--d:.1s">
+          Our values spell our name.
+        </p>
+
+        <div class="values-grid" role="list">
+          <div class="values-item rv-g" style="--d:.08s" role="listitem">
+            <div class="values-letter" aria-hidden="true">P</div>
+            <div class="values-name">Passion</div>
+            <div class="values-desc">We solve what others just supply.</div>
+          </div>
+          <div class="values-item rv-g" style="--d:.16s" role="listitem">
+            <div class="values-letter" aria-hidden="true">C</div>
+            <div class="values-name">Care</div>
+            <div class="values-desc">We leave nothing to chance.</div>
+          </div>
+          <div class="values-item rv-g" style="--d:.24s" role="listitem">
+            <div class="values-letter" aria-hidden="true">C</div>
+            <div class="values-name">Commitment</div>
+            <div class="values-desc">We hold the standard, order after order.</div>
+          </div>
+          <div class="values-item rv-g" style="--d:.32s" role="listitem">
+            <div class="values-letter" aria-hidden="true">S</div>
+            <div class="values-name">Sustainability</div>
+            <div class="values-desc">We build without costing tomorrow.</div>
+          </div>
+        </div>
+
+        <div class="values-vision rv-g" style="--d:.4s">
+          Vision &mdash; A Group of Sustainable Companies with Happy Stakeholders.<br>
+          Mission &mdash; Invest for a Better World.<br>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── SECTION 9: CTA BRIDGE ──────────────────────────────────────────── -->
+    <section class="group-cta-sec" aria-label="Explore more of PCCS">
+      <div class="group-cta-wrap">
+        <div class="group-cta-inner">
+
+          <div class="rv-g">
+            <h2 class="group-cta-h2">
+              Engineering that reaches<br>further than cloth.
+            </h2>
+            <p class="group-cta-sub">
+              Explore the work, the numbers, and the opportunity behind PCCS.
+            </p>
+          </div>
+
+          <div class="group-cta-pills rv-g" style="--d:.12s">
+            <a class="pill-btn" href="engineering.html">The Engineering <span>&rarr;</span></a>
+            <a class="pill-btn" href="our-work.html">Our Work <span>&rarr;</span></a>
+            <a class="pill-btn" href="sustainability.html">Sustainability <span>&rarr;</span></a>
+            <a class="pill-btn" href="investors.html">Investors <span>&rarr;</span></a>
+            <a class="pill-btn" href="careers.html">Careers <span>&rarr;</span></a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══ Footer ══════════════════════════════════════════════════════════════ -->
+
+  <script src="../assets/js/pccs-home.js"></script>
+  <script>
+  (function () {
+    'use strict';
+
+    /* ── 1. Scroll-reveal for .rv-g elements ────────────────────────────── */
+    var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!prefersReducedMotion) {
+      var rvItems = document.querySelectorAll('.rv-g');
+      if (rvItems.length) {
+        var rvObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('in');
+              rvObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12 });
+        rvItems.forEach(function (el) { rvObserver.observe(el); });
+      }
+    }
+
+    /* ── 2. Image parallax reveal: scale(1.04 → 1) on IntersectionObserver ─ */
+    if (!prefersReducedMotion) {
+      var imgWraps = document.querySelectorAll('.manifesto-imgwrap');
+      if (imgWraps.length) {
+        var imgObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('in');
+              imgObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.08 });
+        imgWraps.forEach(function (el) { imgObserver.observe(el); });
+      }
+    }
+
+    /* ── 3. Count-up numbers ────────────────────────────────────────────── */
+    function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+    function formatNumber(n) {
+      if (n >= 1000) return n.toLocaleString('en-US');
+      return String(n);
+    }
+    var countEls = document.querySelectorAll('.nv[data-to]');
+    if (countEls.length && !prefersReducedMotion) {
+      var countObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          var el = entry.target;
+          var target = parseInt(el.getAttribute('data-to'), 10);
+          var duration = 1400;
+          var start = null;
+          function step(ts) {
+            if (!start) start = ts;
+            var progress = Math.min((ts - start) / duration, 1);
+            var current = Math.round(easeOutCubic(progress) * target);
+            el.textContent = formatNumber(current);
+            if (progress < 1) requestAnimationFrame(step);
+          }
+          requestAnimationFrame(step);
+          countObserver.unobserve(el);
+        });
+      }, { threshold: 0.5 });
+      countEls.forEach(function (el) { countObserver.observe(el); });
+    }
+
+    /* ── Leadership tiles and accessible detail modal ───────────────────── */
+    var leaderModal = document.querySelector('[data-leader-modal]');
+    if (leaderModal) {
+      var modalImage = leaderModal.querySelector('[data-leader-modal-image]');
+      var modalName = leaderModal.querySelector('[data-leader-modal-name]');
+      var modalRole = leaderModal.querySelector('[data-leader-modal-role]');
+      var modalBio = leaderModal.querySelector('[data-leader-modal-bio]');
+      var modalClose = leaderModal.querySelector('[data-leader-close]');
+      var lastLeader = null;
+      function openLeader(card) {
+        lastLeader = card;
+        modalImage.src = card.dataset.leaderImage;
+        modalImage.alt = card.dataset.leaderName;
+        modalName.textContent = card.dataset.leaderName;
+        modalRole.textContent = card.dataset.leaderRole;
+        modalBio.textContent = card.dataset.leaderBio;
+        leaderModal.classList.add('is-open');
+        leaderModal.setAttribute('aria-hidden', 'false');
+        document.documentElement.classList.add('leader-modal-open');
+        modalClose.focus();
+      }
+      function closeLeader() {
+        leaderModal.classList.remove('is-open');
+        leaderModal.setAttribute('aria-hidden', 'true');
+        document.documentElement.classList.remove('leader-modal-open');
+        if (lastLeader) lastLeader.focus();
+      }
+      document.querySelectorAll('.leader-card').forEach(function (card) { card.addEventListener('click', function () { openLeader(card); }); });
+      modalClose.addEventListener('click', closeLeader);
+      leaderModal.addEventListener('click', function (event) { if (event.target === leaderModal) closeLeader(); });
+      document.addEventListener('keydown', function (event) { if (event.key === 'Escape' && leaderModal.classList.contains('is-open')) closeLeader(); });
+    }
+
+  }());
+  </script>
+
+</body>
+</html>

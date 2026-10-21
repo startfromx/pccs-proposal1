@@ -1,14 +1,1192 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
 <title>Our Work · PCCS Group</title>
-<link rel="stylesheet" href="../assets/css/pccs.css"><link rel="stylesheet" href="../assets/css/pccs-pages.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23006450'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='21' font-weight='700' fill='%23FFFFFF' text-anchor='middle'%3EP%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/pccs.css">
+<link rel="stylesheet" href="../assets/css/pccs-pages.css">
+<style>
+/* =====================================================================
+   OUR WORK — page-specific styles
+   All shared tokens, nav, footer, .rv reveal are in pccs.css / pccs-pages.css.
+   This block contains only page-unique layout and components.
+   ===================================================================== */
+
+/* ---- HERO ---- */
+html[lang="en"] .zh,
+html[lang="en"] [class*="-zh"] {
+  display: none !important;
+}
+
+.ow-hero-statline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 28px;
+  margin-top: 36px;
+  font-size: clamp(11px, .8vw, 13px);
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.42);
+}
+.ow-hero-statline span { white-space: nowrap; }
+.ow-hero-statline .sep { color: rgba(255,255,255,.2); }
+
+/* ---- BELIEF PULL-QUOTE ---- */
+.ow-belief {
+  background: #fff;
+  padding: clamp(88px, 11vw, 176px) clamp(24px, 5vw, 80px);
+}
+.ow-belief-inner {
+  max-width: 1840px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(48px, 8vw, 148px);
+  align-items: center;
+}
+.ow-belief-quote {
+  font-size: clamp(26px, 2.6vw, 52px);
+  font-weight: 300;
+  line-height: 1.32;
+  letter-spacing: -.024em;
+  color: var(--ink);
+}
+.ow-belief-quote em {
+  font-style: normal;
+  color: var(--green);
+}
+.ow-belief-aside {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+.ow-belief-aside p {
+  font-size: clamp(16px, 1.3vw, 22px);
+  font-weight: 300;
+  line-height: 1.6;
+  color: var(--muted);
+}
+.ow-belief-aside .zh {
+  font-size: clamp(14px, 1.1vw, 18px);
+  line-height: 1.7;
+  color: var(--muted);
+  opacity: .8;
+  margin-top: -8px;
+}
+
+/* ---- STATS STRIP (dark) ---- */
+.ow-stats {
+  background: #0d0d0b;
+  padding: clamp(56px, 7vw, 104px) clamp(24px, 5vw, 80px);
+}
+.ow-stats-inner {
+  max-width: 1840px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.ow-stat {
+  padding: 0 0 0 clamp(28px, 3vw, 52px);
+  border-left: 1px solid rgba(255,255,255,.12);
+}
+.ow-stat:first-child {
+  border-left: none;
+  padding-left: 0;
+}
+.ow-stat-n {
+  font-size: clamp(44px, 6vw, 112px);
+  font-weight: 300;
+  letter-spacing: -.032em;
+  line-height: 1;
+  color: #fff;
+  display: flex;
+  align-items: baseline;
+  gap: .06em;
+}
+.ow-stat-n sub {
+  font-size: .42em;
+  font-weight: 400;
+  vertical-align: baseline;
+  letter-spacing: 0;
+}
+.ow-stat-l {
+  margin-top: 14px;
+  font-size: clamp(11px, .82vw, 14px);
+  font-weight: 500;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.42);
+  line-height: 1.4;
+}
+
+/* ---- BADGE SECTION ---- */
+.ow-badge {
+  background: #fff;
+  padding: clamp(88px, 11vw, 172px) clamp(24px, 5vw, 80px);
+}
+.ow-badge-inner {
+  max-width: 1840px;
+  margin: 0 auto;
+}
+.ow-badge-kicker {
+  font-size: clamp(11px, .78vw, 14px);
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 20px;
+}
+.ow-badge-h2 {
+  font-size: clamp(36px, 5.4vw, 102px);
+  font-weight: 300;
+  letter-spacing: -.05em;
+  line-height: 1.0;
+  color: var(--ink);
+  max-width: 16em;
+  margin-bottom: clamp(48px, 6vw, 88px);
+}
+/* Full-width image with glass overlay */
+.ow-badge-media {
+  position: relative;
+  border-radius: clamp(18px, 2vw, 28px);
+  overflow: hidden;
+  aspect-ratio: 16 / 6.8;
+  margin-bottom: clamp(56px, 7vw, 96px);
+}
+.ow-badge-media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+  transform: scale(1.04);
+  transform-origin: center;
+  transition: transform 1s cubic-bezier(.22,.61,.36,1);
+  will-change: transform;
+}
+.ow-badge-media.in img { transform: scale(1); }
+.ow-badge-media-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(0,0,0,.62) 0%, rgba(0,0,0,.0) 70%);
+  pointer-events: none;
+}
+.ow-badge-glass {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+  padding: clamp(28px, 4vw, 64px);
+  max-width: 44em;
+}
+.ow-badge-glass-quote {
+  font-size: clamp(19px, 1.9vw, 36px);
+  font-weight: 300;
+  line-height: 1.35;
+  letter-spacing: -.018em;
+  color: rgba(255,255,255,.94);
+}
+.ow-badge-glass-cite {
+  display: block;
+  margin-top: 18px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.38);
+}
+/* Three badge bullets */
+.ow-badge-bullets {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(28px, 4vw, 64px);
+}
+.ow-badge-item {
+  border-top: 1px solid var(--line);
+  padding-top: 24px;
+}
+.ow-badge-item-num {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  color: var(--green);
+  margin-bottom: 18px;
+}
+.ow-badge-item h3 {
+  font-size: clamp(18px, 1.55vw, 29px);
+  font-weight: 400;
+  letter-spacing: -.022em;
+  color: var(--ink);
+  margin-bottom: 13px;
+  line-height: 1.2;
+}
+.ow-badge-item p {
+  font-size: clamp(14px, 1.05vw, 18px);
+  line-height: 1.62;
+  color: var(--muted);
+}
+.ow-badge-item .zh {
+  margin-top: 10px;
+  font-size: clamp(12px, .88vw, 15px);
+  line-height: 1.65;
+  color: var(--muted);
+  opacity: .72;
+}
+
+/* ---- SECTORS DRAG RAIL ---- */
+.ow-sectors {
+  background: #f5f5f3;
+  padding: clamp(88px, 11vw, 172px) 0;
+  overflow: hidden;
+}
+.ow-sectors-head {
+  max-width: 1840px;
+  margin: 0 auto;
+  padding: 0 clamp(24px, 5vw, 80px);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 32px;
+  flex-wrap: wrap;
+  margin-bottom: clamp(40px, 5vw, 72px);
+}
+.ow-sectors-kicker {
+  font-size: clamp(11px, .78vw, 14px);
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 16px;
+}
+.ow-sectors-h2 {
+  font-size: clamp(30px, 4.2vw, 78px);
+  font-weight: 300;
+  letter-spacing: -.042em;
+  line-height: 1.04;
+  color: var(--ink);
+}
+.ow-sectors-sub {
+  font-size: clamp(14px, 1.05vw, 18px);
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--muted);
+  margin-top: 10px;
+}
+/* Drag rail */
+.ow-rail-viewport {
+  overflow: hidden;
+  cursor: grab;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.ow-rail-viewport.dragging { cursor: grabbing; }
+.ow-rail-track {
+  display: flex;
+  gap: clamp(12px, 1.5vw, 20px);
+  padding: 0 clamp(24px, 5vw, 80px) clamp(20px, 2vw, 32px);
+  will-change: transform;
+  transition: transform .04s linear;
+}
+/* Add right padding after last card so peeking works cleanly */
+.ow-rail-track::after {
+  content: '';
+  flex: none;
+  width: clamp(12px, 3vw, 40px);
+}
+.ow-sector-card {
+  flex: none;
+  width: clamp(220px, 22vw, 320px);
+  background: #fff;
+  border-radius: 16px;
+  padding: clamp(22px, 2.4vw, 36px) clamp(18px, 2vw, 28px) clamp(22px, 2.4vw, 32px);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: transform .3s cubic-bezier(.22,.61,.36,1),
+              box-shadow .3s ease;
+  will-change: transform;
+}
+.ow-sector-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 48px rgba(0,0,0,.1);
+}
+.ow-sector-card-num {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  color: var(--green);
+}
+.ow-sector-card-name {
+  font-size: clamp(17px, 1.4vw, 24px);
+  font-weight: 500;
+  letter-spacing: -.022em;
+  line-height: 1.2;
+  color: var(--ink);
+}
+.ow-sector-card-name-zh {
+  font-size: clamp(13px, .92vw, 16px);
+  font-weight: 300;
+  line-height: 1.4;
+  color: var(--muted);
+  letter-spacing: normal;
+  margin-top: 2px;
+}
+.ow-sector-card-desc {
+  font-size: clamp(13px, .95vw, 15px);
+  line-height: 1.6;
+  color: var(--muted);
+  flex: 1;
+  margin-top: 4px;
+}
+.ow-sector-card-desc-zh {
+  font-size: clamp(11px, .82vw, 13px);
+  line-height: 1.5;
+  color: var(--muted);
+  opacity: .7;
+  letter-spacing: normal;
+}
+/* Rail scroll indicator dots */
+.ow-rail-dots {
+  display: flex;
+  gap: 7px;
+  justify-content: center;
+  align-items: center;
+  margin-top: clamp(24px, 3vw, 40px);
+}
+.ow-rail-dot {
+  width: 24px;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(0,0,0,.18);
+  cursor: pointer;
+  transition: background .3s, width .3s;
+  border: none;
+  padding: 0;
+}
+.ow-rail-dot.active {
+  background: var(--green);
+  width: 36px;
+}
+
+/* ---- HOW WE WORK ---- */
+.ow-how {
+  background: #fff;
+  padding: clamp(88px, 11vw, 172px) clamp(24px, 5vw, 80px);
+}
+.ow-how-inner {
+  max-width: 1840px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: clamp(48px, 7vw, 128px);
+  align-items: center;
+}
+.ow-how-kicker {
+  font-size: clamp(11px, .78vw, 14px);
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 22px;
+}
+.ow-how-h2 {
+  font-size: clamp(30px, 3.8vw, 70px);
+  font-weight: 300;
+  letter-spacing: -.042em;
+  line-height: 1.08;
+  color: var(--ink);
+  margin-bottom: 28px;
+}
+.ow-how-p {
+  font-size: clamp(16px, 1.3vw, 22px);
+  font-weight: 300;
+  line-height: 1.62;
+  color: var(--ink);
+  max-width: 34em;
+  margin-bottom: 10px;
+}
+.ow-how-p-zh {
+  font-size: clamp(14px, 1.05vw, 18px);
+  font-weight: 300;
+  line-height: 1.72;
+  color: var(--muted);
+  max-width: 34em;
+  letter-spacing: normal;
+  margin-bottom: 34px;
+}
+.ow-how-image-wrap {
+  position: relative;
+  border-radius: clamp(16px, 1.8vw, 24px);
+  overflow: hidden;
+}
+.ow-how-image-wrap img {
+  width: 100%;
+  aspect-ratio: 5 / 4;
+  object-fit: cover;
+  display: block;
+  transition: transform .9s cubic-bezier(.22,.61,.36,1);
+  will-change: transform;
+}
+.ow-how-image-wrap:hover img { transform: scale(1.05); }
+/* Glass caption on How We Work image */
+.ow-how-image-cap {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  padding: 14px 18px;
+  border-radius: 10px;
+  background: rgba(255,255,255,.16);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid rgba(255,255,255,.28);
+  box-shadow: 0 16px 40px rgba(0,0,0,.2);
+  font-size: clamp(12px, .85vw, 14px);
+  font-weight: 600;
+  letter-spacing: .03em;
+  color: #fff;
+  line-height: 1.4;
+  max-width: 20em;
+  text-align: right;
+}
+.ow-how-image-cap .zh {
+  display: block;
+  font-weight: 300;
+  font-size: .9em;
+  opacity: .75;
+  margin-top: 4px;
+  letter-spacing: normal;
+}
+
+/* ---- MANIFESTO / CTA DARK ---- */
+.ow-manifesto {
+  position: relative;
+  overflow: hidden;
+  background: #0a0a08;
+  min-height: clamp(440px, 55vh, 760px);
+  display: flex;
+  align-items: center;
+}
+.ow-manifesto-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+  opacity: .22;
+  transform: scale(1.04);
+  transform-origin: center;
+  transition: transform 1.2s cubic-bezier(.22,.61,.36,1);
+  will-change: transform;
+}
+.ow-manifesto.in .ow-manifesto-img { transform: scale(1); }
+.ow-manifesto-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1840px;
+  margin: 0 auto;
+  padding: clamp(64px, 8vh, 120px) clamp(24px, 5vw, 80px);
+}
+.ow-manifesto-kicker {
+  font-size: clamp(11px, .78vw, 13px);
+  font-weight: 700;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--mint);
+  margin-bottom: 28px;
+}
+.ow-manifesto-h2 {
+  font-size: clamp(36px, 5.6vw, 106px);
+  font-weight: 300;
+  letter-spacing: -.044em;
+  line-height: .96;
+  color: #fff;
+  max-width: 14em;
+  margin-bottom: 36px;
+}
+.ow-manifesto-sub {
+  font-size: clamp(15px, 1.2vw, 21px);
+  font-weight: 300;
+  line-height: 1.55;
+  color: rgba(255,255,255,.65);
+  max-width: 38em;
+  margin-bottom: 40px;
+}
+
+/* ---- SHARED PILL BUTTON override for dark bg ---- */
+.pill-btn-light {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255,255,255,.12);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,.28);
+  text-decoration: none;
+  font-size: clamp(13px, .88vw, 16px);
+  font-weight: 500;
+  padding: 14px 24px;
+  border-radius: 999px;
+  transition: background .3s, border-color .3s;
+  white-space: nowrap;
+}
+.pill-btn-light:hover {
+  background: rgba(255,255,255,.22);
+  border-color: rgba(255,255,255,.5);
+}
+.pill-btn-light span {
+  transition: transform .25s;
+}
+.pill-btn-light:hover span { transform: translateX(3px); }
+
+.ow-manifesto-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+}
+
+/* =====================================================================
+   RESPONSIVE — tablet (≤1100px) and mobile (≤680px)
+   ===================================================================== */
+@media (max-width: 1100px) {
+  .ow-belief-inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .ow-stats-inner {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 40px;
+  }
+  .ow-stat:nth-child(1),
+  .ow-stat:nth-child(3) {
+    border-left: none;
+    padding-left: 0;
+  }
+  .ow-stat:nth-child(2),
+  .ow-stat:nth-child(4) {
+    border-left: 1px solid rgba(255,255,255,.12);
+    padding-left: clamp(28px, 3vw, 52px);
+  }
+  .ow-badge-bullets {
+    grid-template-columns: 1fr 1fr;
+  }
+  .ow-how-inner {
+    grid-template-columns: 1fr;
+    gap: 44px;
+  }
+  .ow-sector-card {
+    width: clamp(240px, 42vw, 340px);
+  }
+}
+
+@media (max-width: 680px) {
+  .ow-hero-h1 { letter-spacing: -.02em; }
+  .ow-hero-statline { gap: 5px 16px; }
+  .ow-stats-inner {
+    grid-template-columns: 1fr 1fr;
+    row-gap: 28px;
+  }
+  .ow-stat {
+    border-left: none;
+    padding-left: 0;
+  }
+  .ow-stat:nth-child(even) {
+    border-left: 1px solid rgba(255,255,255,.12);
+    padding-left: 22px;
+  }
+  .ow-badge-media {
+    aspect-ratio: 4 / 3;
+  }
+  .ow-badge-bullets {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .ow-sector-card {
+    width: clamp(260px, 78vw, 360px);
+  }
+  .ow-how-inner {
+    gap: 36px;
+  }
+  .ow-how-image-cap {
+    display: none;
+  }
+  .ow-manifesto-h2 {
+    letter-spacing: -.025em;
+  }
+}
+
+@media (max-width: 420px) {
+  .ow-stats-inner {
+    grid-template-columns: 1fr;
+  }
+  .ow-stat:nth-child(even) {
+    border-left: none;
+    padding-left: 0;
+  }
+  .ow-stat {
+    border-left: none !important;
+    padding-left: 0 !important;
+  }
+  .ow-stat + .ow-stat {
+    border-top: 1px solid rgba(255,255,255,.1);
+    padding-top: 24px;
+  }
+}
+
+/* =====================================================================
+   REDUCED MOTION
+   ===================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .ow-hero-inner img,
+  .ow-badge-media img,
+  .ow-manifesto-img,
+  .ow-how-image-wrap img {
+    transition: none;
+    transform: none !important;
+  }
+  .ow-eyebrow,
+  .ow-hero-h1 .line-inner,
+  .ow-hero-sub,
+  .ow-hero-statline {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .ow-sector-card {
+    transition: none;
+  }
+}
+</style>
 </head>
 <body class="page-document">
-<header class="page-nav"><a href="../index.html"><img src="../images/PCCS_logo.svg" alt="PCCS Group"></a><nav class="page-nav-links" aria-label="Primary navigation"><a href="engineering.html">What We Do</a><a href="our-work.html">Our Work</a><a href="group.html">Our Group</a><a href="sustainability.html">Sustainability</a><a href="investors.html">Investors</a><a href="careers.html">Careers</a><a href="../index.html#contact">Contact</a></nav><button class="page-nav-toggle" type="button" data-page-menu-toggle aria-expanded="false">Menu +</button></header>
-<nav class="page-menu" data-page-menu aria-label="Mobile navigation"><a href="../index.html">Home</a><a href="engineering.html">What We Do</a><a href="our-work.html">Our Work</a><a href="group.html">Our Group</a><a href="sustainability.html">Sustainability</a><a href="investors.html">Investors</a><a href="careers.html">Careers</a></nav>
-<main class="page-main"><div class="page-kicker">The Mark</div><h1 class="page-title">You own the badge.<br><span class="accent">We make it worthy of it.</span></h1><p class="page-lead">A logo has to survive years of wear and fifty washes without cracking, lifting, or losing its edge. That’s engineering, not decoration.</p><div class="page-grid"><article class="page-card"><img src="../images/pccs-embroidery.jpg" alt="PCCS badge embroidery"><h2>The mark</h2><p>A badge has to survive years of wear and fifty washes without cracking, lifting or fading.</p></article><article class="page-card"><h2>Engineering, not decoration</h2><p>It’s the part people touch first and trust most — the mark that turns cloth into something you’re proud to put on.</p></article><article class="page-card"><h2>Trusted standards</h2><p>Anyone can cut cloth. The official crest is entrusted only to a maker who meets the brand’s standards — that’s us.</p></article></div></main>
-<footer class="page-footer">PCCS Group · Our Work</footer><script src="../assets/js/pccs-pages.js"></script>
+
+<main>
+
+<!-- ===== §1 HERO ===== -->
+<div class="page">
+<section class="hero-stage ow-hero site-hero" id="heroStage" aria-labelledby="ow-h1">
+  <div class="hero-frame">
+    <img src="../images/our-work/our-work-hero.png"
+         data-parallax="1.0,0.22,18"
+         alt="Worker checking a textile production process in a PCCS factory">
+    <div class="hero-scrim" aria-hidden="true"></div>
+  </div>
+  <div class="hero-content">
+    <div class="eyebrow ow-eyebrow">Our Work</div>
+    <h1 id="ow-h1" class="ow-hero-h1">
+      <span class="line">Our work.</span>
+      <span class="line g">Their brands.</span>
+    </h1>
+    <p class="hero-subline ow-hero-sub">
+      For fifty years PCCS has made technical sportswear for the world's biggest
+      brands. Their name goes on it. Our standards go in it. That's the job.
+    </p>
+    <div class="ow-hero-statline" aria-label="Key facts">
+      <span>Top 3 indoor sports apparel vendor</span>
+      <span class="sep" aria-hidden="true">·</span>
+      <span>30+ countries</span>
+      <span class="sep" aria-hidden="true">·</span>
+      <span>50+ patents</span>
+      <span class="sep" aria-hidden="true">·</span>
+      <span>Four manufacturing countries</span>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ===== §2 BELIEF PULL-QUOTE ===== -->
+<section class="ow-belief" aria-labelledby="ow-belief-h2">
+  <div class="ow-belief-inner">
+    <div class="rv" style="--d:.0s">
+      <h2 id="ow-belief-h2" class="ow-belief-quote">
+        Their name goes on it.<br>
+        <em>Our standards go in it.</em>
+      </h2>
+    </div>
+    <div class="ow-belief-aside">
+      <p class="rv" style="--d:.1s">
+        We're the name behind the names. The world's biggest brands trust us
+        with their most valuable asset — their mark — because they trust our
+        expertise to protect it.
+      </p>
+      <p class="zh rv" style="--d:.17s">
+        那些响亮的名字，背后都是我们。全球顶尖品牌敢把最宝贵的资产——他们的标识——
+        托付于我们，正因为他们信赖我们的专业与技术。
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== §3 STATS STRIP ===== -->
+<section class="ow-stats" aria-label="Performance statistics">
+  <div class="ow-stats-inner">
+
+    <div class="ow-stat rv" style="--d:.0s">
+      <div class="ow-stat-n">Top&thinsp;3</div>
+      <div class="ow-stat-l">Indoor sports apparel vendor</div>
+    </div>
+
+    <div class="ow-stat rv" style="--d:.09s">
+      <div class="ow-stat-n">30<sub>+</sub></div>
+      <div class="ow-stat-l">Countries shipped to</div>
+    </div>
+
+    <div class="ow-stat rv" style="--d:.18s">
+      <div class="ow-stat-n">50<sub>+</sub></div>
+      <div class="ow-stat-l">Patents held</div>
+    </div>
+
+    <div class="ow-stat rv" style="--d:.27s">
+      <div class="ow-stat-n">4</div>
+      <div class="ow-stat-l">Manufacturing countries</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== §4 THE BADGE ===== -->
+<section class="ow-badge" aria-labelledby="ow-badge-h2">
+  <div class="ow-badge-inner">
+
+    <header>
+      <div class="ow-badge-kicker rv" style="--d:.0s">The Badge</div>
+      <h2 id="ow-badge-h2" class="ow-badge-h2 rv" style="--d:.07s">
+        You own the badge.<br>
+        We make it worthy of it.
+      </h2>
+    </header>
+
+    <!-- Wide cinematic image with scrim + editorial quote -->
+    <div class="ow-badge-media rv" style="--d:.04s">
+      <img src="../images/our-work/our-work-badge.png"
+           alt="Technician inspecting embroidered stitching on a technical garment"
+           loading="lazy">
+      <div class="ow-badge-media-scrim" aria-hidden="true"></div>
+      <div class="ow-badge-glass">
+        <p class="ow-badge-glass-quote">
+          A badge has to survive years of wear and fifty washes without
+          cracking, lifting or fading. That's engineering, not decoration.
+        </p>
+        <cite class="ow-badge-glass-cite">The PCCS standard</cite>
+      </div>
+    </div>
+
+    <!-- Three bullet pillars -->
+    <div class="ow-badge-bullets" aria-label="Badge engineering capabilities">
+
+      <div class="ow-badge-item rv" style="--d:.05s">
+        <div class="ow-badge-item-num">01</div>
+        <h3>Engineering, not decoration</h3>
+        <p>
+          A badge has to survive years of wear and fifty washes without cracking,
+          lifting or fading. We design for longevity first.
+        </p>
+        <p class="zh">
+          一枚徽章，须经得起长年穿着与五十次洗涤，不开裂、不翘边、不脱色。这是工程，不是装饰。
+        </p>
+      </div>
+
+      <div class="ow-badge-item rv" style="--d:.14s">
+        <div class="ow-badge-item-num">02</div>
+        <h3>Trusted with the official crest</h3>
+        <p>
+          Anyone can cut cloth. The official crest is entrusted only to a maker
+          who meets the brand's standards — that's us.
+        </p>
+        <p class="zh">
+          裁布人人皆可，官方队徽却只托付给达到品牌标准的制造者——而这份资格，属于我们。
+        </p>
+      </div>
+
+      <div class="ow-badge-item rv" style="--d:.22s">
+        <div class="ow-badge-item-num">03</div>
+        <h3>Embellishment as a business</h3>
+        <p>
+          The mark is a business in its own right — other brands buy our
+          embellishment directly, not just as a finishing step.
+        </p>
+        <p class="zh">
+          标识，自成一门生意——其他品牌直接向我们采购这项装饰工艺，而非把它当作收尾的一道工序。
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== §5 SECTORS WE SERVE — horizontal drag rail ===== -->
+<section class="ow-sectors" aria-labelledby="ow-sectors-h2">
+
+  <div class="ow-sectors-head">
+    <div class="rv" style="--d:.0s">
+      <div class="ow-sectors-kicker">Sectors We Serve</div>
+      <h2 id="ow-sectors-h2" class="ow-sectors-h2">
+        Where our work<br>shows up.
+      </h2>
+      <p class="ow-sectors-sub">Our work appears everywhere.</p>
+    </div>
+  </div>
+
+  <div class="ow-rail-viewport" id="owRailViewport" aria-label="Sectors carousel">
+    <div class="ow-rail-track" id="owRailTrack" role="list">
+
+      <article class="ow-sector-card" role="listitem">
+        <div class="ow-sector-card-num">01</div>
+        <div class="ow-sector-card-name">Performance Sport</div>
+        <div class="ow-sector-card-name-zh">专业运动</div>
+        <div class="ow-sector-card-desc">
+          Technical kit engineered to help athletes perform at every level.
+        </div>
+        <div class="ow-sector-card-desc-zh">
+          为运动员而生的机能装备，只为多一分表现。
+        </div>
+      </article>
+
+      <article class="ow-sector-card" role="listitem">
+        <div class="ow-sector-card-num">02</div>
+        <div class="ow-sector-card-name">Football &amp; Clubs</div>
+        <div class="ow-sector-card-name-zh">足球与球会</div>
+        <div class="ow-sector-card-desc">
+          Official-standard jerseys, crests and sponsor marks for Europe's
+          top-flight clubs.
+        </div>
+        <div class="ow-sector-card-desc-zh">
+          官方级球衣、队徽、胸前赞助标，做进欧洲顶级赛场。
+        </div>
+      </article>
+
+      <article class="ow-sector-card" role="listitem">
+        <div class="ow-sector-card-num">03</div>
+        <div class="ow-sector-card-name">Outdoor &amp; Activewear</div>
+        <div class="ow-sector-card-name-zh">户外机能</div>
+        <div class="ow-sector-card-desc">
+          Functional, weather-ready garments built to last in the field.
+        </div>
+        <div class="ow-sector-card-desc-zh">
+          抵御风雨、经久耐穿的功能服装。
+        </div>
+      </article>
+
+      <article class="ow-sector-card" role="listitem">
+        <div class="ow-sector-card-num">04</div>
+        <div class="ow-sector-card-name">Lifestyle &amp; Street</div>
+        <div class="ow-sector-card-name-zh">潮流生活</div>
+        <div class="ow-sector-card-desc">
+          Premium everyday wear for global lifestyle labels.
+        </div>
+        <div class="ow-sector-card-desc-zh">
+          为全球品牌打造的高级日常穿着。
+        </div>
+      </article>
+
+      <article class="ow-sector-card" role="listitem">
+        <div class="ow-sector-card-num">05</div>
+        <div class="ow-sector-card-name">Licensed &amp; Entertainment</div>
+        <div class="ow-sector-card-name-zh">授权娱乐</div>
+        <div class="ow-sector-card-desc">
+          Character and licensed product, decoration-led, made to last.
+        </div>
+        <div class="ow-sector-card-desc-zh">
+          卡通与授权商品，以工艺见长。
+        </div>
+      </article>
+
+    </div>
+  </div>
+
+  <!-- Progress dots -->
+  <div class="ow-rail-dots" id="owRailDots" aria-hidden="true"></div>
+
+</section>
+
+<!-- ===== §6 HOW WE WORK — asymmetric 2fr 3fr ===== -->
+<section class="ow-how" aria-labelledby="ow-how-h2">
+  <div class="ow-how-inner">
+
+    <div class="ow-how-text">
+      <div class="ow-how-kicker rv" style="--d:.0s">How We Work</div>
+      <h2 id="ow-how-h2" class="ow-how-h2 rv" style="--d:.08s">
+        Bring us the problem,<br>not just the spec.
+      </h2>
+      <p class="ow-how-p rv" style="--d:.15s">
+        Most makers wait for a finished tech pack. Brands bring PCCS the harder
+        question — how to make it perform, at scale, on time — and we engineer
+        the answer.
+      </p>
+      <p class="ow-how-p-zh rv" style="--d:.2s">
+        多数制造商，等的是一份完整的技术规格；而在 PCCS，你无需先懂技术——
+        只要说清想要什么：什么性能、什么产量、什么交期，如何实现，由我们攻克。
+      </p>
+      <a class="pill-btn rv" href="engineering.html" style="--d:.26s">
+        See the engineering <span>&rarr;</span>
+      </a>
+    </div>
+
+    <div class="ow-how-image-wrap rv" style="--d:.1s">
+      <img src="../images/our-work/our-work-process.png"
+           alt="PCCS colleagues reviewing a garment sample and fabric swatches"
+           loading="lazy">
+      <div class="ow-how-image-cap">
+        From brief to production sample.<br>
+        <span class="zh">从需求到样品。</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== §7 MANIFESTO / CTA DARK ===== -->
+<section class="ow-manifesto" aria-labelledby="ow-manifesto-h2">
+  <img class="ow-manifesto-img" src="../images/our-work/our-work-manifesto.png"
+       alt="" aria-hidden="true" loading="lazy">
+  <div class="ow-manifesto-content">
+    <div class="ow-manifesto-kicker rv" style="--d:.0s">Engineering Future</div>
+    <h2 id="ow-manifesto-h2" class="ow-manifesto-h2 rv" style="--d:.08s">
+      Fifty years of proof.<br>
+      Built into every stitch.
+    </h2>
+    <p class="ow-manifesto-sub rv" style="--d:.16s">
+      If your next product needs precision at scale, we've been ready for fifty
+      years. Let's talk.
+    </p>
+    <div class="rv ow-manifesto-btns" style="--d:.22s">
+      <a class="pill-btn-light" href="engineering.html">
+        See what we make <span>&rarr;</span>
+      </a>
+      <a class="pill-btn-light" href="../index.html#contact">
+        Get in touch <span>&rarr;</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===== FULL-WIDTH FOOTER ===== -->
+
+<script src="../assets/js/pccs-home.js"></script>
+<script>
+/* =====================================================================
+   OUR WORK — page script
+   1. Hero load animation
+   2. Scroll reveal (.rv / .rv.in)
+   3. Badge media reveal on scroll
+   4. Manifesto image reveal on scroll
+   5. Sectors horizontal drag rail + dots
+   All respect prefers-reduced-motion.
+   ===================================================================== */
+(function () {
+  'use strict';
+
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ── 1. SCROLL REVEAL ── */
+  if (!reduced) {
+    var rvEls = document.querySelectorAll('.rv');
+    if (rvEls.length) {
+      var rvObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            e.target.classList.add('in');
+            rvObserver.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      rvEls.forEach(function (el) { rvObserver.observe(el); });
+    }
+  } else {
+    /* Under reduced-motion: show all reveals immediately */
+    document.querySelectorAll('.rv').forEach(function (el) {
+      el.classList.add('in');
+    });
+  }
+
+  /* ── 3. BADGE MEDIA IMAGE REVEAL ── */
+  var badgeMedia = document.querySelector('.ow-badge-media');
+  if (badgeMedia && !reduced) {
+    var bmObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          bmObserver.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    bmObserver.observe(badgeMedia);
+  } else if (badgeMedia) {
+    badgeMedia.classList.add('in');
+  }
+
+  /* ── 4. MANIFESTO IMAGE REVEAL ── */
+  var manifesto = document.querySelector('.ow-manifesto');
+  if (manifesto && !reduced) {
+    var mfObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          mfObserver.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    mfObserver.observe(manifesto);
+  } else if (manifesto) {
+    manifesto.classList.add('in');
+  }
+
+  /* ── 5. SECTORS DRAG RAIL ── */
+  var viewport = document.getElementById('owRailViewport');
+  var track    = document.getElementById('owRailTrack');
+  var dotsWrap = document.getElementById('owRailDots');
+  if (!viewport || !track) return;
+
+  var cards      = track.querySelectorAll('.ow-sector-card');
+  var cardCount  = cards.length;
+  var isDragging = false;
+  var startX     = 0;
+  var scrollLeft = 0;
+  var velX       = 0;
+  var lastX      = 0;
+  var lastT      = 0;
+  var rafId      = null;
+
+  /* Build progress dots */
+  var dots = [];
+  for (var i = 0; i < cardCount; i++) {
+    var btn = document.createElement('button');
+    btn.className = 'ow-rail-dot';
+    btn.setAttribute('aria-label', 'Sector ' + (i + 1));
+    (function (idx) {
+      btn.addEventListener('click', function () { scrollToCard(idx); });
+    })(i);
+    dotsWrap.appendChild(btn);
+    dots.push(btn);
+  }
+
+  function getCardWidth() {
+    if (!cards[0]) return 0;
+    return cards[0].offsetWidth + parseFloat(getComputedStyle(track).gap || 0);
+  }
+
+  function clampScroll(val) {
+    var maxScroll = track.scrollWidth - viewport.offsetWidth;
+    return Math.max(0, Math.min(val, maxScroll));
+  }
+
+  var currentScroll = 0;
+
+  function applyScroll(val, animate) {
+    currentScroll = clampScroll(val);
+    if (animate && !reduced) {
+      track.style.transition = 'transform .55s cubic-bezier(.22,.61,.36,1)';
+    } else {
+      track.style.transition = 'none';
+    }
+    track.style.transform = 'translateX(' + (-currentScroll) + 'px)';
+    updateDots();
+  }
+
+  function scrollToCard(idx) {
+    var cw = getCardWidth();
+    applyScroll(cw * idx, true);
+  }
+
+  function updateDots() {
+    var cw = getCardWidth();
+    var active = Math.round(currentScroll / cw);
+    active = Math.max(0, Math.min(active, cardCount - 1));
+    dots.forEach(function (d, i) {
+      d.classList.toggle('active', i === active);
+    });
+  }
+
+  /* Pointer / touch events */
+  function onPointerDown(e) {
+    isDragging = true;
+    startX     = (e.touches ? e.touches[0].clientX : e.clientX);
+    scrollLeft = currentScroll;
+    velX       = 0;
+    lastX      = startX;
+    lastT      = Date.now();
+    viewport.classList.add('dragging');
+    track.style.transition = 'none';
+    if (rafId) cancelAnimationFrame(rafId);
+  }
+
+  function onPointerMove(e) {
+    if (!isDragging) return;
+    var x    = (e.touches ? e.touches[0].clientX : e.clientX);
+    var now  = Date.now();
+    var dt   = Math.max(now - lastT, 1);
+    velX     = (lastX - x) / dt * 16; /* px per frame */
+    lastX    = x;
+    lastT    = now;
+    var walk = startX - x;
+    currentScroll = clampScroll(scrollLeft + walk);
+    track.style.transform = 'translateX(' + (-currentScroll) + 'px)';
+    updateDots();
+    if (e.touches) e.preventDefault();
+  }
+
+  function onPointerUp() {
+    if (!isDragging) return;
+    isDragging = false;
+    viewport.classList.remove('dragging');
+    /* Momentum / snap */
+    if (!reduced) {
+      applyMomentum();
+    } else {
+      snapNearest();
+    }
+  }
+
+  function applyMomentum() {
+    var friction = 0.88;
+    function loop() {
+      velX *= friction;
+      if (Math.abs(velX) < 0.5) {
+        snapNearest();
+        return;
+      }
+      currentScroll = clampScroll(currentScroll + velX);
+      track.style.transition = 'none';
+      track.style.transform  = 'translateX(' + (-currentScroll) + 'px)';
+      updateDots();
+      rafId = requestAnimationFrame(loop);
+    }
+    rafId = requestAnimationFrame(loop);
+  }
+
+  function snapNearest() {
+    var cw    = getCardWidth();
+    var idx   = Math.round(currentScroll / cw);
+    idx = Math.max(0, Math.min(idx, cardCount - 1));
+    scrollToCard(idx);
+  }
+
+  viewport.addEventListener('mousedown',  onPointerDown);
+  viewport.addEventListener('mousemove',  onPointerMove);
+  viewport.addEventListener('mouseup',    onPointerUp);
+  viewport.addEventListener('mouseleave', onPointerUp);
+  viewport.addEventListener('touchstart', onPointerDown, { passive: true });
+  viewport.addEventListener('touchmove',  onPointerMove, { passive: false });
+  viewport.addEventListener('touchend',   onPointerUp);
+
+  /* Init dots */
+  updateDots();
+
+})();
+</script>
 </body>
 </html>

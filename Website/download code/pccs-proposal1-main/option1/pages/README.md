@@ -10,3 +10,8 @@ Each HTML file in this folder is an independent page work area:
 - careers.html
 
 Use the approved copy PDF as the source of truth. Keep unknown details marked NEEDS PCCS INPUT. Load the shared files from ../assets/; do not copy their contents into a page. Shared CSS, shared JavaScript, navigation, and approved copy changes belong to the Manager.
+
+Before starting page work, read:
+
+- planning/PCCS-global-components.md
+- agents/page-implementation-prompt.md
