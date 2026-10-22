@@ -161,6 +161,18 @@
       color: rgba(255,255,255,.9);
       line-height: 1;
     }
+    .inv-hero-badge-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+      color: rgba(255,255,255,.88);
+      font-size: 12px;
+      line-height: 1.2;
+      text-decoration: none;
+    }
+    .inv-hero-badge-link span { transition: transform .25s ease; }
+    .inv-hero-badge:hover .inv-hero-badge-link span { transform: translate(3px,-2px); }
 
     /* ---------- SECTION RHYTHM ---------- */
     .inv-sec {
@@ -850,9 +862,27 @@
     .inv-hero.hero-stage .inv-hero-sub { opacity: 0; transform: translateY(18px); transition: opacity .8s cubic-bezier(.22,.61,.36,1) 1.46s, transform .8s cubic-bezier(.22,.61,.36,1) 1.46s; }
     .inv-hero.hero-stage.expanded .inv-hero-sub { opacity: 1; transform: none; }
     .inv-hero.hero-stage.expanded .inv-hero-badge { opacity: 1; transform: none; }
+    .inv-hero.hero-stage .inv-hero-badge {
+      right: clamp(20px,2.08cqw,40px);
+      bottom: clamp(20px,4.17cqw,80px);
+      min-width: clamp(180px,15cqw,280px);
+      padding: 18px 20px 16px;
+      align-items: flex-start;
+      gap: 6px;
+      border: 1px solid rgba(255,255,255,.28);
+      border-radius: 10px;
+      background: rgba(20,20,18,.32);
+      box-shadow: 0 18px 55px rgba(0,0,0,.22);
+      backdrop-filter: blur(18px) saturate(140%);
+      -webkit-backdrop-filter: blur(18px) saturate(140%);
+      color: #fff;
+      text-decoration: none;
+    }
+    .inv-hero.hero-stage .inv-hero-badge:hover { background: rgba(20,20,18,.48); }
     @media (max-width: 680px) {
       .inv-hero.hero-stage { height: 88vh; min-height: 680px; }
       .inv-hero.hero-stage .inv-hero-h1 { font-size: clamp(34px,11.5vw,56px); line-height: .94; letter-spacing: -.017em; margin-left: 0; }
+      .inv-hero.hero-stage .inv-hero-badge { display: flex; right: 20px; bottom: 20px; min-width: 160px; padding: 14px 16px 13px; }
     }
     @media (max-width: 420px) {
       .inv-hero.hero-stage { min-height: 620px; }
@@ -867,9 +897,9 @@
 <div class="page">
 <section class="hero-stage inv-hero site-hero" id="heroStage" aria-labelledby="inv-h1">
   <div class="hero-frame">
-    <img src="../images/our_group_1.jpg"
+    <img src="../images/investors/investors-hero-sgl.png"
          data-parallax="1.0,0.22,18"
-         alt="PCCS manufacturing floor — the value chain behind the world's biggest brands">
+         alt="PCCS Garments Suzhou building in sunlight">
     <div class="hero-scrim" aria-hidden="true"></div>
   </div>
 
@@ -887,10 +917,11 @@
     </p>
   </div>
 
-  <div class="inv-hero-badge" aria-label="Listed on Bursa Malaysia, ticker 6068">
+  <a class="inv-hero-badge" href="https://www.bursamalaysia.com/bm/trade/trading_resources/listing_directory/company-profile?stock_code=6068" target="_blank" rel="noopener noreferrer" aria-label="View PCCS Group Berhad on Bursa Malaysia">
     <div class="inv-hero-badge-label">Bursa Malaysia</div>
     <div class="inv-hero-badge-ticker">6068</div>
-  </div>
+    <span class="inv-hero-badge-link">View company profile <span aria-hidden="true">↗</span></span>
+  </a>
 </section>
 </div>
 
