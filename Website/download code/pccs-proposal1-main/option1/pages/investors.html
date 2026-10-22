@@ -265,6 +265,7 @@
       margin-top: -8px;
       margin-bottom: 20px;
     }
+    html[lang="en"] .zh-tag { display: none; }
 
     /* Value chain graphic */
     .inv-chain {
@@ -355,11 +356,12 @@
     /* 4-up metric grid */
     .inv-metrics {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       border-top: 1px solid rgba(255,255,255,.14);
     }
     .inv-metric {
-      padding: clamp(28px,3vw,52px) clamp(16px,2vw,36px) clamp(28px,3vw,52px) 0;
+      min-width: 0;
+      padding: clamp(28px,3vw,52px) clamp(18px,2.2vw,36px) clamp(28px,3vw,52px);
       border-right: 1px solid rgba(255,255,255,.14);
     }
     .inv-metric:last-child { border-right: none; }
@@ -373,11 +375,12 @@
     }
     .inv-metric-value {
       font-family: 'Inter', 'Noto Sans SC', sans-serif;
-      font-size: clamp(38px,5.2vw,96px);
+      font-size: clamp(34px,4.1vw,76px);
       font-weight: 300;
       line-height: 1;
       letter-spacing: -.04em;
       color: #fff;
+      white-space: nowrap;
     }
     .inv-metric-value sup {
       font-size: .38em;
@@ -587,11 +590,88 @@
     }
     .inv-doc-link:hover { background: var(--green); color: #fff; }
 
+    /* ---------- DOCUMENT LIBRARY ---------- */
+    .inv-document-library { margin-top: 12px; }
+    .inv-document-library .investor-library-layout {
+      display: grid;
+      grid-template-columns: minmax(210px,.72fr) minmax(0,2fr);
+      gap: clamp(32px,5vw,72px);
+      align-items: start;
+    }
+    .inv-document-library .investor-categories {
+      display: flex;
+      flex-direction: column;
+      position: sticky;
+      top: 110px;
+    }
+    .inv-document-library .investor-category {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 0;
+      border: 0;
+      border-bottom: 1px solid var(--line);
+      background: none;
+      color: #999;
+      text-align: left;
+      font: inherit;
+      font-size: clamp(14px,1.1vw,18px);
+      line-height: 1.25;
+      text-decoration: none;
+      cursor: pointer;
+      transition: color .2s, padding-left .2s;
+    }
+    .inv-document-library .investor-category:first-child { border-top: 1px solid var(--line); }
+    .inv-document-library .investor-category:hover,
+    .inv-document-library .investor-category.active { color: var(--ink); padding-left: 8px; }
+    .inv-document-library .investor-category.active { font-weight: 500; }
+    .inv-document-library .investor-category span,
+    .inv-document-library .investor-count,
+    .inv-document-library .investor-group-count {
+      color: var(--green);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .inv-document-library .investor-doc-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 20px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--line);
+    }
+    .inv-document-library .investor-doc-head h2 { margin: 0 0 8px; font-size: clamp(24px,2.4vw,44px); font-weight: 300; letter-spacing: -.04em; }
+    .inv-document-library .investor-doc-head p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.45; }
+    .inv-document-library .investor-doc-group { border-bottom: 1px solid var(--line); }
+    .inv-document-library .investor-doc-group summary { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 18px 0; cursor: pointer; list-style: none; font-size: 17px; font-weight: 500; }
+    .inv-document-library .investor-doc-group summary::-webkit-details-marker { display: none; }
+    .inv-document-library .investor-doc-group summary b { margin-left: 8px; color: var(--green); font-size: 20px; font-weight: 300; }
+    .inv-document-library .investor-doc-list { border-top: 1px solid var(--line); }
+    .inv-document-library .investor-doc-row { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 13px 0; border-bottom: 1px solid rgba(28,28,26,.07); color: var(--ink); text-decoration: none; font-size: 14px; line-height: 1.35; }
+    .inv-document-library .investor-doc-row:hover .investor-doc-title { color: var(--green); }
+    .inv-document-library .investor-doc-title { transition: color .2s; }
+    .inv-document-library .investor-doc-meta { color: var(--green); font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; white-space: nowrap; }
+    .inv-document-library .investor-select-label { display: none; }
+    @media (max-width: 900px) {
+      .inv-document-library .investor-library-layout { display: block; }
+      .inv-document-library .investor-categories { display: none; }
+      .inv-document-library .investor-select-label { display: block; margin-bottom: 24px; color: var(--muted); font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+      .inv-document-library .investor-select-label select { display: block; width: 100%; margin-top: 8px; padding: 13px 12px; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--ink); font: inherit; font-size: 15px; }
+    }
+    @media (max-width: 520px) {
+      .inv-document-library .investor-doc-head { align-items: start; flex-direction: column; }
+      .inv-document-library .investor-doc-row { align-items: flex-start; }
+    }
+
     /* ---------- GOVERNANCE ---------- */
     .inv-gov-grid {
       display: grid;
-      grid-template-columns: 1.1fr 1fr;
-      gap: clamp(48px,6vw,112px);
+      grid-template-columns: 1fr;
+      gap: clamp(28px,4vw,56px);
       align-items: start;
     }
     .inv-board-list {
@@ -888,7 +968,67 @@
       .inv-hero.hero-stage { min-height: 620px; }
       .inv-hero.hero-stage .inv-hero-h1 { font-size: clamp(31px,11vw,44px); }
     }
-  </style>
+    .leadership-sec { background:#f7f7f5; padding:clamp(88px,11vw,160px) clamp(24px,5vw,80px); container-type:inline-size; }
+    .leadership-wrap { max-width:1840px; margin:0 auto; }
+    .leadership-head { margin-bottom:clamp(36px,4vw,64px); }
+    .leadership-kicker,.leader-modal-kicker { font-size:clamp(11px,.8cqw,14px); letter-spacing:.19em; text-transform:uppercase; font-weight:700; color:var(--green); margin-bottom:22px; }
+    .leadership-h2 { font-family:'Inter','Noto Sans SC',system-ui,sans-serif; font-weight:300; font-size:clamp(34px,5.2cqw,88px); line-height:1.02; letter-spacing:-.055em; color:var(--ink); }
+    .leadership-intro { margin-top:22px; max-width:38em; color:var(--muted); font-size:clamp(15px,1.2cqw,21px); line-height:1.55; font-weight:300; }
+    .leaders-meta { display:flex; justify-content:space-between; gap:20px; align-items:center; border-top:1px solid var(--line); padding:16px 0; margin-bottom:2px; }
+    .leaders-filter,.leaders-count { font-size:clamp(10px,.75cqw,12px); letter-spacing:.14em; text-transform:uppercase; font-weight:600; color:var(--muted); }
+    .leaders-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:2px; }
+    .leader-card { appearance:none; border:0; padding:0; margin:0; text-align:left; background:#fff; color:var(--ink); cursor:pointer; overflow:hidden; border-radius:16px; transition:transform .3s ease, background .3s ease; }
+    .leader-card:hover,.leader-card:focus-visible { transform:translateY(-6px); background:#fff; outline:none; }
+    .leader-card:focus-visible { box-shadow:0 0 0 3px var(--green); }
+    .leader-photo { display:block; aspect-ratio:4/5; overflow:hidden; background:#ddd; }
+    .leader-photo img { display:block; width:100%; height:100%; object-fit:cover; filter:saturate(.82); transition:transform .45s ease, filter .45s ease; }
+    .leader-card:hover .leader-photo img,.leader-card:focus-visible .leader-photo img { transform:scale(1.04); filter:saturate(1); }
+    .leader-card-body { display:block; padding:20px 18px 22px; min-height:116px; }
+    .leader-card-name { display:block; font-size:clamp(17px,1.45cqw,25px); line-height:1.1; letter-spacing:-.025em; font-weight:500; }
+    .leader-card-role { display:block; margin-top:10px; color:var(--muted); font-size:clamp(11px,.9cqw,14px); line-height:1.42; font-weight:300; }
+    /* Editorial leader modal — black canvas, oversized type and staged entrance. */
+    .leader-modal { position:fixed; inset:0; z-index:1000; display:grid; place-items:center; padding:4px clamp(10px,3vw,48px); background:rgba(10,10,10,.58); backdrop-filter:blur(5px); -webkit-backdrop-filter:blur(5px); opacity:0; visibility:hidden; pointer-events:none; transition:opacity .38s ease, visibility .38s ease; }
+    .leader-modal.is-open { opacity:1; visibility:visible; pointer-events:auto; }
+    .leader-modal-panel { position:relative; display:grid; box-sizing:border-box; container-type:inline-size; grid-template-columns:minmax(310px,31%) minmax(0,1fr); grid-template-rows:auto minmax(300px,max-content) minmax(0,1fr); column-gap:clamp(32px,5cqw,96px); row-gap:clamp(18px,2.2cqw,34px); width:min(1680px,100%); height:min(96vh,1120px); overflow:hidden; padding:clamp(24px,2cqw,42px) clamp(26px,2.5cqw,54px) clamp(26px,2.8cqw,48px); border-radius:26px; background:#050505; color:#fff; transform:translateY(34px) scale(.965); clip-path:inset(4% 0 0 0 round 26px); transition:transform .72s cubic-bezier(.22,.61,.36,1), clip-path .72s cubic-bezier(.22,.61,.36,1); }
+    .leader-modal.is-open .leader-modal-panel { transform:none; clip-path:inset(0 round 26px); }
+    .leader-modal-top { grid-column:1 / -1; display:flex; justify-content:space-between; gap:32px; padding-right:clamp(74px,8vw,142px); color:rgba(255,255,255,.82); font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:clamp(10px,.7vw,14px); line-height:1.2; letter-spacing:.03em; text-transform:uppercase; opacity:0; transform:translateY(-12px); transition:opacity .5s ease .18s, transform .5s ease .18s; }
+    .leader-modal.is-open .leader-modal-top { opacity:1; transform:none; }
+    .leader-modal-company { text-align:right; }
+    .leader-modal-name { grid-column:1 / -1; align-self:start; height:auto; min-width:0; margin:0; max-width:none; font-family:'Inter','Noto Sans SC',system-ui,sans-serif; font-weight:300; font-size:clamp(52px,7.6cqw,146px); line-height:.86; letter-spacing:-.078em; color:#fff; white-space:nowrap; opacity:0; transform:translateY(34px); transition:opacity .72s cubic-bezier(.22,.61,.36,1) .22s, transform .72s cubic-bezier(.22,.61,.36,1) .22s; }
+    .leader-modal.is-open .leader-modal-name { opacity:1; transform:none; }
+    .leader-modal-photo { grid-column:1; grid-row:3; align-self:end; width:100%; aspect-ratio:4 / 5; min-height:0; overflow:hidden; border-radius:15px; background:#1e252b; opacity:0; transform:translateY(32px); transition:opacity .72s cubic-bezier(.22,.61,.36,1) .34s, transform .72s cubic-bezier(.22,.61,.36,1) .34s; }
+    .leader-modal.is-open .leader-modal-photo { opacity:1; transform:none; }
+    .leader-modal-photo img { width:100%; height:100%; min-height:0; display:block; object-fit:cover; object-position:center top; filter:saturate(.92) contrast(1.04); }
+    .leader-modal-copy { grid-column:2; grid-row:3; align-self:end; min-width:0; max-width:620px; padding:0 0 clamp(10px,2vw,34px); opacity:0; transform:translateY(28px); transition:opacity .7s cubic-bezier(.22,.61,.36,1) .48s, transform .7s cubic-bezier(.22,.61,.36,1) .48s; }
+    .leader-modal.is-open .leader-modal-copy { opacity:1; transform:none; }
+    .leader-modal-kicker { margin-bottom:18px; color:rgba(255,255,255,.58); font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:clamp(10px,.7vw,14px); letter-spacing:.08em; }
+    .leader-modal-role { margin-top:14px; color:rgba(255,255,255,.48); font-size:clamp(12px,1vw,17px); line-height:1.4; font-weight:400; }
+    .leader-modal-bio { margin:28px 0 0; max-width:35em; color:rgba(255,255,255,.56); font-size:clamp(14px,1.1vw,19px); line-height:1.52; font-weight:300; }
+    .leader-modal-close { position:absolute; top:22px; right:22px; z-index:2; width:clamp(58px,8vw,132px); height:clamp(58px,8vw,132px); border:0; padding:0; background:transparent; color:transparent; font-size:0; line-height:0; cursor:pointer; }
+    .leader-modal-close::before,.leader-modal-close::after { content:""; position:absolute; left:50%; top:50%; width:100%; height:2px; background:#fff; transform-origin:center; transition:transform .35s ease, background .25s ease; }
+    .leader-modal-close::before { transform:translate(-50%,-50%) rotate(45deg); }
+    .leader-modal-close::after { transform:translate(-50%,-50%) rotate(-45deg); }
+    .leader-modal-close:hover::before,.leader-modal-close:focus-visible::before { transform:translate(-50%,-50%) rotate(135deg); }
+    .leader-modal-close:hover::after,.leader-modal-close:focus-visible::after { transform:translate(-50%,-50%) rotate(-135deg); }
+    .leader-modal-close:hover::before,.leader-modal-close:hover::after,.leader-modal-close:focus-visible::before,.leader-modal-close:focus-visible::after { background:var(--mint); }
+    .leader-modal-close:focus-visible { outline:2px solid var(--mint); outline-offset:6px; }
+    html.leader-modal-open { overflow:hidden; }
+    @media (max-width:900px) { .leaders-grid { grid-template-columns:repeat(3,1fr); } }
+    @media (max-width:680px) {
+      .leaders-grid { grid-template-columns:repeat(2,1fr); }
+      .leader-card-body { padding:15px 13px 17px; min-height:105px; }
+      .leader-modal { padding:10px; }
+      .leader-modal-panel { display:block; height:min(94vh,900px); max-height:calc(100vh - 20px); padding:22px 22px 28px; border-radius:20px; overflow-y:auto; overflow-x:hidden; }
+      .leader-modal-top { padding-right:58px; margin-bottom:18px; }
+      .leader-modal-name { height:clamp(128px,30vw,220px); max-width:8ch; margin-bottom:18px; font-size:clamp(58px,16vw,108px); white-space:normal; }
+      .leader-modal-photo { width:100%; min-height:0; height:auto; aspect-ratio:4 / 5; margin-bottom:28px; }
+      .leader-modal-copy { padding:0 2px 4px; }
+      .leader-modal-close { top:16px; right:16px; width:48px; height:48px; }
+    }
+
+    .investors-leadership { padding:clamp(64px,8vw,112px) clamp(24px,5vw,80px); }
+    .investors-leadership .leadership-h2 { font-size:clamp(32px,4.5cqw,72px); }
+</style>
 </head>
 
 <body class="page-document">
@@ -928,17 +1068,6 @@
 <!-- ===== MAIN ===== -->
 <main id="main-content">
 
-  <!-- COMPLIANCE NOTICE -->
-  <div class="inv-sec" style="padding-bottom:0; padding-top: clamp(32px,4vw,56px);">
-    <div class="inv-compliance-bar" role="note">
-      <strong>Notice&nbsp;—</strong>
-      All investor relations copy, financial figures and market data require
-      CFO&nbsp;/ compliance sign-off before publication. Figures from the approved
-      copysheet are labelled with their source. Anything awaiting confirmation is
-      marked&nbsp;<span class="inv-data-note">NEEDS PCCS INPUT</span>.
-    </div>
-  </div>
-
   <!-- ===== 1 · EQUITY THESIS ===== -->
   <section id="equity-story" aria-labelledby="inv-thesis-heading">
     <div class="inv-sec">
@@ -956,7 +1085,7 @@
             <p>PCCS started as a cut-and-sew contractor. Over fifty years it moved steadily upstream &mdash; adding embellishment, then development, then fabric. Each link added is a link the customer no longer needs to source elsewhere.</p>
             <p>The market still prices PCCS as a garment manufacturer. The business is becoming something different: an integrated platform that owns development, decoration and now materials. The gap between what is priced and what is owned is where the investment case lives.</p>
             <p class="zh-tag" lang="zh-CN">股价之外，是我们更深的实力。这个差距，就是机会。</p>
-            <a class="pill-btn" href="#stock-info">Stock information &nbsp;&rarr;</a>
+            <a class="pill-btn" href="https://www.bursamalaysia.com/bm/trade/trading_resources/listing_directory/company-profile?stock_code=6068" target="_blank" rel="noopener noreferrer">Bursa profile &nbsp;&rarr;</a>
           </div>
         </div>
 
@@ -1008,9 +1137,6 @@
               <span class="inv-chain-badge owned">Owned</span>
             </div>
           </div>
-          <p style="margin-top:10px; font-size:11px; color:#999;">
-            Chain data from approved copy PDF. Fabric mill: Vietnam, Binh Thuan — expanding.
-          </p>
         </div>
 
       </div>
@@ -1020,355 +1146,108 @@
   <!-- ===== 2 · FINANCIALS DARK BAND ===== -->
   <section id="financials" class="inv-fin-band" aria-labelledby="inv-fin-heading">
     <div class="inv-sec">
-      <div class="inv-fin-kicker rv">FY2024 Financial Performance</div>
+      <div class="inv-fin-kicker rv">FY2026 Financial Performance</div>
       <h2 class="inv-fin-headline rv" id="inv-fin-heading" style="--d:.06s;">
         Measured.<br>Proven.<br><span class="accent">Built to last.</span>
       </h2>
 
       <!-- 4-up count-up metrics -->
-      <div class="inv-metrics rv" style="--d:.12s;" aria-label="Key financial metrics FY2024">
+      <div class="inv-metrics rv" style="--d:.12s;" aria-label="Key financial metrics FY2026">
         <div class="inv-metric">
           <div class="inv-metric-label">Revenue</div>
-          <div class="inv-metric-value"><span class="count-up" data-to="560" data-prefix="RM" data-suffix="m">RM560</span><sup>m</sup></div>
+          <div class="inv-metric-value"><span class="count-up" data-to="560.2" data-prefix="RM" data-decimal="1">RM560.2</span><sup>m</sup></div>
           <div class="inv-metric-sub">+2.2% year-on-year</div>
         </div>
         <div class="inv-metric">
           <div class="inv-metric-label">Profit after tax</div>
-          <div class="inv-metric-value"><span class="count-up" data-to="14.6" data-prefix="RM" data-suffix="m" data-decimal="1">RM14.6</span><sup>m</sup></div>
-          <div class="inv-metric-sub">~3&times; prior year</div>
+          <div class="inv-metric-value"><span class="count-up" data-to="14.3" data-prefix="RM" data-decimal="1">RM14.3</span><sup>m</sup></div>
+          <div class="inv-metric-sub">+149.3% year-on-year</div>
         </div>
         <div class="inv-metric">
           <div class="inv-metric-label">Net margin</div>
-          <div class="inv-metric-value"><span class="count-up" data-to="2.6" data-suffix="%" data-decimal="1">~2.6</span><sup>%</sup></div>
-          <div class="inv-metric-sub">Margin expanding</div>
+          <div class="inv-metric-value"><span class="count-up" data-to="2.6" data-suffix="%" data-decimal="1">2.6</span><sup>%</sup></div>
+          <div class="inv-metric-sub">PAT margin</div>
         </div>
         <div class="inv-metric">
-          <div class="inv-metric-label">P/B ratio</div>
+          <div class="inv-metric-label">P/B ratio*</div>
           <div class="inv-metric-value"><span class="count-up" data-to="0.4" data-prefix="~" data-suffix="×" data-decimal="1">~0.4</span><sup>&times;</sup></div>
-          <div class="inv-metric-sub">Equity RM193m</div>
+          <div class="inv-metric-sub">Indicative; market data needed</div>
         </div>
       </div>
 
-      <div class="inv-fin-source rv" style="--d:.18s;">
-        <p>Source: Approved copy PDF (FY2024 Annual Report). Net gearing ~0.11&times;.
-          All figures subject to CFO&nbsp;/ compliance sign-off before publication.
-          Live market data: <span class="inv-data-note">NEEDS PCCS INPUT</span>
-        </p>
-        <a class="pill-btn" href="#documents"
-           style="background:rgba(255,255,255,.12); color:#fff; border:1px solid rgba(255,255,255,.28);">
-          Annual Reports &nbsp;&rarr;
-        </a>
-      </div>
     </div>
   </section>
 
-  <!-- ===== 3 · INVESTMENT NARRATIVE STRIP ===== -->
-  <section class="inv-narrative" aria-label="Investment narrative">
-    <div class="inv-narrative-inner">
-      <div class="inv-quote-block rv">
-        &ldquo;Margin is the story;<br>the multiple is the<br>market&rsquo;s to give.&rdquo;
-        <cite>PCCS Investment Thesis</cite>
-      </div>
-      <div class="inv-narrative-copy rv" style="--d:.1s;">
-        <p>PCCS trades at approximately 0.4&times; book value against an equity base of RM193&nbsp;million and net gearing of 0.11&times;. Profit after tax recovered to RM14.6&nbsp;million on revenue of RM560.2&nbsp;million.</p>
-        <p>The margin story is what the equity story is built on: each link added to the owned chain &mdash; fabric, embellishment, development &mdash; carries a higher margin than cut-and-sew production alone.</p>
-        <p class="zh-tag" lang="zh-CN">利润率是故事；倍数，市场来给。</p>
-      </div>
-    </div>
-  </section>
+  <!-- ===== 3 · DOCUMENTS ===== -->
+    <section class="leadership-sec investors-leadership" aria-labelledby="leadership-h2">
+      <div class="leadership-wrap">
 
-  <!-- ===== 4 · STOCK SNAPSHOT ===== -->
-  <section id="stock-info" aria-labelledby="inv-stock-heading">
-    <div class="inv-sec">
-      <div class="inv-kicker rv">Stock Information</div>
-      <h2 class="inv-thesis-pull rv" id="inv-stock-heading" style="--d:.06s; font-size:clamp(26px,3.6vw,68px); margin-bottom: clamp(36px,4vw,72px);">
-        Listed on Bursa Malaysia.<br><span class="accent">Main Market. Ticker 6068.</span>
-      </h2>
-
-      <div class="inv-stock-grid">
-
-        <!-- Snap widget -->
-        <div class="rv">
-          <div class="inv-snap-panel">
-            <div class="snap-top">
-              <div class="snap-title">PCCS Group Berhad</div>
-              <div class="snap-tick">Bursa Main Market&ensp;<b>6068</b></div>
-            </div>
-            <div class="snap-price" aria-label="Share price — live feed required">
-              <span class="p" style="opacity:.28;">—</span>
-              <span class="u">RM</span>
-            </div>
-            <p style="text-align:center; font-size:11.5px; color:#aaa; margin-top:-22px; margin-bottom:22px;">
-              Live price feed &mdash; <span class="inv-data-note">NEEDS PCCS INPUT</span>
-            </p>
-            <div class="snap-row" aria-label="Key market data">
-              <div>
-                <div class="lab">Last price</div>
-                <div class="val"><span class="inv-data-note" style="font-size:9px;">NPI</span></div>
-              </div>
-              <div>
-                <div class="lab">52-wk high</div>
-                <div class="val"><span class="inv-data-note" style="font-size:9px;">NPI</span></div>
-              </div>
-              <div>
-                <div class="lab">52-wk low</div>
-                <div class="val"><span class="inv-data-note" style="font-size:9px;">NPI</span></div>
-              </div>
-              <div>
-                <div class="lab">Market cap</div>
-                <div class="val"><span class="inv-data-note" style="font-size:9px;">NPI</span></div>
-              </div>
-            </div>
-            <div class="snap-row" style="margin-top:12px;" aria-label="Additional market data">
-              <div>
-                <div class="lab">Shares out.</div>
-                <div class="val"><span class="inv-data-note" style="font-size:9px;">NPI</span></div>
-              </div>
-              <div>
-                <div class="lab">EPS</div>
-                <div class="val"><span class="inv-data-note" style="font-size:9px;">NPI</span></div>
-              </div>
-              <div>
-                <div class="lab">Div. yield</div>
-                <div class="val"><span class="inv-data-note" style="font-size:9px;">NPI</span></div>
-              </div>
-              <div>
-                <div class="lab">P/E</div>
-                <div class="val"><span class="inv-data-note" style="font-size:9px;">NPI</span></div>
-              </div>
-            </div>
-            <div class="inv-snap-disclaimer">
-              All market data requires a live Bursa Malaysia feed and must be
-              verified before publication. Subject to CFO&nbsp;/ compliance sign-off.
-            </div>
-          </div>
-          <a class="inv-bursa-link" href="#"
-             aria-label="View PCCS on Bursa Malaysia — URL NEEDS PCCS INPUT">
-            View on Bursa Malaysia &rarr;
-            <span class="inv-data-note" style="margin-left:4px; font-size:9.5px;">URL NEEDS PCCS INPUT</span>
-          </a>
+        <div class="leadership-head rv-g">
+          <div class="leadership-kicker">Leadership</div>
+          <h2 class="leadership-h2" id="leadership-h2">The people behind<br>the decisions.</h2>
+          <p class="leadership-intro">Eight directors. One standard of care, accountability and long-term judgment.</p>
         </div>
-
-        <!-- Context + key dates -->
-        <div class="rv" style="--d:.1s;">
-          <p style="font-size:clamp(15px,1.3vw,21px); font-weight:300; line-height:1.58; letter-spacing:-.01em; color:var(--ink); margin-bottom:18px;">
-            PCCS Group Berhad has been listed on Bursa Malaysia&rsquo;s Main Market since
-            the 1990s under ticker <strong>6068</strong>. It trades alongside other
-            Malaysian manufacturing groups.
-          </p>
-          <p style="font-size:clamp(15px,1.3vw,21px); font-weight:300; line-height:1.58; letter-spacing:-.01em; color:var(--ink); margin-bottom:18px;">
-            At approximately 0.4&times; book, the market prices PCCS as a pure cut-and-sew
-            manufacturer. The platform strategy &mdash; development, embellishment, fabric &mdash;
-            is not yet reflected in the multiple. That is the investment premise.
-          </p>
-          <p style="font-size:12px; color:#999; margin-bottom:0;">
-            Source: Approved copy PDF. Net gearing ~0.11&times;, equity base RM193m.
-            Subject to CFO&nbsp;/ compliance sign-off.
-          </p>
-
-          <div class="inv-key-dates">
-            <div class="inv-kicker" style="margin-bottom:0;">Key dates</div>
-            <div class="inv-key-date-row">
-              <div class="inv-key-date-label">Financial year-end</div>
-              <div class="inv-key-date-val"><span class="inv-data-note">NEEDS PCCS INPUT</span></div>
+        <div class="leaders-meta rv-g" style="--d:.08s"><span class="leaders-filter">Board of Directors</span><span class="leaders-count">8 profiles</span></div>
+        <div class="leaders-grid rv-g" style="--d:.1s" role="list">
+          <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/piong-yew-peng.jpg" data-leader-name="Piong Yew Peng" data-leader-role="Senior Independent Non-Executive Chairman" data-leader-bio="Piong Yew Peng joined the Board as an Independent Non-Executive Director in 2015 and was redesignated Senior Independent Non-Executive Chairman in 2023. He holds a Bachelor of Business (Accounting) from RMIT University, is a member of the Malaysian Institute of Accountants and a fellow of CPA Australia, and has more than 30 years of audit and accounting experience. He also serves as a director of The Pay Fong School Berhad, Premier Pay Fong Foundation and Memorial Venture Berhad, and attended all four Board meetings in FY2026."><span class="leader-photo"><img src="../images/group/leaders/piong-yew-peng.jpg" alt="Piong Yew Peng"></span><span class="leader-card-body"><span class="leader-card-name">Piong Yew Peng</span><span class="leader-card-role">Senior Independent Non-Executive Chairman</span></span></button>
+          <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/chan-wee-kiang.jpg" data-leader-name="Chan Wee Kiang" data-leader-role="Group Managing Director" data-leader-bio="Chan Wee Kiang joined the Board as Group Managing Director in 2020. He holds a Bachelor of Commerce (Accounting and Finance) from Monash University and began his career with La Prima Medtech in 2002. He progressed from Marketing Executive to Group Marketing Manager, Deputy Group General Manager and then Group Managing Director. He is a substantial shareholder of PCCS and attended all four Board meetings in FY2026."><span class="leader-photo"><img src="../images/group/leaders/chan-wee-kiang.jpg" alt="Chan Wee Kiang"></span><span class="leader-card-body"><span class="leader-card-name">Chan Wee Kiang</span><span class="leader-card-role">Group Managing Director</span></span></button>
+          <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/chan-wee-boon.jpg" data-leader-name="Chan Wee Boon" data-leader-role="Executive Director" data-leader-bio="Chan Wee Boon joined the Board as an Executive Director in 2020. He holds a Bachelor of Civil Engineering from Monash University, began his career as a project manager in China and Penang, and joined PCCS in 2010. He led the Label and Packaging Division before becoming Group General Manager in 2014 and Executive Director in 2020. He attended all four Board meetings in FY2026."><span class="leader-photo"><img src="../images/group/leaders/chan-wee-boon.jpg" alt="Chan Wee Boon"></span><span class="leader-card-body"><span class="leader-card-name">Chan Wee Boon</span><span class="leader-card-role">Executive Director</span></span></button>
+          <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/chan-chow-tek.jpg" data-leader-name="Chan Chow Tek" data-leader-role="Non-Independent Non-Executive Director" data-leader-bio="Chan Chow Tek joined the Board in 1995 and was redesignated Non-Independent Non-Executive Director in 2020. With more than 50 years in textile and apparel marketing, he made PCCS’s first export order in 1981, helped grow export sales and played a major role in developing the Group’s garment business. He attended three of four Board meetings in FY2026."><span class="leader-photo"><img src="../images/group/leaders/chan-chow-tek.jpg" alt="Chan Chow Tek"></span><span class="leader-card-body"><span class="leader-card-name">Chan Chow Tek</span><span class="leader-card-role">Non-Independent Non-Executive Director</span></span></button>
+          <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/chan-chor-ngiak.jpg" data-leader-name="Dato’ Chan Chor Ngiak" data-leader-role="Non-Independent Non-Executive Director" data-leader-bio="Dato’ Chan Chor Ngiak has served as a Non-Independent Non-Executive Director since 1995 and sits on the Audit, Nomination and Remuneration Committees. He began in marketing in 1980, is Honorary President of the Chinese Chamber of Commerce in Batu Pahat and Chairman of the Chinese Association in Parit Raja, and was conferred the D.I.M.P. title of Dato’. He attended all four Board meetings in FY2026."><span class="leader-photo"><img src="../images/group/leaders/chan-chor-ngiak.jpg" alt="Dato’ Chan Chor Ngiak"></span><span class="leader-card-body"><span class="leader-card-name">Dato’ Chan Chor Ngiak</span><span class="leader-card-role">Non-Independent Non-Executive Director</span></span></button>
+          <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/chan-chor-ang.jpg" data-leader-name="Chan Chor Ang" data-leader-role="Non-Independent Non-Executive Director" data-leader-bio="Chan Chor Ang has served as a Non-Independent Non-Executive Director since 1995. He joined La Prima Medtech in 1981, became Factory Manager at Jusca Garments in 1985, and brings more than 40 years of textile and garment experience. He attended all four Board meetings in FY2026."><span class="leader-photo"><img src="../images/group/leaders/chan-chor-ang.jpg" alt="Chan Chor Ang"></span><span class="leader-card-body"><span class="leader-card-name">Chan Chor Ang</span><span class="leader-card-role">Non-Independent Non-Executive Director</span></span></button>
+          <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/joyce-wong-ai-may.jpg" data-leader-name="Joyce Wong Ai May" data-leader-role="Independent Non-Executive Director" data-leader-bio="Joyce Wong Ai May joined the Board in 2020 and chairs the Audit and Nomination Committees. A Bachelor of Commerce graduate and member of MIA, IIA Malaysia and CPA Australia, she has worked across securities, accounting and consulting, founded JWC Consulting, and serves on the boards and audit committees of several public companies. She attended all four Board meetings in FY2026."><span class="leader-photo"><img src="../images/group/leaders/joyce-wong-ai-may.jpg" alt="Joyce Wong Ai May"></span><span class="leader-card-body"><span class="leader-card-name">Joyce Wong Ai May</span><span class="leader-card-role">Independent Non-Executive Director</span></span></button>
+          <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/tang-lai-huat.jpg" data-leader-name="Tang Lai Huat" data-leader-role="Corporate Controller" data-leader-bio="Dr. Tang Lai Huat was appointed Financial Controller of PCCS Group Berhad in 2016 and Corporate Controller in 2018. He leads the Corporate Office and the Group’s finance and accounting functions, with responsibility extending across strategic deployment, credit, medical equipment and new business. He holds doctorates in business administration, a Master of Public Administration from Tsinghua University, an EMBA from Tsinghua University, an EMBA from City University of Hong Kong, an MBA, ACCA qualification and an executive certificate in financial strategies for cross-border expansion from Harvard Business School and Peking University. His career includes audit and consulting, manufacturing operations, LimKokWing University and JIT Textiles. He also serves as Vice Chairman of Chung De Classics Education Association Malaysia and sits on the board of Faire Berhad."><span class="leader-photo"><img src="../images/group/leaders/tang-lai-huat.jpg" alt="Tang Lai Huat"></span><span class="leader-card-body"><span class="leader-card-name">Tang Lai Huat</span><span class="leader-card-role">Corporate Controller</span></span></button>
+        </div>
+        <div class="leader-modal" data-leader-modal aria-hidden="true">
+          <div class="leader-modal-panel" role="dialog" aria-modal="true" aria-labelledby="leader-modal-name">
+            <button class="leader-modal-close" type="button" data-leader-close aria-label="Close">&times;</button>
+            <div class="leader-modal-top" aria-hidden="true">
+              <span>Board of Directors</span>
+              <span class="leader-modal-company">PCCS Group Berhad</span>
             </div>
-            <div class="inv-key-date-row">
-              <div class="inv-key-date-label">Next AGM</div>
-              <div class="inv-key-date-val"><span class="inv-data-note">NEEDS PCCS INPUT</span></div>
-            </div>
-            <div class="inv-key-date-row">
-              <div class="inv-key-date-label">Results release</div>
-              <div class="inv-key-date-val"><span class="inv-data-note">NEEDS PCCS INPUT</span></div>
-            </div>
-            <div class="inv-key-date-row">
-              <div class="inv-key-date-label">Dividend record</div>
-              <div class="inv-key-date-val"><span class="inv-data-note">NEEDS PCCS INPUT</span></div>
+            <h3 class="leader-modal-name" id="leader-modal-name" data-leader-modal-name></h3>
+            <div class="leader-modal-photo"><img data-leader-modal-image src="" alt=""></div>
+            <div class="leader-modal-copy">
+              <div class="leader-modal-kicker">Board of Directors</div>
+              <div class="leader-modal-role" data-leader-modal-role></div>
+              <p class="leader-modal-bio" data-leader-modal-bio></p>
             </div>
           </div>
         </div>
 
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ===== 5 · DOCUMENTS ===== -->
   <section id="documents" class="inv-docs-strip" aria-labelledby="inv-docs-heading">
     <div class="inv-sec">
       <div class="inv-kicker rv">Reports &amp; Disclosures</div>
       <h2 class="inv-thesis-pull rv" id="inv-docs-heading" style="--d:.06s; font-size:clamp(26px,3.4vw,64px); margin-bottom:clamp(36px,4vw,64px);">
         Annual Reports,<br><span class="accent">Results &amp; AGM.</span>
       </h2>
-    </div>
-    <div class="inv-sec" style="padding-top:0;">
-      <div class="inv-docs-scroll rv" style="--d:.1s;" role="list" aria-label="Annual reports and documents">
-        <div class="inv-doc-card" role="listitem">
-          <div class="inv-doc-year">FY2024</div>
-          <div class="inv-doc-name">Annual Report<br><span class="inv-data-note" style="margin-top:8px; display:inline-flex;">NEEDS PCCS INPUT</span></div>
-          <a class="inv-doc-link" href="#"
-             aria-label="Download FY2024 Annual Report (link needs PCCS input)">PDF &darr;</a>
-        </div>
-        <div class="inv-doc-card" role="listitem">
-          <div class="inv-doc-year">FY2023</div>
-          <div class="inv-doc-name">Annual Report<br><span class="inv-data-note" style="margin-top:8px; display:inline-flex;">NEEDS PCCS INPUT</span></div>
-          <a class="inv-doc-link" href="#"
-             aria-label="Download FY2023 Annual Report (link needs PCCS input)">PDF &darr;</a>
-        </div>
-        <div class="inv-doc-card" role="listitem">
-          <div class="inv-doc-year">FY2022</div>
-          <div class="inv-doc-name">Annual Report<br><span class="inv-data-note" style="margin-top:8px; display:inline-flex;">NEEDS PCCS INPUT</span></div>
-          <a class="inv-doc-link" href="#"
-             aria-label="Download FY2022 Annual Report (link needs PCCS input)">PDF &darr;</a>
-        </div>
-        <div class="inv-doc-card" role="listitem">
-          <div class="inv-doc-year">Q Results</div>
-          <div class="inv-doc-name">Quarterly Results<br><span class="inv-data-note" style="margin-top:8px; display:inline-flex;">NEEDS PCCS INPUT</span></div>
-          <a class="inv-doc-link" href="#"
-             aria-label="View quarterly results (needs PCCS input)">View</a>
-        </div>
-        <div class="inv-doc-card" role="listitem">
-          <div class="inv-doc-year">AGM</div>
-          <div class="inv-doc-name">AGM Notice &amp; Materials<br><span class="inv-data-note" style="margin-top:8px; display:inline-flex;">NEEDS PCCS INPUT</span></div>
-          <a class="inv-doc-link" href="#"
-             aria-label="View AGM materials (needs PCCS input)">View</a>
-        </div>
-        <div class="inv-doc-card" role="listitem">
-          <div class="inv-doc-year">Bursa</div>
-          <div class="inv-doc-name">All Disclosures<br><span style="font-size:12px; color:var(--muted); display:block; margin-top:4px;">Live feed via Bursa portal</span></div>
-          <a class="inv-doc-link" href="#"
-             aria-label="View all Bursa disclosures (link needs PCCS input)">Bursa &rarr;</a>
+      <div class="inv-document-library" data-investor-library>
+        <div class="investor-library-layout">
+          <aside class="investor-categories" data-investor-categories aria-label="Investor document categories"></aside>
+          <label class="investor-select-label" for="investorCategory">Browse category
+            <select id="investorCategory" data-investor-select aria-label="Choose investor document category"></select>
+          </label>
+          <div class="investor-documents" data-investor-documents></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== 6 · ANNOUNCEMENTS ===== -->
-  <section id="announcements" aria-labelledby="inv-ann-heading">
-    <div class="inv-sec">
-      <div class="inv-kicker rv">Bursa Announcements</div>
-      <h2 class="inv-thesis-pull rv" id="inv-ann-heading" style="--d:.06s; font-size:clamp(26px,3.4vw,64px); margin-bottom:clamp(28px,3vw,48px);">
-        Disclosures &amp;<br><span class="accent">announcements.</span>
-      </h2>
-
-      <div class="inv-compliance-bar rv" style="--d:.1s; margin-bottom:36px;" role="note">
-        <strong>Note&nbsp;—</strong>
-        Announcement data must be sourced from the live Bursa Malaysia disclosure feed.
-        Rows below are structural placeholders. Replace with verified data before publication.
-        Bursa disclosure URL: <span class="inv-data-note">NEEDS PCCS INPUT</span>
-      </div>
-
-      <div class="inv-ann-list rv" style="--d:.14s;" aria-label="Recent announcements">
-        <div class="inv-ann-row">
-          <div class="inv-ann-date"><span class="inv-data-note">NEEDS PCCS INPUT</span></div>
-          <div class="inv-ann-title">Latest results announcement</div>
-          <div class="inv-ann-cat">Results</div>
-        </div>
-        <div class="inv-ann-row">
-          <div class="inv-ann-date"><span class="inv-data-note">NEEDS PCCS INPUT</span></div>
-          <div class="inv-ann-title">Annual report submission</div>
-          <div class="inv-ann-cat">Annual</div>
-        </div>
-        <div class="inv-ann-row">
-          <div class="inv-ann-date"><span class="inv-data-note">NEEDS PCCS INPUT</span></div>
-          <div class="inv-ann-title">AGM notice and materials</div>
-          <div class="inv-ann-cat">AGM</div>
-        </div>
-        <div class="inv-ann-row">
-          <div class="inv-ann-date"><span class="inv-data-note">NEEDS PCCS INPUT</span></div>
-          <div class="inv-ann-title">Changes in shareholding</div>
-          <div class="inv-ann-cat">Shareholding</div>
-        </div>
-        <div class="inv-ann-row">
-          <div class="inv-ann-date"><span class="inv-data-note">NEEDS PCCS INPUT</span></div>
-          <div class="inv-ann-title">Material announcement</div>
-          <div class="inv-ann-cat">Corporate</div>
-        </div>
-      </div>
-
-      <a class="inv-bursa-link rv" style="--d:.2s;" href="#"
-         aria-label="View all Bursa Malaysia disclosures for PCCS 6068 (URL needs PCCS input)">
-        View all Bursa disclosures for PCCS (6068) &rarr;
-      </a>
-    </div>
-  </section>
-
-  <!-- ===== 7 · GOVERNANCE ===== -->
+  <!-- ===== 5 · GOVERNANCE ===== -->
   <section id="governance" style="background:#f7f7f5;" aria-labelledby="inv-gov-heading">
     <div class="inv-sec">
       <div class="inv-kicker rv">Corporate Governance</div>
       <h2 class="inv-thesis-pull rv" id="inv-gov-heading" style="--d:.06s; font-size:clamp(26px,3.4vw,64px); margin-bottom:clamp(36px,4vw,72px);">
-        Board &amp;<br><span class="accent">frameworks.</span>
+        <span class="accent">Frameworks &amp; compliance.</span>
       </h2>
 
       <div class="inv-gov-grid">
 
-        <!-- Board -->
-        <div>
-          <div class="inv-kicker" style="margin-bottom:16px;">Board of Directors</div>
-          <div class="inv-board-list rv" aria-label="PCCS Board of Directors">
-            <div class="inv-board-item">
-              <div class="inv-board-role">Chair</div>
-              <div>
-                <div class="inv-board-name">Piong Yew Peng</div>
-                <div class="inv-board-title">Senior Independent Non-Executive Chairman</div>
-              </div>
-            </div>
-            <div class="inv-board-item">
-              <div class="inv-board-role">GMD</div>
-              <div>
-                <div class="inv-board-name">Chan Wee Kiang</div>
-                <div class="inv-board-title">Group Managing Director</div>
-              </div>
-            </div>
-            <div class="inv-board-item">
-              <div class="inv-board-role">ED</div>
-              <div>
-                <div class="inv-board-name">Chan Wee Boon</div>
-                <div class="inv-board-title">Executive Director</div>
-              </div>
-            </div>
-            <div class="inv-board-item">
-              <div class="inv-board-role">NED</div>
-              <div>
-                <div class="inv-board-name">Chan Chow Tek</div>
-                <div class="inv-board-title">Non-Executive Non-Independent Director</div>
-              </div>
-            </div>
-            <div class="inv-board-item">
-              <div class="inv-board-role">NED</div>
-              <div>
-                <div class="inv-board-name">Dato&rsquo; Chan Chor Ngiak</div>
-                <div class="inv-board-title">Non-Executive Non-Independent Director</div>
-              </div>
-            </div>
-            <div class="inv-board-item">
-              <div class="inv-board-role">NED</div>
-              <div>
-                <div class="inv-board-name">Chan Chor Ang</div>
-                <div class="inv-board-title">Non-Executive Non-Independent Director</div>
-              </div>
-            </div>
-            <div class="inv-board-item">
-              <div class="inv-board-role">ID</div>
-              <div>
-                <div class="inv-board-name">Goh Wen Ling</div>
-                <div class="inv-board-title">Independent Director</div>
-              </div>
-            </div>
-            <div class="inv-board-item">
-              <div class="inv-board-role">ID</div>
-              <div>
-                <div class="inv-board-name">Joyce Wong Ai May</div>
-                <div class="inv-board-title">Independent Director</div>
-              </div>
-            </div>
-          </div>
-          <p style="font-size:11px; color:#999; margin-top:14px;">
-            Board composition from approved copy PDF. Subject to CFO&nbsp;/ compliance sign-off.
-          </p>
-        </div>
-
         <!-- Frameworks -->
-        <div class="rv" style="--d:.12s;">
+        <div class="rv" style="--d:.12s; max-width:980px;">
           <div class="inv-frameworks">
             <div class="inv-frameworks-label">Frameworks &amp; Compliance</div>
             <ul>
@@ -1443,6 +1322,7 @@
 <!-- ===== PAGE FOOTER ===== -->
 
 <script src="../assets/js/pccs-home.js"></script>
+<script src="../assets/js/investor-documents.js"></script>
 <script>
 /* ============================================================
    INVESTORS PAGE — hero load, scroll reveal, count-up
@@ -1518,7 +1398,40 @@
   }
   /* If reduced motion: leave textContent as-is (already shows final value in HTML) */
 
-}());
-</script>
+    /* ── Leadership tiles and accessible detail modal ───────────────────── */
+    var leaderModal = document.querySelector('[data-leader-modal]');
+    if (leaderModal) {
+      var modalImage = leaderModal.querySelector('[data-leader-modal-image]');
+      var modalName = leaderModal.querySelector('[data-leader-modal-name]');
+      var modalRole = leaderModal.querySelector('[data-leader-modal-role]');
+      var modalBio = leaderModal.querySelector('[data-leader-modal-bio]');
+      var modalClose = leaderModal.querySelector('[data-leader-close]');
+      var lastLeader = null;
+      function openLeader(card) {
+        lastLeader = card;
+        modalImage.src = card.dataset.leaderImage;
+        modalImage.alt = card.dataset.leaderName;
+        modalName.textContent = card.dataset.leaderName;
+        modalRole.textContent = card.dataset.leaderRole;
+        modalBio.textContent = card.dataset.leaderBio;
+        leaderModal.classList.add('is-open');
+        leaderModal.setAttribute('aria-hidden', 'false');
+        document.documentElement.classList.add('leader-modal-open');
+        modalClose.focus();
+      }
+      function closeLeader() {
+        leaderModal.classList.remove('is-open');
+        leaderModal.setAttribute('aria-hidden', 'true');
+        document.documentElement.classList.remove('leader-modal-open');
+        if (lastLeader) lastLeader.focus();
+      }
+      document.querySelectorAll('.leader-card').forEach(function (card) { card.addEventListener('click', function () { openLeader(card); }); });
+      modalClose.addEventListener('click', closeLeader);
+      leaderModal.addEventListener('click', function (event) { if (event.target === leaderModal) closeLeader(); });
+      document.addEventListener('keydown', function (event) { if (event.key === 'Escape' && leaderModal.classList.contains('is-open')) closeLeader(); });
+    }
+
+  }());
+  </script>
 </body>
 </html>
