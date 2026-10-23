@@ -175,7 +175,6 @@
       text-transform: uppercase;
       font-weight: 700;
       color: var(--muted);
-      border-top: 1px solid var(--line);
       margin-top: 0;
     }
 
@@ -1050,10 +1049,11 @@
       letter-spacing: normal;
     }
 
-    /* Use the shared Home / Sustainability hero motion and geometry. */
+    /* Use the shared Home / Sustainability hero motion, geometry and type scale. */
     .grp-hero.hero-stage { height: 88vh; min-height: 600px; aspect-ratio: auto; background: var(--cream); }
-    .grp-hero.hero-stage .grp-hero-eyebrow { opacity: 1; transform: none; }
-    .grp-hero.hero-stage .grp-hero-h1 .line-inner { opacity: 1; transform: none; transition: none; }
+    .grp-hero.hero-stage .grp-hero-eyebrow { font-size:clamp(12px,.83cqw,16px); letter-spacing:.187em; color:#fff; margin-bottom:26px; opacity:1; transform:none; transition:none; }
+    .grp-hero.hero-stage .grp-hero-h1 { font-size:clamp(46px,7.94vw,152px); line-height:.88; letter-spacing:-.034em; max-width:none; margin-left:-12px; }
+    .grp-hero.hero-stage .grp-hero-h1 .line { overflow:visible; }
     .grp-hero.hero-stage.expanded .grp-hero-card { opacity: 1; transform: none; }
     @media (max-width: 680px) {
       .grp-hero.hero-stage { height: 88vh; min-height: 680px; aspect-ratio: auto; }

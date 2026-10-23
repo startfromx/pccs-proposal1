@@ -287,7 +287,6 @@
     padding:20px 4px;font-size:14px;letter-spacing:.153em;text-transform:uppercase;
     font-weight:700;
     color:var(--muted);
-    border-top:1px solid var(--line);
     margin-top:0;
   }
 
@@ -563,6 +562,21 @@
   .sustainability-list strong{font-size:clamp(16px,1.25cqw,22px);font-weight:500;}
   .sustainability-list em{font-size:clamp(12px,.9cqw,15px);line-height:1.45;color:rgba(255,255,255,.68);font-style:normal;}
   .sustainability-certifications{margin-top:28px;padding-top:22px;border-top:1px solid rgba(255,255,255,.16);font-size:clamp(11px,.85cqw,14px);line-height:1.55;color:rgba(255,255,255,.68);}
+  .faq-section{background:#fff;}
+  .faq-wrap{max-width:1840px;margin:0 auto;}
+  .faq-head{display:block;text-align:center;margin-bottom:42px;padding-bottom:28px;border-bottom:1px solid var(--line);}
+  .faq-head .feature-h2{max-width:none;}
+  .faq-intro{max-width:28em;font-size:clamp(15px,1.18cqw,21px);line-height:1.55;font-weight:300;color:var(--muted);}
+  .faq-grid{display:grid;grid-template-columns:1fr;width:70%;margin:0 auto;}
+  .faq-item{border-top:1px solid var(--line);}
+  .faq-item:first-child{border-top:0;}
+  .faq-item summary{display:flex;align-items:baseline;justify-content:space-between;gap:24px;padding:22px 0;list-style:none;cursor:pointer;font-size:clamp(16px,1.35cqw,24px);line-height:1.25;font-weight:400;letter-spacing:-.018em;color:var(--ink);}
+  .faq-item summary::-webkit-details-marker{display:none;}
+  .faq-item summary::after{content:'+';flex:0 0 auto;color:var(--green);font-size:1.2em;font-weight:300;transition:transform .25s ease;}
+  .faq-item[open] summary::after{content:'−';}
+  .faq-item summary:focus-visible{outline:2px solid var(--green);outline-offset:4px;}
+  .faq-answer{max-width:42em;padding:0 44px 24px 0;color:var(--muted);font-size:clamp(14px,1.05cqw,18px);line-height:1.62;font-weight:300;}
+  .faq-answer a{color:var(--green);text-decoration:underline;text-underline-offset:3px;}
   .sustainability-footnote{margin-top:34px;font-size:12px;letter-spacing:.03em;color:#777;}
 
   /* ---- OUR GROUP (sec 6) ---- */
@@ -588,6 +602,11 @@
   .snap-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding-top:24px;border-top:1px solid var(--line);}
   .snap-row .lab{font-size:clamp(9px,.62cqw,11px);letter-spacing:.102em;text-transform:uppercase;color:#999;margin-bottom:8px;}
   .snap-row .val{font-size:clamp(13px,1cqw,19px);font-weight:600;color:var(--ink);}
+  .inv-rel-card{align-self:start;padding:0;display:flex;flex-direction:column;gap:44px;}
+  .inv-rel-label{font-size:clamp(11px,.75cqw,13px);letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--green);}
+  .inv-rel-name{font-size:clamp(24px,2.4cqw,42px);line-height:1.08;letter-spacing:-.035em;font-weight:400;color:var(--ink);}
+  .inv-rel-code{margin-top:12px;font-size:clamp(15px,1.1cqw,19px);color:var(--muted);}
+  .inv-rel-card .pill-btn{align-self:flex-start;}
 
   /* ---- CAREERS (sec 8) ---- */
   .careers-head{text-align:center;margin-bottom:56px;}
@@ -630,6 +649,9 @@
     .grp-card .card-imgwrap{height:clamp(320px,70vw,480px);}
     .sustainability-head{display:block;margin-bottom:40px;}
     .sustainability-grid{grid-template-columns:1fr;gap:44px;}
+    .faq-head{display:block;margin-bottom:28px;}
+    .faq-intro{margin-top:20px;}
+    .faq-grid{grid-template-columns:1fr;width:100%;}
     .inv-grid{grid-template-columns:1fr;gap:44px;}
     .careers-card{position:static;max-width:none;margin:16px;}
     .foot{padding:60px 20px 32px;}
