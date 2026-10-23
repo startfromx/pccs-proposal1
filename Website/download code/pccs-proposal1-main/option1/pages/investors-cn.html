@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-lang="cn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>投资者关系 · PCCS 集团有限公司 · 6068</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23006450'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='21' font-weight='700' fill='%23FFFFFF' text-anchor='middle'%3EP%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/pccs.css">
+  <link rel="stylesheet" href="../assets/css/pccs-pages.css">
+
+  <style>
+    /* ============================================================
+       INVESTORS PAGE — page-specific styles only
+       Shared classes (sec, sec-k, rv, pill-btn, snap-*, foot, etc.)
+       live in pccs.css / pccs-pages.css. Add here only what those
+       files do not provide.
+    ============================================================ */
+
+    /* ---------- PAGE NAV (sticky dark pill, reuses page-document nav) ---------- */
+    /* page-document nav styles are in pccs-pages.css; no overrides needed */
+
+    /* ---------- HERO ---------- */
+    /* Geometry, image treatment, scrim, reveal timing, and headline motion
+       come from the shared .hero-stage system. */
+    .inv-hero-sub .zh {
+      display: block;
+      margin-top: 10px;
+      font-size: .8em;
+      color: rgba(255,255,255,.5);
+      letter-spacing: normal;
+      font-family: 'Noto Sans SC', 'Inter', sans-serif;
+    }
+    /* ---------- SECTION RHYTHM ---------- */
+    .inv-sec {
+      padding: clamp(72px,10vw,160px) clamp(28px,6vw,96px);
+      max-width: 1840px;
+      margin: 0 auto;
+    }
+    .inv-sec-full {
+      padding: clamp(72px,10vw,160px) 0;
+    }
+    .inv-sec-inner {
+      max-width: 1840px;
+      margin: 0 auto;
+      padding: 0 clamp(28px,6vw,96px);
+    }
+
+    /* Eyebrow label used throughout */
+    .inv-kicker {
+      font-size: clamp(11px,.75vw,13px);
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--green);
+      margin-bottom: 22px;
+    }
+
+    /* ---------- COMPLIANCE BAR ---------- */
+    .inv-compliance-bar {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 16px 22px;
+      border-left: 3px solid var(--red);
+      background: rgba(216,66,54,.05);
+      border-radius: 0 8px 8px 0;
+      font-size: 12.5px;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+    .inv-compliance-bar strong { color: var(--red); }
+    .inv-data-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--red);
+      background: rgba(216,66,54,.09);
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    /* ---------- EQUITY THESIS SECTION ---------- */
+    .inv-thesis-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: clamp(48px,6vw,112px);
+      align-items: start;
+    }
+    .inv-thesis-pull {
+      font-size: clamp(28px,4.2vw,78px);
+      font-weight: 300;
+      line-height: 1.02;
+      letter-spacing: -.045em;
+      color: var(--ink);
+    }
+    .inv-thesis-pull .accent { color: var(--green); }
+    .inv-thesis-pull .block {
+      display: block;
+    }
+    .inv-thesis-body {
+      margin-top: 36px;
+    }
+    .inv-thesis-body p {
+      font-size: clamp(16px,1.4vw,23px);
+      font-weight: 300;
+      line-height: 1.55;
+      letter-spacing: -.012em;
+      color: var(--ink);
+      margin-bottom: 20px;
+    }
+    .inv-thesis-body .zh-tag {
+      font-size: clamp(13px,1.1vw,17px);
+      font-weight: 300;
+      color: var(--muted);
+      font-family: 'Noto Sans SC', 'Inter', sans-serif;
+      letter-spacing: normal;
+      margin-top: -8px;
+      margin-bottom: 20px;
+    }
+
+    /* Value chain graphic */
+    .inv-chain {
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+    .inv-chain-header {
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--line);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: grid;
+      grid-template-columns: 40px 1fr 80px;
+      gap: 16px;
+    }
+    .inv-chain-item {
+      display: grid;
+      grid-template-columns: 40px 1fr 80px;
+      gap: 16px;
+      align-items: center;
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--line);
+      transition: background .2s;
+    }
+    .inv-chain-item:last-child { border-bottom: none; }
+    .inv-chain-item:hover { background: #f8f8f6; }
+    .inv-chain-num {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: .05em;
+    }
+    .inv-chain-label {
+      font-size: clamp(13px,1.1vw,17px);
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1.35;
+    }
+    .inv-chain-label span {
+      display: block;
+      font-size: .8em;
+      font-weight: 300;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+    .inv-chain-badge {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 999px;
+      text-align: center;
+      white-space: nowrap;
+    }
+    .inv-chain-badge.owned { background: #e7f1ed; color: var(--green); }
+    .inv-chain-badge.expanding { background: #fff4d6; color: #7a5800; }
+    .inv-chain-badge.client { background: #f0f0f0; color: #666; }
+
+    /* ---------- FINANCIALS — DARK BAND ---------- */
+    .inv-fin-band {
+      background: var(--ink);
+      color: #fff;
+    }
+    .inv-fin-kicker {
+      font-size: clamp(11px,.75vw,13px);
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--mint);
+      margin-bottom: 24px;
+    }
+    .inv-fin-headline {
+      font-size: clamp(30px,4.4vw,82px);
+      font-weight: 300;
+      line-height: 1.02;
+      letter-spacing: -.045em;
+      color: #fff;
+      margin-bottom: 56px;
+      max-width: 860px;
+    }
+    .inv-fin-headline .accent { color: var(--mint); }
+
+    /* 4-up metric grid */
+    .inv-metrics {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      border-top: 1px solid rgba(255,255,255,.14);
+    }
+    .inv-metric {
+      min-width: 0;
+      padding: clamp(28px,3vw,52px) clamp(18px,2.2vw,36px) clamp(28px,3vw,52px);
+      border-right: 1px solid rgba(255,255,255,.14);
+    }
+    .inv-metric:last-child { border-right: none; }
+    .inv-metric-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.5);
+      margin-bottom: 14px;
+    }
+    .inv-metric-value {
+      font-family: 'Inter', 'Noto Sans SC', sans-serif;
+      font-size: clamp(34px,4.1vw,76px);
+      font-weight: 300;
+      line-height: 1;
+      letter-spacing: -.04em;
+      color: #fff;
+      white-space: nowrap;
+    }
+    .inv-metric-value sup {
+      font-size: .38em;
+      vertical-align: top;
+      margin-top: .28em;
+      color: rgba(255,255,255,.55);
+      font-weight: 400;
+      letter-spacing: 0;
+    }
+    .inv-metric-sub {
+      margin-top: 12px;
+      font-size: clamp(12px,.9vw,15px);
+      font-weight: 400;
+      color: var(--mint);
+    }
+    .inv-fin-source {
+      margin-top: clamp(28px,3vw,52px);
+      padding-top: 22px;
+      border-top: 1px solid rgba(255,255,255,.12);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .inv-fin-source p {
+      font-size: 12px;
+      color: rgba(255,255,255,.42);
+      line-height: 1.55;
+      max-width: 64em;
+    }
+    .inv-fin-source .inv-data-note {
+      color: var(--red);
+      background: rgba(216,66,54,.14);
+    }
+
+    /* ---------- INVESTMENT NARRATIVE STRIP ---------- */
+    .inv-narrative {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: clamp(40px,6vw,96px) 0;
+    }
+    .inv-narrative-inner {
+      max-width: 1840px;
+      margin: 0 auto;
+      padding: 0 clamp(28px,6vw,96px);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(48px,6vw,112px);
+      align-items: center;
+    }
+    .inv-quote-block {
+      font-size: clamp(24px,3.2vw,60px);
+      font-weight: 300;
+      line-height: 1.08;
+      letter-spacing: -.04em;
+      color: var(--ink);
+      font-style: italic;
+    }
+    .inv-quote-block cite {
+      display: block;
+      margin-top: 22px;
+      font-size: clamp(11px,.75vw,13px);
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      font-style: normal;
+      font-weight: 700;
+      color: var(--muted);
+    }
+    .inv-narrative-copy p {
+      font-size: clamp(15px,1.3vw,22px);
+      font-weight: 300;
+      line-height: 1.58;
+      letter-spacing: -.01em;
+      color: var(--ink);
+      margin-bottom: 18px;
+    }
+    .inv-narrative-copy .zh-tag {
+      font-size: clamp(13px,1.1vw,17px);
+      font-weight: 300;
+      color: var(--muted);
+      font-family: 'Noto Sans SC', 'Inter', sans-serif;
+      letter-spacing: normal;
+    }
+
+    /* ---------- STOCK SNAPSHOT ---------- */
+    .inv-stock-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(40px,5vw,96px);
+      align-items: start;
+    }
+    .inv-snap-panel {
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: clamp(24px,3vw,52px);
+    }
+    .inv-snap-disclaimer {
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      font-size: 11px;
+      line-height: 1.5;
+      color: #999;
+    }
+    .inv-bursa-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 28px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--green);
+      text-decoration: none;
+      border-bottom: 1px solid var(--green);
+      padding-bottom: 2px;
+      transition: color .25s, border-color .25s;
+    }
+    .inv-bursa-link:hover { color: var(--ink); border-color: var(--ink); }
+
+    /* Key dates */
+    .inv-key-dates {
+      margin-top: 32px;
+      padding-top: 28px;
+      border-top: 1px solid var(--line);
+    }
+    .inv-key-date-row {
+      display: flex;
+      align-items: baseline;
+      gap: 20px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: clamp(13px,1vw,16px);
+    }
+    .inv-key-date-row:first-of-type { border-top: 1px solid var(--line); }
+    .inv-key-date-label {
+      flex: none;
+      width: 160px;
+      font-weight: 500;
+      color: var(--ink);
+    }
+    .inv-key-date-val {
+      font-weight: 300;
+      color: var(--muted);
+    }
+
+    /* ---------- DOCUMENTS HORIZONTAL STRIP ---------- */
+    .inv-docs-strip {
+      background: #f7f7f5;
+    }
+    .inv-docs-scroll {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 3%, #000 94%, transparent 100%);
+      mask-image: linear-gradient(90deg, transparent 0%, #000 3%, #000 94%, transparent 100%);
+    }
+    .inv-docs-scroll::-webkit-scrollbar { display: none; }
+    .inv-doc-card {
+      flex: none;
+      width: clamp(260px,22vw,380px);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 28px;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: box-shadow .3s, transform .3s;
+    }
+    .inv-doc-card:hover {
+      box-shadow: 0 12px 36px rgba(0,0,0,.08);
+      transform: translateY(-2px);
+    }
+    .inv-doc-year {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--green);
+    }
+    .inv-doc-name {
+      font-size: clamp(16px,1.4vw,22px);
+      font-weight: 400;
+      letter-spacing: -.02em;
+      color: var(--ink);
+      line-height: 1.28;
+      flex: 1;
+    }
+    .inv-doc-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      align-self: flex-start;
+      margin-top: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--green);
+      text-decoration: none;
+      padding: 9px 18px;
+      border: 1px solid var(--green);
+      border-radius: 999px;
+      transition: background .25s, color .25s;
+    }
+    .inv-doc-link:hover { background: var(--green); color: #fff; }
+
+    /* ---------- GOVERNANCE ---------- */
+    .inv-gov-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: clamp(48px,6vw,112px);
+      align-items: start;
+    }
+    .inv-board-list {
+      display: flex;
+      flex-direction: column;
+    }
+    .inv-board-item {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 16px;
+      align-items: baseline;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .inv-board-item:first-child { border-top: 1px solid var(--line); }
+    .inv-board-role {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--green);
+      padding-top: 2px;
+    }
+    .inv-board-name {
+      font-size: clamp(14px,1.1vw,18px);
+      font-weight: 500;
+      color: var(--ink);
+    }
+    .inv-board-title {
+      font-size: clamp(12px,.9vw,14px);
+      font-weight: 300;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+    /* Frameworks panel */
+    .inv-frameworks {
+      background: #111;
+      color: #fff;
+      border-radius: 20px;
+      padding: clamp(28px,3vw,52px);
+    }
+    .inv-frameworks-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--mint);
+      margin-bottom: 24px;
+    }
+    .inv-frameworks ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .inv-frameworks li {
+      font-size: clamp(13px,1vw,16px);
+      font-weight: 300;
+      color: rgba(255,255,255,.82);
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,.12);
+      line-height: 1.35;
+      padding-left: 18px;
+      position: relative;
+    }
+    .inv-frameworks li:first-child { border-top: 1px solid rgba(255,255,255,.12); }
+    .inv-frameworks li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: .7em;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--mint);
+    }
+    .inv-audit-box {
+      margin-top: 20px;
+      padding: 20px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 12px;
+      font-size: clamp(12px,.9vw,14px);
+      color: rgba(255,255,255,.6);
+      line-height: 1.6;
+    }
+    .inv-audit-box strong { color: rgba(255,255,255,.9); }
+
+    /* ---------- ANNOUNCEMENTS ---------- */
+    .inv-ann-list {
+      display: flex;
+      flex-direction: column;
+    }
+    .inv-ann-row {
+      display: grid;
+      grid-template-columns: 160px 1fr 100px;
+      gap: 24px;
+      align-items: center;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--line);
+      transition: background .2s;
+    }
+    .inv-ann-row:first-child { border-top: 1px solid var(--line); }
+    .inv-ann-row:hover { background: #f8f8f6; }
+    .inv-ann-date {
+      font-size: 12.5px;
+      font-weight: 300;
+      color: var(--muted);
+    }
+    .inv-ann-title {
+      font-size: clamp(14px,1.1vw,18px);
+      font-weight: 400;
+      color: var(--ink);
+    }
+    .inv-ann-cat {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--green);
+      text-align: right;
+    }
+
+    /* ---------- IR CONTACT ---------- */
+    .inv-contact-intro {
+      font-size: clamp(22px,2.8vw,52px);
+      font-weight: 300;
+      line-height: 1.12;
+      letter-spacing: -.04em;
+      color: var(--ink);
+      max-width: 900px;
+      margin-bottom: clamp(40px,5vw,80px);
+    }
+    .inv-contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .inv-contact-card {
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: clamp(24px,3vw,52px);
+      transition: box-shadow .3s;
+    }
+    .inv-contact-card:hover { box-shadow: 0 10px 32px rgba(0,0,0,.06); }
+    .inv-contact-card h3 {
+      font-size: clamp(18px,1.6vw,28px);
+      font-weight: 400;
+      letter-spacing: -.02em;
+      color: var(--ink);
+      margin-bottom: 24px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--line);
+    }
+    .inv-contact-card p {
+      font-size: clamp(14px,1.1vw,17px);
+      font-weight: 300;
+      line-height: 1.6;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .inv-contact-card a {
+      color: var(--green);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .inv-contact-card a:hover { text-decoration: underline; }
+
+    /* ---------- PAGE FOOTER ---------- */
+    .inv-page-footer {
+      border-top: 1px solid var(--line);
+      padding: 22px clamp(28px,6vw,96px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 11px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--muted);
+    }
+    .inv-page-footer a {
+      color: var(--green);
+      text-decoration: none;
+    }
+    .inv-page-footer a:hover { color: var(--ink); }
+
+    /* ===================== RESPONSIVE ===================== */
+    @media (max-width: 1100px) {
+      .inv-thesis-grid,
+      .inv-gov-grid { grid-template-columns: 1fr; gap: 48px; }
+      .inv-metrics { grid-template-columns: 1fr 1fr; }
+      .inv-metric { border-right: none; border-bottom: 1px solid rgba(255,255,255,.14); }
+      .inv-metric:nth-child(2n) { padding-left: clamp(16px,2vw,36px); }
+      .inv-narrative-inner { grid-template-columns: 1fr; gap: 36px; }
+      .inv-stock-grid { grid-template-columns: 1fr; gap: 40px; }
+      .inv-contact-grid { grid-template-columns: 1fr; gap: 20px; }
+    }
+
+    @media (max-width: 768px) {
+      .inv-hero { height: 100svh; min-height: 520px; }
+      .inv-hero-badge { display: none; }
+      .inv-ann-row { grid-template-columns: 1fr; gap: 4px; padding: 16px 0; }
+      .inv-ann-cat { text-align: left; }
+      .inv-ann-date { font-size: 11px; }
+      .inv-key-date-label { width: 120px; }
+      .inv-metrics { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      .inv-hero-h1 { font-size: clamp(30px,9.5vw,52px); }
+      .inv-metrics { grid-template-columns: 1fr 1fr; }
+      .inv-metric-value { font-size: clamp(32px,8vw,56px); }
+      .inv-docs-scroll { -webkit-mask-image: none; mask-image: none; }
+      .inv-doc-card { width: clamp(240px,78vw,320px); }
+      .inv-chain-badge { display: none; }
+      .inv-ann-row { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 380px) {
+      .inv-hero-h1 { font-size: clamp(26px,9vw,44px); }
+      .inv-thesis-pull { font-size: clamp(26px,8.5vw,44px); }
+    }
+
+    /* CJK letter-spacing reset */
+    html[lang="zh-CN"] .inv-hero-h1,
+    html[lang="zh-CN"] .inv-thesis-pull,
+    html[lang="zh-CN"] .inv-fin-headline,
+    html[lang="zh-CN"] .inv-quote-block,
+    html[lang="zh-CN"] .inv-contact-intro,
+    html[lang="zh-CN"] .inv-metric-value { letter-spacing: normal; }
+
+    /* prefers-reduced-motion */
+    @media (prefers-reduced-motion: reduce) {
+      .inv-hero-kicker,
+      .inv-hero-h1 .line,
+      .inv-hero-sub,
+      .inv-hero-badge { transition: none; opacity: 1; transform: none; }
+      .inv-doc-card,
+      .inv-bursa-link,
+      .inv-doc-link,
+      .inv-contact-card { transition: none; }
+    }
+
+    /* Use the shared Home / Sustainability hero motion and geometry. */
+    .inv-hero.hero-stage { height: 88vh; min-height: 600px; background: var(--cream); align-items: center; justify-content: center; }
+    .inv-hero.hero-stage .inv-hero-kicker { opacity: 0; transform: translateY(20px); transition: opacity .8s cubic-bezier(.22,.61,.36,1) .5s, transform .8s cubic-bezier(.22,.61,.36,1) .5s; }
+    .inv-hero.hero-stage.expanded .inv-hero-kicker { opacity: 1; transform: none; }
+    .inv-hero.hero-stage .inv-hero-h1 {
+      font-family: 'Inter','Noto Sans SC',system-ui,sans-serif;
+      font-weight: 300;
+      font-size: clamp(46px,7.94vw,152px);
+      line-height: .88;
+      letter-spacing: -.034em;
+      margin-top: 0;
+      margin-left: -12px;
+    }
+    .inv-hero.hero-stage .inv-hero-h1 .accent { color: var(--mint); }
+    .inv-hero.hero-stage .inv-hero-h1 .line { opacity: 0; transform: translateY(28px); transition: opacity .8s cubic-bezier(.22,.61,.36,1), transform .8s cubic-bezier(.22,.61,.36,1); }
+    .inv-hero.hero-stage.expanded .inv-hero-h1 .line { opacity: 1; transform: none; }
+    .inv-hero.hero-stage .inv-hero-h1 .line:nth-child(1) { transition-delay: 1.15s; }
+    .inv-hero.hero-stage .inv-hero-h1 .line:nth-child(2) { transition-delay: 1.28s; }
+    .inv-hero.hero-stage .inv-hero-sub { opacity: 0; transform: translateY(18px); transition: opacity .8s cubic-bezier(.22,.61,.36,1) 1.46s, transform .8s cubic-bezier(.22,.61,.36,1) 1.46s; }
+    .inv-hero.hero-stage.expanded .inv-hero-sub { opacity: 1; transform: none; }
+    .inv-hero.hero-stage .inv-hero-badge {
+      position: absolute;
+      z-index: 2;
+      right: clamp(20px,2.08cqw,40px);
+      bottom: clamp(20px,4.17cqw,80px);
+      min-width: clamp(180px,15.6cqw,300px);
+      padding: clamp(20px,2.1cqw,40px);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.72);
+      color: var(--ink);
+      text-decoration: none;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .8s cubic-bezier(.22,.61,.36,1) 1.6s, transform .8s cubic-bezier(.22,.61,.36,1) 1.6s;
+    }
+    .inv-hero.hero-stage .inv-hero-badge-label { font-size: clamp(16px,1.35cqw,24px); line-height: 1.1; }
+    .inv-hero.hero-stage .inv-hero-badge-ticker { font-size: clamp(18px,1.7cqw,30px); line-height: 1.1; }
+    .inv-hero.hero-stage .inv-hero-badge-link { margin-top: 8px; font-size: clamp(13px,1.05cqw,18px); line-height: 1.25; }
+    .inv-hero.hero-stage .inv-hero-badge:hover .inv-hero-badge-link { color: var(--green); }
+    .inv-hero.hero-stage.expanded .inv-hero-badge { opacity: 1; transform: none; }
+    html[lang="zh-CN"] .inv-hero.hero-stage .inv-hero-h1 { line-height:1.04; letter-spacing:normal; }
+    html[lang="zh-CN"] .inv-thesis-pull,
+    html[lang="zh-CN"] .inv-fin-headline,
+    html[lang="zh-CN"] .inv-contact-intro,
+    html[lang="zh-CN"] .leadership-h2 { letter-spacing:normal; }
+    .inv-hero.hero-stage .inv-hero-badge-media { display:block; overflow:hidden; margin:-20px -20px 14px; border-radius:12px 12px 0 0; background:#fff; }
+    .inv-hero.hero-stage .inv-hero-badge-media img { display:block; width:100%; aspect-ratio:1; object-fit:contain; }
+    .inv-hero.hero-stage .inv-hero-badge { display:block; width:clamp(280px,20.42cqw,392px); min-width:0; padding:8px; border:0; border-radius:8px; background:rgba(255,255,255,.22); color:inherit; box-shadow:0 24px 60px rgba(0,0,0,.22); }
+    .inv-hero.hero-stage .inv-hero-badge-media { margin:0; border-radius:4px; }
+    .inv-hero.hero-stage .inv-hero-badge-label { display:block; margin:14px 8px 0; color:var(--red); font-size:clamp(11px,.68cqw,13px); letter-spacing:.119em; text-transform:uppercase; font-weight:700; }
+    .inv-hero.hero-stage .inv-hero-badge-ticker { display:block; margin:8px; color:#fff; font-size:clamp(24px,2.1cqw,38px); font-weight:700; }
+    .inv-hero.hero-stage .inv-hero-badge-link { display:block; margin:0 8px 8px; color:#fff; }
+    @media (max-width: 680px) {
+      .inv-hero.hero-stage { height: 88vh; min-height: 680px; }
+      .inv-hero.hero-stage .inv-hero-h1 { font-size: clamp(34px,11.5vw,56px); line-height: .94; letter-spacing: -.017em; margin-left: 0; }
+    }
+    @media (max-width: 420px) {
+      .inv-hero.hero-stage { min-height: 620px; }
+      .inv-hero.hero-stage .inv-hero-h1 { font-size: clamp(31px,11vw,44px); }
+    }
+    html[lang="zh-CN"] .inv-hero.hero-stage .inv-hero-h1 { line-height:1.04; letter-spacing:normal; }
+    .inv-document-library .investor-library-layout { display:grid; grid-template-columns:220px minmax(0,1fr); gap:clamp(28px,5vw,80px); align-items:start; }
+    .inv-document-library .investor-categories { display:flex; flex-direction:column; }
+    .inv-document-library .investor-category { display:flex; justify-content:space-between; gap:12px; padding:13px 0; border-bottom:1px solid var(--line); color:var(--muted); background:none; border-left:0; border-right:0; border-top:0; text-align:left; font:inherit; font-size:13px; cursor:pointer; }
+    .inv-document-library .investor-category:first-child { border-top:1px solid var(--line); }
+    .inv-document-library .investor-category:hover,.inv-document-library .investor-category.active { color:var(--ink); padding-left:8px; }
+    .inv-document-library .investor-category.active { font-weight:500; }
+    .inv-document-library .investor-category span { color:var(--green); font-size:11px; }
+    .inv-document-library .investor-select-label { display:none; }
+    .inv-document-library .investor-doc-head { display:flex; justify-content:space-between; gap:24px; align-items:end; margin-bottom:26px; }
+    .inv-document-library .investor-doc-head h2 { margin:0 0 8px; font-size:clamp(24px,2.4vw,44px); font-weight:300; letter-spacing:-.04em; }
+    .inv-document-library .investor-doc-head p { margin:0; color:var(--muted); font-size:14px; line-height:1.45; }
+    .inv-document-library .investor-count { color:var(--muted); font-size:12px; white-space:nowrap; }
+    .inv-document-library .investor-doc-group { border-bottom:1px solid var(--line); }
+    .inv-document-library .investor-doc-group summary { display:flex; justify-content:space-between; align-items:center; gap:20px; padding:18px 0; cursor:pointer; list-style:none; font-size:17px; font-weight:500; }
+    .inv-document-library .investor-doc-group summary::-webkit-details-marker { display:none; }
+    .inv-document-library .investor-doc-group summary b { margin-left:8px; color:var(--green); font-size:20px; font-weight:300; }
+    .inv-document-library .investor-doc-list { border-top:1px solid var(--line); }
+    .inv-document-library .investor-doc-row { display:flex; justify-content:space-between; align-items:center; gap:20px; padding:13px 0; border-bottom:1px solid rgba(28,28,26,.07); color:var(--ink); text-decoration:none; font-size:14px; line-height:1.35; }
+    .inv-document-library .investor-doc-row:hover .investor-doc-title { color:var(--green); }
+    .inv-document-library .investor-doc-meta { color:var(--green); font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; white-space:nowrap; }
+    @media (max-width:680px) { .inv-document-library .investor-library-layout { display:block; } .inv-document-library .investor-categories { display:none; } .inv-document-library .investor-select-label { display:block; margin-bottom:24px; color:var(--muted); font-size:12px; } .inv-document-library .investor-select-label select { display:block; width:100%; margin-top:8px; padding:12px; border:1px solid var(--line); background:transparent; color:var(--ink); } .inv-document-library .investor-doc-head { align-items:start; flex-direction:column; } .inv-document-library .investor-doc-row { align-items:flex-start; } }
+    .leadership-sec { background:#f7f7f5; padding:clamp(64px,8vw,112px) clamp(24px,5vw,80px); container-type:inline-size; }
+    .leadership-wrap { max-width:1840px; margin:0 auto; }
+    .leadership-head { margin-bottom:clamp(36px,4vw,64px); }
+    .leadership-kicker,.leader-modal-kicker { font-size:clamp(11px,.8cqw,14px); letter-spacing:.19em; text-transform:uppercase; font-weight:700; color:var(--green); margin-bottom:22px; }
+    .leadership-h2 { font-family:'Inter','Noto Sans SC',system-ui,sans-serif; font-weight:300; font-size:clamp(32px,4.5cqw,72px); line-height:1.02; letter-spacing:-.055em; color:var(--ink); }
+    .leadership-intro { margin-top:22px; max-width:38em; color:var(--muted); font-size:clamp(15px,1.2cqw,21px); line-height:1.55; font-weight:300; }
+    .leaders-meta { display:flex; justify-content:space-between; gap:20px; align-items:center; border-top:1px solid var(--line); padding:16px 0; margin-bottom:2px; }
+    .leaders-filter,.leaders-count { font-size:clamp(10px,.75cqw,12px); letter-spacing:.14em; text-transform:uppercase; font-weight:600; color:var(--muted); }
+    .leaders-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:2px; }
+    .leader-card { appearance:none; border:0; padding:0; margin:0; text-align:left; background:#fff; color:var(--ink); cursor:pointer; overflow:hidden; border-radius:16px; transition:transform .3s ease,background .3s ease; }
+    .leader-card:hover,.leader-card:focus-visible { transform:translateY(-6px); outline:none; }
+    .leader-card:focus-visible { box-shadow:0 0 0 3px var(--green); }
+    .leader-photo { display:block; aspect-ratio:4/5; overflow:hidden; background:#ddd; }
+    .leader-photo img { display:block; width:100%; height:100%; object-fit:cover; filter:saturate(.82); transition:transform .45s ease,filter .45s ease; }
+    .leader-card:hover .leader-photo img,.leader-card:focus-visible .leader-photo img { transform:scale(1.04); filter:saturate(1); }
+    .leader-card-body { display:block; padding:20px 18px 22px; min-height:116px; }
+    .leader-card-name { display:block; font-size:clamp(17px,1.45cqw,25px); line-height:1.1; font-weight:500; }
+    .leader-card-role { display:block; margin-top:10px; color:var(--muted); font-size:clamp(11px,.9cqw,14px); line-height:1.42; font-weight:300; }
+    .leader-modal { position:fixed; inset:0; z-index:1000; display:grid; place-items:center; padding:10px; background:rgba(10,10,10,.58); backdrop-filter:blur(5px); opacity:0; visibility:hidden; pointer-events:none; transition:opacity .38s ease,visibility .38s ease; }
+    .leader-modal.is-open { opacity:1; visibility:visible; pointer-events:auto; }
+    .leader-modal-panel { position:relative; display:grid; grid-template-columns:minmax(260px,31%) minmax(0,1fr); grid-template-rows:auto auto minmax(0,1fr); gap:24px 5cqw; width:min(1200px,100%); height:min(88vh,900px); overflow:hidden; padding:32px; border-radius:26px; background:#050505; color:#fff; transform:translateY(30px) scale(.97); transition:transform .5s ease; }
+    .leader-modal.is-open .leader-modal-panel { transform:none; }
+    .leader-modal-top { grid-column:1/-1; display:flex; justify-content:space-between; padding-right:60px; color:rgba(255,255,255,.7); font-size:12px; letter-spacing:.08em; text-transform:uppercase; }
+    .leader-modal-company { text-align:right; }
+    .leader-modal-name { grid-column:1/-1; margin:0; font-size:clamp(42px,7vw,100px); line-height:.9; font-weight:300; letter-spacing:-.06em; }
+    .leader-modal-photo { grid-column:1; min-height:0; overflow:hidden; border-radius:15px; background:#1e252b; }
+    .leader-modal-photo img { width:100%; height:100%; display:block; object-fit:cover; object-position:center top; }
+    .leader-modal-copy { grid-column:2; align-self:end; max-width:620px; padding-bottom:18px; }
+    .leader-modal-kicker { color:rgba(255,255,255,.58); }
+    .leader-modal-role { color:rgba(255,255,255,.58); font-size:17px; line-height:1.4; }
+    .leader-modal-bio { margin-top:24px; color:rgba(255,255,255,.62); font-size:17px; line-height:1.55; font-weight:300; }
+    .leader-modal-close { position:absolute; top:18px; right:18px; z-index:2; width:52px; height:52px; border:0; background:transparent; color:#fff; font-size:30px; cursor:pointer; }
+    @media (max-width:900px) { .leaders-grid { grid-template-columns:repeat(3,1fr); } }
+    @media (max-width:680px) { .leaders-grid { grid-template-columns:repeat(2,1fr); } .leader-card-body { padding:15px 13px 17px; min-height:105px; } .leader-modal-panel { display:block; height:min(94vh,900px); overflow-y:auto; padding:22px; } .leader-modal-name { margin:22px 0; max-width:8ch; line-height:.95; } .leader-modal-photo { aspect-ratio:4/5; margin-bottom:28px; } .leader-modal-copy { padding:0 2px 4px; } }
+</style>
+</head>
+
+<body class="page-document">
+
+<!-- ===== HERO ===== -->
+<div class="page">
+<section class="hero-stage inv-hero site-hero" id="heroStage" aria-labelledby="inv-h1">
+  <div class="hero-frame">
+    <img src="../images/investors/investors-hero-sgl.png"
+         data-parallax="1.0,0.22,18"
+         alt="PCCS Garments Suzhou building in sunlight">
+    <div class="hero-scrim" aria-hidden="true"></div>
+  </div>
+
+  <div class="hero-content">
+    <div class="eyebrow inv-hero-kicker">投资者关系&nbsp;&middot;&nbsp;马来西亚交易所 6068</div>
+    <h1 class="inv-hero-h1" id="inv-h1">
+      <span class="line">掌控更多。</span>
+      <span class="line"><span class="accent">创造价值。</span></span>
+    </h1>
+    <p class="hero-subline inv-hero-sub">
+      PCCS 为全球最大的品牌制造专业运动服装&thinsp;&mdash;&thinsp;并逐步掌握更高价值的环节：产品开发、商标及面料。
+      市场仍以成衣裁剪缝制工厂为其估值，而这个差距正是我们的计划。
+      <span class="zh" lang="zh-CN">股价之外，是我们更深的实力。这个差距，就是机会。</span>
+    </p>
+  </div>
+
+  <a class="inv-hero-badge" href="https://www.bursamalaysia.com/bm/trade/trading_resources/listing_directory/company-profile?stock_code=6068" target="_blank" rel="noopener noreferrer" aria-label="在马来西亚交易所查看 PCCS 集团资料">
+    <span class="inv-hero-badge-media"><img src="../images/investors/bursa-malaysia.png" alt="马来西亚交易所"></span>
+    <div class="inv-hero-badge-label">马来西亚交易所</div>
+    <div class="inv-hero-badge-ticker">6068</div>
+    <span class="inv-hero-badge-link">查看公司资料 <span aria-hidden="true">↗</span></span>
+  </a>
+</section>
+</div>
+
+<!-- ===== MAIN ===== -->
+<main id="main-content">
+
+  <!-- COMPLIANCE NOTICE -->
+  <div class="inv-sec" style="padding-bottom:0; padding-top: clamp(32px,4vw,56px);">
+    <div class="inv-compliance-bar" role="note">
+      <strong>注意&nbsp;—</strong>
+      所有投资者关系文案、财务数据及市场资料，须经 CFO&nbsp;/ 合规部门签署确认后方可发布。
+      经批准文案中的数据均标注来源，尚待确认的内容会标记为
+      <span class="inv-data-note">需要 PCCS 提供</span>。
+    </div>
+  </div>
+
+  <!-- ===== 1 · EQUITY THESIS ===== -->
+  <section id="equity-story" aria-labelledby="inv-thesis-heading">
+    <div class="inv-sec">
+      <div class="inv-kicker rv">投资逻辑</div>
+
+      <div class="inv-thesis-grid">
+
+        <!-- LEFT: pull headline + body -->
+        <div>
+          <h2 class="inv-thesis-pull rv" id="inv-thesis-heading">
+            <span class="block">从裁剪缝制</span>
+            <span class="block">走向<span class="accent">综合平台。</span></span>
+          </h2>
+          <div class="inv-thesis-body rv" style="--d:.1s;">
+            <p>PCCS 最初是一家裁剪缝制承包商。五十多年来，公司持续向产业链上游延伸&mdash;从装饰加工，到产品开发，再到面料。每增加一个环节，就减少客户向外部采购的需要。</p>
+            <p>市场仍将 PCCS 视为成衣制造商，但业务正在成为另一种形态：掌握产品开发、装饰加工及面料的综合平台。市场估值与实际拥有的能力之间的差距，正是投资逻辑所在。</p>
+            <p class="zh-tag" lang="zh-CN">股价之外，是我们更深的实力。这个差距，就是机会。</p>
+            <a class="pill-btn" href="https://www.bursamalaysia.com/bm/trade/trading_resources/listing_directory/company-profile?stock_code=6068" target="_blank" rel="noopener noreferrer">马来西亚交易所资料&nbsp;&rarr;</a>
+          </div>
+        </div>
+
+        <!-- RIGHT: value chain -->
+        <div class="rv" style="--d:.16s;">
+          <div class="inv-kicker" style="margin-bottom:16px;">价值链 — PCCS 的掌控范围</div>
+          <div class="inv-chain" aria-label="价值链步骤及 PCCS 掌控状态">
+            <div class="inv-chain-header" aria-hidden="true">
+              <span></span><span>环节</span><span>状态</span>
+            </div>
+            <div class="inv-chain-item">
+              <div class="inv-chain-num">01</div>
+              <div class="inv-chain-label">概念与需求<span>客户提出需求</span></div>
+              <span class="inv-chain-badge client">客户</span>
+            </div>
+            <div class="inv-chain-item">
+              <div class="inv-chain-num">02</div>
+              <div class="inv-chain-label">设计与技术规格<span>内部工程开发</span></div>
+              <span class="inv-chain-badge owned">自有</span>
+            </div>
+            <div class="inv-chain-item">
+              <div class="inv-chain-num">03</div>
+              <div class="inv-chain-label">面料开发<span>越南纺织厂 — 扩展中</span></div>
+              <span class="inv-chain-badge expanding">扩展中</span>
+            </div>
+            <div class="inv-chain-item">
+              <div class="inv-chain-num">04</div>
+              <div class="inv-chain-label">纸样与打样<span>100+ 名研发人员 &middot; 每年 1,800+ 款式</span></div>
+              <span class="inv-chain-badge owned">自有</span>
+            </div>
+            <div class="inv-chain-item">
+              <div class="inv-chain-num">05</div>
+              <div class="inv-chain-label">商标与辅料<span>50+ 项专利 &middot; 装饰加工部门</span></div>
+              <span class="inv-chain-badge owned">自有</span>
+            </div>
+            <div class="inv-chain-item">
+              <div class="inv-chain-num">06</div>
+              <div class="inv-chain-label">测试与合规<span>GRS &middot; OEKO-TEX &middot; WRAP Gold 2025</span></div>
+              <span class="inv-chain-badge owned">自有</span>
+            </div>
+            <div class="inv-chain-item">
+              <div class="inv-chain-num">07</div>
+              <div class="inv-chain-label">生产与质量控制<span>360+ 条生产线 &middot; 每月约 470 万件服装</span></div>
+              <span class="inv-chain-badge owned">自有</span>
+            </div>
+            <div class="inv-chain-item">
+              <div class="inv-chain-num">08</div>
+              <div class="inv-chain-label">后整理与交付<span>可直接零售 &middot; 全程追踪</span></div>
+              <span class="inv-chain-badge owned">自有</span>
+            </div>
+          </div>
+          <p style="margin-top:10px; font-size:11px; color:#999;">
+            价值链数据来自经批准的文案文件。面料工厂：越南平顺 — 扩展中。
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 2 · FINANCIALS DARK BAND ===== -->
+  <section id="financials" class="inv-fin-band" aria-labelledby="inv-fin-heading">
+    <div class="inv-sec">
+      <div class="inv-fin-kicker rv">FY2026 财务表现</div>
+      <h2 class="inv-fin-headline rv" id="inv-fin-heading" style="--d:.06s;">
+        经得起衡量。<br>经得起验证。<br><span class="accent">为长远而建。</span>
+      </h2>
+
+      <!-- 4-up count-up metrics -->
+      <div class="inv-metrics rv" style="--d:.12s;" aria-label="FY2026 关键财务指标">
+        <div class="inv-metric">
+          <div class="inv-metric-label">营业收入</div>
+          <div class="inv-metric-value"><span class="count-up" data-to="560.2" data-prefix="RM" data-decimal="1">RM560.2</span><sup>m</sup></div>
+          <div class="inv-metric-sub">同比增长 +2.2%</div>
+        </div>
+        <div class="inv-metric">
+          <div class="inv-metric-label">税后利润</div>
+          <div class="inv-metric-value"><span class="count-up" data-to="14.3" data-prefix="RM" data-decimal="1">RM14.3</span><sup>m</sup></div>
+          <div class="inv-metric-sub">同比增长 +149.3%</div>
+        </div>
+        <div class="inv-metric">
+          <div class="inv-metric-label">净利率</div>
+          <div class="inv-metric-value"><span class="count-up" data-to="2.6" data-suffix="%" data-decimal="1">2.6</span><sup>%</sup></div>
+          <div class="inv-metric-sub">税后利润率</div>
+        </div>
+        <div class="inv-metric">
+          <div class="inv-metric-label">市净率*</div>
+          <div class="inv-metric-value"><span class="count-up" data-to="0.4" data-prefix="~" data-suffix="×" data-decimal="1">~0.4</span><sup>&times;</sup></div>
+          <div class="inv-metric-sub">指示性数据；需市场数据</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 3 · LEADERSHIP ===== -->
+  <section class="leadership-sec investors-leadership" aria-labelledby="leadership-h2" data-leadership-component>
+    <div class="leadership-wrap">
+      <div class="leadership-head rv-g">
+        <div class="leadership-kicker">领导团队</div>
+        <h2 class="leadership-h2" id="leadership-h2">作出决策的<br>核心团队。</h2>
+        <p class="leadership-intro">八位董事，共同坚持责任、问责与长期判断的标准。</p>
+      </div>
+      <div class="leaders-meta rv-g" style="--d:.08s"><span class="leaders-filter">董事会</span><span class="leaders-count">8 位成员</span></div>
+      <div class="leaders-grid rv-g" style="--d:.1s" role="list">
+        <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/piong-yew-peng.jpg" data-leader-name="Piong Yew Peng" data-leader-role="高级独立非执行主席" data-leader-bio="Piong Yew Peng 于 2015 年加入董事会，并于 2023 年重新获委任为高级独立非执行主席。他拥有 RMIT University 商学（会计）学士学位，是马来西亚会计师协会会员及澳洲注册会计师公会资深会员，拥有超过 30 年审计与会计经验。"><span class="leader-photo"><img src="../images/group/leaders/piong-yew-peng.jpg" alt="Piong Yew Peng"></span><span class="leader-card-body"><span class="leader-card-name">Piong Yew Peng</span><span class="leader-card-role">高级独立非执行主席</span></span></button>
+        <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/chan-wee-kiang.jpg" data-leader-name="Chan Wee Kiang" data-leader-role="集团董事总经理" data-leader-bio="Chan Wee Kiang 于 2020 年加入董事会担任集团董事总经理。他拥有 Monash University 商学（会计与金融）学士学位，并于 2002 年加入 La Prima Medtech，历任市场主管、集团市场经理及副集团总经理。"><span class="leader-photo"><img src="../images/group/leaders/chan-wee-kiang.jpg" alt="Chan Wee Kiang"></span><span class="leader-card-body"><span class="leader-card-name">Chan Wee Kiang</span><span class="leader-card-role">集团董事总经理</span></span></button>
+        <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/chan-wee-boon.jpg" data-leader-name="Chan Wee Boon" data-leader-role="执行董事" data-leader-bio="Chan Wee Boon 于 2020 年加入董事会担任执行董事。他拥有 Monash University 土木工程学士学位，并于 2010 年加入 PCCS，曾领导商标与包装部门，后于 2014 年成为集团总经理。"><span class="leader-photo"><img src="../images/group/leaders/chan-wee-boon.jpg" alt="Chan Wee Boon"></span><span class="leader-card-body"><span class="leader-card-name">Chan Wee Boon</span><span class="leader-card-role">执行董事</span></span></button>
+        <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/chan-chow-tek.jpg" data-leader-name="Chan Chow Tek" data-leader-role="非独立非执行董事" data-leader-bio="Chan Chow Tek 于 1995 年加入董事会，并于 2020 年重新获委任为非独立非执行董事。他在纺织与服装营销领域拥有超过 50 年经验，并参与推动 PCCS 的出口与成衣业务发展。"><span class="leader-photo"><img src="../images/group/leaders/chan-chow-tek.jpg" alt="Chan Chow Tek"></span><span class="leader-card-body"><span class="leader-card-name">Chan Chow Tek</span><span class="leader-card-role">非独立非执行董事</span></span></button>
+        <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/chan-chor-ngiak.jpg" data-leader-name="Dato’ Chan Chor Ngiak" data-leader-role="非独立非执行董事" data-leader-bio="Dato’ Chan Chor Ngiak 自 1995 年起担任非独立非执行董事，并参与审计、提名及薪酬委员会。他自 1980 年起从事市场工作，并担任多个社区与商会职务。"><span class="leader-photo"><img src="../images/group/leaders/chan-chor-ngiak.jpg" alt="Dato’ Chan Chor Ngiak"></span><span class="leader-card-body"><span class="leader-card-name">Dato’ Chan Chor Ngiak</span><span class="leader-card-role">非独立非执行董事</span></span></button>
+        <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/chan-chor-ang.jpg" data-leader-name="Chan Chor Ang" data-leader-role="非独立非执行董事" data-leader-bio="Chan Chor Ang 自 1995 年起担任非独立非执行董事。他于 1981 年加入 La Prima Medtech，并于 1985 年成为 Jusca Garments 厂长，在纺织与成衣领域拥有超过 40 年经验。"><span class="leader-photo"><img src="../images/group/leaders/chan-chor-ang.jpg" alt="Chan Chor Ang"></span><span class="leader-card-body"><span class="leader-card-name">Chan Chor Ang</span><span class="leader-card-role">非独立非执行董事</span></span></button>
+        <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/joyce-wong-ai-may.jpg" data-leader-name="Joyce Wong Ai May" data-leader-role="独立非执行董事" data-leader-bio="Joyce Wong Ai May 于 2020 年加入董事会，并担任审计及提名委员会主席。她拥有商学学士学位，并具备证券、会计及咨询行业经验。"><span class="leader-photo"><img src="../images/group/leaders/joyce-wong-ai-may.jpg" alt="Joyce Wong Ai May"></span><span class="leader-card-body"><span class="leader-card-name">Joyce Wong Ai May</span><span class="leader-card-role">独立非执行董事</span></span></button>
+        <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/tang-lai-huat.jpg" data-leader-name="Tang Lai Huat" data-leader-role="集团财务总监" data-leader-bio="Dr. Tang Lai Huat 于 2016 年获委任为 PCCS 集团财务总监，并于 2018 年成为集团财务总监，负责集团财务、会计及战略部署。"><span class="leader-photo"><img src="../images/group/leaders/tang-lai-huat.jpg" alt="Tang Lai Huat"></span><span class="leader-card-body"><span class="leader-card-name">Tang Lai Huat</span><span class="leader-card-role">集团财务总监</span></span></button>
+      </div>
+      <div class="leader-modal" data-leader-modal aria-hidden="true">
+        <div class="leader-modal-panel" role="dialog" aria-modal="true" aria-labelledby="leader-modal-name">
+          <button class="leader-modal-close" type="button" data-leader-close aria-label="关闭">&times;</button>
+          <div class="leader-modal-top" aria-hidden="true"><span>董事会</span><span class="leader-modal-company">PCCS 集团有限公司</span></div>
+          <h3 class="leader-modal-name" id="leader-modal-name" data-leader-modal-name></h3>
+          <div class="leader-modal-photo"><img data-leader-modal-image src="" alt=""></div>
+          <div class="leader-modal-copy"><div class="leader-modal-kicker">董事会</div><div class="leader-modal-role" data-leader-modal-role></div><p class="leader-modal-bio" data-leader-modal-bio></p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 4 · DOCUMENTS ===== -->
+  <section id="documents" class="inv-docs-strip" aria-labelledby="inv-docs-heading">
+    <div class="inv-sec">
+      <div class="inv-kicker rv">报告与披露</div>
+      <h2 class="inv-thesis-pull rv" id="inv-docs-heading" style="--d:.06s; font-size:clamp(26px,3.4vw,64px); margin-bottom:clamp(36px,4vw,64px);">
+        年度报告、<br><span class="accent">业绩与股东大会。</span>
+      </h2>
+      <div class="inv-document-library" data-investor-library>
+        <div class="investor-library-layout">
+          <aside class="investor-categories" data-investor-categories aria-label="投资者文件类别"></aside>
+          <label class="investor-select-label" for="investorCategory">浏览类别
+            <select id="investorCategory" data-investor-select aria-label="选择投资者文件类别"></select>
+          </label>
+          <div class="investor-documents" data-investor-documents></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 5 · GOVERNANCE ===== -->
+  <section id="governance" style="background:#f7f7f5;" aria-labelledby="inv-gov-heading">
+    <div class="inv-sec">
+      <div class="inv-kicker rv">企业管治</div>
+      <h2 class="inv-thesis-pull rv" id="inv-gov-heading" style="--d:.06s; font-size:clamp(26px,3.4vw,64px); margin-bottom:clamp(36px,4vw,72px);">
+        <span class="accent">管治框架与合规。</span>
+      </h2>
+
+      <div class="inv-gov-grid">
+
+        <!-- Frameworks -->
+        <div class="rv" style="--d:.12s; max-width:980px;">
+          <div class="inv-frameworks">
+          <div class="inv-frameworks-label">管治框架与合规</div>
+            <ul>
+              <li>Bursa Malaysia MMLR (Main Market Listing Requirements)</li>
+              <li>IFRS S2 — climate-related disclosures</li>
+              <li>GRI Standards</li>
+              <li>GHG Protocol — Scope 1, 2, 3</li>
+              <li>TCFD — Task Force on Climate-related Financial Disclosures</li>
+              <li>UN SDGs — 5 adopted</li>
+              <li>WRAP Gold 2025</li>
+              <li>Cambodia Green Industry Awards 2025 (Silver)</li>
+              <li>Better Factories Cambodia</li>
+              <li>GRS &middot; RCS &middot; OEKO-TEX &middot; ZDHC &middot; Higg FEM</li>
+            </ul>
+            <div class="inv-audit-box">
+              <strong>审计与委员会</strong><br>
+              委员会组成及职权范围：<span class="inv-data-note" style="color:var(--red); background:rgba(216,66,54,.14);">需要 PCCS 提供</span><br>
+              外部审计师：<span class="inv-data-note" style="color:var(--red); background:rgba(216,66,54,.14);">需要 PCCS 提供</span><br>
+              最近一次审计意见：<span class="inv-data-note" style="color:var(--red); background:rgba(216,66,54,.14);">需要 PCCS 提供</span>
+            </div>
+          </div>
+          <p style="font-size:12px; color:#999; margin-top:14px;">
+            自 FY2018 起按照马来西亚交易所标准进行永续发展报告。
+            管治框架：GRI Standards、IFRS S2、TCFD 及 5 项已采用的联合国可持续发展目标。
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 8 · IR CONTACT ===== -->
+  <section id="ir-contact" aria-labelledby="inv-contact-heading">
+    <div class="inv-sec">
+      <div class="inv-kicker rv">投资者关系</div>
+      <h2 class="inv-contact-intro rv" id="inv-contact-heading" style="--d:.06s;">
+        欢迎投资者、<br>媒体及分析师垂询。
+      </h2>
+
+      <div class="inv-contact-grid rv" style="--d:.1s;">
+        <div class="inv-contact-card">
+          <h3>一般投资者关系咨询</h3>
+          <p>电邮：<a href="mailto:communication@pccsgroup.net">communication@pccsgroup.net</a></p>
+          <p>公司秘书：<span class="inv-data-note">需要 PCCS 提供</span></p>
+          <p>电话：<span class="inv-data-note">需要 PCCS 提供</span></p>
+          <p>
+            总部：<br>
+            PCCS Group Berhad<br>
+            马来西亚柔佛州峇株巴辖
+          </p>
+          <p>领英：<a href="https://www.linkedin.com/company/pccs-group-berhad-my/home/"
+                          rel="noopener" target="_blank">pccs-group-berhad-my</a></p>
+        </div>
+        <div class="inv-contact-card">
+          <h3>主要联系人</h3>
+          <p>CFO / 合规负责人：<span class="inv-data-note">需要 PCCS 提供</span></p>
+          <p>审计委员会主席：<span class="inv-data-note">需要 PCCS 提供</span></p>
+          <p>外部审计师：<span class="inv-data-note">需要 PCCS 提供</span></p>
+          <p>股份过户登记处：<span class="inv-data-note">需要 PCCS 提供</span></p>
+          <p style="margin-top:20px; font-size:11.5px; color:#aaa; line-height:1.6;">
+            本页所有面向投资者的文案须经 CFO&nbsp;/ 合规部门批准后方可发布。
+            页面未推断或虚构任何财务数据；仅展示经批准文案文件中的数据。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== PAGE FOOTER ===== -->
+
+<script src="../assets/js/pccs-home.js"></script>
+<script src="../assets/js/investor-documents.js"></script>
+<script src="../assets/js/leadership-copy.js"></script>
+<script>
+/* ============================================================
+   INVESTORS PAGE — hero load, scroll reveal, count-up
+   Vanilla JS only. No external dependencies.
+============================================================ */
+(function () {
+  'use strict';
+
+  var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---- 1. SCROLL REVEAL (.rv) ---- */
+  if (!prefersReducedMotion && 'IntersectionObserver' in window) {
+    var revealObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.rv').forEach(function (el) {
+      revealObserver.observe(el);
+    });
+  } else {
+    document.querySelectorAll('.rv').forEach(function (el) {
+      el.classList.add('in');
+    });
+  }
+
+  /* Chinese Investors keeps its translated leadership markup; bind the shared modal behavior without replacing it. */
+  var leaderModal = document.querySelector('[data-leader-modal]');
+  if (leaderModal) {
+    var modalImage = leaderModal.querySelector('[data-leader-modal-image]');
+    var modalName = leaderModal.querySelector('[data-leader-modal-name]');
+    var modalRole = leaderModal.querySelector('[data-leader-modal-role]');
+    var modalBio = leaderModal.querySelector('[data-leader-modal-bio]');
+    var modalClose = leaderModal.querySelector('[data-leader-close]');
+    var lastLeader = null;
+    function openLeader(card) {
+      lastLeader = card;
+      modalImage.src = card.dataset.leaderImage;
+      modalImage.alt = card.dataset.leaderName;
+      modalName.textContent = card.dataset.leaderName;
+      modalRole.textContent = card.dataset.leaderRole;
+      modalBio.textContent = card.dataset.leaderBio;
+      leaderModal.classList.add('is-open');
+      leaderModal.setAttribute('aria-hidden', 'false');
+      document.documentElement.classList.add('leader-modal-open');
+      modalClose.focus();
+    }
+    function closeLeader() {
+      leaderModal.classList.remove('is-open');
+      leaderModal.setAttribute('aria-hidden', 'true');
+      document.documentElement.classList.remove('leader-modal-open');
+      if (lastLeader) lastLeader.focus();
+    }
+    document.querySelectorAll('.leader-card').forEach(function (card) { card.addEventListener('click', function () { openLeader(card); }); });
+    modalClose.addEventListener('click', closeLeader);
+    leaderModal.addEventListener('click', function (event) { if (event.target === leaderModal) closeLeader(); });
+    document.addEventListener('keydown', function (event) { if (event.key === 'Escape' && leaderModal.classList.contains('is-open')) closeLeader(); });
+  }
+
+  /* ---- 3. COUNT-UP METRICS ---- */
+  function easeOutCubic(t) {
+    return 1 - Math.pow(1 - t, 3);
+  }
+
+  function animateCount(el) {
+    var to      = parseFloat(el.getAttribute('data-to'));
+    var decimal = parseInt(el.getAttribute('data-decimal') || '0', 10);
+    var prefix  = el.getAttribute('data-prefix') || '';
+    var suffix  = el.getAttribute('data-suffix') || '';
+    var duration = 1400;
+    var start   = null;
+
+    function step(ts) {
+      if (!start) start = ts;
+      var progress = Math.min((ts - start) / duration, 1);
+      var eased    = easeOutCubic(progress);
+      var value    = to * eased;
+      el.textContent = prefix + (decimal > 0 ? value.toFixed(decimal) : Math.round(value)) + suffix;
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  if (!prefersReducedMotion && 'IntersectionObserver' in window) {
+    var countObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          animateCount(entry.target);
+          countObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    document.querySelectorAll('.count-up').forEach(function (el) {
+      /* Set initial display value to 0 */
+      var prefix = el.getAttribute('data-prefix') || '';
+      var suffix = el.getAttribute('data-suffix') || '';
+      var decimal = parseInt(el.getAttribute('data-decimal') || '0', 10);
+      el.textContent = prefix + (decimal > 0 ? (0).toFixed(decimal) : '0') + suffix;
+      countObserver.observe(el);
+    });
+  }
+  /* If reduced motion: leave textContent as-is (already shows final value in HTML) */
+
+}());
+</script>
+</body>
+</html>

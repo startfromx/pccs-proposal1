@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <title>PCCS Group — Demo Prototype</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Noto+Sans+SC:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    /* ─── Reset & Base ─────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green:   #2E6451;
+      --pine:    #1B3A2E;
+      --deep:    #12291F;
+      --mint:    #8AFFD7;
+      --cream:   #F5F1E8;
+      --sand:    #E7DFCD;
+      --stone:   #8E877A;
+      --stonedk: #6E685D;
+      --ink:     #1C1C1A;
+      --line:    rgba(46,100,81,.15);
+      --glass-bg: rgba(18,41,31,.52);
+
+      --sp-xs:  8px;
+      --sp-sm:  16px;
+      --sp-md:  24px;
+      --sp-lg:  36px;
+      --sp-xl:  64px;
+      --sp-2xl: 72px;
+      --sp-3xl: 120px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      color: var(--ink);
+      background: var(--deep);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    [data-lang="zh"] .en { display: none; }
+    [data-lang="en"] .cn { display: none; }
+
+    /* ─── Section 1 — Hero ─────────────────────────────────── */
+    .hero {
+      position: relative;
+      height: 100svh;
+      min-height: 600px;
+      overflow: hidden;
+      background: var(--deep);
+      container-type: inline-size;
+    }
+
+    .hero__photo {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      opacity: 0.48;
+      will-change: transform;
+    }
+
+    .hero__photo--fallback {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background: var(--pine);
+    }
+
+    .hero__scrim {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(
+        to top,
+        var(--deep) 0%,
+        rgba(18,41,31,.72) 28%,
+        rgba(18,41,31,.18) 64%,
+        transparent 100%
+      );
+    }
+
+    /* Language toggle */
+    .lang-toggle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 4;
+      display: flex;
+      gap: 4px;
+      padding: 4px;
+      background: rgba(255,255,255,.10);
+      border-radius: 100px;
+    }
+
+    .lang-toggle__btn {
+      padding: 6px 16px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 400;
+      font-family: 'Inter', sans-serif;
+      border: none;
+      cursor: pointer;
+      color: rgba(255,255,255,.65);
+      background: transparent;
+      transition: background 0.2s, color 0.2s;
+      line-height: 1;
+    }
+
+    .lang-toggle__btn[aria-pressed="true"] {
+      background: var(--mint);
+      color: var(--deep);
+    }
+
+    /* Hero text block */
+    .hero__text {
+      position: absolute;
+      bottom: var(--sp-xl);
+      left: var(--sp-xl);
+      right: 280px;
+      z-index: 2;
+    }
+
+    .hero__h1 {
+      font-size: clamp(54px, 7.2cqw, 128px);
+      font-weight: 300;
+      color: #fff;
+      letter-spacing: -0.04em;
+      line-height: 0.92;
+    }
+
+    [data-lang="zh"] .hero__h1 {
+      font-family: 'Noto Sans SC', sans-serif;
+    }
+
+    .hero__sub {
+      margin-top: 18px;
+      font-size: clamp(17px, 1.55cqw, 27px);
+      font-weight: 300;
+      color: rgba(255,255,255,.68);
+      line-height: 1.45;
+    }
+
+    [data-lang="zh"] .hero__sub {
+      font-family: 'Noto Sans SC', sans-serif;
+    }
+
+    /* Bursa badge */
+    .bursa-badge {
+      position: absolute;
+      bottom: var(--sp-xl);
+      right: var(--sp-xl);
+      z-index: 3;
+      padding: 14px 20px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px) saturate(1.4);
+      -webkit-backdrop-filter: blur(12px) saturate(1.4);
+      border: 1px solid rgba(138,255,215,.18);
+      border-radius: 10px;
+      min-width: 180px;
+    }
+
+    .bursa-badge__label {
+      display: block;
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--mint);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .bursa-badge__value {
+      display: block;
+      font-size: 14px;
+      font-weight: 400;
+      color: #fff;
+    }
+
+    /* ─── Hero entrance animations ─────────────────────────── */
+    @media (prefers-reduced-motion: no-preference) {
+      .hero__photo {
+        animation: hero-bg-scale 1.4s ease-out forwards;
+        transform-origin: center center;
+      }
+      @keyframes hero-bg-scale {
+        from { transform: scale(1.08); }
+        to   { transform: scale(1); }
+      }
+
+      .hero__h1 {
+        opacity: 0;
+        animation: hero-fade-up 0.7s cubic-bezier(0.22,1,0.36,1) 0.55s forwards;
+      }
+      .hero__sub {
+        opacity: 0;
+        animation: hero-fade-up 0.7s cubic-bezier(0.22,1,0.36,1) 0.8s forwards;
+      }
+      .bursa-badge {
+        opacity: 0;
+        animation: hero-fade-up 0.7s cubic-bezier(0.22,1,0.36,1) 1.3s forwards;
+      }
+      .lang-toggle {
+        opacity: 0;
+        animation: hero-fade-up 0.7s cubic-bezier(0.22,1,0.36,1) 0.3s forwards;
+      }
+
+      @keyframes hero-fade-up {
+        from { opacity: 0; transform: translateY(24px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+    }
+
+    /* ─── Section 2 — Engineering Preview ─────────────────── */
+    .engineering {
+      background: var(--cream);
+      padding: var(--sp-3xl) var(--sp-xl);
+      container-type: inline-size;
+    }
+
+    .engineering__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-2xl);
+      align-items: start;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* Left column */
+    .eng-left {}
+
+    .eng-eyebrow {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--stone);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    [data-lang="zh"] .eng-eyebrow {
+      font-family: 'Noto Sans SC', sans-serif;
+    }
+
+    .eng-intro {
+      font-size: clamp(20px, 2.2cqw, 38px);
+      font-weight: 300;
+      color: var(--ink);
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    [data-lang="zh"] .eng-intro {
+      font-family: 'Noto Sans SC', sans-serif;
+    }
+
+    .eng-body {
+      font-size: clamp(15px, 1.1cqw, 18px);
+      font-weight: 300;
+      color: var(--stonedk);
+      line-height: 1.6;
+    }
+
+    [data-lang="zh"] .eng-body {
+      font-family: 'Noto Sans SC', sans-serif;
+    }
+
+    /* Chain list */
+    .chain-list {
+      list-style: none;
+      margin-top: var(--sp-lg);
+      border-top: 1px solid var(--line);
+    }
+
+    .chain-row {
+      display: grid;
+      grid-template-columns: 28px 1fr auto;
+      align-items: center;
+      gap: var(--sp-sm);
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .chain-row__index {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--stone);
+    }
+
+    .chain-row__name {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--ink);
+    }
+
+    [data-lang="zh"] .chain-row__name {
+      font-family: 'Noto Sans SC', sans-serif;
+    }
+
+    .chain-row__verb {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--green);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    [data-lang="zh"] .chain-row__verb {
+      font-family: 'Noto Sans SC', sans-serif;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    /* CTA */
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: var(--sp-lg);
+      padding: 14px 28px;
+      background: var(--green);
+      color: #fff;
+      border-radius: 6px;
+      font-size: 15px;
+      font-weight: 400;
+      font-family: 'Inter', sans-serif;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: gap 0.2s ease;
+    }
+
+    [data-lang="zh"] .cta-btn {
+      font-family: 'Noto Sans SC', sans-serif;
+    }
+
+    .cta-btn:hover { gap: 18px; }
+
+    /* Right column */
+    .eng-right {}
+
+    /* Stats grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border: 1px solid var(--sand);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .stats-cell {
+      padding: 32px 28px;
+      border-right: 1px solid var(--sand);
+      border-bottom: 1px solid var(--sand);
+    }
+
+    .stats-cell:nth-child(2n) { border-right: none; }
+    .stats-cell:nth-child(n+3) { border-bottom: none; }
+
+    .stats-cell__number {
+      display: block;
+      font-size: clamp(36px, 3.5cqw, 60px);
+      font-weight: 700;
+      color: var(--green);
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .stats-cell__label {
+      display: block;
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--stone);
+      margin-top: 8px;
+    }
+
+    [data-lang="zh"] .stats-cell__label {
+      font-family: 'Noto Sans SC', sans-serif;
+    }
+
+    /* Image placeholder */
+    .eng-img-placeholder {
+      margin-top: 24px;
+      height: 220px;
+      background: var(--sand);
+      border-radius: 12px;
+    }
+
+    /* ─── Scroll reveal ─────────────────────────────────────── */
+    @media (prefers-reduced-motion: no-preference) {
+      .rv {
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+          opacity 0.55s cubic-bezier(0.22,1,0.36,1),
+          transform 0.55s cubic-bezier(0.22,1,0.36,1);
+        transition-delay: var(--rv-d, 0ms);
+      }
+      .rv.visible {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    /* ─── Responsive ────────────────────────────────────────── */
+    @media (max-width: 1023px) {
+      .engineering__grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 639px) {
+      .hero__text {
+        bottom: 48px;
+        left: var(--sp-md);
+        right: var(--sp-md);
+      }
+
+      .bursa-badge {
+        bottom: 48px;
+        right: var(--sp-md);
+      }
+
+      .engineering {
+        padding: 80px var(--sp-md);
+      }
+
+      .stats-cell {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── Section 1: Hero ─────────────────────────────── -->
+  <section class="hero" aria-label="Engineering Future hero">
+
+    <img
+      class="hero__photo"
+      src="../Video/Generated image 1 (1).png"
+      alt=""
+      role="presentation"
+      onerror="this.style.display='none'; document.querySelector('.hero__photo--fallback').style.display='block';"
+    >
+    <div class="hero__photo--fallback" style="display:none;" aria-hidden="true"></div>
+
+    <div class="hero__scrim" aria-hidden="true"></div>
+
+    <!-- Language toggle -->
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button class="lang-toggle__btn" id="btn-en" aria-pressed="true" onclick="setLang('en')">EN</button>
+      <button class="lang-toggle__btn" id="btn-zh" aria-pressed="false" onclick="setLang('zh')">CN</button>
+    </div>
+
+    <!-- Text -->
+    <div class="hero__text">
+      <h1 class="hero__h1">
+        <span class="en">Engineering Future</span>
+        <span class="cn">以工程，创造可能。</span>
+      </h1>
+      <p class="hero__sub">
+        <span class="en">The world wears our work.</span>
+        <span class="cn">世界穿着我们的作品。</span>
+      </p>
+    </div>
+
+    <!-- Bursa badge -->
+    <aside class="bursa-badge" role="complementary" aria-label="Stock listing">
+      <span class="bursa-badge__label">Bursa Malaysia · 6068</span>
+      <span class="bursa-badge__value">
+        <span class="en">PCCS Group Berhad</span>
+        <span class="cn">PCCS 集团有限公司</span>
+      </span>
+    </aside>
+
+  </section>
+
+  <!-- ─── Section 2: Engineering Preview ─────────────── -->
+  <section class="engineering" aria-label="Engineering preview">
+    <div class="engineering__grid">
+
+      <!-- Left column -->
+      <div class="eng-left">
+        <p class="eng-eyebrow rv" style="--rv-d:0ms">
+          <span class="en">The Engineering — a preview</span>
+          <span class="cn">工程能力预览</span>
+        </p>
+
+        <h2 class="eng-intro rv" style="--rv-d:60ms">
+          <span class="en">You bring the concept; we engineer everything after it.</span>
+          <span class="cn">你负责概念，我们兑现一切。</span>
+        </h2>
+
+        <p class="eng-body rv" style="--rv-d:120ms">
+          <span class="en">Fibre to finished mark. One system, one hand.</span>
+          <span class="cn">纤维 → 开发 → 标识 → 量产，一站式全程包办。</span>
+        </p>
+
+        <ol class="chain-list" aria-label="Capability chain">
+          <li class="chain-row rv" style="--rv-d:0ms">
+            <span class="chain-row__index">01</span>
+            <span class="chain-row__name">
+              <span class="en">Design &amp; tech spec</span>
+              <span class="cn">设计与技术规格</span>
+            </span>
+            <span class="chain-row__verb">
+              <span class="en">Engineered</span>
+              <span class="cn">由我们制定</span>
+            </span>
+          </li>
+          <li class="chain-row rv" style="--rv-d:60ms">
+            <span class="chain-row__index">02</span>
+            <span class="chain-row__name">
+              <span class="en">Fabric development</span>
+              <span class="cn">面料开发</span>
+            </span>
+            <span class="chain-row__verb">
+              <span class="en">Developed</span>
+              <span class="cn">由我们研发</span>
+            </span>
+          </li>
+          <li class="chain-row rv" style="--rv-d:120ms">
+            <span class="chain-row__index">03</span>
+            <span class="chain-row__name">
+              <span class="en">Pattern &amp; sample</span>
+              <span class="cn">纸样与样品</span>
+            </span>
+            <span class="chain-row__verb">
+              <span class="en">Prototyped</span>
+              <span class="cn">由我们打造</span>
+            </span>
+          </li>
+          <li class="chain-row rv" style="--rv-d:180ms">
+            <span class="chain-row__index">04</span>
+            <span class="chain-row__name">
+              <span class="en">The mark &amp; trims</span>
+              <span class="cn">标识与辅料</span>
+            </span>
+            <span class="chain-row__verb">
+              <span class="en">Crafted</span>
+              <span class="cn">由我们制作</span>
+            </span>
+          </li>
+          <li class="chain-row rv" style="--rv-d:240ms">
+            <span class="chain-row__index">05</span>
+            <span class="chain-row__name">
+              <span class="en">Testing &amp; compliance</span>
+              <span class="cn">测试与合规</span>
+            </span>
+            <span class="chain-row__verb">
+              <span class="en">Verified</span>
+              <span class="cn">由我们把关</span>
+            </span>
+          </li>
+          <li class="chain-row rv" style="--rv-d:300ms">
+            <span class="chain-row__index">06</span>
+            <span class="chain-row__name">
+              <span class="en">Make &amp; QC</span>
+              <span class="cn">生产与质检</span>
+            </span>
+            <span class="chain-row__verb">
+              <span class="en">Manufactured</span>
+              <span class="cn">由我们执行</span>
+            </span>
+          </li>
+          <li class="chain-row rv" style="--rv-d:360ms">
+            <span class="chain-row__index">07</span>
+            <span class="chain-row__name">
+              <span class="en">Finish &amp; deliver</span>
+              <span class="cn">后整与交付</span>
+            </span>
+            <span class="chain-row__verb">
+              <span class="en">Delivered</span>
+              <span class="cn">由我们交付</span>
+            </span>
+          </li>
+        </ol>
+
+        <a href="#" class="cta-btn rv" style="--rv-d:420ms">
+          <span class="en">See the full engineering</span>
+          <span class="cn">了解完整工程能力</span>
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <!-- Right column -->
+      <div class="eng-right">
+        <div class="stats-grid rv" style="--rv-d:200ms">
+          <div class="stats-cell">
+            <span class="stats-cell__number" aria-label="50 plus" data-target="50" data-suffix="+">50+</span>
+            <span class="stats-cell__label">
+              <span class="en">Patents</span>
+              <span class="cn">专利</span>
+            </span>
+          </div>
+          <div class="stats-cell">
+            <span class="stats-cell__number" aria-label="100 plus" data-target="100" data-suffix="+">100+</span>
+            <span class="stats-cell__label">
+              <span class="en">R&amp;D Staff</span>
+              <span class="cn">研发人员</span>
+            </span>
+          </div>
+          <div class="stats-cell">
+            <span class="stats-cell__number" aria-label="1800" data-target="1800" data-comma="true">1,800</span>
+            <span class="stats-cell__label">
+              <span class="en">Styles / yr</span>
+              <span class="cn">款 / 年</span>
+            </span>
+          </div>
+          <div class="stats-cell">
+            <span class="stats-cell__number" aria-label="67000" data-target="67000" data-comma="true">67,000</span>
+            <span class="stats-cell__label">
+              <span class="en">Samples / yr</span>
+              <span class="cn">样品 / 年</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="eng-img-placeholder rv" style="--rv-d:320ms" aria-hidden="true"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    /* Language toggle */
+    function setLang(lang) {
+      document.documentElement.dataset.lang = lang;
+      document.getElementById('btn-en').setAttribute('aria-pressed', lang === 'en');
+      document.getElementById('btn-zh').setAttribute('aria-pressed', lang === 'zh');
+    }
+
+    /* Scroll reveal */
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          revealObserver.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.rv').forEach(el => revealObserver.observe(el));
+
+    /* Count-up (respects reduced-motion) */
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function formatNum(n, useComma, suffix) {
+      let s = useComma ? Math.round(n).toLocaleString('en-US') : String(Math.round(n));
+      return s + (suffix || '');
+    }
+
+    function runCountUp(el) {
+      const target = parseInt(el.dataset.target, 10);
+      const suffix = el.dataset.suffix || '';
+      const useComma = el.dataset.comma === 'true';
+
+      if (prefersReduced) {
+        el.textContent = formatNum(target, useComma, suffix);
+        return;
+      }
+
+      const duration = 1200;
+      const start = performance.now();
+
+      function tick(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3); /* ease-out cubic */
+        el.textContent = formatNum(target * eased, useComma, suffix);
+        if (progress < 1) requestAnimationFrame(tick);
+      }
+
+      requestAnimationFrame(tick);
+    }
+
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.querySelectorAll('[data-target]').forEach(runCountUp);
+          statsObserver.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    const statsGrid = document.querySelector('.stats-grid');
+    if (statsGrid) statsObserver.observe(statsGrid);
+  </script>
+
+</body>
+</html>
