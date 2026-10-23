@@ -160,6 +160,45 @@ section { container-type:inline-size; }
   display:flex; align-items:center; gap:10px;
   position:relative; z-index:1; margin-left:auto;
 }
+.nav-contact {
+  display:inline-flex; align-items:center; gap:7px;
+  padding:8px 14px; border-radius:999px;
+  background:var(--red); color:#fff;
+  font-size:12px; font-weight:600;
+  transition:transform .2s, background .2s;
+}
+.nav-contact:hover { background:#c93229; transform:translateY(-1px); }
+.menu-toggle {
+  display:none; align-items:center; gap:8px;
+  color:#fff; font-size:12px; font-weight:600;
+  padding:8px 0;
+}
+.menu-toggle .menu-symbol { font-size:20px; font-weight:300; line-height:.7; }
+.mobile-menu {
+  position:fixed; inset:0; z-index:190;
+  display:grid; place-items:center;
+  padding:92px 22px 30px;
+  background:rgba(8,55,46,.96);
+  backdrop-filter:blur(24px) saturate(130%);
+  -webkit-backdrop-filter:blur(24px) saturate(130%);
+  opacity:0; visibility:hidden; pointer-events:none;
+  transition:opacity .3s, visibility .3s;
+}
+.mobile-menu.open { opacity:1; visibility:visible; pointer-events:auto; }
+.mobile-menu-inner { width:min(100%, 540px); height:100%; display:flex; flex-direction:column; justify-content:space-between; }
+.mobile-menu-links { display:flex; flex-direction:column; }
+.mobile-menu-links a {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:16px 0; border-bottom:1px solid rgba(255,255,255,.12);
+  color:#fff; font-size:clamp(24px,7vw,38px); font-weight:300;
+  letter-spacing:-.04em;
+}
+.mobile-menu-links a::after { content:'↗'; color:var(--mint); font-size:20px; }
+.mobile-menu-foot {
+  display:flex; justify-content:space-between; gap:20px;
+  color:rgba(255,255,255,.55); font-size:12px;
+}
+.mobile-menu-foot .lang-btn { color:#fff; }
 .lang-btn {
   font-size:12px; font-weight:600; letter-spacing:.07em;
   color:rgba(255,255,255,.55);
@@ -489,6 +528,8 @@ section { container-type:inline-size; }
   #nav { padding:15px 22px; }
   #nav.scrolled { padding:10px 22px; }
   .nav-links { display:none; }
+  .nav-contact { display:none; }
+  .menu-toggle { display:inline-flex; position:relative; z-index:1; }
   .hero-body { padding:0 22px 52px; }
   .hero-badge { display:none; }
   .idea-grid { grid-template-columns:1fr; gap:28px; }
@@ -536,8 +577,30 @@ section { container-type:inline-size; }
   <div class="nav-end">
     <button class="lang-btn active" onclick="setLang('en')" aria-label="English">EN</button>
     <button class="lang-btn" onclick="setLang('cn')" aria-label="中文">中文</button>
+    <a class="nav-contact" href="mailto:enquiry@pccsgroup.net"><span class="en">Contact</span><span class="cn">联系</span> ↗</a>
+    <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="mobileMenu">
+      <span class="en">Menu</span><span class="cn">菜单</span><span class="menu-symbol" aria-hidden="true">+</span>
+    </button>
   </div>
 </nav>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <div class="mobile-menu-inner">
+    <nav class="mobile-menu-links" aria-label="Mobile navigation">
+      <a href="#engineering"><span class="en">The Engineering</span><span class="cn">工程能力</span></a>
+      <a href="#work"><span class="en">Our Work</span><span class="cn">我们的作品</span></a>
+      <a href="#sustainability"><span class="en">Sustainability</span><span class="cn">永续未来</span></a>
+      <a href="#group"><span class="en">The Group</span><span class="cn">集团</span></a>
+      <a href="#investors"><span class="en">Investors</span><span class="cn">投资者</span></a>
+      <a href="#careers"><span class="en">Careers</span><span class="cn">人才招聘</span></a>
+      <a href="mailto:enquiry@pccsgroup.net"><span class="en">Contact</span><span class="cn">联系</span></a>
+    </nav>
+    <div class="mobile-menu-foot">
+      <span>PCCS Group · Engineering Future</span>
+      <span><button class="lang-btn active" onclick="setLang('en')">EN</button> <button class="lang-btn" onclick="setLang('cn')">中文</button></span>
+    </div>
+  </div>
+</div>
 
 <!-- ═══════════ HERO ══════════════════════════════════════════════════ -->
 <section class="hero" aria-labelledby="hero-h1">
@@ -941,6 +1004,28 @@ section { container-type:inline-size; }
 
 <!-- ═══════════ SCRIPTS ════════════════════════════════════════════════ -->
 <script>
+/* ── Mobile menu ──────────────────────────────────────────────────── */
+(function() {
+  var toggle = document.getElementById('menuToggle');
+  var menu = document.getElementById('mobileMenu');
+  if (!toggle || !menu) return;
+  var closeMenu = function() {
+    toggle.setAttribute('aria-expanded', 'false');
+    menu.setAttribute('aria-hidden', 'true');
+    menu.classList.remove('open');
+    document.body.style.overflow = '';
+  };
+  toggle.addEventListener('click', function() {
+    var open = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!open));
+    menu.setAttribute('aria-hidden', String(open));
+    menu.classList.toggle('open', !open);
+    document.body.style.overflow = open ? '' : 'hidden';
+  });
+  menu.querySelectorAll('a').forEach(function(link) { link.addEventListener('click', closeMenu); });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeMenu(); });
+})();
+
 /* ── Language toggle ──────────────────────────────────────────────── */
 function setLang(lang) {
   document.documentElement.dataset.lang = lang;

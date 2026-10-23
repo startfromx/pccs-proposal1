@@ -6,6 +6,40 @@ Use Wolverine Worldwide as a reference for editorial pacing, image scale, spacio
 
 The PCCS copy sheet remains the source of truth for content, facts, metrics, claims, and sitemap.
 
+## Reference study: editorial portfolio hero
+
+The supplied Brands-page reference uses a white, gallery-like opening composition rather than a conventional full-bleed hero. Its useful design principles for PCCS are:
+
+- Keep the first viewport mostly white and calm, with a generous perimeter around the navigation.
+- Use a very large black editorial statement as the primary visual anchor.
+- Arrange a small number of rectangular images as an intentionally irregular collage around and behind the statement.
+- Mix image scales and leave visible gaps; the negative space is part of the composition.
+- Let the headline overlap image tiles so typography and imagery read as one editorial system.
+- Place the supporting paragraph lower in the composition, offset from the headline rather than directly beneath it.
+- Use image opacity and scale differences to establish depth, while keeping the headline fully opaque and dominant.
+- Keep navigation restrained: compact wordmark at left, simple text links at right, and one understated active state.
+
+### PCCS translation rules
+
+- Treat this as a reusable PCCS composition pattern, not a page-specific copy or asset layout.
+- Use PCCS-approved imagery only; never reuse Wolverine imagery, logos, copy, or exact placement.
+- Use a 12-column desktop grid with image tiles positioned within grid zones. Avoid unstructured random placement that becomes fragile at smaller widths.
+- Limit the hero collage to approximately 10–16 tiles on desktop. Prioritize 5–8 tiles on tablet and 3–5 on mobile.
+- Keep the headline readable above every image. If contrast drops, move the tile or reduce its opacity rather than adding a heavy overlay.
+- On mobile, convert the collage into a controlled vertical rhythm: headline first, then a small image cluster, then supporting copy. Do not preserve desktop overlaps at the cost of legibility or horizontal overflow.
+- Use slow, restrained entrance motion only: fade and 12–24px translate, with staggered tiles. Disable stagger and parallax under `prefers-reduced-motion: reduce`.
+- Keep the hero height intentional. Desktop may use a tall editorial stage; mobile should resolve within a predictable scroll distance and must not hide the supporting copy below the fold indefinitely.
+
+### Composition checklist
+
+Before reusing this pattern on a PCCS page, confirm:
+
+1. The page has one short, approved headline that can carry the composition.
+2. The image set represents PCCS work or capability, not generic decoration.
+3. The collage has a clear reading path from navigation to headline to supporting copy.
+4. The layout has been checked at desktop, tablet, and mobile widths.
+5. The design still works with images disabled or delayed.
+
 ## Overall feeling
 
 PCCS should feel:
