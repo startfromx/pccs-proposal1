@@ -25,101 +25,8 @@
     /* page-document nav styles are in pccs-pages.css; no overrides needed */
 
     /* ---------- HERO ---------- */
-    .inv-hero {
-      position: relative;
-      width: 100%;
-      height: 92vh;
-      min-height: 560px;
-      overflow: hidden;
-      display: flex;
-      align-items: flex-end;
-    }
-    .inv-hero-img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center 35%;
-      transform: scale(1.04);
-      transform-origin: center;
-      will-change: transform;
-      transition: transform 1.4s cubic-bezier(.22,.61,.36,1);
-    }
-    .inv-hero.hero-loaded .inv-hero-img {
-      transform: scale(1.00);
-    }
-    .inv-hero-scrim {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        170deg,
-        rgba(0,0,0,.20) 0%,
-        rgba(0,0,0,.12) 38%,
-        rgba(0,0,0,.72) 100%
-      );
-      opacity: 0;
-      transition: opacity .9s ease .3s;
-    }
-    .inv-hero.hero-loaded .inv-hero-scrim {
-      opacity: 1;
-    }
-    .inv-hero-body {
-      position: relative;
-      z-index: 2;
-      padding: clamp(40px,6vw,110px) clamp(28px,6vw,96px) clamp(48px,6vw,96px);
-      color: #fff;
-      max-width: 1200px;
-    }
-    .inv-hero-kicker {
-      font-size: clamp(11px,.75vw,13px);
-      letter-spacing: .22em;
-      text-transform: uppercase;
-      font-weight: 700;
-      color: var(--mint);
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity .7s cubic-bezier(.22,.61,.36,1) .5s,
-                  transform .7s cubic-bezier(.22,.61,.36,1) .5s;
-    }
-    .inv-hero.hero-loaded .inv-hero-kicker {
-      opacity: 1;
-      transform: none;
-    }
-    .inv-hero-h1 {
-      font-weight: 300;
-      font-size: clamp(38px,6.4vw,116px);
-      line-height: .95;
-      letter-spacing: -.04em;
-      margin-top: 22px;
-    }
-    .inv-hero-h1 .line {
-      display: block;
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity .85s cubic-bezier(.22,.61,.36,1),
-                  transform .85s cubic-bezier(.22,.61,.36,1);
-    }
-    .inv-hero.hero-loaded .inv-hero-h1 .line:nth-child(1) { opacity:1; transform:none; transition-delay:.65s; }
-    .inv-hero.hero-loaded .inv-hero-h1 .line:nth-child(2) { opacity:1; transform:none; transition-delay:.78s; }
-    .inv-hero.hero-loaded .inv-hero-h1 .line:nth-child(3) { opacity:1; transform:none; transition-delay:.91s; }
-    .inv-hero-sub {
-      margin-top: 30px;
-      font-size: clamp(16px,1.6vw,26px);
-      font-weight: 300;
-      line-height: 1.45;
-      letter-spacing: -.012em;
-      color: rgba(255,255,255,.84);
-      max-width: 40em;
-      opacity: 0;
-      transform: translateY(18px);
-      transition: opacity .85s cubic-bezier(.22,.61,.36,1) 1.05s,
-                  transform .85s cubic-bezier(.22,.61,.36,1) 1.05s;
-    }
-    .inv-hero.hero-loaded .inv-hero-sub {
-      opacity: 1;
-      transform: none;
-    }
+    /* Geometry, image treatment, scrim, reveal timing, and headline motion
+       come from the shared .hero-stage system. */
     .inv-hero-sub .zh {
       display: block;
       margin-top: 10px;
@@ -128,52 +35,6 @@
       letter-spacing: normal;
       font-family: 'Noto Sans SC', 'Inter', sans-serif;
     }
-    /* Bursa badge bottom-right */
-    .inv-hero-badge {
-      position: absolute;
-      right: clamp(28px,4vw,72px);
-      bottom: clamp(28px,4vw,72px);
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 4px;
-      opacity: 0;
-      transform: translateY(14px);
-      transition: opacity .8s cubic-bezier(.22,.61,.36,1) 1.2s,
-                  transform .8s cubic-bezier(.22,.61,.36,1) 1.2s;
-    }
-    .inv-hero.hero-loaded .inv-hero-badge {
-      opacity: 1;
-      transform: none;
-    }
-    .inv-hero-badge-label {
-      font-size: 10px;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      font-weight: 700;
-      color: rgba(255,255,255,.5);
-    }
-    .inv-hero-badge-ticker {
-      font-size: clamp(32px,3.2vw,60px);
-      font-weight: 300;
-      letter-spacing: -.03em;
-      color: rgba(255,255,255,.9);
-      line-height: 1;
-    }
-    .inv-hero-badge-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 8px;
-      color: rgba(255,255,255,.88);
-      font-size: 12px;
-      line-height: 1.2;
-      text-decoration: none;
-    }
-    .inv-hero-badge-link span { transition: transform .25s ease; }
-    .inv-hero-badge:hover .inv-hero-badge-link span { transform: translate(3px,-2px); }
-
     /* ---------- SECTION RHYTHM ---------- */
     .inv-sec {
       padding: clamp(72px,10vw,160px) clamp(28px,6vw,96px);
@@ -907,13 +768,10 @@
 
     /* prefers-reduced-motion */
     @media (prefers-reduced-motion: reduce) {
-      .inv-hero-img,
       .inv-hero-kicker,
       .inv-hero-h1 .line,
       .inv-hero-sub,
-      .inv-hero-badge,
-      .inv-hero-scrim { transition: none; opacity: 1; transform: none; }
-      .inv-hero.hero-loaded .inv-hero-img { transform: none; }
+      .inv-hero-badge { transition: none; opacity: 1; transform: none; }
       .inv-doc-card,
       .inv-bursa-link,
       .inv-doc-link,
@@ -943,6 +801,8 @@
     .inv-hero.hero-stage.expanded .inv-hero-sub { opacity: 1; transform: none; }
     .inv-hero.hero-stage.expanded .inv-hero-badge { opacity: 1; transform: none; }
     .inv-hero.hero-stage .inv-hero-badge {
+      position: absolute;
+      z-index: 2;
       right: clamp(20px,2.08cqw,40px);
       bottom: clamp(20px,4.17cqw,80px);
       min-width: clamp(180px,15cqw,280px);
@@ -959,6 +819,13 @@
       text-decoration: none;
     }
     .inv-hero.hero-stage .inv-hero-badge:hover { background: rgba(20,20,18,.48); }
+    .inv-hero.hero-stage .inv-hero-badge-media { display:block; overflow:hidden; margin:-18px -20px 14px; border-radius:10px 10px 0 0; background:#fff; }
+    .inv-hero.hero-stage .inv-hero-badge-media img { display:block; width:100%; aspect-ratio:1; object-fit:contain; }
+    .inv-hero.hero-stage .inv-hero-badge { display:block; width:clamp(280px,20.42cqw,392px); min-width:0; padding:8px; border:0; border-radius:8px; background:rgba(255,255,255,.22); color:inherit; box-shadow:0 24px 60px rgba(0,0,0,.22); }
+    .inv-hero.hero-stage .inv-hero-badge-media { margin:0; border-radius:4px; }
+    .inv-hero.hero-stage .inv-hero-badge-label { display:block; margin:14px 8px 0; color:var(--red); font-size:clamp(11px,.68cqw,13px); letter-spacing:.119em; text-transform:uppercase; font-weight:700; }
+    .inv-hero.hero-stage .inv-hero-badge-ticker { display:block; margin:8px; color:#fff; font-size:clamp(24px,2.1cqw,38px); font-weight:700; }
+    .inv-hero.hero-stage .inv-hero-badge-link { display:block; margin:0 8px 8px; color:#fff; }
     @media (max-width: 680px) {
       .inv-hero.hero-stage { height: 88vh; min-height: 680px; }
       .inv-hero.hero-stage .inv-hero-h1 { font-size: clamp(34px,11.5vw,56px); line-height: .94; letter-spacing: -.017em; margin-left: 0; }
@@ -1058,6 +925,7 @@
   </div>
 
   <a class="inv-hero-badge" href="https://www.bursamalaysia.com/bm/trade/trading_resources/listing_directory/company-profile?stock_code=6068" target="_blank" rel="noopener noreferrer" aria-label="View PCCS Group Berhad on Bursa Malaysia">
+    <span class="inv-hero-badge-media"><img src="../images/investors/bursa-malaysia.png" alt="Bursa Malaysia"></span>
     <div class="inv-hero-badge-label">Bursa Malaysia</div>
     <div class="inv-hero-badge-ticker">6068</div>
     <span class="inv-hero-badge-link">View company profile <span aria-hidden="true">↗</span></span>
@@ -1179,7 +1047,7 @@
   </section>
 
   <!-- ===== 3 · DOCUMENTS ===== -->
-    <section class="leadership-sec investors-leadership" aria-labelledby="leadership-h2">
+    <section class="leadership-sec investors-leadership" aria-labelledby="leadership-h2" data-leadership-component>
       <div class="leadership-wrap">
 
         <div class="leadership-head rv-g">
@@ -1290,7 +1158,7 @@
       <div class="inv-contact-grid rv" style="--d:.1s;">
         <div class="inv-contact-card">
           <h3>General IR enquiries</h3>
-          <p>Email: <a href="mailto:enquiry@pccsgroup.net">enquiry@pccsgroup.net</a></p>
+          <p>Email: <a href="mailto:communication@pccsgroup.net">communication@pccsgroup.net</a></p>
           <p>Company secretary: <span class="inv-data-note">NEEDS PCCS INPUT</span></p>
           <p>Phone: <span class="inv-data-note">NEEDS PCCS INPUT</span></p>
           <p>
@@ -1298,8 +1166,8 @@
             PCCS Group Berhad<br>
             Batu Pahat, Johor, Malaysia
           </p>
-          <p>LinkedIn: <a href="https://www.linkedin.com/company/pccs-group-berhad-pccs"
-                          rel="noopener" target="_blank">pccs-group-berhad-pccs</a></p>
+          <p>LinkedIn: <a href="https://www.linkedin.com/company/pccs-group-berhad-my/home/"
+                          rel="noopener" target="_blank">pccs-group-berhad-my</a></p>
         </div>
         <div class="inv-contact-card">
           <h3>Key contacts</h3>
@@ -1321,8 +1189,8 @@
 
 <!-- ===== PAGE FOOTER ===== -->
 
-<script src="../assets/js/pccs-home.js"></script>
-<script src="../assets/js/investor-documents.js"></script>
+  <script src="../assets/js/pccs-home.js"></script>
+  <script src="../assets/js/investor-documents.js"></script>
 <script>
 /* ============================================================
    INVESTORS PAGE — hero load, scroll reveal, count-up
@@ -1433,5 +1301,7 @@
 
   }());
   </script>
+  <script src="../assets/js/leadership-copy.js"></script>
+  <script src="../assets/js/leadership.js"></script>
 </body>
 </html>

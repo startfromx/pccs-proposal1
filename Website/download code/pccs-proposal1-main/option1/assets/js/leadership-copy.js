@@ -1,4 +1,5 @@
 (function () {
+  if (document.documentElement.lang === 'zh-CN') return;
   var bios = {
     "Piong Yew Peng": [
       "Mr Piong Yew Peng is currently serving as the Senior Independent Non-Executive Chairman of the Board of PCCS Group Bhd.",
@@ -42,8 +43,16 @@
       "She holds a Bachelor of Commerce in Accounting and Finance from the University of Tasmania, Australia. She is a member of the Malaysian Institute of Accountants, a Corporate Member of the Institute of Internal Auditors Malaysia and a Fellow of CPA Australia.",
       "She began her career with Smith Zain Securities Sdn. Bhd. as an Accounts Executive in 1999 and became Head of Finance at the Penang Branch of BBMB Securities Sdn. Bhd. in 2002. She joined Hwang-DBS Securities Berhad in 2004 and subsequently pursued a career in professional services before establishing JWC Consulting Sdn. Bhd., where she currently serves as Managing Director.",
       "She also serves on the Industry Advisory Panel of the School of Business at DISTED College, Penang and is an Independent Director of Caritas Malaysia. She currently serves as an Independent Non-Executive Director of Edelteq Holdings Berhad, 3REN Berhad and FoundPac Group Berhad."
+    ],
+    "Tang Lai Huat": [
+      "Dr. Tang Lai Huat was appointed Financial Controller of PCCS Group Berhad on 1 September 2016 and Corporate Controller on 1 March 2018. He leads the Corporate Office and the Group’s finance and accounting functions, including policy execution and strategic deployment across credit, medical equipment and new business.",
+      "He holds doctorate degrees in Business Administration, a Master of Public Administration and an EMBA from Tsinghua University, a further EMBA from City University of Hong Kong, an MBA, the ACCA qualification and an executive certificate in financial strategies for cross-border expansion from Harvard Business School and Peking University.",
+      "Dr. Tang began his career in audit and management consultancy, later held senior finance and operations roles in manufacturing and at LimKokWing University, and joined PCCS in 2012. He also serves as Vice Chairman of Chung De Classics Education Association Malaysia and sits on the boards of private companies, including Faire Berhad.",
+      "He has no family relationship with any Director or major shareholder of PCCS, no conflicts of interest with PCCS, and no relevant convictions, sanctions or penalties during the financial year ended 31 March 2026."
     ]
   };
+
+  window.PCCS_LEADER_BIOS = bios;
 
   document.querySelectorAll(".leader-card[data-leader-name]").forEach(function (card) {
     var name = card.getAttribute("data-leader-name");

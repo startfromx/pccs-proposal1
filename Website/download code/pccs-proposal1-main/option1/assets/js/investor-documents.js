@@ -170,7 +170,14 @@
     "Summaryof 29th AGM.pdf"
   ]
 };
-  var categories = [
+  var isZh = document.documentElement.lang === 'zh-CN';
+  var categories = isZh ? [
+    { id: 'governance', label: '企业管治', count: documents.governance.length },
+    { id: 'announcements', label: '公司公告', href: 'https://www.bursamalaysia.com/market/listed-companies/company-announcements/subscribe/6068/option1/', external: true },
+    { id: 'agm', label: '股东大会摘要', count: documents.agm.length },
+    { id: 'quarterly', label: '季度财务报告', count: documents.quarterly.length },
+    { id: 'annual', label: '年度财务报告', count: documents.annual.length }
+  ] : [
     { id: 'governance', label: 'Corporate Governance', count: documents.governance.length },
     { id: 'announcements', label: 'Company Announcements', href: 'https://www.bursamalaysia.com/market/listed-companies/company-announcements/subscribe/6068/option1/', external: true },
     { id: 'agm', label: 'AGM Summary', count: documents.agm.length },
@@ -182,17 +189,17 @@
   var categoryNav = root.querySelector('[data-investor-categories]');
   var documentPanel = root.querySelector('[data-investor-documents]');
   var select = root.querySelector('[data-investor-select]');
-  var labels = { annual: 'Annual Financial Report', quarterly: 'Quarterly Financial Report', governance: 'Corporate Governance', agm: 'AGM Summary' };
-  var descriptions = { annual: 'Annual reports, statements, governance reports and supporting AGM documents.', quarterly: 'Quarterly financial reports arranged by reporting period.', governance: 'Policies, charters and committee terms of reference.', agm: 'AGM minutes, summaries and responses to shareholder queries.' };
+  var labels = isZh ? { annual: '年度财务报告', quarterly: '季度财务报告', governance: '企业管治', agm: '股东大会摘要' } : { annual: 'Annual Financial Report', quarterly: 'Quarterly Financial Report', governance: 'Corporate Governance', agm: 'AGM Summary' };
+  var descriptions = isZh ? { annual: '年度报告、声明、管治报告及股东大会相关文件。', quarterly: '按报告期间整理的季度财务报告。', governance: '政策、章程及委员会职权范围。', agm: '股东大会会议记录、摘要及股东问询回复。' } : { annual: 'Annual reports, statements, governance reports and supporting AGM documents.', quarterly: 'Quarterly financial reports arranged by reporting period.', governance: 'Policies, charters and committee terms of reference.', agm: 'AGM minutes, summaries and responses to shareholder queries.' };
   function escapeHtml(value) { return value.replace(/[&<>"']/g, function (c) { return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]; }); }
   function titleOf(file) { return file.replace(/\.pdf$/i, ''); }
   function yearOf(file) { var match = file.match(/(19|20)\d{2}/); return match ? match[0] : 'Archive'; }
   function groupFiles(type) {
     var files = documents[type].slice();
-    if (type === 'governance') return [{ label: 'Policies and governance documents', files: files.sort(function (a, b) { return a.localeCompare(b); }) }];
+    if (type === 'governance') return [{ label: isZh ? '政策与企业管治文件' : 'Policies and governance documents', files: files.sort(function (a, b) { return a.localeCompare(b); }) }];
     if (type === 'agm') {
       files.sort(function (a, b) { return (parseInt((b.match(/(\d+)/) || [0, 0])[1], 10) || 0) - (parseInt((a.match(/(\d+)/) || [0, 0])[1], 10) || 0); });
-      return [{ label: 'AGM documents', files: files }];
+      return [{ label: isZh ? '股东大会文件' : 'AGM documents', files: files }];
     }
     var groups = {};
     files.forEach(function (file) { var key = yearOf(file); (groups[key] || (groups[key] = [])).push(file); });
@@ -200,7 +207,7 @@
   }
   function renderCategory(type) {
     var groups = groupFiles(type);
-    documentPanel.innerHTML = '<div class="investor-doc-head"><div><div class="page-card-kicker">Document library</div><h2>' + labels[type] + '</h2><p>' + descriptions[type] + '</p></div><span class="investor-count">' + documents[type].length + ' PDFs</span></div>' + groups.map(function (group, index) { return '<details class="investor-doc-group"' + (index === 0 ? ' open' : '') + '><summary><span>' + escapeHtml(group.label) + '</span><span class="investor-group-count">' + group.files.length + ' documents <b>+</b></span></summary><div class="investor-doc-list">' + group.files.map(function (file) { return '<a class="investor-doc-row" href="../documents/' + type.replace('governance', 'corporate-governance') .replace('agm', 'agm-summary').replace('annual', 'annual-reports').replace('quarterly', 'quarterly-reports') + '/' + encodeURIComponent(file) + '" target="_blank" rel="noopener"><span class="investor-doc-title">' + escapeHtml(titleOf(file)) + '</span><span class="investor-doc-meta">PDF <span aria-hidden="true">↗</span></span></a>'; }).join('') + '</div></details>'; }).join('');
+    documentPanel.innerHTML = '<div class="investor-doc-head"><div><div class="page-card-kicker">' + (isZh ? '文件库' : 'Document library') + '</div><h2>' + labels[type] + '</h2><p>' + descriptions[type] + '</p></div><span class="investor-count">' + documents[type].length + ' ' + (isZh ? '份 PDF' : 'PDFs') + '</span></div>' + groups.map(function (group, index) { return '<details class="investor-doc-group"' + (index === 0 ? ' open' : '') + '><summary><span>' + escapeHtml(group.label) + '</span><span class="investor-group-count">' + group.files.length + ' ' + (isZh ? '份文件' : 'documents') + ' <b>+</b></span></summary><div class="investor-doc-list">' + group.files.map(function (file) { return '<a class="investor-doc-row" href="../documents/' + type.replace('governance', 'corporate-governance') .replace('agm', 'agm-summary').replace('annual', 'annual-reports').replace('quarterly', 'quarterly-reports') + '/' + encodeURIComponent(file) + '" target="_blank" rel="noopener"><span class="investor-doc-title">' + escapeHtml(titleOf(file)) + '</span><span class="investor-doc-meta">PDF <span aria-hidden="true">↗</span></span></a>'; }).join('') + '</div></details>'; }).join('');
     root.querySelectorAll('[data-investor-category]').forEach(function (button) { button.classList.toggle('active', button.getAttribute('data-investor-category') === type); });
     if (select) select.value = type;
   }

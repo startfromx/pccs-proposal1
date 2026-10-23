@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
-  <title>Our Group · PCCS Group Berhad</title>
+  <title>我们的集团 · PCCS 集团有限公司</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23006450'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='21' font-weight='700' fill='%23FFFFFF' text-anchor='middle'%3EP%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -244,7 +244,7 @@
       position: relative;
       border-radius: 20px;
       overflow: hidden;
-      aspect-ratio: 3 / 4;
+      aspect-ratio: 3 / 2;
     }
     .manifesto-imgwrap img {
       width: 100%; height: 100%;
@@ -1054,6 +1054,8 @@
     .grp-hero.hero-stage .grp-hero-eyebrow { font-size:clamp(12px,.83cqw,16px); letter-spacing:.187em; color:#fff; margin-bottom:26px; opacity:1; transform:none; transition:none; }
     .grp-hero.hero-stage .grp-hero-h1 { font-size:clamp(46px,7.94vw,152px); line-height:.88; letter-spacing:-.034em; max-width:none; margin-left:-12px; }
     .grp-hero.hero-stage .grp-hero-h1 .line { overflow:visible; }
+    /* The shared script marks the hero as expanded; reveal the localized line wrappers with it. */
+    .grp-hero.hero-stage.expanded .grp-hero-h1 .line-inner { opacity:1; transform:none; }
     .grp-hero.hero-stage.expanded .grp-hero-card { opacity: 1; transform: none; }
     @media (max-width: 680px) {
       .grp-hero.hero-stage { height: 88vh; min-height: 680px; aspect-ratio: auto; }
@@ -1090,9 +1092,9 @@
 
       <!-- Floating glass card -->
       <div class="grp-hero-card" aria-hidden="true">
-        <div class="grp-hero-card-label">The Group &nbsp;·&nbsp; 关于集团</div>
+        <div class="grp-hero-card-label">集团 &nbsp;·&nbsp; 关于集团</div>
         <div class="grp-hero-card-quote">
-          Engineering-led. Fifty years deep. Growing beyond cloth.
+          以工程为本，深耕五十年，突破布料边界。
         </div>
         <div class="grp-hero-card-cn">
           以工程为本，深耕五十年，突破布料边界。
@@ -1101,8 +1103,8 @@
     </div>
 
     <div class="grp-hero-foot" aria-hidden="true">
-      <span>PCCS Group Berhad &nbsp;·&nbsp; Est. 1973 &nbsp;·&nbsp; Bursa 6068</span>
-      <span>Passion &nbsp;·&nbsp; Care &nbsp;·&nbsp; Commitment &nbsp;·&nbsp; Sustainability</span>
+      <span>PCCS 集团有限公司 &nbsp;·&nbsp; 成立于 1973 &nbsp;·&nbsp; 大马交易所 6068</span>
+      <span>热忱 &nbsp;·&nbsp; 关怀 &nbsp;·&nbsp; 担当 &nbsp;·&nbsp; 永续</span>
     </div>
   </div>
 
@@ -1115,23 +1117,22 @@
 
         <div class="manifesto-left">
           <div class="rv-g">
-            <div class="manifesto-kicker">The Manifesto &nbsp;·&nbsp; 企业宣言</div>
+            <div class="manifesto-kicker">企业宣言</div>
             <h2 class="manifesto-h2" id="manifesto-h2">
-              Some companies<br>chase the future.<br>We engineer it.
+              有些公司<br>追逐未来。<br>我们用工程创造未来。
             </h2>
           </div>
           <div class="rv-g" style="--d:.1s">
             <div class="manifesto-body">
               <p>
-                Where others see a garment, a device, a business &mdash; we see a problem to be solved, precisely.
+                别人看到一件衣服、一台设备、一门生意——我们看到的是一道需要精准解决的问题。
               </p>
               <p>
-                Not fashion. Not luck. Engineering. Measured, proven, built to last.
-                And it reaches further than cloth now &mdash; into health, into how people live,
-                into whatever the next fifty years demand.
+                不是时尚，不是运气，是工程。经得起衡量、验证与时间考验。
+                如今，它已超越布料——走进健康、走进人们的生活，也走向未来五十年的需要。
               </p>
               <p>
-                One discipline. Many futures.
+                一套体系，创造无限未来。
               </p>
               <p class="manifesto-body-cn">
                 别人看到一件衣服、一台设备、一门生意——我们看到的是一道要解好的题，得解得漂亮。
@@ -1139,19 +1140,19 @@
                 走进健康，走进人们怎么生活，走进接下来的五十年。
               </p>
             </div>
-            <div class="manifesto-sign">PCCS. Engineering Future. 以工程，创造可能。</div>
+            <div class="manifesto-sign">PCCS。以工程，创造可能。</div>
           </div>
         </div>
 
         <!-- Right column: image with quote -->
         <div class="manifesto-right rv-g" style="--d:.18s">
           <div class="manifesto-imgwrap">
-            <img src="../images/our_group_2.jpg"
-                 alt="PCCS craftsmanship — the mark behind the marks">
+            <img src="../images/group/manifesto.png"
+                 alt="PCCS 工艺——标识背后的印记">
             <div class="manifesto-img-overlay" aria-hidden="true"></div>
             <div class="manifesto-img-caption" aria-hidden="true">
               <div class="manifesto-img-caption-q">
-                &ldquo;The world&rsquo;s biggest brands don&rsquo;t hand that to just anyone. For fifty years, they&rsquo;ve handed it to us.&rdquo;
+                “世界顶尖品牌不会把这样的责任交给任何人。五十年来，他们一直选择我们。”
               </div>
               <div class="manifesto-img-caption-cn">
                 五十年来，世界顶尖品牌选择了我们。
@@ -1168,27 +1169,27 @@
       <div class="onesys-wrap">
 
         <div class="onesys-header">
-          <div class="onesys-kicker rv-g">One system &nbsp;·&nbsp; 一套体系</div>
+          <div class="onesys-kicker rv-g">一套体系</div>
           <h2 class="onesys-h2 rv-g" id="onesys-h2" style="--d:.1s">
-            Engineering<br><em>Future.</em>
+            以工程<br><em>创造未来。</em>
           </h2>
         </div>
 
         <div class="onesys-grid" role="list">
 
           <!-- Card 1: Engineering Apparel — primary, 2× wide with image -->
-          <a href="../index-cn.html" class="onesys-card onesys-card--primary rv-g" style="--d:.08s" role="listitem" aria-label="Engineering Apparel — explore this site">
+          <a href="../index-cn.html" class="onesys-card onesys-card--primary rv-g" style="--d:.08s" role="listitem" aria-label="工程服装——探索本站">
             <div class="onesys-card-img">
-              <img src="../images/our_group_3.jpg" alt="Engineering Apparel — technical sportswear">
+              <img src="../images/our_group_3.jpg" alt="工程服装——专业运动服装">
               <div class="onesys-card-img-overlay" aria-hidden="true"></div>
             </div>
             <div class="onesys-card-body">
-              <div class="onesys-card-tag onesys-card-tag--this">This site &nbsp;·&nbsp; 本站</div>
-              <h3>Engineering Apparel</h3>
-              <p>Technical sportswear, from fibre to the mark. The full chain: fabric, development, the badge, quality and delivery for the world&rsquo;s leading sport and lifestyle brands.</p>
+              <div class="onesys-card-tag onesys-card-tag--this">本站</div>
+              <h3>工程服装</h3>
+              <p>从纤维到标识的专业运动服装。覆盖面料、开发、标识、质量与交付，为世界领先的运动及生活方式品牌完成完整链条。</p>
               <div class="onesys-card-cn">每一件，皆以工程铸就 —— 从纤维到标识，一手包办。</div>
               <div class="onesys-card-link">
-                Explore this site <span class="ar" aria-hidden="true">↗</span>
+                探索本站 <span class="ar" aria-hidden="true">↗</span>
               </div>
             </div>
           </a>
@@ -1196,12 +1197,12 @@
           <!-- Card 2: Engineering Health — La Prima -->
           <div class="onesys-card rv-g" style="--d:.16s" role="listitem">
             <div class="onesys-card-body">
-              <div class="onesys-card-tag onesys-card-tag--ext">Group arm &nbsp;·&nbsp; 外部</div>
-              <h3>Engineering Health</h3>
-              <p>La Prima &mdash; precision medical devices, built with the same exacting standard our craft is known for. A new field, the same hands.</p>
+              <div class="onesys-card-tag onesys-card-tag--ext">集团业务</div>
+              <h3>工程医疗</h3>
+              <p>La Prima——以我们一贯严谨的标准打造精准医疗设备。全新的领域，同样的专业双手。</p>
               <div class="onesys-card-cn">以专业，护生命 —— La Prima 医疗。</div>
               <a class="onesys-card-link" href="https://www.laprimamedical.com/" target="_blank" rel="noopener" aria-label="访问 La Prima Medical">
-                访问 La Prima Medical <span class="ar" aria-hidden="true">↗</span>
+                访问 La Prima 医疗 <span class="ar" aria-hidden="true">↗</span>
               </a>
             </div>
           </div>
@@ -1209,9 +1210,9 @@
           <!-- Card 3: Finance — EZFY -->
           <div class="onesys-card rv-g" style="--d:.24s" role="listitem">
             <div class="onesys-card-body">
-              <div class="onesys-card-tag onesys-card-tag--ext">Group arm &nbsp;·&nbsp; 外部</div>
-              <h3>Finance — EZFY</h3>
-              <p>A simpler way to access auto, personal and medical equipment financing, with insurance support.</p>
+              <div class="onesys-card-tag onesys-card-tag--ext">集团业务</div>
+              <h3>融资——EZFY</h3>
+              <p>更简单地获取汽车、个人及医疗设备融资，并获得保险支持。</p>
               <div class="onesys-card-cn">更简单地获取汽车、个人及医疗设备融资，并提供保险支持。</div>
               <a class="onesys-card-link" href="https://ezfygroup.com/" target="_blank" rel="noopener" aria-label="访问 EZFY">
                 访问 EZFY <span class="ar" aria-hidden="true">↗</span>
@@ -1224,29 +1225,29 @@
     </section>
 
     <!-- ── SECTION 4: PROOF NUMBERS ──────────────────────────────────────── -->
-    <section class="proof-strip" aria-label="Engineering proof — by the numbers">
+    <section class="proof-strip" aria-label="工程成果——数据见证">
       <div class="proof-wrap">
 
         <div class="proof-statement rv-g">
-          Fifty years.<br><em>Engineered,</em><br>not inherited.
+          五十年。<br><em>用工程创造，</em><br>而非因循继承。
         </div>
 
         <div class="proof-nums" role="list">
           <div class="proof-num rv-g" style="--d:.06s" role="listitem">
             <div class="proof-num-n"><span class="nv" data-to="50">50</span><span class="plus">+</span></div>
-            <div class="proof-num-l">patents</div>
+            <div class="proof-num-l">专利</div>
           </div>
           <div class="proof-num rv-g" style="--d:.12s" role="listitem">
             <div class="proof-num-n"><span class="nv" data-to="100">100</span><span class="plus">+</span></div>
-            <div class="proof-num-l">R&amp;D staff</div>
+            <div class="proof-num-l">研发人员</div>
           </div>
           <div class="proof-num rv-g" style="--d:.18s" role="listitem">
             <div class="proof-num-n"><span class="nv" data-to="1800">1,800</span></div>
-            <div class="proof-num-l">styles / yr</div>
+            <div class="proof-num-l">每年款式</div>
           </div>
           <div class="proof-num rv-g" style="--d:.24s" role="listitem">
             <div class="proof-num-n"><span class="nv" data-to="67000">67,000</span></div>
-            <div class="proof-num-l">samples / yr</div>
+            <div class="proof-num-l">每年样品</div>
           </div>
         </div>
 
@@ -1258,9 +1259,9 @@
       <div class="story-wrap">
 
         <div class="story-head rv-g">
-          <div class="story-kicker">Our Story &nbsp;·&nbsp; 我们的故事</div>
+          <div class="story-kicker">我们的故事</div>
           <h2 class="story-h2" id="story-h2">
-            From three sewing machines<br>to the world&rsquo;s pitches.
+            从三台缝纫机<br>走向世界的球场。
           </h2>
           <p class="story-sub">从三台缝纫机，到世界的球场。</p>
         </div>
@@ -1268,60 +1269,60 @@
         <table class="timeline rv-g" style="--d:.1s">
           <thead>
             <tr>
-              <th scope="col">Year &nbsp;年份</th>
-              <th scope="col">Milestone</th>
+              <th scope="col">年份</th>
+              <th scope="col">里程碑</th>
               <th scope="col" class="tl-cn-col">里程碑</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>1973</td>
-              <td class="tl-en">Three second-hand sewing machines, Batu Pahat.</td>
+              <td class="tl-en">三台二手缝纫机起家，峇株巴辖。</td>
               <td class="tl-cn tl-cn-col">三台二手缝纫机起家，峇株巴辖。</td>
             </tr>
             <tr>
               <td>1981</td>
-              <td class="tl-en">Becomes Perusahaan Chan Choo Sing &mdash; PCCS.</td>
+              <td class="tl-en">成为 Perusahaan Chan Choo Sing —— PCCS。</td>
               <td class="tl-cn tl-cn-col">成为 Perusahaan Chan Choo Sing —— PCCS。</td>
             </tr>
             <tr>
               <td>1983</td>
-              <td class="tl-en">Adds embellishment &mdash; the mark begins.</td>
+              <td class="tl-en">加入装饰工艺——标识，从这里开始。</td>
               <td class="tl-cn tl-cn-col">加入装饰工艺——标识，从这里开始。</td>
             </tr>
             <tr>
               <td>1993&ndash;95</td>
-              <td class="tl-en">Forms as a group; lists on Bursa Malaysia (6068).</td>
+              <td class="tl-en">组成集团；在大马交易所上市（6068）。</td>
               <td class="tl-cn tl-cn-col">组成集团；在大马交易所上市（6068）。</td>
             </tr>
             <tr>
               <td>1998</td>
-              <td class="tl-en">First overseas manufacturing &mdash; Cambodia.</td>
+              <td class="tl-en">第一次海外生产——柬埔寨。</td>
               <td class="tl-cn tl-cn-col">第一次海外生产——柬埔寨。</td>
             </tr>
             <tr>
               <td>2005</td>
-              <td class="tl-en">China operations &mdash; PCCS Garments, Suzhou.</td>
+              <td class="tl-en">中国业务——PCCS Garments，苏州。</td>
               <td class="tl-cn tl-cn-col">中国——PCCS Garments，苏州。</td>
             </tr>
             <tr>
               <td>2015</td>
-              <td class="tl-en">Seamless garments capability (PSG, Cambodia).</td>
+              <td class="tl-en">无缝服装能力（PSG，柬埔寨）。</td>
               <td class="tl-cn tl-cn-col">无缝服装（PSG，柬埔寨）。</td>
             </tr>
             <tr>
               <td>2020</td>
-              <td class="tl-en">Adds medical arm &mdash; La Prima.</td>
+              <td class="tl-en">加入医疗业务——La Prima。</td>
               <td class="tl-cn tl-cn-col">加入医疗（La Prima）。</td>
             </tr>
             <tr>
               <td>2024</td>
-              <td class="tl-en">Vietnam fabric mill &mdash; the last link in the chain.</td>
+              <td class="tl-en">越南面料厂——链条的最后一环。</td>
               <td class="tl-cn tl-cn-col">越南面料厂——链条的最后一环。</td>
             </tr>
             <tr class="tl-today">
-              <td>Today</td>
-              <td class="tl-en">Integrated maker across four countries. &rarr; Engineering Future.</td>
+              <td>今天</td>
+              <td class="tl-en">横跨四国的综合制造商。&rarr; 以工程，创造可能。</td>
               <td class="tl-cn tl-cn-col">横跨四国的综合制造商。&rarr; 以工程，创造可能。</td>
             </tr>
           </tbody>
@@ -1336,15 +1337,12 @@
 
         <div class="footprint-head">
           <div class="rv-g">
-            <div class="footprint-kicker">Global Footprint &nbsp;·&nbsp; 全球布局</div>
+            <div class="footprint-kicker">全球布局</div>
             <h2 class="footprint-h2" id="footprint-h2">
-              Operations across<br>six locations.
+            六个地点<br>连接一体化运营。
             </h2>
           </div>
           <p class="footprint-desc rv-g" style="--d:.1s">
-            From Batu Pahat to Suzhou, from Phnom Penh to Binh Thuan &mdash;
-            one integrated production chain spanning four manufacturing countries
-            and two financial hubs.
             从峇株巴辖到苏州，从金边到平顺——四个生产国，两个金融枢纽，一条整合的供应链。
           </p>
         </div>
@@ -1353,7 +1351,7 @@
 
           <div class="footprint-card footprint-card--china rv-g" style="--d:.05s">
             <div class="footprint-num">01</div>
-            <div class="footprint-location">China</div>
+            <div class="footprint-location">中国</div>
             <div class="footprint-cn">中国</div>
             <div class="footprint-unit"><div class="footprint-unit-label">Suzhou · 制造</div><div class="footprint-logos"><img class="footprint-logo footprint-logo--wide" src="../images/group/subsidiaries/sgl-pccs-garments-suzhou-2048.png" alt="SGL PCCS Garments Suzhou"></div></div>
             <div class="footprint-unit"><div class="footprint-unit-label">Shandong · 制造</div><div class="footprint-logos"><img class="footprint-logo footprint-logo--wide" src="../images/group/subsidiaries/sgl-pccs-garments-shandong-2048.png" alt="SGL PCCS Garments Shandong"></div></div>
@@ -1362,7 +1360,7 @@
 
           <div class="footprint-card footprint-card--cambodia rv-g" style="--d:.1s">
             <div class="footprint-num">02</div>
-            <div class="footprint-location">Cambodia</div>
+            <div class="footprint-location">柬埔寨</div>
             <div class="footprint-cn">柬埔寨</div>
             <div class="footprint-unit"><div class="footprint-unit-label">制造</div><div class="footprint-logos"><img class="footprint-logo" src="../images/group/subsidiaries/whd-2048.png" alt="WHD"><img class="footprint-logo" src="../images/group/subsidiaries/thirty-three-2048.png" alt="Thirty Three"></div></div>
             <div class="footprint-unit"><div class="footprint-unit-label">装饰加工</div><div class="footprint-logos"><img class="footprint-logo" src="../images/group/subsidiaries/bs-2048.png" alt="BS"><img class="footprint-logo" src="../images/group/subsidiaries/pg-perfect-seamless-2048.png" alt="PG Perfect Seamless"></div></div>
@@ -1370,15 +1368,15 @@
 
           <div class="footprint-card footprint-card--vietnam rv-g" style="--d:.15s">
             <div class="footprint-num">03</div>
-            <div class="footprint-location">Vietnam</div>
+            <div class="footprint-location">越南</div>
             <div class="footprint-cn">越南</div>
-            <div class="footprint-role">Manufacturing facilities</div>
-            <div class="footprint-detail">Binh Thuan garment and fabric operations.<br>平顺服装及面料业务。越南子公司标志待补充。</div>
+            <div class="footprint-role">制造设施</div>
+            <div class="footprint-detail">平顺服装及面料业务。越南子公司标志待补充。</div>
           </div>
 
           <div class="footprint-card footprint-card--malaysia rv-g" style="--d:.2s">
             <div class="footprint-num">04</div>
-            <div class="footprint-location">Malaysia</div>
+            <div class="footprint-location">马来西亚</div>
             <div class="footprint-cn">马来西亚</div>
             <div class="footprint-unit"><div class="footprint-unit-label">总部与企业办公室 · 市场</div><div class="footprint-logos"><img class="footprint-logo" src="../images/group/subsidiaries/pccs-logo-color-2048.png" alt="PCCS"></div></div>
             <div class="footprint-unit"><div class="footprint-unit-label">医疗设备</div><div class="footprint-logos"><img class="footprint-logo" src="../images/group/subsidiaries/la-prima-2048.png" alt="La Prima"></div></div>
@@ -1387,17 +1385,17 @@
 
           <div class="footprint-card footprint-card--hongkong rv-g" style="--d:.25s">
             <div class="footprint-num">05</div>
-            <div class="footprint-location">Hong Kong</div>
+            <div class="footprint-location">香港</div>
             <div class="footprint-cn">香港</div>
-            <div class="footprint-role">Financial hub</div>
+            <div class="footprint-role">金融枢纽</div>
             <div class="footprint-detail">金融枢纽</div><div class="footprint-logos"><img class="footprint-logo" src="../images/group/subsidiaries/hk-2048.png" alt="HK"></div>
           </div>
 
           <div class="footprint-card footprint-card--singapore rv-g" style="--d:.3s">
             <div class="footprint-num">06</div>
-            <div class="footprint-location">Singapore</div>
+            <div class="footprint-location">新加坡</div>
             <div class="footprint-cn">新加坡</div>
-            <div class="footprint-role">Medical equipment</div>
+            <div class="footprint-role">医疗设备</div>
             <div class="footprint-detail">医疗 —— La Prima Medicare</div>
             <div class="footprint-logos"><img class="footprint-logo" src="../images/group/subsidiaries/la-prima-2048.png" alt="La Prima"></div>
           </div>
@@ -1451,66 +1449,62 @@
     <section class="values-sec" aria-labelledby="values-h2">
       <div class="values-wrap">
 
-        <div class="values-kicker rv-g">Our Values &nbsp;·&nbsp; 我们的价值观</div>
+        <div class="values-kicker rv-g">我们的价值观</div>
         <p class="values-intro rv-g" id="values-h2" style="--d:.1s">
-          Our values spell our name.
-          <span class="values-intro-cn">我们的价值观，拼出我们的名字。</span>
+          我们的价值观，拼出我们的名字。
         </p>
 
         <div class="values-grid" role="list">
           <div class="values-item rv-g" style="--d:.08s" role="listitem">
             <div class="values-letter" aria-hidden="true">P</div>
-            <div class="values-name">Passion &nbsp;·&nbsp; 热忱</div>
-            <div class="values-desc">We solve what others just supply.<br><span style="color:rgba(255,255,255,.5);">别人只是供应，我们把它解决。</span></div>
+            <div class="values-name">热忱</div>
+            <div class="values-desc">别人只是供应，我们把它解决。</div>
           </div>
           <div class="values-item rv-g" style="--d:.16s" role="listitem">
             <div class="values-letter" aria-hidden="true">C</div>
-            <div class="values-name">Care &nbsp;·&nbsp; 关怀</div>
-            <div class="values-desc">We leave nothing to chance.<br><span style="color:rgba(255,255,255,.5);">我们不留任何侥幸。</span></div>
+            <div class="values-name">关怀</div>
+            <div class="values-desc">我们不留任何侥幸。</div>
           </div>
           <div class="values-item rv-g" style="--d:.24s" role="listitem">
             <div class="values-letter" aria-hidden="true">C</div>
-            <div class="values-name">Commitment &nbsp;·&nbsp; 担当</div>
-            <div class="values-desc">We hold the standard, order after order.<br><span style="color:rgba(255,255,255,.5);">一单接一单，守住标准。</span></div>
+            <div class="values-name">担当</div>
+            <div class="values-desc">一单接一单，守住标准。</div>
           </div>
           <div class="values-item rv-g" style="--d:.32s" role="listitem">
             <div class="values-letter" aria-hidden="true">S</div>
-            <div class="values-name">Sustainability &nbsp;·&nbsp; 永续</div>
-            <div class="values-desc">We build without costing tomorrow.<br><span style="color:rgba(255,255,255,.5);">建设，但不花掉明天。</span></div>
+            <div class="values-name">永续</div>
+            <div class="values-desc">建设，但不花掉明天。</div>
           </div>
         </div>
 
         <div class="values-vision rv-g" style="--d:.4s">
-          Vision &mdash; A Group of Sustainable Companies with Happy Stakeholders.<br>
-          Mission &mdash; Invest for a Better World.<br>
-          <span style="margin-top:.5em;display:block;color:rgba(255,255,255,.38);">
-            愿景 —— 一家让每位利益相关者都安心的永续企业集团。使命 —— 为更美好的世界而投资。
-          </span>
+          愿景 —— 一家让每位利益相关者都安心的永续企业集团。<br>
+          使命 —— 为更美好的世界而投资。
         </div>
 
       </div>
     </section>
 
     <!-- ── SECTION 9: CTA BRIDGE ──────────────────────────────────────────── -->
-    <section class="group-cta-sec" aria-label="Explore more of PCCS">
+    <section class="group-cta-sec" aria-label="探索更多 PCCS 内容">
       <div class="group-cta-wrap">
         <div class="group-cta-inner">
 
           <div class="rv-g">
             <h2 class="group-cta-h2">
-              Engineering that reaches<br>further than cloth.
+              以工程为本，<br>超越布料边界。
             </h2>
             <p class="group-cta-sub">
-              Explore the work, the numbers, and the opportunity behind PCCS.
+              探索 PCCS 背后的业务、数据与机遇。
             </p>
           </div>
 
           <div class="group-cta-pills rv-g" style="--d:.12s">
-            <a class="pill-btn" href="engineering-cn.html">The Engineering <span>&rarr;</span></a>
-            <a class="pill-btn" href="our-work-cn.html">Our Work <span>&rarr;</span></a>
-            <a class="pill-btn" href="sustainability-cn.html">Sustainability <span>&rarr;</span></a>
-            <a class="pill-btn" href="investors-cn.html">Investors <span>&rarr;</span></a>
-            <a class="pill-btn" href="careers-cn.html">Careers <span>&rarr;</span></a>
+            <a class="pill-btn" href="engineering-cn.html">工程业务 <span>&rarr;</span></a>
+            <a class="pill-btn" href="our-work-cn.html">我们的工作 <span>&rarr;</span></a>
+            <a class="pill-btn" href="sustainability-cn.html">可持续发展 <span>&rarr;</span></a>
+            <a class="pill-btn" href="investors-cn.html">投资者关系 <span>&rarr;</span></a>
+            <a class="pill-btn" href="careers-cn.html">人才招聘 <span>&rarr;</span></a>
           </div>
 
         </div>
