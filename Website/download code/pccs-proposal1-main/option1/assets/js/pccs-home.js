@@ -14,9 +14,9 @@
     var home = r + (isCnPage ? 'index-cn.html' : 'index.html');
     var langEn = sub ? englishFile : 'index.html';
     var langCn = sub ? englishFile.replace(/\.html$/, '-cn.html') : 'index-cn.html';
-    var contact = sub ? home + '#contact' : '#' + 'contact';
     var story   = home;
     var page = function(name) { return p + (isCnPage ? name.replace(/\.html$/, '-cn.html') : name); };
+    var contact = page('contact.html');
     var storyCurrent = (!sub && (file === 'index.html' || file === 'index-cn.html')) ? ' aria-current="page"' : '';
 
     function lnk(href, key, match) {
@@ -101,7 +101,7 @@
     var home = r + (isCnPage ? 'index-cn.html' : 'index.html');
     var page = function(name) { return p + (isCnPage ? name.replace(/\.html$/, '-cn.html') : name); };
     var story = home;
-    var contact = sub ? home + '#contact' : '#contact';
+    var contact = page('contact.html');
     var footer =
       '<footer class="foot" id="contact">' +
         '<div class="foot-wrap">' +
@@ -115,10 +115,10 @@
             '<a href="' + page('careers.html') + '" data-t="foot.nav.careers">Careers</a>' +
             '<a href="' + contact + '" data-t="foot.nav.contact">Contact</a>' +
           '</div></div>' +
-          '<div class="foot-lower"><div><div class="foot-desc" data-t="foot.desc">The trusted hand behind the world’s top brands. For fifty years we’ve designed, decorated and delivered the marks worth wearing with pride.</div><div class="foot-social"><span>✉  @pccs-group-berhad-pccs</span><span>in  linkedin.com/company/pccs-group-berhad-pccs</span></div></div>' +
+          '<div class="foot-lower"><div><div class="foot-desc" data-t="foot.desc">The trusted hand behind the world’s top brands. For fifty years we’ve designed, decorated and delivered the marks worth wearing with pride.</div><div class="foot-social"><span>✉  @pccs-group-berhad-pccs</span><a href="https://www.linkedin.com/company/pccs-group-berhad-my/home/" target="_blank" rel="noopener noreferrer">in  linkedin.com/company/pccs-group-berhad-my</a></div></div>' +
           '<div class="foot-lower-right"><div class="foot-col"><h4 data-t="foot.h4.company">Company</h4><a href="' + story + '" data-t="foot.link.story">Story</a><a href="' + page('engineering.html') + '" data-t="foot.link.whatwedo">What We Do</a><a href="' + page('our-work.html') + '" data-t="foot.link.ourwork">Our Work</a><a href="' + page('group.html') + '" data-t="foot.link.ourgroup">Our Group</a><a href="' + page('group.html') + '#footprint" data-t="foot.link.footprint">Global Footprint</a></div>' +
           '<div class="foot-col"><h4 data-t="foot.h4.stakeholders">Stakeholders</h4><a href="' + page('investors.html') + '" data-t="foot.link.investors">Investors</a><a href="' + page('careers.html') + '" data-t="foot.link.careers">Careers</a><a href="' + page('sustainability.html') + '" data-t="foot.link.sustainability">Sustainability</a><a href="#" data-t="foot.link.newsroom">Newsroom</a></div>' +
-          '<div class="foot-col"><h4 data-t="foot.h4.contact">Contact</h4><a href="' + contact + '" data-t="foot.link.hq">Kuala Lumpur HQ</a><a href="mailto:enquiry@pccsgroup.net">enquiry@pccsgroup.net</a><span class="foot-lang"><a class="lang-btn" data-lang="en" href="' + (sub ? englishFile : 'index.html') + '">EN</a> · <a class="lang-btn" data-lang="cn" href="' + (sub ? englishFile.replace(/\.html$/, '-cn.html') : 'index-cn.html') + '">中文</a></span></div></div></div>' +
+          '<div class="foot-col"><h4 data-t="foot.h4.contact">Contact</h4><a href="' + contact + '" data-t="foot.link.hq">Kuala Lumpur HQ</a><a href="mailto:communication@pccsgroup.net">communication@pccsgroup.net</a><span class="foot-lang"><a class="lang-btn" data-lang="en" href="' + (sub ? englishFile : 'index.html') + '">EN</a> · <a class="lang-btn" data-lang="cn" href="' + (sub ? englishFile.replace(/\.html$/, '-cn.html') : 'index-cn.html') + '">中文</a></span></div></div></div>' +
           '<div class="foot-bottom"><span data-t="foot.copyright">© 2026 PCCS Group Berhad (Bursa: 6068). All rights reserved.</span><span data-t="foot.proposal">Proposal by Startfrom X Sdn Bhd. Design mockup — for internal review only.</span></div>' +
         '</div>' +
       '</footer>';

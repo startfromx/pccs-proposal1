@@ -26,119 +26,6 @@ body.page-document {
 }
 
 /* ─────────────────────────────────────────────
-   1. HERO — full-bleed career.jpg with frosted glass card
-───────────────────────────────────────────── */
-.cr-hero-wrap {
-  padding: 24px 40px 0;
-}
-.cr-hero {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 7;
-  min-height: 440px;
-  border-radius: 28px;
-  overflow: hidden;
-  background: #0d1a14;
-}
-.cr-hero-img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 30%;
-  transform: scale(1.04);
-  transition: transform 1.4s cubic-bezier(.22,.61,.36,1);
-  will-change: transform;
-}
-.cr-hero.is-loaded .cr-hero-img {
-  transform: scale(1);
-}
-
-/* gradient scrim — bottom heavy for text legibility */
-.cr-hero-scrim {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(0,0,0,.04) 0%,
-    rgba(0,0,0,.0) 28%,
-    rgba(0,0,0,.52) 100%
-  );
-  z-index: 1;
-}
-
-/* frosted glass card — bottom left, fades in with hero */
-.cr-hero-card {
-  position: absolute;
-  left: clamp(24px, 3.5vw, 64px);
-  bottom: clamp(28px, 4vw, 64px);
-  z-index: 2;
-  max-width: clamp(300px, 38vw, 560px);
-  padding: clamp(28px, 2.8vw, 48px);
-  border-radius: 20px;
-  background: rgba(255,255,255,.14);
-  border: 1px solid rgba(255,255,255,.22);
-  backdrop-filter: blur(18px) saturate(140%);
-  -webkit-backdrop-filter: blur(18px) saturate(140%);
-  box-shadow: 0 18px 55px rgba(0,0,0,.22);
-  opacity: 0;
-  transform: translateY(22px);
-  transition:
-    opacity .9s cubic-bezier(.22,.61,.36,1) .75s,
-    transform .9s cubic-bezier(.22,.61,.36,1) .75s;
-}
-.cr-hero.is-loaded .cr-hero-card {
-  opacity: 1;
-  transform: none;
-}
-
-/* eyebrow inside card */
-.cr-hero-eyebrow {
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: .19em;
-  text-transform: uppercase;
-  color: var(--mint);
-  margin-bottom: 18px;
-  opacity: 0;
-  transition: opacity .7s ease .95s;
-}
-.cr-hero.is-loaded .cr-hero-eyebrow {
-  opacity: 1;
-}
-
-/* main headline inside hero card */
-.cr-hero-h1 {
-  color: #fff;
-  margin: 0;
-}
-.cr-hero-h1 .line {
-  display: block;
-  opacity: 0;
-  transform: translateY(22px);
-  transition:
-    opacity .8s cubic-bezier(.22,.61,.36,1),
-    transform .8s cubic-bezier(.22,.61,.36,1);
-}
-.cr-hero.is-loaded .cr-hero-h1 .line:nth-child(1) { opacity: 1; transform: none; transition-delay: 1.0s; }
-.cr-hero.is-loaded .cr-hero-h1 .line:nth-child(2) { opacity: 1; transform: none; transition-delay: 1.12s; }
-
-/* accent tint in headline */
-.cr-hero-h1 .accent {
-  color: var(--mint);
-}
-
-/* Chinese headline variant — weight 300, no negative tracking */
-.cr-hero-h1-zh {
-  color: #fff;
-  display: none;
-  margin: 0;
-}
-html[lang="zh-CN"] .cr-hero-h1 { display: none; }
-html[lang="zh-CN"] .cr-hero-h1-zh { display: block; }
-
-/* ─────────────────────────────────────────────
    PAGE BODY — shared wrapper for sections 2–5
 ───────────────────────────────────────────── */
 .cr-page {
@@ -672,8 +559,6 @@ html[lang="zh-CN"] span.cr-zh { display: inline; }
    the reduced-motion override here if the page loads
    without the home CSS. Both declarations are idempotent. */
 @media (prefers-reduced-motion: reduce) {
-  .cr-hero-img,
-  .cr-hero-card,
   .cr-hero-eyebrow,
   .cr-hero-h1 .line {
     transform: none !important;
@@ -693,10 +578,6 @@ html[lang="zh-CN"] span.cr-zh { display: inline; }
    RESPONSIVE — TABLET (681px–1100px)
 ───────────────────────────────────────────── */
 @media (min-width: 681px) and (max-width: 1100px) {
-  .cr-hero-wrap { padding: 20px 24px 0; }
-  .cr-hero { aspect-ratio: 16 / 8; border-radius: 22px; }
-  .cr-hero-card { max-width: min(440px, calc(100% - 48px)); }
-
   .cr-belief-grid { grid-template-columns: 1fr; gap: 24px; }
   .cr-values-header { grid-template-columns: 1fr; gap: 20px; }
   .cr-values-grid { grid-template-columns: repeat(2, 1fr); }
@@ -725,21 +606,6 @@ html[lang="zh-CN"] span.cr-zh { display: inline; }
    RESPONSIVE — MOBILE (≤680px)
 ───────────────────────────────────────────── */
 @media (max-width: 680px) {
-  .cr-hero-wrap { padding: 14px 14px 0; }
-  .cr-hero {
-    aspect-ratio: 3 / 4;
-    min-height: 480px;
-    border-radius: 18px;
-  }
-  .cr-hero-card {
-    left: 16px;
-    bottom: 16px;
-    max-width: calc(100% - 32px);
-    border-radius: 14px;
-    padding: 22px;
-    backdrop-filter: blur(12px) saturate(120%);
-    -webkit-backdrop-filter: blur(12px) saturate(120%);
-  }
   .cr-belief-grid { grid-template-columns: 1fr; gap: 20px; }
   .cr-belief-lead { font-size: clamp(18px, 5.5vw, 26px); }
 
@@ -787,8 +653,6 @@ html[lang="zh-CN"] span.cr-zh { display: inline; }
 }
 
 @media (max-width: 420px) {
-  .cr-hero { border-radius: 14px; }
-  .cr-hero-card { border-radius: 10px; }
   .cr-cta-media { border-radius: 14px; }
 }
 

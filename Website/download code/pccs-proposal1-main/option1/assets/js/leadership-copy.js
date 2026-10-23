@@ -1,4 +1,5 @@
 (function () {
+  if (document.documentElement.lang === 'zh-CN') return;
   var bios = {
     "Piong Yew Peng": [
       "Mr Piong Yew Peng is currently serving as the Senior Independent Non-Executive Chairman of the Board of PCCS Group Bhd.",
