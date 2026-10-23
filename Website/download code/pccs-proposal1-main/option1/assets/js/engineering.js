@@ -160,3 +160,4 @@
   /* Init */
   updateControls();
 
+})();
