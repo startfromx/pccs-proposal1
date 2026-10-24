@@ -281,6 +281,35 @@
     color:#fff;font-size:18px;
   }
 
+  /* ===================== SHARED HERO TILE =====================
+     One glass treatment for hero-adjacent tiles across the site. */
+  .hero-stage .hero-tile{
+    border:1px solid rgba(255,255,255,.22);
+    border-radius:8px;
+    background:rgba(255,255,255,.22);
+    backdrop-filter:blur(18px) saturate(140%);
+    -webkit-backdrop-filter:blur(18px) saturate(140%);
+    box-shadow:0 24px 60px rgba(0,0,0,.22);
+    opacity:0;
+    transform:translateY(20px);
+    transition:opacity .9s cubic-bezier(.22,.61,.36,1) 1.55s,
+      transform .9s cubic-bezier(.22,.61,.36,1) 1.55s,
+      background-color .25s ease;
+  }
+  .hero-stage.expanded .hero-tile,
+  .hero-stage.hero-expanded .hero-tile,
+  .hero-stage.hero-loaded .hero-tile,
+  .hero-stage.is-loaded .hero-tile{opacity:1;transform:none;}
+  .hero-stage .hero-tile:hover{background:rgba(255,255,255,.28);}
+  .hero-stage .hero-tile img{
+    transition:transform .7s cubic-bezier(.22,.61,.36,1);
+    will-change:transform;
+  }
+  .hero-stage .hero-tile:hover img{transform:scale(1.08);}
+
+  html{scroll-behavior:smooth;}
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
+
   /* ===================== FOOTER STRIP (below the card, on plain page) ===================== */
   .hero-foot-in{
     display:flex;justify-content:space-between;align-items:center;

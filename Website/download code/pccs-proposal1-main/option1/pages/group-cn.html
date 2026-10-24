@@ -664,12 +664,6 @@
     .footprint-logos { min-height:78px; display:flex; align-items:center; gap:clamp(14px,1.6cqw,28px); margin:4px 0 2px; }
     .footprint-logo { width:auto; max-width:42%; height:clamp(42px,4.4cqw,72px); object-fit:contain; object-position:left center; mix-blend-mode:multiply; }
     .footprint-logo--wide { max-width:58%; }
-    .footprint-card--china { border-top:4px solid #ef3d35; }
-    .footprint-card--cambodia { border-top:4px solid #72b347; }
-    .footprint-card--vietnam { border-top:4px solid #f7b91b; }
-    .footprint-card--malaysia { border-top:4px solid #5897d1; }
-    .footprint-card--hongkong { border-top:4px solid #ef3d35; }
-    .footprint-card--singapore { border-top:4px solid #70d2e1; }
     .footprint-unit { margin-top:2px; }
     .footprint-unit + .footprint-unit { margin-top:16px; padding-top:16px; border-top:1px solid var(--line); }
     .footprint-unit-label { font-size:clamp(11px,.78cqw,13px); letter-spacing:.12em; text-transform:uppercase; color:var(--muted); font-weight:700; }
@@ -1053,6 +1047,7 @@
     .grp-hero.hero-stage .grp-hero-eyebrow { font-size:clamp(12px,.83cqw,16px); letter-spacing:.187em; color:#fff; margin-bottom:26px; opacity:1; transform:none; transition:none; }
     .grp-hero.hero-stage .grp-hero-h1 { font-size:clamp(46px,7.94vw,152px); line-height:.88; letter-spacing:-.034em; max-width:none; margin-left:-12px; }
     .grp-hero.hero-stage .grp-hero-h1 .line { overflow:visible; }
+    html[lang="zh-CN"] .grp-hero.hero-stage .grp-hero-h1 { line-height:1.04; letter-spacing:normal; }
     /* The shared script marks the hero as expanded; reveal the localized line wrappers with it. */
     .grp-hero.hero-stage.expanded .grp-hero-h1 .line-inner { opacity:1; transform:none; }
     .grp-hero.hero-stage.expanded .grp-hero-card { opacity: 1; transform: none; }
@@ -1077,7 +1072,7 @@
   <div class="page">
     <div class="hero-stage grp-hero site-hero" id="heroStage" role="img" aria-label="PCCS Group — one discipline, many futures">
       <div class="hero-frame">
-        <img src="../images/group/group-hero-cross-business.png" data-parallax="1.0,0.22,18" alt="PCCS 集团跨业务服装系列" aria-hidden="true">
+        <img src="../images/group/group-hero-cross-business.webp" data-parallax="1.0,0.22,18" alt="PCCS 集团跨业务服装系列" aria-hidden="true">
         <div class="hero-scrim" aria-hidden="true"></div>
       </div>
 
@@ -1090,7 +1085,7 @@
       </div>
 
       <!-- Floating glass card -->
-      <div class="grp-hero-card" aria-hidden="true">
+      <div class="grp-hero-card hero-tile" aria-hidden="true">
         <div class="grp-hero-card-label">集团 &nbsp;·&nbsp; 关于集团</div>
         <div class="grp-hero-card-quote">
           以工程为本，深耕五十年，突破布料边界。
@@ -1146,7 +1141,7 @@
         <!-- Right column: image with quote -->
         <div class="manifesto-right rv-g" style="--d:.18s">
           <div class="manifesto-imgwrap">
-            <img src="../images/group/manifesto.png"
+            <img src="../images/group/manifesto.webp"
                  alt="PCCS 工艺——标识背后的印记">
             <div class="manifesto-img-overlay" aria-hidden="true"></div>
             <div class="manifesto-img-caption" aria-hidden="true">
@@ -1179,7 +1174,7 @@
           <!-- Card 1: Engineering Apparel — primary, 2× wide with image -->
           <a href="../index-cn.html" class="onesys-card onesys-card--primary rv-g" style="--d:.08s" role="listitem" aria-label="工程服装——探索本站">
             <div class="onesys-card-img">
-              <img src="../images/our_group_3.jpg" alt="工程服装——专业运动服装">
+              <img src="../images/engineering/engineering-hero-soccer.webp" alt="工程服装——专业运动服装">
               <div class="onesys-card-img-overlay" aria-hidden="true"></div>
             </div>
             <div class="onesys-card-body">
@@ -1195,6 +1190,10 @@
 
           <!-- Card 2: Engineering Health — La Prima -->
           <div class="onesys-card rv-g" style="--d:.16s" role="listitem">
+            <div class="onesys-card-img">
+              <img src="../images/our_group_2.webp" alt="La Prima Medical——医疗工程">
+              <div class="onesys-card-img-overlay" aria-hidden="true"></div>
+            </div>
             <div class="onesys-card-body">
               <div class="onesys-card-tag onesys-card-tag--ext">集团业务</div>
               <h3>工程医疗</h3>
@@ -1208,6 +1207,10 @@
 
           <!-- Card 3: Finance — EZFY -->
           <div class="onesys-card rv-g" style="--d:.24s" role="listitem">
+            <div class="onesys-card-img">
+              <img src="../images/our_group_3.webp" alt="EZFY——金融服务">
+              <div class="onesys-card-img-overlay" aria-hidden="true"></div>
+            </div>
             <div class="onesys-card-body">
               <div class="onesys-card-tag onesys-card-tag--ext">集团业务</div>
               <h3>融资——EZFY</h3>
@@ -1352,17 +1355,17 @@
             <div class="footprint-num">01</div>
             <div class="footprint-location">中国</div>
             <div class="footprint-cn">中国</div>
-            <div class="footprint-unit"><div class="footprint-unit-label">Suzhou · 制造</div><div class="footprint-logos"><img class="footprint-logo footprint-logo--wide" src="../images/group/subsidiaries/sgl-pccs-garments-suzhou-2048.png" alt="SGL PCCS Garments Suzhou"></div></div>
-            <div class="footprint-unit"><div class="footprint-unit-label">Shandong · 制造</div><div class="footprint-logos"><img class="footprint-logo footprint-logo--wide" src="../images/group/subsidiaries/sgl-pccs-garments-shandong-2048.png" alt="SGL PCCS Garments Shandong"></div></div>
-            <div class="footprint-unit"><div class="footprint-unit-label">Shanghai · 设计与开发</div><div class="footprint-logos"><img class="footprint-logo" src="../images/group/subsidiaries/thirty-three-2048.png" alt="Thirty Three"></div></div>
+            <div class="footprint-unit"><div class="footprint-unit-label">Suzhou · 制造</div><div class="footprint-logos"><img class="footprint-logo footprint-logo--wide" src="../images/group/subsidiaries/sgl-pccs-garments-suzhou-2048.webp" alt="SGL PCCS Garments Suzhou"></div></div>
+            <div class="footprint-unit"><div class="footprint-unit-label">Shandong · 制造</div><div class="footprint-logos"><img class="footprint-logo footprint-logo--wide" src="../images/group/subsidiaries/sgl-pccs-garments-shandong-2048.webp" alt="SGL PCCS Garments Shandong"></div></div>
+            <div class="footprint-unit"><div class="footprint-unit-label">Shanghai · 设计与开发</div><div class="footprint-logos"><img class="footprint-logo" src="../images/group/subsidiaries/thirty-three-2048.webp" alt="Thirty Three"></div></div>
           </div>
 
           <div class="footprint-card footprint-card--cambodia rv-g" style="--d:.1s">
             <div class="footprint-num">02</div>
             <div class="footprint-location">柬埔寨</div>
             <div class="footprint-cn">柬埔寨</div>
-            <div class="footprint-unit"><div class="footprint-unit-label">制造</div><div class="footprint-logos"><img class="footprint-logo" src="../images/group/subsidiaries/whd-2048.png" alt="WHD"><img class="footprint-logo" src="../images/group/subsidiaries/thirty-three-2048.png" alt="Thirty Three"></div></div>
-            <div class="footprint-unit"><div class="footprint-unit-label">装饰加工</div><div class="footprint-logos"><img class="footprint-logo" src="../images/group/subsidiaries/bs-2048.png" alt="BS"><img class="footprint-logo" src="../images/group/subsidiaries/pg-perfect-seamless-2048.png" alt="PG Perfect Seamless"></div></div>
+            <div class="footprint-unit"><div class="footprint-unit-label">制造</div><div class="footprint-logos"><img class="footprint-logo" src="../images/group/subsidiaries/whd-2048.webp" alt="WHD"><img class="footprint-logo" src="../images/group/subsidiaries/thirty-three-2048.webp" alt="Thirty Three"></div></div>
+            <div class="footprint-unit"><div class="footprint-unit-label">装饰加工</div><div class="footprint-logos"><img class="footprint-logo" src="../images/group/subsidiaries/bs-2048.webp" alt="BS"><img class="footprint-logo" src="../images/group/subsidiaries/pg-perfect-seamless-2048.webp" alt="PG Perfect Seamless"></div></div>
           </div>
 
           <div class="footprint-card footprint-card--vietnam rv-g" style="--d:.15s">
@@ -1377,9 +1380,9 @@
             <div class="footprint-num">04</div>
             <div class="footprint-location">马来西亚</div>
             <div class="footprint-cn">马来西亚</div>
-            <div class="footprint-unit"><div class="footprint-unit-label">总部与企业办公室 · 市场</div><div class="footprint-logos"><img class="footprint-logo" src="../images/group/subsidiaries/pccs-logo-color-2048.png" alt="PCCS"></div></div>
-            <div class="footprint-unit"><div class="footprint-unit-label">医疗设备</div><div class="footprint-logos"><img class="footprint-logo" src="../images/group/subsidiaries/la-prima-2048.png" alt="La Prima"></div></div>
-            <div class="footprint-unit"><div class="footprint-unit-label">融资与保险</div><div class="footprint-logos"><img class="footprint-logo" src="../images/group/subsidiaries/ezfy-2048.png" alt="Ezfy"></div></div>
+            <div class="footprint-unit"><div class="footprint-unit-label">总部与企业办公室 · 市场</div><div class="footprint-logos"><img class="footprint-logo" src="../images/group/subsidiaries/pccs-logo-color-2048.webp" alt="PCCS"></div></div>
+            <div class="footprint-unit"><div class="footprint-unit-label">医疗设备</div><div class="footprint-logos"><img class="footprint-logo" src="../images/group/subsidiaries/la-prima-2048.webp" alt="La Prima"></div></div>
+            <div class="footprint-unit"><div class="footprint-unit-label">融资与保险</div><div class="footprint-logos"><img class="footprint-logo" src="../images/group/subsidiaries/ezfy-2048.webp" alt="Ezfy"></div></div>
           </div>
 
           <div class="footprint-card footprint-card--hongkong rv-g" style="--d:.25s">
@@ -1387,7 +1390,7 @@
             <div class="footprint-location">香港</div>
             <div class="footprint-cn">香港</div>
             <div class="footprint-role">金融枢纽</div>
-            <div class="footprint-detail">金融枢纽</div><div class="footprint-logos"><img class="footprint-logo" src="../images/group/subsidiaries/hk-2048.png" alt="HK"></div>
+            <div class="footprint-detail">金融枢纽</div><div class="footprint-logos"><img class="footprint-logo" src="../images/group/subsidiaries/hk-2048.webp" alt="HK"></div>
           </div>
 
           <div class="footprint-card footprint-card--singapore rv-g" style="--d:.3s">
@@ -1396,7 +1399,7 @@
             <div class="footprint-cn">新加坡</div>
             <div class="footprint-role">医疗设备</div>
             <div class="footprint-detail">医疗 —— La Prima Medicare</div>
-            <div class="footprint-logos"><img class="footprint-logo" src="../images/group/subsidiaries/la-prima-2048.png" alt="La Prima"></div>
+            <div class="footprint-logos"><img class="footprint-logo" src="../images/group/subsidiaries/la-prima-2048.webp" alt="La Prima"></div>
           </div>
 
         </div>
@@ -1415,14 +1418,14 @@
         </div>
         <div class="leaders-meta rv-g" style="--d:.08s"><span class="leaders-filter">董事会</span><span class="leaders-count">8 位董事</span></div>
         <div class="leaders-grid rv-g" style="--d:.1s" role="list">
-          <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/piong-yew-peng.jpg" data-leader-name="Piong Yew Peng" data-leader-role="高级独立非执行主席" data-leader-bio="Piong Yew Peng 于 2015 年以独立非执行董事身份加入董事会，并于 2023 年出任高级独立非执行主席。他毕业于澳大利亚 RMIT 大学，获商业（会计）学士学位，是马来西亚会计师协会会员及澳洲注册会计师协会资深会员，拥有超过 30 年审计与会计服务经验。他也担任 The Pay Fong School Berhad、Premier Pay Fong Foundation 及 Memorial Venture Berhad 董事，并出席了 2026 财年的全部四次董事会会议。"><span class="leader-photo"><img src="../images/group/leaders/piong-yew-peng.jpg" alt="Piong Yew Peng"></span><span class="leader-card-body"><span class="leader-card-name">Piong Yew Peng</span><span class="leader-card-role">高级独立非执行主席</span></span></button>
-          <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/chan-wee-kiang.jpg" data-leader-name="Chan Wee Kiang" data-leader-role="集团董事总经理" data-leader-bio="Chan Wee Kiang 于 2020 年加入董事会并出任集团董事总经理。他毕业于澳大利亚莫纳什大学，获商业（会计与金融）学士学位，并于 2002 年加入 La Prima Medtech，从市场营销主管一路晋升至集团市场营销经理、副集团总经理及集团董事总经理。他是 PCCS 的主要股东，并出席了 2026 财年的全部四次董事会会议。"><span class="leader-photo"><img src="../images/group/leaders/chan-wee-kiang.jpg" alt="Chan Wee Kiang"></span><span class="leader-card-body"><span class="leader-card-name">Chan Wee Kiang</span><span class="leader-card-role">集团董事总经理</span></span></button>
-          <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/chan-wee-boon.jpg" data-leader-name="Chan Wee Boon" data-leader-role="执行董事" data-leader-bio="Chan Wee Boon 于 2020 年加入董事会并出任执行董事。他毕业于澳大利亚莫纳什大学，获土木工程学士学位，曾在中国及槟城担任项目经理，并于 2010 年加入 PCCS。2014 年，他晋升为集团总经理，随后于 2020 年出任执行董事，并出席了 2026 财年的全部四次董事会会议。"><span class="leader-photo"><img src="../images/group/leaders/chan-wee-boon.jpg" alt="Chan Wee Boon"></span><span class="leader-card-body"><span class="leader-card-name">Chan Wee Boon</span><span class="leader-card-role">执行董事</span></span></button>
-          <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/chan-chow-tek.jpg" data-leader-name="Chan Chow Tek" data-leader-role="非独立非执行董事" data-leader-bio="Chan Chow Tek 自 1995 年起担任董事，并于 2020 年转任非独立非执行董事。他在纺织与服装市场营销领域拥有超过 50 年经验，1981 年为 PCCS 开拓首张出口订单，推动出口销售增长，并参与集团服装业务的发展。他出席了 2026 财年四次董事会会议中的三次。"><span class="leader-photo"><img src="../images/group/leaders/chan-chow-tek.jpg" alt="Chan Chow Tek"></span><span class="leader-card-body"><span class="leader-card-name">Chan Chow Tek</span><span class="leader-card-role">非独立非执行董事</span></span></button>
-          <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/chan-chor-ngiak.jpg" data-leader-name="Dato’ Chan Chor Ngiak" data-leader-role="非独立非执行董事" data-leader-bio="Dato’ Chan Chor Ngiak 自 1995 年起担任非独立非执行董事，并兼任审计委员会、提名委员会及薪酬委员会成员。他于 1980 年开始从事市场营销，是峇株巴辖中华总商会名誉会长及 Parit Raja 华人协会主席，并获授彭亨州 D.I.M.P. 勋衔及 Dato’ 荣誉称号。他出席了 2026 财年的全部四次董事会会议。"><span class="leader-photo"><img src="../images/group/leaders/chan-chor-ngiak.jpg" alt="Dato’ Chan Chor Ngiak"></span><span class="leader-card-body"><span class="leader-card-name">Dato’ Chan Chor Ngiak</span><span class="leader-card-role">非独立非执行董事</span></span></button>
-          <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/chan-chor-ang.jpg" data-leader-name="Chan Chor Ang" data-leader-role="非独立非执行董事" data-leader-bio="Chan Chor Ang 自 1995 年起担任非独立非执行董事。他于 1981 年加入 La Prima Medtech，并于 1985 年转任 Jusca Garments 工厂经理，在纺织与服装行业拥有超过 40 年经验。他出席了 2026 财年的全部四次董事会会议。"><span class="leader-photo"><img src="../images/group/leaders/chan-chor-ang.jpg" alt="Chan Chor Ang"></span><span class="leader-card-body"><span class="leader-card-name">Chan Chor Ang</span><span class="leader-card-role">非独立非执行董事</span></span></button>
-          <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/joyce-wong-ai-may.jpg" data-leader-name="Joyce Wong Ai May" data-leader-role="独立非执行董事" data-leader-bio="Joyce Wong Ai May 于 2020 年加入董事会，并担任审计委员会及提名委员会主席，同时为薪酬委员会成员。她毕业于塔斯马尼亚大学，获商业学士学位，是马来西亚会计师协会、马来西亚内部审计师协会及澳洲注册会计师协会会员。她创立 JWC Consulting，并在多家上市公司担任独立非执行董事及审计委员会职务，出席了 2026 财年的全部四次董事会会议。"><span class="leader-photo"><img src="../images/group/leaders/joyce-wong-ai-may.jpg" alt="Joyce Wong Ai May"></span><span class="leader-card-body"><span class="leader-card-name">Joyce Wong Ai May</span><span class="leader-card-role">独立非执行董事</span></span></button>
-          <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/tang-lai-huat.jpg" data-leader-name="Tang Lai Huat" data-leader-role="企业财务总监" data-leader-bio="Dr. Tang Lai Huat 于 2016 年获委任为 PCCS 集团财务总监，并于 2018 年出任企业财务总监。他负责领导企业办公室以及集团财务与会计职能，工作范围涵盖战略部署、信贷、医疗设备及新业务。他拥有多个工商管理博士学位、清华大学公共管理硕士及工商管理硕士、香港城市大学行政人员工商管理硕士、工商管理硕士及 ACCA 资格，并取得哈佛商学院与北京大学跨境扩张财务策略证书。他的职业经历包括审计与咨询、制造业运营、林国荣创意科技大学及 JIT Textiles。他也是马来西亚崇德经典教育协会副主席，并担任 Faire Berhad 董事。"><span class="leader-photo"><img src="../images/group/leaders/tang-lai-huat.jpg" alt="Tang Lai Huat"></span><span class="leader-card-body"><span class="leader-card-name">Tang Lai Huat</span><span class="leader-card-role">企业财务总监</span></span></button>
+          <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/piong-yew-peng.webp" data-leader-name="Piong Yew Peng" data-leader-role="高级独立非执行主席" data-leader-bio="Piong Yew Peng 于 2015 年以独立非执行董事身份加入董事会，并于 2023 年出任高级独立非执行主席。他毕业于澳大利亚 RMIT 大学，获商业（会计）学士学位，是马来西亚会计师协会会员及澳洲注册会计师协会资深会员，拥有超过 30 年审计与会计服务经验。他也担任 The Pay Fong School Berhad、Premier Pay Fong Foundation 及 Memorial Venture Berhad 董事，并出席了 2026 财年的全部四次董事会会议。"><span class="leader-photo"><img src="../images/group/leaders/piong-yew-peng.webp" alt="Piong Yew Peng"></span><span class="leader-card-body"><span class="leader-card-name">Piong Yew Peng</span><span class="leader-card-role">高级独立非执行主席</span></span></button>
+          <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/chan-wee-kiang.webp" data-leader-name="Chan Wee Kiang" data-leader-role="集团董事总经理" data-leader-bio="Chan Wee Kiang 于 2020 年加入董事会并出任集团董事总经理。他毕业于澳大利亚莫纳什大学，获商业（会计与金融）学士学位，并于 2002 年加入 La Prima Medtech，从市场营销主管一路晋升至集团市场营销经理、副集团总经理及集团董事总经理。他是 PCCS 的主要股东，并出席了 2026 财年的全部四次董事会会议。"><span class="leader-photo"><img src="../images/group/leaders/chan-wee-kiang.webp" alt="Chan Wee Kiang"></span><span class="leader-card-body"><span class="leader-card-name">Chan Wee Kiang</span><span class="leader-card-role">集团董事总经理</span></span></button>
+          <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/chan-wee-boon.webp" data-leader-name="Chan Wee Boon" data-leader-role="执行董事" data-leader-bio="Chan Wee Boon 于 2020 年加入董事会并出任执行董事。他毕业于澳大利亚莫纳什大学，获土木工程学士学位，曾在中国及槟城担任项目经理，并于 2010 年加入 PCCS。2014 年，他晋升为集团总经理，随后于 2020 年出任执行董事，并出席了 2026 财年的全部四次董事会会议。"><span class="leader-photo"><img src="../images/group/leaders/chan-wee-boon.webp" alt="Chan Wee Boon"></span><span class="leader-card-body"><span class="leader-card-name">Chan Wee Boon</span><span class="leader-card-role">执行董事</span></span></button>
+          <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/chan-chow-tek.webp" data-leader-name="Chan Chow Tek" data-leader-role="非独立非执行董事" data-leader-bio="Chan Chow Tek 自 1995 年起担任董事，并于 2020 年转任非独立非执行董事。他在纺织与服装市场营销领域拥有超过 50 年经验，1981 年为 PCCS 开拓首张出口订单，推动出口销售增长，并参与集团服装业务的发展。他出席了 2026 财年四次董事会会议中的三次。"><span class="leader-photo"><img src="../images/group/leaders/chan-chow-tek.webp" alt="Chan Chow Tek"></span><span class="leader-card-body"><span class="leader-card-name">Chan Chow Tek</span><span class="leader-card-role">非独立非执行董事</span></span></button>
+          <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/chan-chor-ngiak.webp" data-leader-name="Dato’ Chan Chor Ngiak" data-leader-role="非独立非执行董事" data-leader-bio="Dato’ Chan Chor Ngiak 自 1995 年起担任非独立非执行董事，并兼任审计委员会、提名委员会及薪酬委员会成员。他于 1980 年开始从事市场营销，是峇株巴辖中华总商会名誉会长及 Parit Raja 华人协会主席，并获授彭亨州 D.I.M.P. 勋衔及 Dato’ 荣誉称号。他出席了 2026 财年的全部四次董事会会议。"><span class="leader-photo"><img src="../images/group/leaders/chan-chor-ngiak.webp" alt="Dato’ Chan Chor Ngiak"></span><span class="leader-card-body"><span class="leader-card-name">Dato’ Chan Chor Ngiak</span><span class="leader-card-role">非独立非执行董事</span></span></button>
+          <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/chan-chor-ang.webp" data-leader-name="Chan Chor Ang" data-leader-role="非独立非执行董事" data-leader-bio="Chan Chor Ang 自 1995 年起担任非独立非执行董事。他于 1981 年加入 La Prima Medtech，并于 1985 年转任 Jusca Garments 工厂经理，在纺织与服装行业拥有超过 40 年经验。他出席了 2026 财年的全部四次董事会会议。"><span class="leader-photo"><img src="../images/group/leaders/chan-chor-ang.webp" alt="Chan Chor Ang"></span><span class="leader-card-body"><span class="leader-card-name">Chan Chor Ang</span><span class="leader-card-role">非独立非执行董事</span></span></button>
+          <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/joyce-wong-ai-may.webp" data-leader-name="Joyce Wong Ai May" data-leader-role="独立非执行董事" data-leader-bio="Joyce Wong Ai May 于 2020 年加入董事会，并担任审计委员会及提名委员会主席，同时为薪酬委员会成员。她毕业于塔斯马尼亚大学，获商业学士学位，是马来西亚会计师协会、马来西亚内部审计师协会及澳洲注册会计师协会会员。她创立 JWC Consulting，并在多家上市公司担任独立非执行董事及审计委员会职务，出席了 2026 财年的全部四次董事会会议。"><span class="leader-photo"><img src="../images/group/leaders/joyce-wong-ai-may.webp" alt="Joyce Wong Ai May"></span><span class="leader-card-body"><span class="leader-card-name">Joyce Wong Ai May</span><span class="leader-card-role">独立非执行董事</span></span></button>
+          <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/tang-lai-huat.webp" data-leader-name="Tang Lai Huat" data-leader-role="企业财务总监" data-leader-bio="Dr. Tang Lai Huat 于 2016 年获委任为 PCCS 集团财务总监，并于 2018 年出任企业财务总监。他负责领导企业办公室以及集团财务与会计职能，工作范围涵盖战略部署、信贷、医疗设备及新业务。他拥有多个工商管理博士学位、清华大学公共管理硕士及工商管理硕士、香港城市大学行政人员工商管理硕士、工商管理硕士及 ACCA 资格，并取得哈佛商学院与北京大学跨境扩张财务策略证书。他的职业经历包括审计与咨询、制造业运营、林国荣创意科技大学及 JIT Textiles。他也是马来西亚崇德经典教育协会副主席，并担任 Faire Berhad 董事。"><span class="leader-photo"><img src="../images/group/leaders/tang-lai-huat.webp" alt="Tang Lai Huat"></span><span class="leader-card-body"><span class="leader-card-name">Tang Lai Huat</span><span class="leader-card-role">企业财务总监</span></span></button>
         </div>
         <div class="leader-modal" data-leader-modal aria-hidden="true">
           <div class="leader-modal-panel" role="dialog" aria-modal="true" aria-labelledby="leader-modal-name">
