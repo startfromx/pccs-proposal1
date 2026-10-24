@@ -803,22 +803,43 @@
     .leader-card-body { display:block; padding:20px 18px 22px; min-height:116px; }
     .leader-card-name { display:block; font-size:clamp(17px,1.45cqw,25px); line-height:1.1; font-weight:500; }
     .leader-card-role { display:block; margin-top:10px; color:var(--muted); font-size:clamp(11px,.9cqw,14px); line-height:1.42; font-weight:300; }
-    .leader-modal { position:fixed; inset:0; z-index:1000; display:grid; place-items:center; padding:10px; background:rgba(10,10,10,.58); backdrop-filter:blur(5px); opacity:0; visibility:hidden; pointer-events:none; transition:opacity .38s ease,visibility .38s ease; }
+    .leader-modal { position:fixed; inset:0; z-index:1000; display:grid; place-items:center; padding:4px clamp(10px,3vw,48px); background:rgba(10,10,10,.58); backdrop-filter:blur(5px); -webkit-backdrop-filter:blur(5px); opacity:0; visibility:hidden; pointer-events:none; transition:opacity .38s ease,visibility .38s ease; }
     .leader-modal.is-open { opacity:1; visibility:visible; pointer-events:auto; }
-    .leader-modal-panel { position:relative; display:grid; grid-template-columns:minmax(260px,31%) minmax(0,1fr); grid-template-rows:auto auto minmax(0,1fr); gap:24px 5cqw; width:min(1200px,100%); height:min(88vh,900px); overflow:hidden; padding:32px; border-radius:26px; background:#050505; color:#fff; transform:translateY(30px) scale(.97); transition:transform .5s ease; }
-    .leader-modal.is-open .leader-modal-panel { transform:none; }
-    .leader-modal-top { grid-column:1/-1; display:flex; justify-content:space-between; padding-right:60px; color:rgba(255,255,255,.7); font-size:12px; letter-spacing:.08em; text-transform:uppercase; }
+    .leader-modal-panel { position:relative; display:grid; box-sizing:border-box; container-type:inline-size; grid-template-columns:minmax(310px,31%) minmax(0,1fr); grid-template-rows:auto minmax(300px,max-content) minmax(0,1fr); column-gap:clamp(32px,5cqw,96px); row-gap:clamp(18px,2.2cqw,34px); width:min(1680px,100%); height:min(96vh,1120px); overflow:hidden; padding:clamp(24px,2cqw,42px) clamp(26px,2.5cqw,54px) clamp(26px,2.8cqw,48px); border-radius:26px; background:#050505; color:#fff; transform:translateY(34px) scale(.965); clip-path:inset(4% 0 0 0 round 26px); transition:transform .72s cubic-bezier(.22,.61,.36,1),clip-path .72s cubic-bezier(.22,.61,.36,1); }
+    .leader-modal.is-open .leader-modal-panel { transform:none; clip-path:inset(0 round 26px); }
+    .leader-modal-top { grid-column:1/-1; display:flex; justify-content:space-between; gap:32px; padding-right:clamp(74px,8vw,142px); color:rgba(255,255,255,.82); font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:clamp(10px,.7vw,14px); line-height:1.2; letter-spacing:.03em; text-transform:uppercase; opacity:0; transform:translateY(-12px); transition:opacity .5s ease .18s,transform .5s ease .18s; }
+    .leader-modal.is-open .leader-modal-top { opacity:1; transform:none; }
     .leader-modal-company { text-align:right; }
-    .leader-modal-name { grid-column:1/-1; margin:0; font-size:clamp(42px,7vw,100px); line-height:.9; font-weight:300; letter-spacing:-.06em; }
-    .leader-modal-photo { grid-column:1; min-height:0; overflow:hidden; border-radius:15px; background:#1e252b; }
-    .leader-modal-photo img { width:100%; height:100%; display:block; object-fit:cover; object-position:center top; }
-    .leader-modal-copy { grid-column:2; align-self:end; max-width:620px; padding-bottom:18px; }
-    .leader-modal-kicker { color:rgba(255,255,255,.58); }
-    .leader-modal-role { color:rgba(255,255,255,.58); font-size:17px; line-height:1.4; }
-    .leader-modal-bio { margin-top:24px; color:rgba(255,255,255,.62); font-size:17px; line-height:1.55; font-weight:300; }
-    .leader-modal-close { position:absolute; top:18px; right:18px; z-index:2; width:52px; height:52px; border:0; background:transparent; color:#fff; font-size:30px; cursor:pointer; }
+    .leader-modal-name { grid-column:1/-1; align-self:start; height:auto; min-width:0; margin:0; max-width:none; font-family:'Inter','Noto Sans SC',system-ui,sans-serif; font-weight:300; font-size:clamp(52px,7.6cqw,146px); line-height:.86; letter-spacing:-.078em; color:#fff; white-space:nowrap; opacity:0; transform:translateY(34px); transition:opacity .72s cubic-bezier(.22,.61,.36,1) .22s,transform .72s cubic-bezier(.22,.61,.36,1) .22s; }
+    .leader-modal.is-open .leader-modal-name { opacity:1; transform:none; }
+    .leader-modal-photo { grid-column:1; grid-row:3; align-self:end; width:100%; aspect-ratio:4/5; min-height:0; overflow:hidden; border-radius:15px; background:#1e252b; opacity:0; transform:translateY(32px); transition:opacity .72s cubic-bezier(.22,.61,.36,1) .34s,transform .72s cubic-bezier(.22,.61,.36,1) .34s; }
+    .leader-modal.is-open .leader-modal-photo { opacity:1; transform:none; }
+    .leader-modal-photo img { width:100%; height:100%; min-height:0; display:block; object-fit:cover; object-position:center top; filter:saturate(.92) contrast(1.04); }
+    .leader-modal-copy { grid-column:2; grid-row:3; align-self:end; min-width:0; max-width:620px; padding:0 0 clamp(10px,2vw,34px); opacity:0; transform:translateY(28px); transition:opacity .7s cubic-bezier(.22,.61,.36,1) .48s,transform .7s cubic-bezier(.22,.61,.36,1) .48s; }
+    .leader-modal.is-open .leader-modal-copy { opacity:1; transform:none; }
+    .leader-modal-kicker { margin-bottom:18px; color:rgba(255,255,255,.58); font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:clamp(10px,.7vw,14px); letter-spacing:.08em; }
+    .leader-modal-role { margin-top:14px; color:rgba(255,255,255,.48); font-size:clamp(12px,1vw,17px); line-height:1.4; font-weight:400; }
+    .leader-modal-bio { margin:28px 0 0; max-width:35em; color:rgba(255,255,255,.56); font-size:clamp(14px,1.1vw,19px); line-height:1.52; font-weight:300; }
+    .leader-modal-close { position:absolute; top:22px; right:22px; z-index:2; width:clamp(58px,8vw,132px); height:clamp(58px,8vw,132px); border:0; padding:0; background:transparent; color:transparent; font-size:0; line-height:0; cursor:pointer; }
+    .leader-modal-close::before,.leader-modal-close::after { content:""; position:absolute; left:50%; top:50%; width:100%; height:2px; background:#fff; transform-origin:center; transition:transform .35s ease,background .25s ease; }
+    .leader-modal-close::before { transform:translate(-50%,-50%) rotate(45deg); }
+    .leader-modal-close::after { transform:translate(-50%,-50%) rotate(-45deg); }
+    .leader-modal-close:hover::before,.leader-modal-close:focus-visible::before { transform:translate(-50%,-50%) rotate(135deg); }
+    .leader-modal-close:hover::after,.leader-modal-close:focus-visible::after { transform:translate(-50%,-50%) rotate(-135deg); }
+    .leader-modal-close:hover::before,.leader-modal-close:hover::after,.leader-modal-close:focus-visible::before,.leader-modal-close:focus-visible::after { background:var(--mint); }
+    .leader-modal-close:focus-visible { outline:2px solid var(--mint); outline-offset:6px; }
     @media (max-width:900px) { .leaders-grid { grid-template-columns:repeat(3,1fr); } }
-    @media (max-width:680px) { .leaders-grid { grid-template-columns:repeat(2,1fr); } .leader-card-body { padding:15px 13px 17px; min-height:105px; } .leader-modal-panel { display:block; height:min(94vh,900px); overflow-y:auto; padding:22px; } .leader-modal-name { margin:22px 0; max-width:8ch; line-height:.95; } .leader-modal-photo { aspect-ratio:4/5; margin-bottom:28px; } .leader-modal-copy { padding:0 2px 4px; } }
+    @media (max-width:680px) {
+      .leaders-grid { grid-template-columns:repeat(2,1fr); }
+      .leader-card-body { padding:15px 13px 17px; min-height:105px; }
+      .leader-modal { padding:10px; }
+      .leader-modal-panel { display:block; height:min(94vh,900px); max-height:calc(100vh - 20px); padding:22px 22px 28px; border-radius:20px; overflow-y:auto; overflow-x:hidden; }
+      .leader-modal-top { padding-right:58px; margin-bottom:18px; }
+      .leader-modal-name { height:clamp(128px,30vw,220px); max-width:8ch; margin-bottom:18px; font-size:clamp(58px,16vw,108px); white-space:normal; }
+      .leader-modal-photo { width:100%; min-height:0; height:auto; aspect-ratio:4/5; margin-bottom:28px; }
+      .leader-modal-copy { padding:0 2px 4px; }
+      .leader-modal-close { top:16px; right:16px; width:48px; height:48px; }
+    }
 </style>
 </head>
 
@@ -828,7 +849,7 @@
 <div class="page">
 <section class="hero-stage inv-hero site-hero" id="heroStage" aria-labelledby="inv-h1">
   <div class="hero-frame">
-    <img src="../images/investors/investors-hero-sgl.png"
+    <img src="../images/investors/investors-hero-sgl.webp"
          data-parallax="1.0,0.22,18"
          alt="PCCS Garments Suzhou building in sunlight">
     <div class="hero-scrim" aria-hidden="true"></div>
@@ -847,8 +868,8 @@
     </p>
   </div>
 
-  <a class="inv-hero-badge" href="https://www.bursamalaysia.com/bm/trade/trading_resources/listing_directory/company-profile?stock_code=6068" target="_blank" rel="noopener noreferrer" aria-label="在马来西亚交易所查看 PCCS 集团资料">
-    <span class="inv-hero-badge-media"><img src="../images/investors/bursa-malaysia.png" alt="马来西亚交易所"></span>
+  <a class="inv-hero-badge hero-tile" href="https://www.bursamalaysia.com/bm/trade/trading_resources/listing_directory/company-profile?stock_code=6068" target="_blank" rel="noopener noreferrer" aria-label="在马来西亚交易所查看 PCCS 集团资料">
+    <span class="inv-hero-badge-media"><img src="../images/investors/bursa-malaysia.webp" alt="马来西亚交易所"></span>
     <div class="inv-hero-badge-label">马来西亚交易所</div>
     <div class="inv-hero-badge-ticker">6068</div>
     <span class="inv-hero-badge-link">查看公司资料 <span aria-hidden="true">↗</span></span>
@@ -991,14 +1012,14 @@
       </div>
       <div class="leaders-meta rv-g" style="--d:.08s"><span class="leaders-filter">董事会</span><span class="leaders-count">8 位成员</span></div>
       <div class="leaders-grid rv-g" style="--d:.1s" role="list">
-        <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/piong-yew-peng.jpg" data-leader-name="Piong Yew Peng" data-leader-role="高级独立非执行主席" data-leader-bio="Piong Yew Peng 于 2015 年加入董事会，并于 2023 年重新获委任为高级独立非执行主席。他拥有 RMIT University 商学（会计）学士学位，是马来西亚会计师协会会员及澳洲注册会计师公会资深会员，拥有超过 30 年审计与会计经验。"><span class="leader-photo"><img src="../images/group/leaders/piong-yew-peng.jpg" alt="Piong Yew Peng"></span><span class="leader-card-body"><span class="leader-card-name">Piong Yew Peng</span><span class="leader-card-role">高级独立非执行主席</span></span></button>
-        <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/chan-wee-kiang.jpg" data-leader-name="Chan Wee Kiang" data-leader-role="集团董事总经理" data-leader-bio="Chan Wee Kiang 于 2020 年加入董事会担任集团董事总经理。他拥有 Monash University 商学（会计与金融）学士学位，并于 2002 年加入 La Prima Medtech，历任市场主管、集团市场经理及副集团总经理。"><span class="leader-photo"><img src="../images/group/leaders/chan-wee-kiang.jpg" alt="Chan Wee Kiang"></span><span class="leader-card-body"><span class="leader-card-name">Chan Wee Kiang</span><span class="leader-card-role">集团董事总经理</span></span></button>
-        <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/chan-wee-boon.jpg" data-leader-name="Chan Wee Boon" data-leader-role="执行董事" data-leader-bio="Chan Wee Boon 于 2020 年加入董事会担任执行董事。他拥有 Monash University 土木工程学士学位，并于 2010 年加入 PCCS，曾领导商标与包装部门，后于 2014 年成为集团总经理。"><span class="leader-photo"><img src="../images/group/leaders/chan-wee-boon.jpg" alt="Chan Wee Boon"></span><span class="leader-card-body"><span class="leader-card-name">Chan Wee Boon</span><span class="leader-card-role">执行董事</span></span></button>
-        <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/chan-chow-tek.jpg" data-leader-name="Chan Chow Tek" data-leader-role="非独立非执行董事" data-leader-bio="Chan Chow Tek 于 1995 年加入董事会，并于 2020 年重新获委任为非独立非执行董事。他在纺织与服装营销领域拥有超过 50 年经验，并参与推动 PCCS 的出口与成衣业务发展。"><span class="leader-photo"><img src="../images/group/leaders/chan-chow-tek.jpg" alt="Chan Chow Tek"></span><span class="leader-card-body"><span class="leader-card-name">Chan Chow Tek</span><span class="leader-card-role">非独立非执行董事</span></span></button>
-        <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/chan-chor-ngiak.jpg" data-leader-name="Dato’ Chan Chor Ngiak" data-leader-role="非独立非执行董事" data-leader-bio="Dato’ Chan Chor Ngiak 自 1995 年起担任非独立非执行董事，并参与审计、提名及薪酬委员会。他自 1980 年起从事市场工作，并担任多个社区与商会职务。"><span class="leader-photo"><img src="../images/group/leaders/chan-chor-ngiak.jpg" alt="Dato’ Chan Chor Ngiak"></span><span class="leader-card-body"><span class="leader-card-name">Dato’ Chan Chor Ngiak</span><span class="leader-card-role">非独立非执行董事</span></span></button>
-        <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/chan-chor-ang.jpg" data-leader-name="Chan Chor Ang" data-leader-role="非独立非执行董事" data-leader-bio="Chan Chor Ang 自 1995 年起担任非独立非执行董事。他于 1981 年加入 La Prima Medtech，并于 1985 年成为 Jusca Garments 厂长，在纺织与成衣领域拥有超过 40 年经验。"><span class="leader-photo"><img src="../images/group/leaders/chan-chor-ang.jpg" alt="Chan Chor Ang"></span><span class="leader-card-body"><span class="leader-card-name">Chan Chor Ang</span><span class="leader-card-role">非独立非执行董事</span></span></button>
-        <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/joyce-wong-ai-may.jpg" data-leader-name="Joyce Wong Ai May" data-leader-role="独立非执行董事" data-leader-bio="Joyce Wong Ai May 于 2020 年加入董事会，并担任审计及提名委员会主席。她拥有商学学士学位，并具备证券、会计及咨询行业经验。"><span class="leader-photo"><img src="../images/group/leaders/joyce-wong-ai-may.jpg" alt="Joyce Wong Ai May"></span><span class="leader-card-body"><span class="leader-card-name">Joyce Wong Ai May</span><span class="leader-card-role">独立非执行董事</span></span></button>
-        <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/tang-lai-huat.jpg" data-leader-name="Tang Lai Huat" data-leader-role="集团财务总监" data-leader-bio="Dr. Tang Lai Huat 于 2016 年获委任为 PCCS 集团财务总监，并于 2018 年成为集团财务总监，负责集团财务、会计及战略部署。"><span class="leader-photo"><img src="../images/group/leaders/tang-lai-huat.jpg" alt="Tang Lai Huat"></span><span class="leader-card-body"><span class="leader-card-name">Tang Lai Huat</span><span class="leader-card-role">集团财务总监</span></span></button>
+        <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/piong-yew-peng.webp" data-leader-name="Piong Yew Peng" data-leader-role="高级独立非执行主席" data-leader-bio="Piong Yew Peng 于 2015 年以独立非执行董事身份加入董事会，并于 2023 年出任高级独立非执行主席。他毕业于澳大利亚 RMIT 大学，获商业（会计）学士学位，是马来西亚会计师协会会员及澳洲注册会计师协会资深会员，拥有超过 30 年审计与会计服务经验。他也担任 The Pay Fong School Berhad、Premier Pay Fong Foundation 及 Memorial Venture Berhad 董事，并出席了 2026 财年的全部四次董事会会议。"><span class="leader-photo"><img src="../images/group/leaders/piong-yew-peng.webp" alt="Piong Yew Peng"></span><span class="leader-card-body"><span class="leader-card-name">Piong Yew Peng</span><span class="leader-card-role">高级独立非执行主席</span></span></button>
+        <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/chan-wee-kiang.webp" data-leader-name="Chan Wee Kiang" data-leader-role="集团董事总经理" data-leader-bio="Chan Wee Kiang 于 2020 年加入董事会并出任集团董事总经理。他毕业于澳大利亚莫纳什大学，获商业（会计与金融）学士学位，并于 2002 年加入 La Prima Medtech，从市场营销主管一路晋升至集团市场营销经理、副集团总经理及集团董事总经理。他是 PCCS 的主要股东，并出席了 2026 财年的全部四次董事会会议。"><span class="leader-photo"><img src="../images/group/leaders/chan-wee-kiang.webp" alt="Chan Wee Kiang"></span><span class="leader-card-body"><span class="leader-card-name">Chan Wee Kiang</span><span class="leader-card-role">集团董事总经理</span></span></button>
+        <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/chan-wee-boon.webp" data-leader-name="Chan Wee Boon" data-leader-role="执行董事" data-leader-bio="Chan Wee Boon 于 2020 年加入董事会并出任执行董事。他毕业于澳大利亚莫纳什大学，获土木工程学士学位，曾在中国及槟城担任项目经理，并于 2010 年加入 PCCS。2014 年，他晋升为集团总经理，随后于 2020 年出任执行董事，并出席了 2026 财年的全部四次董事会会议。"><span class="leader-photo"><img src="../images/group/leaders/chan-wee-boon.webp" alt="Chan Wee Boon"></span><span class="leader-card-body"><span class="leader-card-name">Chan Wee Boon</span><span class="leader-card-role">执行董事</span></span></button>
+        <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/chan-chow-tek.webp" data-leader-name="Chan Chow Tek" data-leader-role="非独立非执行董事" data-leader-bio="Chan Chow Tek 自 1995 年起担任董事，并于 2020 年转任非独立非执行董事。他在纺织与服装市场营销领域拥有超过 50 年经验，1981 年为 PCCS 开拓首张出口订单，推动出口销售增长，并参与集团服装业务的发展。他出席了 2026 财年四次董事会会议中的三次。"><span class="leader-photo"><img src="../images/group/leaders/chan-chow-tek.webp" alt="Chan Chow Tek"></span><span class="leader-card-body"><span class="leader-card-name">Chan Chow Tek</span><span class="leader-card-role">非独立非执行董事</span></span></button>
+        <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/chan-chor-ngiak.webp" data-leader-name="Dato’ Chan Chor Ngiak" data-leader-role="非独立非执行董事" data-leader-bio="Dato’ Chan Chor Ngiak 自 1995 年起担任非独立非执行董事，并兼任审计委员会、提名委员会及薪酬委员会成员。他于 1980 年开始从事市场营销，是峇株巴辖中华总商会名誉会长及 Parit Raja 华人协会主席，并获授彭亨州 D.I.M.P. 勋衔及 Dato’ 荣誉称号。他出席了 2026 财年的全部四次董事会会议。"><span class="leader-photo"><img src="../images/group/leaders/chan-chor-ngiak.webp" alt="Dato’ Chan Chor Ngiak"></span><span class="leader-card-body"><span class="leader-card-name">Dato’ Chan Chor Ngiak</span><span class="leader-card-role">非独立非执行董事</span></span></button>
+        <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/chan-chor-ang.webp" data-leader-name="Chan Chor Ang" data-leader-role="非独立非执行董事" data-leader-bio="Chan Chor Ang 自 1995 年起担任非独立非执行董事。他于 1981 年加入 La Prima Medtech，并于 1985 年转任 Jusca Garments 工厂经理，在纺织与服装行业拥有超过 40 年经验。他出席了 2026 财年的全部四次董事会会议。"><span class="leader-photo"><img src="../images/group/leaders/chan-chor-ang.webp" alt="Chan Chor Ang"></span><span class="leader-card-body"><span class="leader-card-name">Chan Chor Ang</span><span class="leader-card-role">非独立非执行董事</span></span></button>
+        <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/joyce-wong-ai-may.webp" data-leader-name="Joyce Wong Ai May" data-leader-role="独立非执行董事" data-leader-bio="Joyce Wong Ai May 于 2020 年加入董事会，并担任审计委员会及提名委员会主席，同时为薪酬委员会成员。她毕业于塔斯马尼亚大学，获商业学士学位，是马来西亚会计师协会、马来西亚内部审计师协会及澳洲注册会计师协会会员。她创立 JWC Consulting，并在多家上市公司担任独立非执行董事及审计委员会职务，出席了 2026 财年的全部四次董事会会议。"><span class="leader-photo"><img src="../images/group/leaders/joyce-wong-ai-may.webp" alt="Joyce Wong Ai May"></span><span class="leader-card-body"><span class="leader-card-name">Joyce Wong Ai May</span><span class="leader-card-role">独立非执行董事</span></span></button>
+        <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/tang-lai-huat.webp" data-leader-name="Tang Lai Huat" data-leader-role="企业财务总监" data-leader-bio="Dr. Tang Lai Huat 于 2016 年获委任为 PCCS 集团财务总监，并于 2018 年出任企业财务总监。他负责领导企业办公室以及集团财务与会计职能，工作范围涵盖战略部署、信贷、医疗设备及新业务。他拥有多个工商管理博士学位、清华大学公共管理硕士及工商管理硕士、香港城市大学行政人员工商管理硕士、工商管理硕士及 ACCA 资格，并取得哈佛商学院与北京大学跨境扩张财务策略证书。他的职业经历包括审计与咨询、制造业运营、林国荣创意科技大学及 JIT Textiles。他也是马来西亚崇德经典教育协会副主席，并担任 Faire Berhad 董事。"><span class="leader-photo"><img src="../images/group/leaders/tang-lai-huat.webp" alt="Tang Lai Huat"></span><span class="leader-card-body"><span class="leader-card-name">Tang Lai Huat</span><span class="leader-card-role">企业财务总监</span></span></button>
       </div>
       <div class="leader-modal" data-leader-modal aria-hidden="true">
         <div class="leader-modal-panel" role="dialog" aria-modal="true" aria-labelledby="leader-modal-name">
@@ -1117,7 +1138,7 @@
 
 <script src="../assets/js/pccs-home.js"></script>
 <script src="../assets/js/investor-documents.js"></script>
-<script src="../assets/js/leadership-copy.js"></script>
+<script src="../assets/js/leadership-copy-cn.js"></script>
 <script>
 /* ============================================================
    INVESTORS PAGE — hero load, scroll reveal, count-up
