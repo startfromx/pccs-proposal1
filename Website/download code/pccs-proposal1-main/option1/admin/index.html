@@ -7,7 +7,21 @@
   <link rel="stylesheet" href="admin.css">
 </head>
 <body>
-  <div class="admin-app">
+  <section id="auth-screen" class="auth-screen" aria-labelledby="auth-title">
+    <div class="auth-card">
+      <p class="eyebrow">PCCS CONTENT ADMIN</p>
+      <h1 id="auth-title">Sign in to edit content.</h1>
+      <p>Use the email and password created in Supabase Authentication.</p>
+      <form id="login-form">
+        <label class="auth-field">Email<input id="login-email" type="email" autocomplete="email" required></label>
+        <label class="auth-field">Password<input id="login-password" type="password" autocomplete="current-password" required></label>
+        <button class="button button-primary" type="submit">Sign in</button>
+      </form>
+      <p id="login-status" class="status" role="status"></p>
+    </div>
+  </section>
+
+  <div id="admin-app" class="admin-app" hidden>
     <aside class="sidebar" aria-label="Admin navigation">
       <div class="brand-mark"><span class="brand-symbol">△</span><span>PCCS<span class="brand-sub">Admin</span></span></div>
       <nav class="sidebar-nav">
@@ -28,7 +42,7 @@
     <main class="admin-main">
       <div class="topbar">
         <div class="breadcrumbs"><span>Content</span><b>/</b><strong>Questions, answered</strong></div>
-        <div class="user-chip"><span class="user-avatar">P</span><span>Admin</span><span class="user-caret">⌄</span></div>
+        <button class="user-chip" id="logout-button" type="button"><span class="user-avatar">P</span><span id="user-email">Admin</span><span class="user-caret">↪</span></button>
       </div>
 
       <header class="admin-header">
@@ -42,17 +56,18 @@
 
     <section class="notice" aria-label="Publishing status">
       <strong>Draft editor</strong>
-      <span>Changes are saved in this browser until authentication and GitHub publishing are connected.</span>
+      <span>Changes are saved to the PCCS Supabase database for authenticated editors.</span>
     </section>
 
     <section class="toolbar" aria-label="FAQ controls">
       <div class="language-tabs" role="tablist" aria-label="FAQ language">
         <button class="language-tab is-active" type="button" data-language="en" role="tab" aria-selected="true">English</button>
         <button class="language-tab" type="button" data-language="zh" role="tab" aria-selected="false">中文</button>
+        <button class="language-tab" type="button" data-language="all" role="tab" aria-selected="false">All</button>
       </div>
       <div class="actions">
         <button class="button button-secondary" type="button" id="reset-button">Reset</button>
-        <button class="button button-secondary" type="button" id="save-button">Save draft</button>
+        <button class="button button-secondary" type="button" id="save-button">Save to Supabase</button>
         <button class="button button-primary" type="button" id="export-button">Export JSON</button>
       </div>
     </section>
@@ -72,6 +87,8 @@
     <p id="status" class="status" role="status"></p>
     </main>
   </div>
-  <script src="admin.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+    <script src="admin.js?v=7"></script>
 </body>
 </html>
