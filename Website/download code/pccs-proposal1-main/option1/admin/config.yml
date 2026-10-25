@@ -1,0 +1,38 @@
+backend:
+  name: turbo-github
+  turbo_site_id: 73d25951-2500-40b9-8448-a73f0a44e6b8
+  branch: current-design
+  commit_messages:
+    create: "Create FAQ entry: {{fields.question}}"
+    update: "Update FAQ content"
+    delete: "Delete FAQ entry"
+
+publish_mode: editorial_workflow
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+  - name: "home-faq"
+    label: "Home FAQ"
+    files:
+      - name: "home-faq"
+        label: "Questions, answered"
+        file: "content/home-faq.json"
+        fields:
+          - label: "English"
+            name: "en"
+            widget: "list"
+            summary: "{{fields.question}}"
+            fields:
+              - { label: "Question", name: "question", widget: "string" }
+              - { label: "Answer", name: "answer", widget: "text" }
+              - { label: "Contact email (optional)", name: "email", widget: "string", required: false }
+          - label: "Chinese"
+            name: "zh"
+            widget: "list"
+            summary: "{{fields.question}}"
+            fields:
+              - { label: "问题", name: "question", widget: "string" }
+              - { label: "答案", name: "answer", widget: "text" }
+              - { label: "联系电邮（可选）", name: "email", widget: "string", required: false }
