@@ -25,14 +25,12 @@
     <aside class="sidebar" aria-label="Admin navigation">
       <div class="brand-mark"><span class="brand-symbol">△</span><span>PCCS<span class="brand-sub">Admin</span></span></div>
       <nav class="sidebar-nav">
-        <p class="nav-label">Workspace</p>
-        <a class="nav-item" href="../index.html"><span class="nav-icon">⌂</span>Overview</a>
-        <a class="nav-item is-active" href="./"><span class="nav-icon">＋</span>Questions, answered</a>
-        <p class="nav-label">Content</p>
-        <a class="nav-item is-disabled" href="#"><span class="nav-icon">▣</span>Home page</a>
+        <p class="nav-label">Pages</p>
+        <a class="nav-item is-active" href="./"><span class="nav-icon">▣</span>Home page</a>
+        <a class="nav-item" href="group.html?section=story"><span class="nav-icon">▤</span>Our Group</a>
+        <div class="nav-subitems"><a class="nav-subitem" href="group.html?section=story">Our Story</a><a class="nav-subitem" href="group.html?section=leadership">Leadership</a></div>
         <a class="nav-item is-disabled" href="#"><span class="nav-icon">▤</span>Careers</a>
-        <a class="nav-item is-disabled" href="#"><span class="nav-icon">▧</span>Investors</a>
-        <a class="nav-item is-disabled" href="#"><span class="nav-icon">◫</span>Documents</a>
+        <a class="nav-item" href="investors.html"><span class="nav-icon">▧</span>Investors</a>
       </nav>
       <div class="sidebar-footer">
         <span class="status-dot"></span><span>Draft workspace</span>
@@ -41,7 +39,7 @@
 
     <main class="admin-main">
       <div class="topbar">
-        <div class="breadcrumbs"><span>Content</span><b>/</b><strong>Questions, answered</strong></div>
+      <div class="breadcrumbs"><span>Content</span><b>/</b><strong>Questions, answered</strong></div>
         <button class="user-chip" id="logout-button" type="button"><span class="user-avatar">P</span><span id="user-email">Admin</span><span class="user-caret">↪</span></button>
       </div>
 
@@ -89,6 +87,6 @@
   </div>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="supabase-config.js"></script>
-    <script src="admin.js?v=7"></script>
+    <script src="admin.js?v=11"></script>
 </body>
 </html>

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PCCS Content Admin — Our Group</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <section id="auth-screen" class="auth-screen"><div class="auth-card">
+    <p class="eyebrow">PCCS CONTENT ADMIN</p><h1>Sign in to edit content.</h1>
+    <p>Use the email and password created in Supabase Authentication.</p>
+    <form id="login-form"><label class="auth-field">Email<input id="login-email" type="email" required></label><label class="auth-field">Password<input id="login-password" type="password" required></label><button class="button button-primary" type="submit">Sign in</button></form>
+    <p id="login-status" class="status"></p>
+  </div></section>
+  <div id="admin-app" class="admin-app" hidden>
+    <aside class="sidebar"><div class="brand-mark"><span class="brand-symbol">△</span><span>PCCS<span class="brand-sub">Admin</span></span></div>
+      <nav class="sidebar-nav"><p class="nav-label">Pages</p><a class="nav-item" href="./"><span class="nav-icon">▣</span>Home page</a><a class="nav-item is-active" href="group.html?section=story"><span class="nav-icon">▤</span>Our Group</a><div class="nav-subitems"><a class="nav-subitem" href="group.html?section=story">Our Story</a><a class="nav-subitem" href="group.html?section=leadership">Leadership</a></div><a class="nav-item is-disabled" href="#"><span class="nav-icon">▤</span>Careers</a><a class="nav-item" href="investors.html"><span class="nav-icon">▧</span>Investors</a></nav>
+      <div class="sidebar-footer"><span class="status-dot"></span><span>Draft workspace</span></div>
+    </aside>
+    <main class="admin-main"><div class="topbar"><div class="breadcrumbs"><span>Our Group</span><b>/</b><strong id="breadcrumb-section">Our Story</strong></div><button class="user-chip" id="logout-button" type="button"><span class="user-avatar">P</span><span id="user-email">Admin</span><span>↪</span></button></div>
+      <header class="admin-header"><div><p class="eyebrow">OUR GROUP</p><h1 id="page-title">Our Story.</h1><p class="intro">Manage the Our Group content in English and Chinese.</p></div><a class="view-site" href="../pages/group.html">View website ↗</a></header>
+      <section class="notice"><strong>Supabase editor</strong><span>Changes are saved for authenticated editors and used by the public Group pages.</span></section>
+      <section class="toolbar"><div class="language-tabs" role="tablist"><button class="language-tab is-active" data-language="en" type="button">English</button><button class="language-tab" data-language="zh" type="button">中文</button></div><div class="actions"><button class="button button-secondary" id="reset-button" type="button">Reset</button><button class="button button-primary" id="save-button" type="button">Save to Supabase</button></div></section>
+      <div class="group-tabs" role="tablist"><button class="group-tab is-active" data-section="story" type="button">Our Story</button><button class="group-tab" data-section="leadership" type="button">Leadership</button></div>
+      <section id="story-editor" class="editor"><div class="editor-heading"><div><p class="eyebrow">OUR GROUP / OUR STORY</p><h2>Timeline content</h2></div><button class="button button-add" id="add-milestone" type="button">+ Add milestone</button></div><div class="group-form"><label class="form-wide">Section label<input id="story-kicker"></label><div id="milestone-list" class="milestone-list"></div></div></section>
+      <section id="leadership-editor" class="editor" hidden><div class="editor-heading"><div><p class="eyebrow">OUR GROUP / LEADERSHIP</p><h2>Director profiles</h2></div><button class="button button-add" id="add-leader" type="button">+ Add director</button></div><div class="group-form"><label class="form-wide">Section label<input id="leadership-kicker"></label><label class="form-wide">Introduction<textarea id="leadership-intro" rows="2"></textarea></label><div id="leader-list" class="leader-list"></div></div></section>
+      <p id="status" class="status"></p>
+    </main>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="supabase-config.js"></script><script src="group.js?v=13"></script>
+</body></html>

@@ -571,6 +571,21 @@
     .timeline tbody tr.tl-today td:first-child { color: var(--ink); font-weight: 700; }
     .timeline tbody tr.tl-today td { background: #eeeee9; }
 
+    /* Desktop timeline: use the available width without repeating the header. */
+    @media (min-width: 761px) {
+      .timeline { display: block; }
+      .timeline thead, .timeline thead tr { display: grid; width: 100%; grid-template-columns: 110px minmax(0, 1fr); }
+      .timeline thead th { min-width: 0; white-space: nowrap; }
+      .timeline thead th:first-child { width: auto; }
+      .timeline thead th:last-child { grid-column: 2; }
+      .timeline tbody { display: grid; width: 100%; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(24px, 4vw, 72px); }
+      .timeline tbody tr { display: grid; grid-template-columns: 110px minmax(0, 1fr); min-width: 0; }
+      .timeline tbody tr:nth-child(odd) { grid-column: 1; }
+      .timeline tbody tr:nth-child(even) { grid-column: 2; }
+      .timeline tbody tr:last-child { border-bottom: 1px solid var(--line); }
+      .timeline tbody tr.tl-today { border-bottom: 2px solid var(--ink); }
+    }
+
     /* ─────────────────────────────────────────────────────────────────────────
        SECTION 6 — GLOBAL FOOTPRINT
     ───────────────────────────────────────────────────────────────────────── */
@@ -1225,7 +1240,6 @@
             <tr>
               <th scope="col">Year</th>
               <th scope="col">Milestone</th>
-              <th scope="col">Milestone</th>
             </tr>
           </thead>
           <tbody>
@@ -1557,7 +1571,9 @@
   }());
   </script>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../admin/supabase-config.js"></script>
+  <script src="../assets/js/group-content.js?v=3"></script>
   <script src="../assets/js/leadership-copy.js"></script>
-  <script src="../assets/js/leadership.js"></script>
 </body>
 </html>
