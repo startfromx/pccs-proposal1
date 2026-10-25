@@ -327,7 +327,7 @@ html[lang="zh-CN"] .cr-craft-h2 { letter-spacing: 0; }
 
 .cr-craft-grid {
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(14px, 1.8vw, 24px);
   align-items: start;
 }
@@ -337,12 +337,7 @@ html[lang="zh-CN"] .cr-craft-h2 { letter-spacing: 0; }
   line-height: 0;
   position: relative;
 }
-/* tall card on left */
-.cr-craft-img-wrap:first-child {
-  aspect-ratio: 4 / 5;
-  border-radius: 20px;
-}
-.cr-craft-img-wrap:not(:first-child) {
+.cr-craft-img-wrap {
   aspect-ratio: 3 / 4;
 }
 .cr-craft-img-wrap img {
@@ -459,21 +454,6 @@ html[lang="zh-CN"] .cr-cta-tagline { letter-spacing: 0; line-height: 1.4; }
 }
 .cr-cta-btn:hover .cr-cta-btn-arrow {
   transform: translate(3px, -3px);
-}
-
-/* NEEDS PCCS INPUT notice */
-.cr-input-note {
-  margin-top: clamp(28px, 3vw, 48px);
-  padding: 18px 24px;
-  border: 1px dashed var(--red);
-  border-radius: 10px;
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.6;
-}
-.cr-input-note strong {
-  color: var(--red);
-  font-weight: 600;
 }
 
 /* ─────────────────────────────────────────────
@@ -597,7 +577,6 @@ html[lang="zh-CN"] span.cr-zh { display: inline; }
   .cr-drag-hint { align-self: flex-start; }
 
   .cr-craft-grid { grid-template-columns: 1fr 1fr; }
-  .cr-craft-img-wrap:first-child { grid-column: span 2; aspect-ratio: 16 / 7; border-radius: 16px; }
 
   .cr-cta-media { aspect-ratio: 16 / 7.5; border-radius: 22px; }
 }
@@ -633,8 +612,7 @@ html[lang="zh-CN"] span.cr-zh { display: inline; }
   .cr-rail-outer { mask-image: none; -webkit-mask-image: none; }
 
   .cr-craft-grid { grid-template-columns: 1fr; gap: 12px; }
-  .cr-craft-img-wrap:first-child { aspect-ratio: 4 / 3; border-radius: 14px; }
-  .cr-craft-img-wrap:not(:first-child) { aspect-ratio: 16 / 9; }
+  .cr-craft-img-wrap { aspect-ratio: 16 / 9; border-radius: 14px; }
   .cr-craft-h2 { font-size: clamp(24px, 7.5vw, 40px); letter-spacing: -.03em; }
 
   .cr-cta-media {
@@ -692,7 +670,7 @@ html[lang="zh-CN"] .cr-hero.hero-stage .cr-hero-h1.cr-zh { display: block; }
          role="img"
          aria-label="Careers at PCCS Group — Come engineer what the world wears">
       <div class="hero-frame">
-        <img src="../images/hero1.jpg"
+        <img src="../images/hero1.webp"
              data-parallax="1.0,0.22,18"
              alt=""
              aria-hidden="true"
@@ -994,8 +972,8 @@ html[lang="zh-CN"] .cr-hero.hero-stage .cr-hero-h1.cr-zh { display: block; }
       <div class="cr-craft-grid">
 
         <div class="cr-craft-img-wrap rv" style="--d:.08s;">
-          <img src="../images/what_to_do1.jpg"
-               alt="PCCS design and development process — translating concepts into technical packages"
+          <img src="../images/careers-development.webp"
+               alt="Colorful PCCS development threads arranged by shade"
                loading="lazy">
           <span class="cr-craft-cap">
             <span class="cr-en">Development</span>
@@ -1004,8 +982,8 @@ html[lang="zh-CN"] .cr-hero.hero-stage .cr-hero-h1.cr-zh { display: block; }
         </div>
 
         <div class="cr-craft-img-wrap rv" style="--d:.16s;">
-          <img src="../images/what_to_do2.jpg"
-               alt="PCCS embellishment craft — embroidery and badge making"
+          <img src="../images/what_to_do1.webp"
+               alt="PCCS technical development process — turning concepts into production-ready packages"
                loading="lazy">
           <span class="cr-craft-cap">
             <span class="cr-en">The Mark</span>
@@ -1014,7 +992,7 @@ html[lang="zh-CN"] .cr-hero.hero-stage .cr-hero-h1.cr-zh { display: block; }
         </div>
 
         <div class="cr-craft-img-wrap rv" style="--d:.24s;">
-          <img src="../images/what_to_do3.jpg"
+          <img src="../images/what_to_do3.webp"
                alt="PCCS manufacturing and quality control"
                loading="lazy">
           <span class="cr-craft-cap">
@@ -1034,7 +1012,7 @@ html[lang="zh-CN"] .cr-hero.hero-stage .cr-hero-h1.cr-zh { display: block; }
 
       <div class="cr-cta-media">
         <img class="cr-cta-img"
-             src="../images/pccs-embroidery.jpg"
+             src="../images/pccs-embroidery.webp"
              alt="PCCS precision craft — embroidery at the heart of what we make"
              loading="lazy">
         <div class="cr-cta-overlay" aria-hidden="true"></div>
@@ -1052,24 +1030,13 @@ html[lang="zh-CN"] .cr-hero.hero-stage .cr-hero-h1.cr-zh { display: block; }
             </span>
           </p>
 
-          <!-- CTA button — destination NEEDS PCCS INPUT -->
           <a class="cr-cta-btn"
-             href="#cr-open-roles"
-             aria-describedby="cr-input-note-text">
+             href="contact.html">
             <span class="cr-en">See Open Roles</span>
             <span class="cr-zh" lang="zh-CN">查看招聘职位</span>
             <span class="cr-cta-btn-arrow" aria-hidden="true">&#8599;</span>
           </a>
         </div>
-      </div>
-
-      <!-- NEEDS PCCS INPUT: open roles destination + listing -->
-      <div class="cr-input-note" id="cr-open-roles">
-        <span id="cr-input-note-text">
-          <strong>NEEDS PCCS INPUT</strong>&nbsp;&mdash;&nbsp;
-          Open roles listing, recruitment portal URL, and application contact have not yet been provided.
-          Replace this block with the approved destination before publication.
-        </span>
       </div>
 
     </section>
