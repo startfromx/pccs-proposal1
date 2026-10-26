@@ -187,18 +187,43 @@ h2 { font-size: clamp(25px, 3vw, 38px); font-weight: 500; letter-spacing: -.045e
 .leader-image-preview img { width:32px; height:32px; border-radius:6px; object-fit:cover; border:1px solid var(--line); }
 .leader-image-preview span { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 .investor-category-tabs { flex-wrap:wrap; }
+.shared-record-note { color:#71717a; font-size:13px; }
 .investor-admin-list { display:grid; gap:10px; }
-.investor-admin-row { display:grid; grid-template-columns:minmax(180px,.8fr) minmax(240px,1.4fr) minmax(210px,.9fr); gap:10px; align-items:start; padding:12px; border:1px solid var(--line); border-radius:8px; background:#fff; }
+.investor-admin-year { margin:18px 0 0; padding:10px 2px 6px; border-bottom:2px solid #18181b; color:#18181b; font-size:18px; }
+.investor-admin-row { display:grid; grid-template-columns:minmax(80px,.35fr) minmax(190px,1fr) minmax(190px,1fr) minmax(240px,1.4fr) minmax(210px,.9fr) auto; gap:10px; align-items:start; padding:12px; border:1px solid var(--line); border-radius:8px; background:#fff; }
+.investor-title-with-copy { display:flex; gap:5px; min-width:0; }
+.investor-title-with-copy .investor-title-input { min-width:0; flex:1; }
+.copy-title { width:30px; min-width:30px; padding:0; border:1px solid #d4d4d8; border-radius:6px; background:#fff; color:#52525b; }
+.copy-title:hover { border-color:var(--green); color:var(--green); }
+.investor-admin-row-all { grid-template-columns:minmax(110px,.55fr) minmax(180px,1fr) minmax(180px,1fr) minmax(220px,1.3fr) minmax(210px,.9fr) auto; }
+.investor-admin-row.is-new-row { border-color:#166534; box-shadow:0 0 0 3px rgba(22,101,52,.12); }
 .investor-admin-row input { width:100%; border:1px solid #d4d4d8; border-radius:6px; padding:9px 10px; color:#18181b; font:inherit; font-size:14px; }
 .investor-file-controls { display:grid; grid-template-columns:minmax(0,1fr) 38px; gap:8px; align-items:center; min-width:0; }
 .investor-file-controls input[type=file] { grid-column:1; }
 .investor-file-controls .investor-file-note { grid-column:1; }
 .investor-file-controls .row-remove { grid-column:2; grid-row:1 / span 2; }
 .investor-file-note { overflow:hidden; color:#71717a; font-size:12px; text-overflow:ellipsis; white-space:nowrap; }
+.investor-row-actions { display:flex; flex-direction:row; gap:8px; }
+.row-move { display:grid; place-items:center; width:38px; height:38px; border:1px solid var(--line); border-radius:6px; background:#fff; color:#18181b; padding:0; font-size:18px; cursor:pointer; }
+.row-move:hover { background:#f4f4f5; }
 .nav-subitems { display:grid; gap:2px; margin:-2px 0 8px 46px; }
 .nav-subitem { padding:7px 10px; border-radius:6px; color:#71717a; font-size:12px; text-decoration:none; }
 .nav-subitem:hover { background:#f4f4f5; color:#09090b; }
-@media (max-width:760px) { .milestone-row,.leader-row,.investor-admin-row { grid-template-columns:1fr; } }
+.nav-subitem.is-active { background:#f4f4f5; color:#09090b; }
+.nav-count { margin-left:auto; min-width:20px; padding:2px 6px; border-radius:999px; background:#f4f4f5; color:#71717a; font-size:11px; line-height:1.2; text-align:center; }
+.nav-subitem .nav-count { margin-left:8px; background:#fff; }
+.career-admin-list { display:grid; gap:14px; }
+.career-admin-job { padding:16px; border:1px solid var(--line); border-radius:10px; background:#fff; }
+.career-admin-job-head { display:flex; align-items:center; gap:12px; margin-bottom:14px; }
+.career-admin-job-head strong { margin-right:auto; color:var(--ink); font-size:16px; }
+.career-admin-job-head select { min-width:130px; }
+.career-admin-job-head select,.career-admin-job input,.career-admin-job textarea { border:1px solid #d4d4d8; border-radius:6px; padding:9px 10px; color:#18181b; font:inherit; font-size:14px; font-weight:400; }
+.career-admin-job input,.career-admin-job textarea { width:100%; box-sizing:border-box; }
+.career-admin-job textarea { min-height:96px; resize:vertical; line-height:1.45; }
+.career-admin-grid,.career-admin-copy-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+.career-admin-copy-grid { margin-top:12px; }
+.career-admin-job label { display:grid; gap:6px; color:#71717a; font-size:12px; font-weight:700; letter-spacing:.04em; }
+@media (max-width:760px) { .milestone-row,.leader-row,.investor-admin-row,.investor-admin-row-all,.career-admin-grid,.career-admin-copy-grid { grid-template-columns:1fr; } .investor-row-actions { flex-direction:row; } .career-admin-job-head { flex-wrap:wrap; } .career-admin-job-head strong { width:100%; } }
 .auth-screen { background: #fafafa; }
 .auth-card { border: 1px solid var(--line); border-radius: 10px; box-shadow: 0 10px 30px #00000008; }
 .auth-card h1 { font-size: clamp(36px, 5vw, 52px); font-weight: 500; }

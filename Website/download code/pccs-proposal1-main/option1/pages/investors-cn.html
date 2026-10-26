@@ -777,6 +777,9 @@
     .inv-document-library .investor-doc-head p { margin:0; color:var(--muted); font-size:14px; line-height:1.45; }
     .inv-document-library .investor-count { color:var(--muted); font-size:12px; white-space:nowrap; }
     .inv-document-library .investor-doc-group { border-bottom:1px solid var(--line); }
+    .inv-document-library .investor-doc-group-open { display:grid; grid-template-columns:140px minmax(0,1fr); gap:24px; padding:18px 0; }
+    .inv-document-library .investor-year-heading { margin:0; padding-top:13px; font-size:20px; font-weight:500; }
+    .inv-document-library .investor-doc-group-open .investor-doc-list { border-top:0; }
     .inv-document-library .investor-doc-group summary { display:flex; justify-content:space-between; align-items:center; gap:20px; padding:18px 0; cursor:pointer; list-style:none; font-size:17px; font-weight:500; }
     .inv-document-library .investor-doc-group summary::-webkit-details-marker { display:none; }
     .inv-document-library .investor-doc-group summary b { margin-left:8px; color:var(--green); font-size:20px; font-weight:300; }
@@ -784,7 +787,7 @@
     .inv-document-library .investor-doc-row { display:flex; justify-content:space-between; align-items:center; gap:20px; padding:13px 0; border-bottom:1px solid rgba(28,28,26,.07); color:var(--ink); text-decoration:none; font-size:14px; line-height:1.35; }
     .inv-document-library .investor-doc-row:hover .investor-doc-title { color:var(--green); }
     .inv-document-library .investor-doc-meta { color:var(--green); font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; white-space:nowrap; }
-    @media (max-width:680px) { .inv-document-library .investor-library-layout { display:block; } .inv-document-library .investor-categories { display:none; } .inv-document-library .investor-select-label { display:block; margin-bottom:24px; color:var(--muted); font-size:12px; } .inv-document-library .investor-select-label select { display:block; width:100%; margin-top:8px; padding:12px; border:1px solid var(--line); background:transparent; color:var(--ink); } .inv-document-library .investor-doc-head { align-items:start; flex-direction:column; } .inv-document-library .investor-doc-row { align-items:flex-start; } }
+    @media (max-width:680px) { .inv-document-library .investor-library-layout { display:block; } .inv-document-library .investor-categories { display:none; } .inv-document-library .investor-select-label { display:block; margin-bottom:24px; color:var(--muted); font-size:12px; } .inv-document-library .investor-select-label select { display:block; width:100%; margin-top:8px; padding:12px; border:1px solid var(--line); background:transparent; color:var(--ink); } .inv-document-library .investor-doc-head { align-items:start; flex-direction:column; } .inv-document-library .investor-doc-row { align-items:flex-start; } .inv-document-library .investor-doc-group-open { grid-template-columns:100px minmax(0,1fr); gap:16px; } }
     .leadership-sec { background:#f7f7f5; padding:clamp(64px,8vw,112px) clamp(24px,5vw,80px); container-type:inline-size; }
     .leadership-wrap { max-width:1840px; margin:0 auto; }
     .leadership-head { margin-bottom:clamp(36px,4vw,64px); }
@@ -1138,6 +1141,9 @@
 
 <script src="../assets/js/pccs-home.js"></script>
 <script src="../assets/js/investor-documents.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../admin/supabase-config.js"></script>
+<script src="../assets/js/investor-documents-remote.js?v=9"></script>
 <script src="../assets/js/leadership-copy-cn.js"></script>
 <script>
 /* ============================================================

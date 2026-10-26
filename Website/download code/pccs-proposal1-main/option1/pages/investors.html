@@ -508,6 +508,9 @@
     .inv-document-library .investor-doc-head h2 { margin: 0 0 8px; font-size: clamp(24px,2.4vw,44px); font-weight: 300; letter-spacing: -.04em; }
     .inv-document-library .investor-doc-head p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.45; }
     .inv-document-library .investor-doc-group { border-bottom: 1px solid var(--line); }
+    .inv-document-library .investor-doc-group-open { display:grid; grid-template-columns:140px minmax(0,1fr); gap:24px; padding:18px 0; }
+    .inv-document-library .investor-year-heading { margin:0; padding-top:13px; font-size:20px; font-weight:500; }
+    .inv-document-library .investor-doc-group-open .investor-doc-list { border-top:0; }
     .inv-document-library .investor-doc-group summary { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 18px 0; cursor: pointer; list-style: none; font-size: 17px; font-weight: 500; }
     .inv-document-library .investor-doc-group summary::-webkit-details-marker { display: none; }
     .inv-document-library .investor-doc-group summary b { margin-left: 8px; color: var(--green); font-size: 20px; font-weight: 300; }
@@ -526,6 +529,7 @@
     @media (max-width: 520px) {
       .inv-document-library .investor-doc-head { align-items: start; flex-direction: column; }
       .inv-document-library .investor-doc-row { align-items: flex-start; }
+      .inv-document-library .investor-doc-group-open { grid-template-columns:100px minmax(0,1fr); gap:16px; }
     }
 
     /* ---------- GOVERNANCE ---------- */
@@ -1130,12 +1134,6 @@
               <li>Better Factories Cambodia</li>
               <li>GRS &middot; RCS &middot; OEKO-TEX &middot; ZDHC &middot; Higg FEM</li>
             </ul>
-            <div class="inv-audit-box">
-              <strong>Audit &amp; committees</strong><br>
-              Committee composition and terms of reference: <span class="inv-data-note" style="color:var(--red); background:rgba(216,66,54,.14);">NEEDS PCCS INPUT</span><br>
-              External auditor: <span class="inv-data-note" style="color:var(--red); background:rgba(216,66,54,.14);">NEEDS PCCS INPUT</span><br>
-              Last audit opinion: <span class="inv-data-note" style="color:var(--red); background:rgba(216,66,54,.14);">NEEDS PCCS INPUT</span>
-            </div>
           </div>
           <p style="font-size:12px; color:#999; margin-top:14px;">
             Sustainability reporting to Bursa Malaysia standard since FY2018.
@@ -1305,6 +1303,6 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="../admin/supabase-config.js"></script>
   <script src="../assets/js/group-content.js?v=4"></script>
-  <script src="../assets/js/investor-documents-remote.js?v=1"></script>
+  <script src="../assets/js/investor-documents-remote.js?v=9"></script>
 </body>
 </html>

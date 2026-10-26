@@ -52,7 +52,7 @@
     const milestones = $('#milestone-list'); milestones.replaceChildren();
     story.milestones.forEach((item, index) => {
       const row = document.createElement('div'); row.className = 'milestone-row';
-      row.innerHTML = '<input aria-label="Year"><textarea rows="2" aria-label="Milestone"><\/textarea><button class="row-remove" type="button" aria-label="Remove milestone" title="Remove milestone"><span aria-hidden="true">🗑</span><\/button>';
+      row.innerHTML = '<input aria-label="Year"><textarea rows="2" aria-label="Milestone"><\/textarea><button class="row-remove" type="button" aria-label="Remove milestone" title="Remove milestone"><span aria-hidden="true">×</span><\/button>';
       row.children[0].value = item.year || ''; row.children[1].value = item.text || '';
       row.children[0].addEventListener('input', (event) => { item.year = event.target.value; }); row.children[1].addEventListener('input', (event) => { item.text = event.target.value; });
       row.children[2].addEventListener('click', () => { story.milestones.splice(index, 1); render(); }); milestones.appendChild(row);
@@ -61,7 +61,7 @@
     $('#leadership-kicker').value = state.story[state.language].leadership_kicker || ''; $('#leadership-intro').value = state.story[state.language].leadership_intro || '';
     state.leaders[state.language].forEach((leader, index) => {
       const row = document.createElement('div'); row.className = 'leader-row';
-      row.innerHTML = '<input aria-label="Name"><input aria-label="Role"><textarea rows="4" aria-label="Biography"></textarea><div class="leader-image-controls"><input type="file" accept="image/*"><div class="leader-image-preview"></div><button class="row-remove" type="button" aria-label="Remove director" title="Remove director"><span aria-hidden="true">🗑</span></button></div>';
+      row.innerHTML = '<input aria-label="Name"><input aria-label="Role"><textarea rows="4" aria-label="Biography"></textarea><div class="leader-image-controls"><input type="file" accept="image/*"><div class="leader-image-preview"></div><button class="row-remove" type="button" aria-label="Remove director" title="Remove director"><span aria-hidden="true">×</span></button></div>';
       row.children[0].value = leader.name || ''; row.children[1].value = leader.role || ''; row.children[2].value = leader.bio || '';
       const imagePreview = row.querySelector('.leader-image-preview');
       if (leader.image_path) {

@@ -26,11 +26,13 @@
       <div class="brand-mark"><span class="brand-symbol">△</span><span>PCCS<span class="brand-sub">Admin</span></span></div>
       <nav class="sidebar-nav">
         <p class="nav-label">Pages</p>
-        <a class="nav-item is-active" href="./"><span class="nav-icon">▣</span>Home page</a>
-        <a class="nav-item" href="group.html?section=story"><span class="nav-icon">▤</span>Our Group</a>
-        <div class="nav-subitems"><a class="nav-subitem" href="group.html?section=story">Our Story</a><a class="nav-subitem" href="group.html?section=leadership">Leadership</a></div>
-        <a class="nav-item is-disabled" href="#"><span class="nav-icon">▤</span>Careers</a>
-        <a class="nav-item" href="investors.html"><span class="nav-icon">▧</span>Investors</a>
+        <a class="nav-item is-active" href="./"><span class="nav-icon">▣</span>Home page <span class="nav-count" data-home-count></span></a>
+        <a class="nav-item" href="group.html?section=story"><span class="nav-icon">▤</span>Our Group <span class="nav-count" data-group-total></span></a>
+        <div class="nav-subitems"><a class="nav-subitem" href="group.html?section=story">Our Story <span class="nav-count" data-group-count="story"></span></a><a class="nav-subitem" href="group.html?section=leadership">Leadership <span class="nav-count" data-group-count="leadership"></span></a></div>
+        <a class="nav-item" href="careers.html"><span class="nav-icon">▤</span>Careers <span class="nav-count" data-career-total></span></a>
+        <div class="nav-subitems"><a class="nav-subitem" href="careers.html">Job openings</a></div>
+        <a class="nav-item" href="investors.html?category=annual"><span class="nav-icon">▧</span>Investors <span class="nav-count" data-investor-total></span></a>
+        <div class="nav-subitems"><a class="nav-subitem" data-investor-nav="annual" href="investors.html?category=annual">Annual <span class="nav-count" data-investor-count="annual"></span></a><a class="nav-subitem" data-investor-nav="quarterly" href="investors.html?category=quarterly">Quarterly <span class="nav-count" data-investor-count="quarterly"></span></a><a class="nav-subitem" data-investor-nav="governance" href="investors.html?category=governance">Governance <span class="nav-count" data-investor-count="governance"></span></a><a class="nav-subitem" data-investor-nav="agm" href="investors.html?category=agm">AGM <span class="nav-count" data-investor-count="agm"></span></a></div>
       </nav>
       <div class="sidebar-footer">
         <span class="status-dot"></span><span>Draft workspace</span>
@@ -51,11 +53,6 @@
       </div>
       <a class="view-site" href="../index.html">View website ↗</a>
       </header>
-
-    <section class="notice" aria-label="Publishing status">
-      <strong>Draft editor</strong>
-      <span>Changes are saved to the PCCS Supabase database for authenticated editors.</span>
-    </section>
 
     <section class="toolbar" aria-label="FAQ controls">
       <div class="language-tabs" role="tablist" aria-label="FAQ language">
@@ -87,6 +84,7 @@
   </div>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="supabase-config.js"></script>
+    <script src="sidebar-counts.js?v=2"></script>
     <script src="admin.js?v=11"></script>
 </body>
 </html>
