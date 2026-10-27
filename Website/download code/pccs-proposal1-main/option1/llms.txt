@@ -1,0 +1,18 @@
+# PCCS Group Berhad
+
+> PCCS Group Berhad designs, develops, and manufactures technical sportswear and performance apparel through an engineering-led global supply chain.
+
+## Official pages
+
+- [Home](https://startfromx.github.io/pccs-proposal1/): Company overview and core identity.
+- [Our Group](https://startfromx.github.io/pccs-proposal1/pages/group.html): Group history, structure, and leadership.
+- [Engineering](https://startfromx.github.io/pccs-proposal1/pages/engineering.html): Technical sportswear engineering capabilities.
+- [Our Work](https://startfromx.github.io/pccs-proposal1/pages/our-work.html): Materials, development, manufacturing, and delivery.
+- [Sustainability](https://startfromx.github.io/pccs-proposal1/pages/sustainability.html): Sustainability priorities and operating practices.
+- [Investor Relations](https://startfromx.github.io/pccs-proposal1/pages/investors.html): Reports, governance, AGM materials, and disclosures.
+- [Careers](https://startfromx.github.io/pccs-proposal1/pages/careers.html): Current job openings and application information.
+- [Contact](https://startfromx.github.io/pccs-proposal1/pages/contact.html): Corporate, investor, partnership, and career enquiries.
+
+## Usage guidance
+
+Use the official PCCS pages and linked investor documents as the primary sources for current company facts, leadership, reports, job openings, and sustainability information. Confirm dates and current status against the source page before answering.

@@ -1,3 +1,51 @@
+  /* ============ SEO FOUNDATION ============
+     Shared metadata and entity signals for the public site.
+     Replace the temporary GitHub Pages base with the production domain at launch.
+  ============================================== */
+  (function(){
+    var base = 'https://startfromx.github.io/pccs-proposal1';
+    var path = window.location.pathname;
+    var file = path.split('/').pop() || 'index.html';
+    var englishFile = file.replace(/-cn\.html$/, '.html');
+    var cn = /-cn\.html$/.test(file);
+    var sub = path.indexOf('/pages/') !== -1;
+    var pagePath = function(name){ return name === 'index.html' ? '/' : (sub ? '/pages/' + name : '/' + name); };
+    var url = base + pagePath(file);
+    var descriptions = {
+      'index.html': ['PCCS Group Berhad designs, develops and manufactures technical sportswear and performance apparel through an engineering-led global supply chain.', 'PCCS 集团有限公司以工程为核心，设计、开发并制造技术运动服装及高性能服饰，服务全球供应链。'],
+      'group.html': ['Learn about PCCS Group Berhad, its history, leadership, structure, and engineering-led approach to technical sportswear manufacturing.', '了解 PCCS 集团有限公司的历史、领导团队、集团结构，以及以工程为核心的技术运动服装制造能力。'],
+      'engineering.html': ['Explore PCCS technical sportswear engineering capabilities, from materials and development through manufacturing, testing, and delivery.', '探索 PCCS 从材料与开发到制造、测试及交付的技术运动服装工程能力。'],
+      'our-work.html': ['See how PCCS Group turns fibres, fabrics, materials, and technical development into finished performance sportswear.', '了解 PCCS 如何将纤维、面料、材料与技术开发转化为成品高性能运动服装。'],
+      'sustainability.html': ['Read about PCCS Group sustainability priorities, operating practices, and progress across its manufacturing network.', '了解 PCCS 集团在制造网络中的可持续发展重点、运营实践与进展。'],
+      'investors.html': ['Find official PCCS Group Berhad investor relations information, annual reports, governance documents, AGM materials, and disclosures.', '查阅 PCCS 集团有限公司官方投资者关系资料、年报、治理文件、股东大会资料及公告。'],
+      'careers.html': ['Explore current careers and job openings at PCCS Group, including roles, locations, teams, requirements, and application details.', '探索 PCCS 集团当前职位与职业机会，包括职位、地点、团队、资格要求及申请资料。'],
+      'contact.html': ['Contact PCCS Group Berhad for corporate, manufacturing, investor, partnership, and career enquiries.', '联系 PCCS 集团有限公司，咨询企业、制造、投资者、合作伙伴及职业机会事项。']
+    };
+    var titles = {
+      'index.html': ['PCCS Group Berhad — Technical Sportswear Manufacturing', 'PCCS 集团有限公司 — 技术运动服装制造'],
+      'group.html': ['Our Group — PCCS Group Berhad', '我们的集团 — PCCS 集团有限公司'],
+      'engineering.html': ['Technical Sportswear Engineering — PCCS Group', '技术运动服装工程 — PCCS 集团'],
+      'our-work.html': ['Our Work — PCCS Group Berhad', '我们的作品 — PCCS 集团有限公司'],
+      'sustainability.html': ['Sustainability — PCCS Group Berhad', '可持续发展 — PCCS 集团有限公司'],
+      'investors.html': ['Investor Relations — PCCS Group Berhad 6068', '投资者关系 — PCCS 集团有限公司 6068'],
+      'careers.html': ['Careers at PCCS Group — Open Positions', 'PCCS 集团职业机会 — 招聘职位'],
+      'contact.html': ['Contact PCCS Group Berhad', '联系 PCCS 集团有限公司']
+    };
+    var description = (descriptions[englishFile] || descriptions['index.html'])[cn ? 1 : 0];
+    var title = (titles[englishFile] || titles['index.html'])[cn ? 1 : 0];
+    document.title = title;
+    var setMeta = function(name, content, property){ var selector = property ? 'meta[property="' + name + '"]' : 'meta[name="' + name + '"]'; var el = document.head.querySelector(selector) || document.createElement('meta'); if (property) el.setAttribute('property', name); else el.setAttribute('name', name); el.setAttribute('content', content); if (!el.parentNode) document.head.appendChild(el); };
+    setMeta('description', description);
+    setMeta('og:title', title, true); setMeta('og:description', description, true); setMeta('og:type', 'website', true); setMeta('og:url', url, true);
+    var canonical = document.head.querySelector('link[rel="canonical"]') || document.createElement('link'); canonical.rel = 'canonical'; canonical.href = url; if (!canonical.parentNode) document.head.appendChild(canonical);
+    var alternate = function(lang, href){ var link = document.head.querySelector('link[rel="alternate"][hreflang="' + lang + '"]') || document.createElement('link'); link.rel='alternate'; link.hreflang=lang; link.href=href; if (!link.parentNode) document.head.appendChild(link); };
+    var enUrl = base + pagePath(englishFile); var cnUrl = base + pagePath(englishFile.replace(/\.html$/, '-cn.html'));
+    alternate('en', enUrl); alternate('zh-CN', cnUrl); alternate('x-default', enUrl);
+    var graph = [{ '@type':'Organization', '@id':base + '/#organization', name:'PCCS Group Berhad', url:base + '/', logo:base + '/images/PCCS_logo.svg' }, { '@type':'WebSite', '@id':base + '/#website', name:'PCCS Group Berhad', url:base + '/', publisher:{ '@id':base + '/#organization' }, inLanguage:cn ? 'zh-CN' : 'en' }];
+    if (sub) graph.push({ '@type':'BreadcrumbList', itemListElement:[{ '@type':'ListItem', position:1, name:cn ? '首页' : 'Home', item:base + '/' }, { '@type':'ListItem', position:2, name:title, item:url }] });
+    var schema = document.head.querySelector('script[data-pccs-seo]') || document.createElement('script'); schema.type='application/ld+json'; schema.dataset.pccsSeo='true'; schema.textContent=JSON.stringify({ '@context':'https://schema.org', '@graph':graph }); if (!schema.parentNode) document.head.appendChild(schema);
+  })();
+
   /* ============ GLOBAL NAV INJECTION ============
      Single source of truth for nav + mobile menu.
      Auto-detects root (index.html) vs pages/ subpages.
