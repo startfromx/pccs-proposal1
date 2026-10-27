@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - current-design
+      - cleanup/site-structure
   workflow_dispatch:
 
 permissions:
