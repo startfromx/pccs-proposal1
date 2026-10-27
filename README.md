@@ -50,6 +50,8 @@ Open a pull request into `main` and review the **Files changed** tab before merg
 
 See [WORKLOG.md](WORKLOG.md) for project history, deployment notes, security reminders, and follow-up tasks.
 
+See [SEO_AEO_LAUNCH_CHECKLIST.md](SEO_AEO_LAUNCH_CHECKLIST.md) for the search-engine and answer-engine launch requirements, including the manual Search Console and Bing Webmaster steps.
+
 ## Security
 
 This is a public repository and a static website. Do not commit passwords, API keys, private keys, confidential documents, or other secrets. Review public PDFs and assets before adding them to the published website.
