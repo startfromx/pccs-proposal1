@@ -55,3 +55,5 @@ See [SEO_AEO_LAUNCH_CHECKLIST.md](SEO_AEO_LAUNCH_CHECKLIST.md) for the search-en
 ## Security
 
 This is a public repository and a static website. Do not commit passwords, API keys, private keys, confidential documents, or other secrets. Review public PDFs and assets before adding them to the published website.
+
+Before giving CMS access to a client, run [`supabase-pccs-security.sql`](Website/download%20code/pccs-proposal1-main/option1/content/supabase-pccs-security.sql) in the Supabase SQL Editor. Add the approved login email to `public.pccs_admins`, disable public sign-ups, and use invited users only. The browser Supabase anon key is public by design; database access is protected by Supabase RLS and the admin allowlist.

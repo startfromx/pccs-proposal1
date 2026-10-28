@@ -39,6 +39,17 @@ These steps must be completed by the site owner after deployment:
    - structured data
    - the SEO configuration in `assets/js/pccs-home.js`
 
+## Security launch steps
+
+- [x] Admin pages marked `noindex` so they are not intentionally indexed
+- [x] Sensitive local/source folders added to `.gitignore`
+- [x] Supabase client dependency pinned to an exact version
+- [ ] Run `content/supabase-pccs-security.sql` in Supabase SQL Editor
+- [ ] Add only approved client admin emails to `public.pccs_admins`
+- [ ] Disable public Supabase sign-ups and use invited users only
+- [ ] Review and remove unknown users in Supabase Authentication
+- [ ] Test that a non-admin authenticated user cannot create, edit, or delete CMS content
+
 ## Content requirements for AEO
 
 Technical settings alone are not enough. Continue adding visible, source-backed answers to questions such as:
