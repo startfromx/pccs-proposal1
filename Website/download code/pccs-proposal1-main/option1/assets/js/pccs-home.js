@@ -214,7 +214,7 @@
       'badge.quote': '<span class="w">A badge has to survive years of wear and fifty washes</span> <span class="g">without cracking, lifting or fading.</span>',
       'badge.cite': 'Engineering, not decoration',
       'badge.body1': 'A logo has to survive years of wear and fifty washes without cracking, lifting, or losing its edge. That’s engineering, not decoration.',
-      'badge.body2': 'Anyone can cut cloth. The official crest is entrusted only to a maker who meets the brand’s standards — that’s us.',
+      'badge.body2': 'Anyone can cut cloth. The official crest is entrusted to makers who meet the brand’s standard. We’re one of them.',
 
       'wtd.eyebrow': 'The Engineering',
       'wtd.h2': 'You bring the concept.<br>We engineer everything after it.',
@@ -235,7 +235,7 @@
 
       'sus.eyebrow': 'Sustainability',
       'sus.h2': '<span class="line">Made responsibly.</span><span class="line g">Measured honestly.</span>',
-      'sus.body': 'PCCS has reported sustainability since FY2018, to Bursa Malaysia’s standard. The numbers are audited, not aspirational.',
+      'sus.body': 'Since FY2018, to Bursa Malaysia’s standard. The figures on this site come from our published sustainability statements.',
       'sus.stat1': 'tCO₂e GHG',
       'sus.stat2': 'GJ energy',
       'sus.stat3': 'kWh renewable solar',
@@ -245,13 +245,13 @@
       'sus.focus3': 'Social Stability',
       'sus.focus4': 'Reporting & Metrics',
       'sus.cert': 'Frameworks & certifications: GRS · RCS · OEKO-TEX · ZDHC · Higg FEM · WRAP Gold 2025 · Cambodia Green Industry Awards 2025 (Silver).',
-      'sus.note': 'Community examples and milestone actions: NEEDS PCCS INPUT',
+      'sus.note': '',
 
       'grp.eyebrow': 'One system — “Engineering Future”',
       'grp.h2': 'One discipline.<br>Many futures.',
       'grp1.tag': 'Engineering Apparel',
       'grp1.title': 'Technical sportswear',
-      'grp1.body': 'From fibre to the mark — engineered, developed, prototyped, crafted, verified, manufactured, and delivered.',
+      'grp1.body': 'From fabric to the mark — engineered, developed, prototyped, crafted, verified, manufactured, and delivered.',
       'grp2.tag': 'Engineering Health',
       'grp2.title': 'La Prima Medical',
       'grp2.body': 'Medical devices and healthcare technologies, developed for better care across Asia-Pacific.',
@@ -260,10 +260,10 @@
       'grp3.body': 'A simpler way to access auto, personal and medical equipment financing, with insurance support.',
 
       'inv.eyebrow': 'Investors',
-      'inv.h2': 'We own more of the chain<br><span class="g">than the market pays for.</span>',
-      'inv.body': 'PCCS manufactures technical sportswear for the world’s biggest brands — and increasingly owns the higher-value parts of the chain: development, the mark, and now fabric. This expanding capability gives PCCS a clear path from cut-and-sew manufacturing to a broader product and materials platform.',
+      'inv.h2': 'We own more of the chain.<br><span class="g">Built as a platform.</span>',
+      'inv.body': 'PCCS manufactures technical sportswear for leading global brands and increasingly owns the higher-value parts of the chain: development, the mark and now fabric.',
       'inv.btn': 'Investor Relations <span>→</span>',
-      'snap.title': 'NEEDS PCCS INPUT',
+      'snap.title': 'Bursa Malaysia · 6068',
       'snap.tick': 'PCCS Group Berhad <b>6068</b>',
       'snap.lab1': 'Day’s High',
       'snap.lab2': 'Day’s Low',
@@ -352,7 +352,7 @@
 
     'sus.eyebrow': '永续未来',
     'sus.h2': '<span class="line">说到做到。</span><span class="line g">数字为证。</span>',
-    'sus.body': '从 FY2018 起，PCCS 就按大马交易所的标准做可持续报告。数字是审过的，不是喊出来的。',
+    'sus.body': '自 FY2018 起，按马来西亚交易所标准报告。本网站数据均取自已公布的可持续发展声明。',
     'sus.stat1': '吨 CO₂e 温室气体',
     'sus.stat2': '吉焦能源',
     'sus.stat3': '千瓦时可再生太阳能',
@@ -362,13 +362,13 @@
     'sus.focus3': '社会稳定',
     'sus.focus4': '报告与指标',
     'sus.cert': '框架与认证：GRS · RCS · OEKO-TEX · ZDHC · Higg FEM · 柬埔寨 Better Factories · WRAP 金奖 2025 · 柬埔寨绿色工业奖 2025（银奖）。',
-    'sus.note': '社区案例与里程碑实际行动：NEEDS PCCS INPUT',
+    'sus.note': '',
 
     'grp.eyebrow': '一套体系 ——「以工程，创造可能」',
     'grp.h2': '一门专业，<br>多种未来。',
     'grp1.tag': '每一件，皆以工程铸就',
     'grp1.title': '科技运动服',
-    'grp1.body': '从纤维到标识，一手包办——设计、研发、打样、制作、验证、生产与交付。',
+    'grp1.body': '从面料到标识，一手包办——设计、研发、打样、制作、验证、生产与交付。',
     'grp2.tag': '以专业，护生命',
     'grp2.title': 'La Prima 医疗',
     'grp2.body': '专注医疗器械与健康科技，为亚太地区带来更好的医疗方案。',
@@ -377,10 +377,10 @@
     'grp3.body': '让信贷更简单，提供汽车、个人及医疗设备融资与保险服务。',
 
     'inv.eyebrow': '投资者',
-    'inv.h2': '这条产业链，我们握得<br><span class="g">比股价更长。</span>',
+    'inv.h2': '掌握更多环节。<br><span class="g">以平台创造价值。</span>',
     'inv.body': 'PCCS 为全球最大的品牌制造技术运动服——并正逐步掌握产业链中更具价值的环节：开发、标识，如今还有面料。随着能力边界不断拓展，PCCS 正从裁剪缝纫制造商，走向更完整的产品与材料平台。',
     'inv.btn': '投资者关系 <span>→</span>',
-    'snap.title': 'NEEDS PCCS INPUT',
+    'snap.title': '马来西亚交易所 · 6068',
     'snap.lab1': '当前股价',
     'snap.lab2': '财务数据',
     'snap.lab3': '实时数据接入',
@@ -557,7 +557,7 @@
       html('.manifesto-h2', '有些企业追逐未来。<br>我们，工程化创造未来。');
       html('.onesys-kicker', '一套体系');
       html('.onesys-h2', '以工程，<br><em>创造可能。</em>');
-      html('.proof-statement', '五十年。<br><em>工程化积淀，</em><br>不是偶然继承。');
+      html('.proof-statement', '五十年。<br><em>日日精进。</em>');
       html('.story-kicker', '我们的故事');
       html('.story-h2', '从三台缝纫机，<br>走到世界的球场。');
       html('.footprint-kicker', '全球布局');
@@ -591,7 +591,7 @@
       html('.inv-kicker', '股权故事');
       html('.inv-thesis-pull', '从成衣制造，<br>走向<span class="accent">综合平台。</span>');
       html('.inv-fin-headline', '量过。<br>证过。<br><span class="accent">经得起时间。</span>');
-      textAll('.inv-thesis-body > p:not(.zh-tag)', ['PCCS 起初是一家成衣代工企业。五十年来，我们持续向价值链上游延伸：先加入装饰工艺，再拓展产品开发，最终进入面料。每增加一个环节，客户就少一项需要外包的工作。','市场仍将 PCCS 视为成衣制造商，但我们的业务正在成为掌控开发、装饰与面料的综合平台。市场定价与企业实际掌控价值之间的差距，正是投资故事所在。']);
+      textAll('.inv-thesis-body > p:not(.zh-tag)', ['PCCS 起初是一家成衣代工企业。五十年来，我们持续向价值链上游延伸：先加入装饰工艺，再拓展产品开发，最终进入面料。每增加一个环节，客户就少一项需要外包的工作。','PCCS 为全球领先品牌制造技术运动服装，并逐步掌握价值链中更高价值的环节：开发、标识，以及面料。']);
       html('.inv-contact-intro', '想了解 PCCS 的下一步？<br><span class="accent">欢迎联系投资者关系团队。</span>');
       textAll('.inv-chain-label', ['步骤','状态']);
     }
