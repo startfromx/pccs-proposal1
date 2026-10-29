@@ -3,8 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="noindex, nofollow">
+  <meta name="robots" content="index, follow">
   <title>Our Group · PCCS Group Berhad</title>
+  <meta name="description" content="Learn about PCCS Group Berhad, its history, leadership, structure, and engineering-led approach to technical sportswear manufacturing.">
+  <link rel="canonical" href="https://startfromx.github.io/pccs-proposal1/pages/group.html">
+  <link rel="alternate" hreflang="en" href="https://startfromx.github.io/pccs-proposal1/pages/group.html">
+  <link rel="alternate" hreflang="zh-CN" href="https://startfromx.github.io/pccs-proposal1/pages/group-cn.html">
+  <link rel="alternate" hreflang="x-default" href="https://startfromx.github.io/pccs-proposal1/pages/group.html">
+  <meta property="og:title" content="Our Group — PCCS Group Berhad">
+  <meta property="og:description" content="Learn about PCCS Group Berhad, its history, leadership, structure, and engineering-led approach to technical sportswear manufacturing.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://startfromx.github.io/pccs-proposal1/pages/group.html">
+  <meta name="twitter:card" content="summary">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23006450'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='21' font-weight='700' fill='%23FFFFFF' text-anchor='middle'%3EP%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -570,6 +580,21 @@
     }
     .timeline tbody tr.tl-today td:first-child { color: var(--ink); font-weight: 700; }
     .timeline tbody tr.tl-today td { background: #eeeee9; }
+
+    /* Desktop timeline: use the available width without repeating the header. */
+    @media (min-width: 761px) {
+      .timeline { display: block; }
+      .timeline thead, .timeline thead tr { display: grid; width: 100%; grid-template-columns: 110px minmax(0, 1fr); }
+      .timeline thead th { min-width: 0; white-space: nowrap; }
+      .timeline thead th:first-child { width: auto; }
+      .timeline thead th:last-child { grid-column: 2; }
+      .timeline tbody { display: grid; width: 100%; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(24px, 4vw, 72px); }
+      .timeline tbody tr { display: grid; grid-template-columns: 110px minmax(0, 1fr); min-width: 0; }
+      .timeline tbody tr:nth-child(odd) { grid-column: 1; }
+      .timeline tbody tr:nth-child(even) { grid-column: 2; }
+      .timeline tbody tr:last-child { border-bottom: 1px solid var(--line); }
+      .timeline tbody tr.tl-today { border-bottom: 2px solid var(--ink); }
+    }
 
     /* ─────────────────────────────────────────────────────────────────────────
        SECTION 6 — GLOBAL FOOTPRINT
@@ -1184,7 +1209,7 @@
       <div class="proof-wrap">
 
         <div class="proof-statement rv-g">
-          Fifty years.<br><em>Engineered,</em><br>not inherited.
+          Fifty years.<br><em>Engineered,</em><br>every day.
         </div>
 
         <div class="proof-nums" role="list">
@@ -1224,7 +1249,6 @@
           <thead>
             <tr>
               <th scope="col">Year</th>
-              <th scope="col">Milestone</th>
               <th scope="col">Milestone</th>
             </tr>
           </thead>
@@ -1314,7 +1338,7 @@
             <div class="footprint-num">03</div>
             <div class="footprint-location">Vietnam</div>
             <div class="footprint-role">Manufacturing facilities</div>
-            <div class="footprint-detail">Binh Thuan garment and fabric operations. Vietnam subsidiary logos are pending source artwork.</div>
+            <div class="footprint-detail">Binh Thuan garment and fabric operations.</div>
           </div>
 
           <div class="footprint-card footprint-card--malaysia rv-g" style="--d:.2s">
@@ -1557,7 +1581,10 @@
   }());
   </script>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.4"></script>
+  <script src="../admin/supabase-config.js"></script>
+  <script src="../assets/js/group-content.js?v=3"></script>
+  <script src="../assets/js/leadership-profiles.js"></script>
   <script src="../assets/js/leadership-copy.js"></script>
-  <script src="../assets/js/leadership.js"></script>
 </body>
 </html>

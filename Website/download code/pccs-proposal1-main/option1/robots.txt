@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+
+Sitemap: https://startfromx.github.io/pccs-proposal1/sitemap.xml

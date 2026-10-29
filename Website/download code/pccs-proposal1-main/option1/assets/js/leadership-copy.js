@@ -56,6 +56,15 @@
 
   document.querySelectorAll(".leader-card[data-leader-name]").forEach(function (card) {
     var name = card.getAttribute("data-leader-name");
+    var profile = (window.PCCS_LEADERS || {})[name];
+    if (profile) {
+      card.dataset.leaderImage = profile.image;
+      card.dataset.leaderRole = profile.en;
+      var image = card.querySelector(".leader-photo img");
+      var role = card.querySelector(".leader-card-role");
+      if (image) { image.src = profile.image; image.alt = name; }
+      if (role) role.textContent = profile.en;
+    }
     if (bios[name]) card.dataset.leaderBio = bios[name].join(" ");
   });
 }());

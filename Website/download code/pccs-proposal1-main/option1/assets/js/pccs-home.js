@@ -1,3 +1,51 @@
+  /* ============ SEO FOUNDATION ============
+     Shared metadata and entity signals for the public site.
+     Replace the temporary GitHub Pages base with the production domain at launch.
+  ============================================== */
+  (function(){
+    var base = 'https://startfromx.github.io/pccs-proposal1';
+    var path = window.location.pathname;
+    var file = path.split('/').pop() || 'index.html';
+    var englishFile = file.replace(/-cn\.html$/, '.html');
+    var cn = /-cn\.html$/.test(file);
+    var sub = path.indexOf('/pages/') !== -1;
+    var pagePath = function(name){ return name === 'index.html' ? '/' : (sub ? '/pages/' + name : '/' + name); };
+    var url = base + pagePath(file);
+    var descriptions = {
+      'index.html': ['PCCS Group Berhad designs, develops and manufactures technical sportswear and performance apparel through an engineering-led global supply chain.', 'PCCS 集团有限公司以工程为核心，设计、开发并制造技术运动服装及高性能服饰，服务全球供应链。'],
+      'group.html': ['Learn about PCCS Group Berhad, its history, leadership, structure, and engineering-led approach to technical sportswear manufacturing.', '了解 PCCS 集团有限公司的历史、领导团队、集团结构，以及以工程为核心的技术运动服装制造能力。'],
+      'engineering.html': ['Explore PCCS technical sportswear engineering capabilities, from materials and development through manufacturing, testing, and delivery.', '探索 PCCS 从材料与开发到制造、测试及交付的技术运动服装工程能力。'],
+      'our-work.html': ['See how PCCS Group turns fibres, fabrics, materials, and technical development into finished performance sportswear.', '了解 PCCS 如何将纤维、面料、材料与技术开发转化为成品高性能运动服装。'],
+      'sustainability.html': ['Read about PCCS Group sustainability priorities, operating practices, and progress across its manufacturing network.', '了解 PCCS 集团在制造网络中的可持续发展重点、运营实践与进展。'],
+      'investors.html': ['Find official PCCS Group Berhad investor relations information, annual reports, governance documents, AGM materials, and disclosures.', '查阅 PCCS 集团有限公司官方投资者关系资料、年报、治理文件、股东大会资料及公告。'],
+      'careers.html': ['Explore current careers and job openings at PCCS Group, including roles, locations, teams, requirements, and application details.', '探索 PCCS 集团当前职位与职业机会，包括职位、地点、团队、资格要求及申请资料。'],
+      'contact.html': ['Contact PCCS Group Berhad for corporate, manufacturing, investor, partnership, and career enquiries.', '联系 PCCS 集团有限公司，咨询企业、制造、投资者、合作伙伴及职业机会事项。']
+    };
+    var titles = {
+      'index.html': ['PCCS Group Berhad — Technical Sportswear Manufacturing', 'PCCS 集团有限公司 — 技术运动服装制造'],
+      'group.html': ['Our Group — PCCS Group Berhad', '我们的集团 — PCCS 集团有限公司'],
+      'engineering.html': ['Technical Sportswear Engineering — PCCS Group', '技术运动服装工程 — PCCS 集团'],
+      'our-work.html': ['Our Work — PCCS Group Berhad', '我们的作品 — PCCS 集团有限公司'],
+      'sustainability.html': ['Sustainability — PCCS Group Berhad', '可持续发展 — PCCS 集团有限公司'],
+      'investors.html': ['Investor Relations — PCCS Group Berhad 6068', '投资者关系 — PCCS 集团有限公司 6068'],
+      'careers.html': ['Careers at PCCS Group — Open Positions', 'PCCS 集团职业机会 — 招聘职位'],
+      'contact.html': ['Contact PCCS Group Berhad', '联系 PCCS 集团有限公司']
+    };
+    var description = (descriptions[englishFile] || descriptions['index.html'])[cn ? 1 : 0];
+    var title = (titles[englishFile] || titles['index.html'])[cn ? 1 : 0];
+    document.title = title;
+    var setMeta = function(name, content, property){ var selector = property ? 'meta[property="' + name + '"]' : 'meta[name="' + name + '"]'; var el = document.head.querySelector(selector) || document.createElement('meta'); if (property) el.setAttribute('property', name); else el.setAttribute('name', name); el.setAttribute('content', content); if (!el.parentNode) document.head.appendChild(el); };
+    setMeta('description', description);
+    setMeta('og:title', title, true); setMeta('og:description', description, true); setMeta('og:type', 'website', true); setMeta('og:url', url, true);
+    var canonical = document.head.querySelector('link[rel="canonical"]') || document.createElement('link'); canonical.rel = 'canonical'; canonical.href = url; if (!canonical.parentNode) document.head.appendChild(canonical);
+    var alternate = function(lang, href){ var link = document.head.querySelector('link[rel="alternate"][hreflang="' + lang + '"]') || document.createElement('link'); link.rel='alternate'; link.hreflang=lang; link.href=href; if (!link.parentNode) document.head.appendChild(link); };
+    var enUrl = base + pagePath(englishFile); var cnUrl = base + pagePath(englishFile.replace(/\.html$/, '-cn.html'));
+    alternate('en', enUrl); alternate('zh-CN', cnUrl); alternate('x-default', enUrl);
+    var graph = [{ '@type':'Organization', '@id':base + '/#organization', name:'PCCS Group Berhad', url:base + '/', logo:base + '/images/PCCS_logo.svg' }, { '@type':'WebSite', '@id':base + '/#website', name:'PCCS Group Berhad', url:base + '/', publisher:{ '@id':base + '/#organization' }, inLanguage:cn ? 'zh-CN' : 'en' }];
+    if (sub) graph.push({ '@type':'BreadcrumbList', itemListElement:[{ '@type':'ListItem', position:1, name:cn ? '首页' : 'Home', item:base + '/' }, { '@type':'ListItem', position:2, name:title, item:url }] });
+    var schema = document.head.querySelector('script[data-pccs-seo]') || document.createElement('script'); schema.type='application/ld+json'; schema.dataset.pccsSeo='true'; schema.textContent=JSON.stringify({ '@context':'https://schema.org', '@graph':graph }); if (!schema.parentNode) document.head.appendChild(schema);
+  })();
+
   /* ============ GLOBAL NAV INJECTION ============
      Single source of truth for nav + mobile menu.
      Auto-detects root (index.html) vs pages/ subpages.
@@ -166,7 +214,7 @@
       'badge.quote': '<span class="w">A badge has to survive years of wear and fifty washes</span> <span class="g">without cracking, lifting or fading.</span>',
       'badge.cite': 'Engineering, not decoration',
       'badge.body1': 'A logo has to survive years of wear and fifty washes without cracking, lifting, or losing its edge. That’s engineering, not decoration.',
-      'badge.body2': 'Anyone can cut cloth. The official crest is entrusted only to a maker who meets the brand’s standards — that’s us.',
+      'badge.body2': 'Anyone can cut cloth. The official crest is entrusted to makers who meet the brand’s standard. We’re one of them.',
 
       'wtd.eyebrow': 'The Engineering',
       'wtd.h2': 'You bring the concept.<br>We engineer everything after it.',
@@ -187,7 +235,7 @@
 
       'sus.eyebrow': 'Sustainability',
       'sus.h2': '<span class="line">Made responsibly.</span><span class="line g">Measured honestly.</span>',
-      'sus.body': 'PCCS has reported sustainability since FY2018, to Bursa Malaysia’s standard. The numbers are audited, not aspirational.',
+      'sus.body': 'Since FY2018, to Bursa Malaysia’s standard. The figures on this site come from our published sustainability statements.',
       'sus.stat1': 'tCO₂e GHG',
       'sus.stat2': 'GJ energy',
       'sus.stat3': 'kWh renewable solar',
@@ -197,13 +245,13 @@
       'sus.focus3': 'Social Stability',
       'sus.focus4': 'Reporting & Metrics',
       'sus.cert': 'Frameworks & certifications: GRS · RCS · OEKO-TEX · ZDHC · Higg FEM · WRAP Gold 2025 · Cambodia Green Industry Awards 2025 (Silver).',
-      'sus.note': 'Community examples and milestone actions: NEEDS PCCS INPUT',
+      'sus.note': '',
 
       'grp.eyebrow': 'One system — “Engineering Future”',
       'grp.h2': 'One discipline.<br>Many futures.',
       'grp1.tag': 'Engineering Apparel',
       'grp1.title': 'Technical sportswear',
-      'grp1.body': 'From fibre to the mark — engineered, developed, prototyped, crafted, verified, manufactured, and delivered.',
+      'grp1.body': 'From fabric to the mark — engineered, developed, prototyped, crafted, verified, manufactured, and delivered.',
       'grp2.tag': 'Engineering Health',
       'grp2.title': 'La Prima Medical',
       'grp2.body': 'Medical devices and healthcare technologies, developed for better care across Asia-Pacific.',
@@ -212,10 +260,10 @@
       'grp3.body': 'A simpler way to access auto, personal and medical equipment financing, with insurance support.',
 
       'inv.eyebrow': 'Investors',
-      'inv.h2': 'We own more of the chain<br><span class="g">than the market pays for.</span>',
-      'inv.body': 'PCCS manufactures technical sportswear for the world’s biggest brands — and increasingly owns the higher-value parts of the chain: development, the mark, and now fabric. This expanding capability gives PCCS a clear path from cut-and-sew manufacturing to a broader product and materials platform.',
+      'inv.h2': 'We own more of the chain.<br><span class="g">Built as a platform.</span>',
+      'inv.body': 'PCCS manufactures technical sportswear for leading global brands and increasingly owns the higher-value parts of the chain: development, the mark and now fabric.',
       'inv.btn': 'Investor Relations <span>→</span>',
-      'snap.title': 'NEEDS PCCS INPUT',
+      'snap.title': 'Bursa Malaysia · 6068',
       'snap.tick': 'PCCS Group Berhad <b>6068</b>',
       'snap.lab1': 'Day’s High',
       'snap.lab2': 'Day’s Low',
@@ -304,7 +352,7 @@
 
     'sus.eyebrow': '永续未来',
     'sus.h2': '<span class="line">说到做到。</span><span class="line g">数字为证。</span>',
-    'sus.body': '从 FY2018 起，PCCS 就按大马交易所的标准做可持续报告。数字是审过的，不是喊出来的。',
+    'sus.body': '自 FY2018 起，按马来西亚交易所标准报告。本网站数据均取自已公布的可持续发展声明。',
     'sus.stat1': '吨 CO₂e 温室气体',
     'sus.stat2': '吉焦能源',
     'sus.stat3': '千瓦时可再生太阳能',
@@ -314,13 +362,13 @@
     'sus.focus3': '社会稳定',
     'sus.focus4': '报告与指标',
     'sus.cert': '框架与认证：GRS · RCS · OEKO-TEX · ZDHC · Higg FEM · 柬埔寨 Better Factories · WRAP 金奖 2025 · 柬埔寨绿色工业奖 2025（银奖）。',
-    'sus.note': '社区案例与里程碑实际行动：NEEDS PCCS INPUT',
+    'sus.note': '',
 
     'grp.eyebrow': '一套体系 ——「以工程，创造可能」',
     'grp.h2': '一门专业，<br>多种未来。',
     'grp1.tag': '每一件，皆以工程铸就',
     'grp1.title': '科技运动服',
-    'grp1.body': '从纤维到标识，一手包办——设计、研发、打样、制作、验证、生产与交付。',
+    'grp1.body': '从面料到标识，一手包办——设计、研发、打样、制作、验证、生产与交付。',
     'grp2.tag': '以专业，护生命',
     'grp2.title': 'La Prima 医疗',
     'grp2.body': '专注医疗器械与健康科技，为亚太地区带来更好的医疗方案。',
@@ -329,10 +377,10 @@
     'grp3.body': '让信贷更简单，提供汽车、个人及医疗设备融资与保险服务。',
 
     'inv.eyebrow': '投资者',
-    'inv.h2': '这条产业链，我们握得<br><span class="g">比股价更长。</span>',
+    'inv.h2': '掌握更多环节。<br><span class="g">以平台创造价值。</span>',
     'inv.body': 'PCCS 为全球最大的品牌制造技术运动服——并正逐步掌握产业链中更具价值的环节：开发、标识，如今还有面料。随着能力边界不断拓展，PCCS 正从裁剪缝纫制造商，走向更完整的产品与材料平台。',
     'inv.btn': '投资者关系 <span>→</span>',
-    'snap.title': 'NEEDS PCCS INPUT',
+    'snap.title': '马来西亚交易所 · 6068',
     'snap.lab1': '当前股价',
     'snap.lab2': '财务数据',
     'snap.lab3': '实时数据接入',
@@ -509,7 +557,7 @@
       html('.manifesto-h2', '有些企业追逐未来。<br>我们，工程化创造未来。');
       html('.onesys-kicker', '一套体系');
       html('.onesys-h2', '以工程，<br><em>创造可能。</em>');
-      html('.proof-statement', '五十年。<br><em>工程化积淀，</em><br>不是偶然继承。');
+      html('.proof-statement', '五十年。<br><em>日日精进。</em>');
       html('.story-kicker', '我们的故事');
       html('.story-h2', '从三台缝纫机，<br>走到世界的球场。');
       html('.footprint-kicker', '全球布局');
@@ -543,7 +591,7 @@
       html('.inv-kicker', '股权故事');
       html('.inv-thesis-pull', '从成衣制造，<br>走向<span class="accent">综合平台。</span>');
       html('.inv-fin-headline', '量过。<br>证过。<br><span class="accent">经得起时间。</span>');
-      textAll('.inv-thesis-body > p:not(.zh-tag)', ['PCCS 起初是一家成衣代工企业。五十年来，我们持续向价值链上游延伸：先加入装饰工艺，再拓展产品开发，最终进入面料。每增加一个环节，客户就少一项需要外包的工作。','市场仍将 PCCS 视为成衣制造商，但我们的业务正在成为掌控开发、装饰与面料的综合平台。市场定价与企业实际掌控价值之间的差距，正是投资故事所在。']);
+      textAll('.inv-thesis-body > p:not(.zh-tag)', ['PCCS 起初是一家成衣代工企业。五十年来，我们持续向价值链上游延伸：先加入装饰工艺，再拓展产品开发，最终进入面料。每增加一个环节，客户就少一项需要外包的工作。','PCCS 为全球领先品牌制造技术运动服装，并逐步掌握价值链中更高价值的环节：开发、标识，以及面料。']);
       html('.inv-contact-intro', '想了解 PCCS 的下一步？<br><span class="accent">欢迎联系投资者关系团队。</span>');
       textAll('.inv-chain-label', ['步骤','状态']);
     }

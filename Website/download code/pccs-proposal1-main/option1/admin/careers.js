@@ -1,0 +1,32 @@
+(function () {
+  'use strict';
+  const client = window.supabase.createClient(window.PCCS_SUPABASE_URL, window.PCCS_SUPABASE_ANON_KEY);
+  const state = { jobs: [] };
+  const $ = (selector) => document.querySelector(selector);
+  const status = (message) => { const target = $('#status'); target.textContent = message; clearTimeout(target._timer); target._timer = setTimeout(() => { target.textContent = ''; }, 4500); };
+  const blank = () => ({ status:'draft', title_en:'', location_en:'', team_en:'', employment_en:'Full-time', posted_date:new Date().toISOString().slice(0,10), closing_date:'', summary_en:'', description_en:'', responsibilities_en:'', minimum_qualifications_en:'', preferred_qualifications_en:'', other_details_en:'', application_email:'communication@pccsgroup.net', sort_order:0 });
+  const fields = [['summary','Summary'],['description','Description'],['responsibilities','Responsibilities'],['minimum_qualifications','Minimum qualifications'],['preferred_qualifications','Preferred qualifications'],['other_details','Other details']];
+  function render() {
+    const list = $('#job-list'); list.replaceChildren();
+    if (!state.jobs.length) { list.innerHTML = '<p class="empty-state">No job openings yet. Run <code>content/supabase-pccs-careers-seed.sql</code> in the Supabase SQL Editor to load the 23 prepared roles, or click “+ Add job” to create one.</p>'; return; }
+    state.jobs.forEach((row, index) => {
+      const item = document.createElement('article'); item.className = 'career-admin-job';
+      item.innerHTML = `<div class="career-admin-job-head"><strong>Job ${index + 1}</strong><select data-field="status"><option value="draft">Draft</option><option value="published">Published</option><option value="closed">Closed</option><option value="archived">Archived</option></select><button class="row-remove" type="button" title="Remove job">×</button></div><div class="career-admin-grid"><label>Title<input data-field="title_en"></label><label>Location<input data-field="location_en"></label><label>Team / department<input data-field="team_en"></label><label>Employment type<input data-field="employment_en"></label><label>Posted date<input data-field="posted_date" type="date"></label><label>Closing date<input data-field="closing_date" type="date"></label><label>Application email<input data-field="application_email" type="email"></label><label>Sort order<input data-field="sort_order" type="number"></label></div><div class="career-admin-copy-grid">${fields.map(([key,label]) => '<label>' + label + '<textarea data-field="' + key + '_en" rows="4"></textarea></label>').join('')}</div>`;
+      item.querySelectorAll('[data-field]').forEach((field) => { field.value = row[field.dataset.field] ?? ''; field.addEventListener('input', () => { row[field.dataset.field] = field.type === 'number' ? Number(field.value || 0) : field.value; }); });
+      item.querySelector('.row-remove').addEventListener('click', () => { state.jobs.splice(index, 1); render(); status('Job removed from the draft.'); }); list.appendChild(item);
+    });
+  }
+  async function load() { const { data, error } = await client.from('pccs_career_jobs').select('*').order('sort_order').order('posted_date', { ascending:false }); if (error) { status('Careers table is not ready. Run content/supabase-pccs-careers.sql first.'); return; } state.jobs = data || []; render(); }
+  async function save() {
+    const button = $('#save-button'); button.disabled = true; button.textContent = 'Saving…';
+    try {
+      const rows = state.jobs.map((row, index) => ({ status:row.status || 'draft', title_en:row.title_en || '', title_zh:row.title_en || '', location_en:row.location_en || '', location_zh:row.location_en || '', team_en:row.team_en || '', team_zh:row.team_en || '', employment_en:row.employment_en || 'Full-time', employment_zh:row.employment_en || 'Full-time', posted_date:row.posted_date || null, closing_date:row.closing_date || null, summary_en:row.summary_en || '', summary_zh:row.summary_en || '', description_en:row.description_en || '', description_zh:row.description_en || '', responsibilities_en:row.responsibilities_en || '', responsibilities_zh:row.responsibilities_en || '', minimum_qualifications_en:row.minimum_qualifications_en || '', minimum_qualifications_zh:row.minimum_qualifications_en || '', preferred_qualifications_en:row.preferred_qualifications_en || '', preferred_qualifications_zh:row.preferred_qualifications_en || '', other_details_en:row.other_details_en || '', other_details_zh:row.other_details_en || '', application_email:row.application_email || 'communication@pccsgroup.net', sort_order:Number(row.sort_order ?? index), updated_at:new Date().toISOString() }));
+      const { error: removeError } = await client.from('pccs_career_jobs').delete().neq('id','00000000-0000-0000-0000-000000000000'); if (removeError) throw removeError;
+      if (rows.length) { const { error } = await client.from('pccs_career_jobs').insert(rows); if (error) throw error; }
+      button.textContent='Saved!'; status('Saved to Supabase. Published jobs will appear on the Careers page.'); setTimeout(() => { button.textContent='Save to Supabase'; button.disabled=false; }, 2400);
+    } catch (error) { button.textContent='Save to Supabase'; button.disabled=false; status('Save failed: ' + error.message); }
+  }
+  function showAdmin(user) { $('#auth-screen').hidden=true; $('#auth-screen').style.display='none'; $('#admin-app').hidden=false; $('#admin-app').style.display='flex'; $('#user-email').textContent=user.email || 'Admin'; load(); }
+  $('#login-form').addEventListener('submit', async (event) => { event.preventDefault(); const result = await client.auth.signInWithPassword({ email:$('#login-email').value, password:$('#login-password').value }); if (result.error) status(result.error.message); else showAdmin(result.data.user); });
+  $('#logout-button').addEventListener('click', async () => { await client.auth.signOut(); location.reload(); }); $('#add-job').addEventListener('click', () => { state.jobs.push(blank()); render(); const item = $('#job-list .career-admin-job:last-child'); item?.scrollIntoView({ behavior:'smooth', block:'center' }); item?.querySelector('[data-field="title_en"]').focus(); status('New job added. Fill the fields, then save.'); }); $('#save-button').addEventListener('click', save); $('#reset-button').addEventListener('click', load); client.auth.getSession().then(({ data }) => data.session ? showAdmin(data.session.user) : null);
+}());

@@ -3,8 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="noindex, nofollow">
+  <meta name="robots" content="index, follow">
   <title>我们的集团 · PCCS 集团有限公司</title>
+  <meta name="description" content="了解 PCCS 集团有限公司的历史、领导团队、集团结构，以及以工程为核心的技术运动服装制造能力。">
+  <link rel="canonical" href="https://startfromx.github.io/pccs-proposal1/pages/group-cn.html">
+  <link rel="alternate" hreflang="en" href="https://startfromx.github.io/pccs-proposal1/pages/group.html">
+  <link rel="alternate" hreflang="zh-CN" href="https://startfromx.github.io/pccs-proposal1/pages/group-cn.html">
+  <link rel="alternate" hreflang="x-default" href="https://startfromx.github.io/pccs-proposal1/pages/group.html">
+  <meta property="og:title" content="我们的集团 — PCCS 集团有限公司">
+  <meta property="og:description" content="了解 PCCS 集团有限公司的历史、领导团队、集团结构，以及以工程为核心的技术运动服装制造能力。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://startfromx.github.io/pccs-proposal1/pages/group-cn.html">
+  <meta name="twitter:card" content="summary">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23006450'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='21' font-weight='700' fill='%23FFFFFF' text-anchor='middle'%3EP%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -567,6 +577,21 @@
     }
     .timeline tbody tr.tl-today td:first-child { color: var(--ink); font-weight: 700; }
     .timeline tbody tr.tl-today td { background: #eeeee9; }
+
+    /* Desktop timeline: use the available width without repeating the header. */
+    @media (min-width: 761px) {
+      .timeline { display: block; }
+      .timeline thead, .timeline thead tr { display: grid; width: 100%; grid-template-columns: 110px minmax(0, 1fr); }
+      .timeline thead th { min-width: 0; white-space: nowrap; }
+      .timeline thead th:first-child { width: auto; }
+      .timeline thead th:last-child { grid-column: 2; }
+      .timeline tbody { display: grid; width: 100%; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(24px, 4vw, 72px); }
+      .timeline tbody tr { display: grid; grid-template-columns: 110px minmax(0, 1fr); min-width: 0; }
+      .timeline tbody tr:nth-child(odd) { grid-column: 1; }
+      .timeline tbody tr:nth-child(even) { grid-column: 2; }
+      .timeline tbody tr:last-child { border-bottom: 1px solid var(--line); }
+      .timeline tbody tr.tl-today { border-bottom: 2px solid var(--ink); }
+    }
 
     /* ─────────────────────────────────────────────────────────────────────────
        SECTION 6 — GLOBAL FOOTPRINT
@@ -1231,7 +1256,7 @@
       <div class="proof-wrap">
 
         <div class="proof-statement rv-g">
-          五十年。<br><em>用工程创造，</em><br>而非因循继承。
+          五十年。<br><em>日日精进。</em>
         </div>
 
         <div class="proof-nums" role="list">
@@ -1273,59 +1298,48 @@
             <tr>
               <th scope="col">年份</th>
               <th scope="col">里程碑</th>
-              <th scope="col" class="tl-cn-col">里程碑</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>1973</td>
               <td class="tl-en">三台二手缝纫机起家，峇株巴辖。</td>
-              <td class="tl-cn tl-cn-col">三台二手缝纫机起家，峇株巴辖。</td>
             </tr>
             <tr>
               <td>1981</td>
               <td class="tl-en">成为 Perusahaan Chan Choo Sing —— PCCS。</td>
-              <td class="tl-cn tl-cn-col">成为 Perusahaan Chan Choo Sing —— PCCS。</td>
             </tr>
             <tr>
               <td>1983</td>
               <td class="tl-en">加入装饰工艺——标识，从这里开始。</td>
-              <td class="tl-cn tl-cn-col">加入装饰工艺——标识，从这里开始。</td>
             </tr>
             <tr>
               <td>1993&ndash;95</td>
               <td class="tl-en">组成集团；在大马交易所上市（6068）。</td>
-              <td class="tl-cn tl-cn-col">组成集团；在大马交易所上市（6068）。</td>
             </tr>
             <tr>
               <td>1998</td>
               <td class="tl-en">第一次海外生产——柬埔寨。</td>
-              <td class="tl-cn tl-cn-col">第一次海外生产——柬埔寨。</td>
             </tr>
             <tr>
               <td>2005</td>
               <td class="tl-en">中国业务——PCCS Garments，苏州。</td>
-              <td class="tl-cn tl-cn-col">中国——PCCS Garments，苏州。</td>
             </tr>
             <tr>
               <td>2015</td>
               <td class="tl-en">无缝服装能力（PSG，柬埔寨）。</td>
-              <td class="tl-cn tl-cn-col">无缝服装（PSG，柬埔寨）。</td>
             </tr>
             <tr>
               <td>2020</td>
               <td class="tl-en">加入医疗业务——La Prima。</td>
-              <td class="tl-cn tl-cn-col">加入医疗（La Prima）。</td>
             </tr>
             <tr>
               <td>2024</td>
               <td class="tl-en">越南面料厂——链条的最后一环。</td>
-              <td class="tl-cn tl-cn-col">越南面料厂——链条的最后一环。</td>
             </tr>
             <tr class="tl-today">
               <td>今天</td>
               <td class="tl-en">横跨四国的综合制造商。&rarr; 以工程，创造可能。</td>
-              <td class="tl-cn tl-cn-col">横跨四国的综合制造商。&rarr; 以工程，创造可能。</td>
             </tr>
           </tbody>
         </table>
@@ -1373,7 +1387,7 @@
             <div class="footprint-location">越南</div>
             <div class="footprint-cn">越南</div>
             <div class="footprint-role">制造设施</div>
-            <div class="footprint-detail">平顺服装及面料业务。越南子公司标志待补充。</div>
+            <div class="footprint-detail">平顺服装及面料业务。</div>
           </div>
 
           <div class="footprint-card footprint-card--malaysia rv-g" style="--d:.2s">
@@ -1518,6 +1532,7 @@
   <!-- ══ Footer ══════════════════════════════════════════════════════════════ -->
 
   <script src="../assets/js/pccs-home.js"></script>
+  <script src="../assets/js/leadership-profiles.js"></script>
   <script src="../assets/js/leadership-copy-cn.js"></script>
   <script>
   (function () {
@@ -1605,5 +1620,8 @@
   }());
   </script>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.4"></script>
+  <script src="../admin/supabase-config.js"></script>
+  <script src="../assets/js/group-content.js?v=3"></script>
 </body>
 </html>
