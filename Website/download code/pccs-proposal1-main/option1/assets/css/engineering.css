@@ -96,7 +96,8 @@
   line-height: 1.25;
   letter-spacing: -.015em;
 }
-.chain-card-zh {
+.chain-card-zh,
+.chain-card-desc {
   font-family: 'Noto Sans SC', sans-serif;
   font-size: clamp(12px, .95vw, 15px);
   color: var(--muted);

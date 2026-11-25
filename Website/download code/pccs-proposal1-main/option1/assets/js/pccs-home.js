@@ -502,18 +502,18 @@
 
     if (document.body.classList.contains('engineering-page')) {
       document.title = '工程能力 · PCCS Group';
-      html('.eng-hero-kicker', '工程能力');
-      html('.eng-hero-h1', '<span class="line">你的概念。</span><span class="line"><span class="accent">我们的工程能力。</span></span>');
-      html('.eng-hero-lead', '你的概念，是一切的起点。真正的挑战，在于把它转化为百万件成品：有品牌、有技术、能承受五十次洗涤。面料、版型、标识，缺一不可。这条链，PCCS 自有的环节正越来越精。');
+      html('.eng-hero-kicker', '核心业务');
+      html('.eng-hero-h1', '<span class="line">你的概念</span><span class="line"><span class="accent">我们以工程实现</span></span>');
+      html('.eng-hero-lead', '你的灵感，是一切的起点。真正的挑战，在于将其转化为百万件经得起市场与消费者检验的成品——赋予其品牌质感，注入我们的技术内核；从面料甄选、版型设计到特殊工艺，每一个细节都缺一不可。成工业集团正不断强化对这条价值链的自主掌控。');
       if (document.querySelector('.eng-hero-lead')) document.querySelector('.eng-hero-lead').style.fontSize = 'clamp(15px,1.35vw,22px)';
-      html('.eng-chain-header .sec-k', '全链路');
-      html('.eng-chain-header .sec-h2', '从概念到交付，<br>PCCS 工程化掌控全链路。');
-      textAll('.chain-card-name', ['概念与需求','设计与技术规格','面料开发','纸样与样品','标识与辅料','测试与合规','生产与质检','后整与交付']);
+      html('.eng-chain-header .sec-k', '价值链');
+      html('.eng-chain-header .sec-h2', '从创意到量产，<br>成工业的工程能力覆盖全链路。');
+      textAll('.chain-card-name', ['灵感与需求','设计与工艺规格','面料协同开发','纸样与打样','特殊工艺','测试与合规','生产与品控','后整与交付']);
       textAll('.chain-card-tag', ['客户负责','已工程化','已开发','已打样','已制作','已验证','已生产','已交付']);
-      textAll('.eng-pill', ['100+ 名研发人员','每年 3,000+ 款样品','每年 340+ 个 3D 纸样','覆盖 30+ 个国家','约 1,500 吨面料 / 月','GRS','RCS','OEKO-TEX','ZDHC','Higg FEM','越南面料厂扩建中','50+ 项专利','刺绣','印花','热升华','无缝工艺','官方队徽','在生产一线 50 年','10+ 个生产基地','360+ 条生产线','每月约 470 万件成衣']);
-      textAll('.eng-subsec-kicker', ['产品开发','材料选型','工程未来','标识工艺','制造与质量','后整与交付']);
-      htmlAll('.eng-subsec-h2', ['好点子，只有变成<br>可量产的技术方案。','性能，<br>始于纱线。','这条链的强度，<br>取决于最薄弱的一环。','一枚标识，须经得起<br>长年穿着与五十次洗涤。','质量并非最后一道<br>检验，而是从裁剪起就融入。','零售即用，<br>准时交付。']);
-      html('.eng-statement-body', '这正是 PCCS 不断扩大自主掌控环节的原因——我们多掌控一个环节，你的品牌就少承担一份风险。');
+      textAll('.eng-pill', ['100+ 名研发人员','每年 3,000+ 款样品','每年 340+ 个 3D 纸样','约 1,500 吨面料 / 月','GRS','RCS','OEKO-TEX','ZDHC','Higg FEM','越南面料厂扩建中','50+ 项专利','刺绣','印花','热升华','无缝工艺','官方队徽','在生产一线 50 年','10+ 个生产基地','360+ 条生产线','每月约 470 万件成衣']);
+      textAll('.eng-subsec-kicker', ['产品研发','材料统筹','特殊工艺','制造与质量','后整与交付']);
+      htmlAll('.eng-subsec-h2', ['创意不经过工程化，<br>终究只是创意。','性能，<br>始于品控把关。','您赋予装饰意义，<br>我们赋予它品质。','质量不是最后一道检验，<br>而是融入每一道工序。','零售即用，<br>准时交付。']);
+      html('.eng-statement-body', '因此，成工业不断深化核心环节的自主把控。我们每多掌控一环，您的品牌就少一分风险。');
       html('.eng-explore-grid .eng-explore-card:nth-child(1) .eng-explore-h3', '我们的作品');
       html('.eng-explore-grid .eng-explore-card:nth-child(1) .eng-explore-p', '那些响亮的名字，背后都是我们。足球、运动、生活方式——五十年来，我们一直在制造别人引以为傲的产品。');
       html('.eng-explore-grid .eng-explore-card:nth-child(1) .pill-btn', '查看我们的作品 <span>&rarr;</span>');
