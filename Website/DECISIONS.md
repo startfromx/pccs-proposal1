@@ -11,6 +11,14 @@ This file records approved website decisions that must carry across AI sessions.
 
 ## Approved decisions
 
+### 2026-11-26 — Retire proposal Option 2 and consolidate website images
+
+- Status: approved and implemented in the working copy.
+- `Website/download code/pccs-proposal1-main/option1/` is the sole selected website implementation.
+- Remove the obsolete `option2/` proposal and remove its links from the two historical proposal selector pages.
+- For active website raster assets that have a same-basename WebP replacement, retain the WebP and remove the duplicate JPG/PNG source copy.
+- Keep required non-raster assets such as the PCCS SVG logo. CMS uploads may still introduce other formats in future and should be assessed before conversion or removal.
+
 ### 2026-11-26 — Retire “Our Work / 合作案例” as a standalone destination
 
 - Status: approved and implemented in the working copy.

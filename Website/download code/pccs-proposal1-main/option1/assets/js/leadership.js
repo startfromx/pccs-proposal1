@@ -6,14 +6,14 @@
 
   var bios = window.PCCS_LEADER_BIOS || {};
   var leaders = [
-    ['Piong Yew Peng', 'Senior Independent Non-Executive Chairman', 'piong-yew-peng.jpg'],
-    ['Chan Wee Kiang', 'Group Managing Director', 'chan-wee-kiang.jpg'],
-    ['Chan Wee Boon', 'Executive Director', 'chan-wee-boon.jpg'],
-    ['Chan Chow Tek', 'Non-Independent Non-Executive Director', 'chan-chow-tek.jpg'],
-    ['Dato’ Chan Chor Ngiak', 'Non-Independent Non-Executive Director', 'chan-chor-ngiak.jpg'],
-    ['Chan Chor Ang', 'Non-Independent Non-Executive Director', 'chan-chor-ang.jpg'],
-    ['Joyce Wong Ai May', 'Independent Non-Executive Director', 'joyce-wong-ai-may.jpg'],
-    ['Tang Lai Huat', 'Corporate Controller', 'tang-lai-huat.jpg']
+    ['Piong Yew Peng', 'Senior Independent Non-Executive Chairman', 'piong-yew-peng.webp'],
+    ['Chan Wee Kiang', 'Group Managing Director', 'chan-wee-kiang.webp'],
+    ['Chan Wee Boon', 'Executive Director', 'chan-wee-boon.webp'],
+    ['Chan Chow Tek', 'Non-Independent Non-Executive Director', 'chan-chow-tek.webp'],
+    ['Dato’ Chan Chor Ngiak', 'Non-Independent Non-Executive Director', 'chan-chor-ngiak.webp'],
+    ['Chan Chor Ang', 'Non-Independent Non-Executive Director', 'chan-chor-ang.webp'],
+    ['Joyce Wong Ai May', 'Independent Non-Executive Director', 'joyce-wong-ai-may.webp'],
+    ['Tang Lai Huat', 'Corporate Controller', 'tang-lai-huat.webp']
   ];
 
   var cards = leaders.map(function (leader) {
