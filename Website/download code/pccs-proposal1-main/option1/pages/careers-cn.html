@@ -252,6 +252,8 @@ html[lang="zh-CN"] .cr-jobs-intro { letter-spacing:.02em; }
 .cr-job-empty-copy { max-width:34em; margin:0; color:var(--muted); font-size:16px; line-height:1.55; }
 .cr-job-empty-link { justify-self:end; display:inline-flex; align-items:center; gap:12px; padding:15px 22px; border-radius:999px; background:var(--ink); color:#fff; font-size:14px; text-decoration:none; transition:background .25s,transform .25s; }
 .cr-job-empty-link:hover { background:var(--green); transform:translateX(3px); }
+.cr-job-fallback { margin:28px 0 0; color:var(--muted); font-size:14px; line-height:1.6; }
+.cr-job-fallback a { color:var(--green); text-underline-offset:3px; }
 @media (max-width:680px) { .cr-jobs-header,.cr-job-empty { display:block; } .cr-jobs-intro { margin-top:24px; } .cr-job-empty-link { margin-top:28px; } .cr-job-browser,[data-job-browser] { display:block; } .cr-job-browser .cr-job-tools,[data-job-browser] .cr-job-tools { position:static; display:grid; grid-template-columns:1fr; padding:0 0 20px; } .cr-job-result { grid-template-columns:1fr 24px; gap:12px; } .cr-job-result-location { grid-column:1 / -1; } .cr-job-detail-body { display:block; } .cr-job-detail-body aside { margin-bottom:28px; } .cr-job-modal { padding:10px; } .cr-job-modal-panel { max-height:94vh; padding:28px 20px; border-radius:16px; } }
 
 /* ─────────────────────────────────────────────
@@ -379,6 +381,12 @@ html[lang="zh-CN"] .cr-value-desc { letter-spacing: .01em; }
 html[lang="zh-CN"] .cr-disciplines-h2 { letter-spacing: 0; }
 
 /* drag hint */
+.cr-disciplines-tools {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-shrink: 0;
+}
 .cr-drag-hint {
   font-size: 13px;
   font-weight: 400;
@@ -398,6 +406,28 @@ html[lang="zh-CN"] .cr-disciplines-h2 { letter-spacing: 0; }
   background: var(--muted);
   opacity: .55;
 }
+.cr-rail-buttons {
+  display: flex;
+  gap: 8px;
+}
+.cr-rail-arrow {
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+  font-size: 20px;
+  cursor: pointer;
+  transition: border-color .25s, color .25s, transform .25s, opacity .25s;
+}
+.cr-rail-arrow:hover:not(:disabled) { border-color: var(--green); color: var(--green); transform: translateY(-2px); }
+.cr-rail-arrow:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; }
+.cr-rail-arrow:disabled { opacity: .35; cursor: default; }
 
 /* rail container — overflow handles drag scroll */
 .cr-rail-outer {
@@ -550,13 +580,24 @@ html[lang="zh-CN"] .cr-craft-h2 { letter-spacing: 0; }
   border: 1px solid rgba(255,255,255,.26);
   backdrop-filter: blur(12px) saturate(120%);
   -webkit-backdrop-filter: blur(12px) saturate(120%);
-  border-radius: 999px;
-  padding: 7px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  border-radius: 14px;
+  padding: 9px 16px;
   font-size: 12px;
   font-weight: 500;
+  line-height: 1.2;
   letter-spacing: .08em;
   color: #fff;
   white-space: nowrap;
+}
+.cr-craft-cap-en {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  opacity: .72;
 }
 
 /* ─────────────────────────────────────────────
@@ -769,7 +810,7 @@ html[lang="zh-CN"] span.cr-zh { display: inline; }
   }
 
   .cr-disciplines-header { flex-direction: column; align-items: flex-start; gap: 12px; }
-  .cr-drag-hint { align-self: flex-start; }
+  .cr-disciplines-tools { align-self: flex-start; }
 
   .cr-craft-grid { grid-template-columns: 1fr 1fr; }
 
@@ -817,6 +858,7 @@ html[lang="zh-CN"] span.cr-zh { display: inline; }
   .cr-disciplines-header { flex-direction: column; align-items: flex-start; gap: 12px; }
   .cr-disciplines-h2 { font-size: clamp(24px, 8vw, 40px); letter-spacing: -.03em; }
   .cr-drag-hint { display: none; }
+  .cr-disciplines-tools { align-self: flex-end; }
   .cr-disc-card { width: clamp(240px, 72vw, 300px); }
   /* no mask fade on mobile — small viewport clips naturally */
   .cr-rail-outer { mask-image: none; -webkit-mask-image: none; }
@@ -900,7 +942,7 @@ html[lang="zh-CN"] .cr-hero.hero-stage .cr-hero-h1 { line-height:1.04; letter-sp
       <div class="hero-content">
         <div class="eyebrow cr-hero-eyebrow">
           <span class="cr-en">Careers at PCCS</span>
-          <span class="cr-zh" lang="zh-CN">加入 PCCS</span>
+          <span class="cr-zh" lang="zh-CN">加入成工业集团</span>
         </div>
 
         <!-- English headline -->
@@ -910,8 +952,8 @@ html[lang="zh-CN"] .cr-hero.hero-stage .cr-hero-h1 { line-height:1.04; letter-sp
 
         <!-- Chinese headline -->
         <h1 class="cr-hero-h1 cr-zh" lang="zh-CN">
-          <span class="line">来吧，让世界</span>
-          <span class="line accent">穿上你的作品。</span>
+          <span class="line">以工程</span>
+          <span class="line accent">创非凡</span>
         </h1>
       </div>
 
@@ -940,8 +982,8 @@ html[lang="zh-CN"] .cr-hero.hero-stage .cr-hero-h1 { line-height:1.04; letter-sp
             That&rsquo;s engineering, at the scale of millions.
           </p>
           <p class="cr-belief-lead cr-zh" lang="zh-CN">
-            世界最大的运动品牌在这里诞生——由那些裁剪、针织、印刷、缝制、测试和交付它们的人完成。
-            这不是流水线工作，这是以百万计规模进行的工程实践。
+            世界顶级运动品牌在此落地为产品——由负责设计、工程、制造与交付的各个岗位共同成就。
+            这绝非简单的流水线作业，而是以百万计规模的宏大工程。
           </p>
         </div>
 
@@ -955,9 +997,9 @@ html[lang="zh-CN"] .cr-hero.hero-stage .cr-hero-h1 { line-height:1.04; letter-sp
             Whatever your role, you&rsquo;re doing engineering.
           </p>
           <p class="cr-belief-lead cr-zh" lang="zh-CN">
-            工程不只在实验室。
-            一个合身的版型、一针扎实的缝线、一个经过五十次洗涤仍清晰的标记——每一个都是精准的决定。
-            无论你担任什么角色，你都在做工程。
+            工程，不仅在实验室，更在车间里。
+            版型严丝合缝、缝线牢固耐穿、标识熬过五十次水洗依然清晰——这里的每一处细节，都是极其精确的考量。
+            无论你在哪个岗位，你都在做工程。
           </p>
         </div>
       </div>
@@ -971,9 +1013,9 @@ html[lang="zh-CN"] .cr-hero.hero-stage .cr-hero-h1 { line-height:1.04; letter-sp
       <div class="cr-jobs-header rv" style="--d:.06s;">
         <div>
           <p class="cr-jobs-kicker"><span class="cr-en">Open positions</span><span class="cr-zh" lang="zh-CN">招聘职位</span></p>
-          <h2 class="cr-jobs-h2" id="cr-jobs-heading"><span class="cr-en">Find your<br>next role.</span><span class="cr-zh" lang="zh-CN">寻找你的<br>下一份工作。</span></h2>
+          <h2 class="cr-jobs-h2" id="cr-jobs-heading"><span class="cr-en">Find your<br>next role.</span><span class="cr-zh" lang="zh-CN">寻找你的<br>下一份精彩</span></h2>
         </div>
-        <p class="cr-jobs-intro"><span class="cr-en">Explore opportunities across PCCS — from the factory floor to the functions that keep the Group moving.</span><span class="cr-zh" lang="zh-CN">探索 PCCS 的工作机会——从生产现场，到支持集团持续发展的各项职能。</span></p>
+        <p class="cr-jobs-intro"><span class="cr-en">Explore opportunities across PCCS — from the factory floor to the functions that keep the Group moving.</span><span class="cr-zh" lang="zh-CN">探索成工业集团多元机遇——无论是扎根工厂，还是运作集团，你都有可能在这里遇见合适的位置。</span></p>
       </div>
       <div class="cr-job-list" data-career-jobs>
         <div class="cr-job-empty rv" style="--d:.12s;">
@@ -984,6 +1026,7 @@ html[lang="zh-CN"] .cr-hero.hero-stage .cr-hero-h1 { line-height:1.04; letter-sp
           <a class="cr-job-empty-link" href="mailto:communication@pccsgroup.net?subject=Career%20enquiry"><span class="cr-en">Send a career enquiry</span><span class="cr-zh" lang="zh-CN">发送求职咨询</span><span aria-hidden="true">↗</span></a>
         </div>
       </div>
+      <p class="cr-job-fallback">如果暂时没有合适的职位，欢迎将简历发送至我们的<a href="mailto:communication@pccsgroup.net?subject=Career%20enquiry">公共邮箱</a>。</p>
     </section>
 
     <!-- ──────────────────────────────────────────
@@ -999,7 +1042,7 @@ html[lang="zh-CN"] .cr-hero.hero-stage .cr-hero-h1 { line-height:1.04; letter-sp
           </p>
           <h2 class="cr-values-h2" id="cr-values-heading">
             <span class="cr-en">What we<br>hold to.</span>
-            <span class="cr-zh" lang="zh-CN">我们坚守<br>的准则。</span>
+            <span class="cr-zh" lang="zh-CN">以人为本，<br>传承永续</span>
           </h2>
         </div>
         <p class="cr-values-intro rv" style="--d:.14s;">
@@ -1008,8 +1051,8 @@ html[lang="zh-CN"] .cr-hero.hero-stage .cr-hero-h1 { line-height:1.04; letter-sp
             from how we source fabric to how we build teams.
           </span>
           <span class="cr-zh" lang="zh-CN">
-            四项原则指导每一个决策——
-            从我们如何采购面料，到我们如何组建团队。
+            这四项原则贯穿于我们的每一次决策——
+            从面料的甄选，到团队的组建。
           </span>
         </p>
       </div>
@@ -1018,7 +1061,7 @@ html[lang="zh-CN"] .cr-hero.hero-stage .cr-hero-h1 { line-height:1.04; letter-sp
         <article class="cr-value-item rv" style="--d:.08s;">
           <span class="cr-value-num">01</span>
           <h3 class="cr-value-name cr-en">Passion</h3>
-          <h3 class="cr-value-name cr-zh" lang="zh-CN">热情</h3>
+          <h3 class="cr-value-name cr-zh" lang="zh-CN">热忱</h3>
           <p class="cr-value-desc cr-en">We solve what others just supply.</p>
           <p class="cr-value-desc cr-zh" lang="zh-CN">我们解决问题，而非仅仅供货。</p>
         </article>
@@ -1026,7 +1069,7 @@ html[lang="zh-CN"] .cr-hero.hero-stage .cr-hero-h1 { line-height:1.04; letter-sp
         <article class="cr-value-item rv" style="--d:.15s;">
           <span class="cr-value-num">02</span>
           <h3 class="cr-value-name cr-en">Care</h3>
-          <h3 class="cr-value-name cr-zh" lang="zh-CN">用心</h3>
+          <h3 class="cr-value-name cr-zh" lang="zh-CN">关怀</h3>
           <p class="cr-value-desc cr-en">We leave nothing to chance.</p>
           <p class="cr-value-desc cr-zh" lang="zh-CN">我们不将任何事情交给偶然。</p>
         </article>
@@ -1034,7 +1077,7 @@ html[lang="zh-CN"] .cr-hero.hero-stage .cr-hero-h1 { line-height:1.04; letter-sp
         <article class="cr-value-item rv" style="--d:.22s;">
           <span class="cr-value-num">03</span>
           <h3 class="cr-value-name cr-en">Commitment</h3>
-          <h3 class="cr-value-name cr-zh" lang="zh-CN">承诺</h3>
+          <h3 class="cr-value-name cr-zh" lang="zh-CN">担当</h3>
           <p class="cr-value-desc cr-en">We hold the standard, order after order.</p>
           <p class="cr-value-desc cr-zh" lang="zh-CN">我们坚守标准，每一个订单皆如此。</p>
         </article>
@@ -1042,7 +1085,7 @@ html[lang="zh-CN"] .cr-hero.hero-stage .cr-hero-h1 { line-height:1.04; letter-sp
         <article class="cr-value-item rv" style="--d:.29s;">
           <span class="cr-value-num">04</span>
           <h3 class="cr-value-name cr-en">Sustainability</h3>
-          <h3 class="cr-value-name cr-zh" lang="zh-CN">可持续性</h3>
+          <h3 class="cr-value-name cr-zh" lang="zh-CN">永续</h3>
           <p class="cr-value-desc cr-en">We build without costing tomorrow.</p>
           <p class="cr-value-desc cr-zh" lang="zh-CN">我们在不透支未来的前提下持续发展。</p>
         </article>
@@ -1066,10 +1109,16 @@ html[lang="zh-CN"] .cr-hero.hero-stage .cr-hero-h1 { line-height:1.04; letter-sp
             <span class="cr-zh" lang="zh-CN">你可以<br>加入的领域。</span>
           </h2>
         </div>
-        <p class="cr-drag-hint" aria-hidden="true">
-          <span class="cr-en">Drag to explore</span>
-          <span class="cr-zh" lang="zh-CN">拖动浏览</span>
-        </p>
+        <div class="cr-disciplines-tools">
+          <p class="cr-drag-hint" aria-hidden="true">
+            <span class="cr-en">Drag to explore</span>
+            <span class="cr-zh" lang="zh-CN">拖动浏览更多领域</span>
+          </p>
+          <div class="cr-rail-buttons" aria-label="职能领域浏览控制">
+            <button class="cr-rail-arrow" type="button" data-rail-prev aria-label="浏览上一个职能领域">←</button>
+            <button class="cr-rail-arrow" type="button" data-rail-next aria-label="浏览下一个职能领域">→</button>
+          </div>
+        </div>
       </div>
 
       <div class="cr-rail-outer" id="crRailOuter">
@@ -1215,8 +1264,8 @@ html[lang="zh-CN"] .cr-hero.hero-stage .cr-hero-h1 { line-height:1.04; letter-sp
                alt="Colorful PCCS development threads arranged by shade"
                loading="lazy">
           <span class="cr-craft-cap">
-            <span class="cr-en">Development</span>
-            <span class="cr-zh" lang="zh-CN">开发</span>
+            <span class="cr-zh" lang="zh-CN">开发与设计</span>
+            <small class="cr-craft-cap-en" lang="en">Development</small>
           </span>
         </div>
 
@@ -1225,8 +1274,8 @@ html[lang="zh-CN"] .cr-hero.hero-stage .cr-hero-h1 { line-height:1.04; letter-sp
                alt="PCCS technical development process — turning concepts into production-ready packages"
                loading="lazy">
           <span class="cr-craft-cap">
-            <span class="cr-en">The Mark</span>
             <span class="cr-zh" lang="zh-CN">品牌标记</span>
+            <small class="cr-craft-cap-en" lang="en">The Mark</small>
           </span>
         </div>
 
@@ -1235,8 +1284,8 @@ html[lang="zh-CN"] .cr-hero.hero-stage .cr-hero-h1 { line-height:1.04; letter-sp
                alt="PCCS manufacturing and quality control"
                loading="lazy">
           <span class="cr-craft-cap">
-            <span class="cr-en">Production</span>
             <span class="cr-zh" lang="zh-CN">生产</span>
+            <small class="cr-craft-cap-en" lang="en">Production</small>
           </span>
         </div>
 
@@ -1251,8 +1300,8 @@ html[lang="zh-CN"] .cr-hero.hero-stage .cr-hero-h1 { line-height:1.04; letter-sp
 
       <div class="cr-cta-media">
         <img class="cr-cta-img"
-             src="../images/pccs-embroidery.webp"
-             alt="PCCS precision craft — embroidery at the heart of what we make"
+             src="../images/engineering/engineering-quality.webp"
+             alt="成工业集团生产团队在车间检查成衣质量"
              loading="lazy">
         <div class="cr-cta-overlay" aria-hidden="true"></div>
 
@@ -1264,8 +1313,8 @@ html[lang="zh-CN"] .cr-hero.hero-stage .cr-hero-h1 { line-height:1.04; letter-sp
               <span class="cr-accent">The next fifty years start with you.</span>
             </span>
             <span class="cr-zh" lang="zh-CN">
-              加入那双在世界最大品牌背后的手。<br>
-              <span class="cr-accent">未来的五十年，从你开始。</span>
+              加入世界顶级品牌背后的力量。<br>
+              <span class="cr-accent">下一个五十年，与你共创。</span>
             </span>
           </p>
 
@@ -1318,6 +1367,8 @@ html[lang="zh-CN"] .cr-hero.hero-stage .cr-hero-h1 { line-height:1.04; letter-sp
   /* ── 3. DISCIPLINE RAIL: drag-scroll + dot indicators ── */
   var rail = document.getElementById('crRail');
   var dots = document.querySelectorAll('.cr-rail-dot');
+  var prevButton = document.querySelector('[data-rail-prev]');
+  var nextButton = document.querySelector('[data-rail-next]');
   if (!rail) return;
 
   /* drag state */
@@ -1409,7 +1460,19 @@ html[lang="zh-CN"] .cr-hero.hero-stage .cr-hero-h1 { line-height:1.04; letter-sp
     dots.forEach(function (d, i) {
       d.classList.toggle('active', i === idx);
     });
+    if (prevButton) prevButton.disabled = rail.scrollLeft <= 2;
+    if (nextButton) nextButton.disabled = rail.scrollLeft >= rail.scrollWidth - rail.clientWidth - 2;
   }
+
+  function moveRail(direction) {
+    var cards = rail.querySelectorAll('.cr-disc-card');
+    if (!cards.length) return;
+    var gap = parseInt(getComputedStyle(rail).gap || '24', 10);
+    rail.scrollBy({ left: direction * (cards[0].offsetWidth + gap), behavior: reduced ? 'auto' : 'smooth' });
+  }
+
+  if (prevButton) prevButton.addEventListener('click', function () { moveRail(-1); });
+  if (nextButton) nextButton.addEventListener('click', function () { moveRail(1); });
 
   dots.forEach(function (dot) {
     dot.addEventListener('click', function () {
@@ -1425,6 +1488,8 @@ html[lang="zh-CN"] .cr-hero.hero-stage .cr-hero-h1 { line-height:1.04; letter-sp
 
   /* update dots on native scroll too */
   rail.addEventListener('scroll', updateDots, { passive: true });
+  window.addEventListener('resize', updateDots);
+  updateDots();
 
   /* ── 4. CTA IMAGE: subtle parallax on scroll ── */
   if (!reduced) {

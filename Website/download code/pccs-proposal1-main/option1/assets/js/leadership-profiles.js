@@ -1,4 +1,12 @@
 (function () {
+  function groupForLeader(name, role, language, classification) {
+    var isManagement = classification === "management" || (!classification && (name === "Tang Lai Huat" || /Corporate Controller|企业财务总监/i.test(role || "")));
+    if (language === "zh") return isManagement ? "管理层" : "董事会";
+    return isManagement ? "Management" : "Board of Directors";
+  }
+
+  window.PCCS_LEADER_GROUP = groupForLeader;
+
   window.PCCS_LEADERS = {
     "Piong Yew Peng": {
       image: "../images/group/leaders/piong-yew-peng.webp",
@@ -41,4 +49,35 @@
       zh: "企业财务总监"
     }
   };
+
+  var language = document.documentElement.lang === "zh-CN" ? "zh" : "en";
+
+  function labelCard(card) {
+    var body = card.querySelector(".leader-card-body");
+    if (!body) return;
+    var label = body.querySelector(".leader-card-group");
+    if (!label) {
+      label = document.createElement("span");
+      label.className = "leader-card-group";
+      body.insertBefore(label, body.firstChild);
+    }
+    var group = groupForLeader(card.dataset.leaderName, card.dataset.leaderRole, language, card.dataset.leaderClassification);
+    card.dataset.leaderGroup = group;
+    label.textContent = group;
+  }
+
+  document.querySelectorAll(".leader-card").forEach(labelCard);
+
+  document.addEventListener("click", function (event) {
+    var card = event.target.closest(".leader-card");
+    if (!card) return;
+    labelCard(card);
+    var modal = document.querySelector("[data-leader-modal]");
+    if (!modal) return;
+    var group = card.dataset.leaderGroup;
+    var topLabel = modal.querySelector(".leader-modal-top > span:first-child");
+    var kicker = modal.querySelector(".leader-modal-kicker");
+    if (topLabel) topLabel.textContent = group;
+    if (kicker) kicker.textContent = group;
+  });
 }());

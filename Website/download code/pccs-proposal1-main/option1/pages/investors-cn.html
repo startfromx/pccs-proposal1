@@ -21,7 +21,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/pccs.css">
-  <link rel="stylesheet" href="../assets/css/pccs-pages.css">
+  <link rel="stylesheet" href="../assets/css/pccs-pages.css?v=20261126-1">
 
   <style>
     /* ============================================================
@@ -599,7 +599,7 @@
     }
     .inv-contact-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: minmax(0,1fr);
       gap: 24px;
     }
     .inv-contact-card {
@@ -780,12 +780,10 @@
     .inv-document-library .investor-category:first-child { border-top:1px solid var(--line); }
     .inv-document-library .investor-category:hover,.inv-document-library .investor-category.active { color:var(--ink); padding-left:8px; }
     .inv-document-library .investor-category.active { font-weight:500; }
-    .inv-document-library .investor-category span { color:var(--green); font-size:11px; }
     .inv-document-library .investor-select-label { display:none; }
     .inv-document-library .investor-doc-head { display:flex; justify-content:space-between; gap:24px; align-items:end; margin-bottom:26px; }
     .inv-document-library .investor-doc-head h2 { margin:0 0 8px; font-size:clamp(24px,2.4vw,44px); font-weight:300; letter-spacing:-.04em; }
     .inv-document-library .investor-doc-head p { margin:0; color:var(--muted); font-size:14px; line-height:1.45; }
-    .inv-document-library .investor-count { color:var(--muted); font-size:12px; white-space:nowrap; }
     .inv-document-library .investor-doc-group { border-bottom:1px solid var(--line); }
     .inv-document-library .investor-doc-group-open { display:grid; grid-template-columns:140px minmax(0,1fr); gap:24px; padding:18px 0; }
     .inv-document-library .investor-year-heading { margin:0; padding-top:13px; font-size:20px; font-weight:500; }
@@ -869,21 +867,21 @@
   </div>
 
   <div class="hero-content">
-    <div class="eyebrow inv-hero-kicker">投资者关系&nbsp;&middot;&nbsp;马来西亚交易所 6068</div>
+    <div class="eyebrow inv-hero-kicker">马来西亚交易所&nbsp;&middot;&nbsp;股票代码 6068</div>
     <h1 class="inv-hero-h1" id="inv-h1">
-      <span class="line">掌控更多。</span>
-      <span class="line"><span class="accent">创造价值。</span></span>
+      <span class="line">掌控更多</span>
+      <span class="line"><span class="accent">创造价值</span></span>
     </h1>
     <p class="hero-subline inv-hero-sub">
-      PCCS 为全球最大的品牌制造专业运动服装&thinsp;&mdash;&thinsp;并逐步掌握更高价值的环节：产品开发、商标及面料。
+      成工业为全球顶尖品牌制造专业运动服饰，并不断向价值链上游延伸：涵盖研发、特殊工艺与面料协同开发。
     </p>
   </div>
 
-  <a class="inv-hero-badge hero-tile" href="https://www.bursamalaysia.com/bm/trade/trading_resources/listing_directory/company-profile?stock_code=6068" target="_blank" rel="noopener noreferrer" aria-label="在马来西亚交易所查看 PCCS 集团资料">
+  <a class="inv-hero-badge hero-tile" href="https://www.bursamalaysia.com/market/listed-companies/company-announcements/subscribe/6068/option1/" target="_blank" rel="noopener noreferrer" aria-label="在马来西亚交易所查看 PCCS 集团资料">
     <span class="inv-hero-badge-media"><img src="../images/investors/bursa-malaysia.webp" alt="马来西亚交易所"></span>
     <div class="inv-hero-badge-label">马来西亚交易所</div>
     <div class="inv-hero-badge-ticker">6068</div>
-    <span class="inv-hero-badge-link">查看公司资料 <span aria-hidden="true">↗</span></span>
+    <span class="inv-hero-badge-link">查看公司资料（马交所）<span aria-hidden="true">↗</span></span>
   </a>
 </section>
 </div>
@@ -891,32 +889,22 @@
 <!-- ===== MAIN ===== -->
 <main id="main-content">
 
-  <!-- COMPLIANCE NOTICE -->
-  <div class="inv-sec" style="padding-bottom:0; padding-top: clamp(32px,4vw,56px);">
-    <div class="inv-compliance-bar" role="note">
-      <strong>注意&nbsp;—</strong>
-      所有投资者关系文案、财务数据及市场资料，须经 CFO&nbsp;/ 合规部门签署确认后方可发布。
-      经批准文案中的数据均标注来源，尚待确认的内容会标记为
-      <span class="inv-data-note">需要 PCCS 提供</span>。
-    </div>
-  </div>
-
   <!-- ===== 1 · EQUITY THESIS ===== -->
   <section id="equity-story" aria-labelledby="inv-thesis-heading">
     <div class="inv-sec">
-      <div class="inv-kicker rv">投资逻辑</div>
+      <div class="inv-kicker rv">股权故事</div>
 
       <div class="inv-thesis-grid">
 
         <!-- LEFT: pull headline + body -->
         <div>
           <h2 class="inv-thesis-pull rv" id="inv-thesis-heading">
-            <span class="block">从裁剪缝制</span>
-            <span class="block">走向<span class="accent">综合平台。</span></span>
+            <span class="block">从成衣制造</span>
+            <span class="block">走向<span class="accent">综合平台</span></span>
           </h2>
           <div class="inv-thesis-body rv" style="--d:.1s;">
-            <p>PCCS 最初是一家裁剪缝制承包商。五十多年来，公司持续向产业链上游延伸&mdash;从装饰加工，到产品开发，再到面料。每增加一个环节，就减少客户向外部采购的需要。</p>
-            <p>PCCS 为全球领先品牌制造技术运动服装，并逐步掌握价值链中更高价值的环节：开发、标识，以及面料。</p>
+            <p>成工业集团起初是一家成衣代工企业。五十年来，我们持续向价值链上游延伸：从装饰工艺、产品开发，一路拓展至更专业的领域。价值链每完善一环，客户就少一道外包环节。</p>
+            <p>尽管市场仍常以传统成衣制造商来看待我们，但集团业务已实质性地转型为掌控设计研发、特殊工艺的综合平台。我们相信，随着核心价值链的不断完善，集团的长期内在价值将得到市场的进一步认可。</p>
             <a class="pill-btn" href="https://www.bursamalaysia.com/bm/trade/trading_resources/listing_directory/company-profile?stock_code=6068" target="_blank" rel="noopener noreferrer">马来西亚交易所资料&nbsp;&rarr;</a>
           </div>
         </div>
@@ -930,84 +918,47 @@
             </div>
             <div class="inv-chain-item">
               <div class="inv-chain-num">01</div>
-              <div class="inv-chain-label">概念与需求<span>客户提出需求</span></div>
+              <div class="inv-chain-label">概念与需求<span>客户提出初步构想与需求</span></div>
               <span class="inv-chain-badge client">客户</span>
             </div>
             <div class="inv-chain-item">
               <div class="inv-chain-num">02</div>
-              <div class="inv-chain-label">设计与技术规格<span>内部工程开发</span></div>
+              <div class="inv-chain-label">设计与工艺规格<span>内部工程团队提供专业设计与技术支持</span></div>
               <span class="inv-chain-badge owned">自有</span>
             </div>
             <div class="inv-chain-item">
               <div class="inv-chain-num">03</div>
-              <div class="inv-chain-label">面料开发<span>越南纺织厂 — 扩展中</span></div>
+              <div class="inv-chain-label">面料协同开发<span>联合供应链伙伴共同开发面料（越南面料基地筹建中）</span></div>
               <span class="inv-chain-badge expanding">扩展中</span>
             </div>
             <div class="inv-chain-item">
               <div class="inv-chain-num">04</div>
-              <div class="inv-chain-label">纸样与打样<span>100+ 名研发人员 &middot; 每年 1,800+ 款式</span></div>
+              <div class="inv-chain-label">纸样与打样<span>百人研发团队，年产出 1,800+ 款式</span></div>
               <span class="inv-chain-badge owned">自有</span>
             </div>
             <div class="inv-chain-item">
               <div class="inv-chain-num">05</div>
-              <div class="inv-chain-label">商标与辅料<span>50+ 项专利 &middot; 装饰加工部门</span></div>
+              <div class="inv-chain-label">标识工艺与辅料<span>拥有 50+ 项专利与专属特殊工艺</span></div>
               <span class="inv-chain-badge owned">自有</span>
             </div>
             <div class="inv-chain-item">
               <div class="inv-chain-num">06</div>
-              <div class="inv-chain-label">测试与合规<span>GRS &middot; OEKO-TEX &middot; WRAP Gold 2025</span></div>
+              <div class="inv-chain-label">测试与合规<span>自有实验室实时检测，确保符合环保与质量要求</span></div>
               <span class="inv-chain-badge owned">自有</span>
             </div>
             <div class="inv-chain-item">
               <div class="inv-chain-num">07</div>
-              <div class="inv-chain-label">生产与质量控制<span>360+ 条生产线 &middot; 每月约 470 万件服装</span></div>
+              <div class="inv-chain-label">生产与品控<span>布局中、柬等多国制造基地，实行全环节品控</span></div>
               <span class="inv-chain-badge owned">自有</span>
             </div>
             <div class="inv-chain-item">
               <div class="inv-chain-num">08</div>
-              <div class="inv-chain-label">后整理与交付<span>可直接零售 &middot; 全程追踪</span></div>
+              <div class="inv-chain-label">后整与交付<span>严苛后整工艺，达到零售标准并实现全程物流追踪</span></div>
               <span class="inv-chain-badge owned">自有</span>
             </div>
           </div>
-          <p style="margin-top:10px; font-size:11px; color:#999;">
-            价值链数据来自经批准的文案文件。面料工厂：越南平顺 — 扩展中。
-          </p>
         </div>
 
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== 2 · FINANCIALS DARK BAND ===== -->
-  <section id="financials" class="inv-fin-band" aria-labelledby="inv-fin-heading">
-    <div class="inv-sec">
-      <div class="inv-fin-kicker rv">FY2026 财务表现</div>
-      <h2 class="inv-fin-headline rv" id="inv-fin-heading" style="--d:.06s;">
-        经得起衡量。<br>经得起验证。<br><span class="accent">为长远而建。</span>
-      </h2>
-
-      <!-- 4-up count-up metrics -->
-      <div class="inv-metrics rv" style="--d:.12s;" aria-label="FY2026 关键财务指标">
-        <div class="inv-metric">
-          <div class="inv-metric-label">营业收入</div>
-          <div class="inv-metric-value"><span class="count-up" data-to="560.2" data-prefix="RM" data-decimal="1">RM560.2</span><sup>m</sup></div>
-          <div class="inv-metric-sub">同比增长 +2.2%</div>
-        </div>
-        <div class="inv-metric">
-          <div class="inv-metric-label">税后利润</div>
-          <div class="inv-metric-value"><span class="count-up" data-to="14.3" data-prefix="RM" data-decimal="1">RM14.3</span><sup>m</sup></div>
-          <div class="inv-metric-sub">同比增长 +149.3%</div>
-        </div>
-        <div class="inv-metric">
-          <div class="inv-metric-label">净利率</div>
-          <div class="inv-metric-value"><span class="count-up" data-to="2.6" data-suffix="%" data-decimal="1">2.6</span><sup>%</sup></div>
-          <div class="inv-metric-sub">税后利润率</div>
-        </div>
-        <div class="inv-metric">
-          <div class="inv-metric-label">上市资料</div>
-          <div class="inv-metric-value">马来西亚<br>交易所</div>
-          <div class="inv-metric-sub">马来西亚交易所上市 · 6068</div>
-        </div>
       </div>
     </div>
   </section>
@@ -1018,9 +969,9 @@
       <div class="leadership-head rv-g">
         <div class="leadership-kicker">领导团队</div>
         <h2 class="leadership-h2" id="leadership-h2">作出决策的<br>核心团队。</h2>
-        <p class="leadership-intro">八位董事，共同坚持责任、问责与长期判断的标准。</p>
+        <p class="leadership-intro">共同坚持责任、问责与长期判断的标准。</p>
       </div>
-      <div class="leaders-meta rv-g" style="--d:.08s"><span class="leaders-filter">董事会</span><span class="leaders-count">8 位成员</span></div>
+      <div class="leaders-meta rv-g" style="--d:.08s"><span class="leaders-filter">领导团队</span><span class="leaders-count">8 位成员</span></div>
       <div class="leaders-grid rv-g" style="--d:.1s" role="list">
         <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/piong-yew-peng.webp" data-leader-name="Piong Yew Peng" data-leader-role="高级独立非执行主席" data-leader-bio="Piong Yew Peng 于 2015 年以独立非执行董事身份加入董事会，并于 2023 年出任高级独立非执行主席。他毕业于澳大利亚 RMIT 大学，获商业（会计）学士学位，是马来西亚会计师协会会员及澳洲注册会计师协会资深会员，拥有超过 30 年审计与会计服务经验。他也担任 The Pay Fong School Berhad、Premier Pay Fong Foundation 及 Memorial Venture Berhad 董事，并出席了 2026 财年的全部四次董事会会议。"><span class="leader-photo"><img src="../images/group/leaders/piong-yew-peng.webp" alt="Piong Yew Peng"></span><span class="leader-card-body"><span class="leader-card-name">Piong Yew Peng</span><span class="leader-card-role">高级独立非执行主席</span></span></button>
         <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/chan-wee-kiang.webp" data-leader-name="Chan Wee Kiang" data-leader-role="集团董事总经理" data-leader-bio="Chan Wee Kiang 于 2020 年加入董事会并出任集团董事总经理。他毕业于澳大利亚莫纳什大学，获商业（会计与金融）学士学位，并于 2002 年加入 La Prima Medtech，从市场营销主管一路晋升至集团市场营销经理、副集团总经理及集团董事总经理。他是 PCCS 的主要股东，并出席了 2026 财年的全部四次董事会会议。"><span class="leader-photo"><img src="../images/group/leaders/chan-wee-kiang.webp" alt="Chan Wee Kiang"></span><span class="leader-card-body"><span class="leader-card-name">Chan Wee Kiang</span><span class="leader-card-role">集团董事总经理</span></span></button>
@@ -1029,15 +980,16 @@
         <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/chan-chor-ngiak.webp" data-leader-name="Dato’ Chan Chor Ngiak" data-leader-role="非独立非执行董事" data-leader-bio="Dato’ Chan Chor Ngiak 自 1995 年起担任非独立非执行董事，并兼任审计委员会、提名委员会及薪酬委员会成员。他于 1980 年开始从事市场营销，是峇株巴辖中华总商会名誉会长及 Parit Raja 华人协会主席，并获授彭亨州 D.I.M.P. 勋衔及 Dato’ 荣誉称号。他出席了 2026 财年的全部四次董事会会议。"><span class="leader-photo"><img src="../images/group/leaders/chan-chor-ngiak.webp" alt="Dato’ Chan Chor Ngiak"></span><span class="leader-card-body"><span class="leader-card-name">Dato’ Chan Chor Ngiak</span><span class="leader-card-role">非独立非执行董事</span></span></button>
         <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/chan-chor-ang.webp" data-leader-name="Chan Chor Ang" data-leader-role="非独立非执行董事" data-leader-bio="Chan Chor Ang 自 1995 年起担任非独立非执行董事。他于 1981 年加入 La Prima Medtech，并于 1985 年转任 Jusca Garments 工厂经理，在纺织与服装行业拥有超过 40 年经验。他出席了 2026 财年的全部四次董事会会议。"><span class="leader-photo"><img src="../images/group/leaders/chan-chor-ang.webp" alt="Chan Chor Ang"></span><span class="leader-card-body"><span class="leader-card-name">Chan Chor Ang</span><span class="leader-card-role">非独立非执行董事</span></span></button>
         <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/joyce-wong-ai-may.webp" data-leader-name="Joyce Wong Ai May" data-leader-role="独立非执行董事" data-leader-bio="Joyce Wong Ai May 于 2020 年加入董事会，并担任审计委员会及提名委员会主席，同时为薪酬委员会成员。她毕业于塔斯马尼亚大学，获商业学士学位，是马来西亚会计师协会、马来西亚内部审计师协会及澳洲注册会计师协会会员。她创立 JWC Consulting，并在多家上市公司担任独立非执行董事及审计委员会职务，出席了 2026 财年的全部四次董事会会议。"><span class="leader-photo"><img src="../images/group/leaders/joyce-wong-ai-may.webp" alt="Joyce Wong Ai May"></span><span class="leader-card-body"><span class="leader-card-name">Joyce Wong Ai May</span><span class="leader-card-role">独立非执行董事</span></span></button>
+
         <button class="leader-card" type="button" role="listitem" data-leader-image="../images/group/leaders/tang-lai-huat.webp" data-leader-name="Tang Lai Huat" data-leader-role="企业财务总监" data-leader-bio="Dr. Tang Lai Huat 于 2016 年获委任为 PCCS 集团财务总监，并于 2018 年出任企业财务总监。他负责领导企业办公室以及集团财务与会计职能，工作范围涵盖战略部署、信贷、医疗设备及新业务。他拥有多个工商管理博士学位、清华大学公共管理硕士及工商管理硕士、香港城市大学行政人员工商管理硕士、工商管理硕士及 ACCA 资格，并取得哈佛商学院与北京大学跨境扩张财务策略证书。他的职业经历包括审计与咨询、制造业运营、林国荣创意科技大学及 JIT Textiles。他也是马来西亚崇德经典教育协会副主席，并担任 Faire Berhad 董事。"><span class="leader-photo"><img src="../images/group/leaders/tang-lai-huat.webp" alt="Tang Lai Huat"></span><span class="leader-card-body"><span class="leader-card-name">Tang Lai Huat</span><span class="leader-card-role">企业财务总监</span></span></button>
       </div>
       <div class="leader-modal" data-leader-modal aria-hidden="true">
         <div class="leader-modal-panel" role="dialog" aria-modal="true" aria-labelledby="leader-modal-name">
           <button class="leader-modal-close" type="button" data-leader-close aria-label="关闭">&times;</button>
-          <div class="leader-modal-top" aria-hidden="true"><span>董事会</span><span class="leader-modal-company">PCCS 集团有限公司</span></div>
+          <div class="leader-modal-top" aria-hidden="true"><span>领导团队</span><span class="leader-modal-company">PCCS 集团有限公司</span></div>
           <h3 class="leader-modal-name" id="leader-modal-name" data-leader-modal-name></h3>
           <div class="leader-modal-photo"><img data-leader-modal-image src="" alt=""></div>
-          <div class="leader-modal-copy"><div class="leader-modal-kicker">董事会</div><div class="leader-modal-role" data-leader-modal-role></div><p class="leader-modal-bio" data-leader-modal-bio></p></div>
+          <div class="leader-modal-copy"><div class="leader-modal-kicker">领导团队</div><div class="leader-modal-role" data-leader-modal-role></div><p class="leader-modal-bio" data-leader-modal-bio></p></div>
         </div>
       </div>
     </div>
@@ -1065,9 +1017,9 @@
   <!-- ===== 5 · GOVERNANCE ===== -->
   <section id="governance" style="background:#f7f7f5;" aria-labelledby="inv-gov-heading">
     <div class="inv-sec">
-      <div class="inv-kicker rv">企业管治</div>
+      <div class="inv-kicker rv">管治标准</div>
       <h2 class="inv-thesis-pull rv" id="inv-gov-heading" style="--d:.06s; font-size:clamp(26px,3.4vw,64px); margin-bottom:clamp(36px,4vw,72px);">
-        <span class="accent">管治框架与合规。</span>
+        <span class="accent">以公认框架落实企业管治。</span>
       </h2>
 
       <div class="inv-gov-grid">
@@ -1075,23 +1027,22 @@
         <!-- Frameworks -->
         <div class="rv" style="--d:.12s; max-width:980px;">
           <div class="inv-frameworks">
-          <div class="inv-frameworks-label">管治框架与合规</div>
+          <div class="inv-frameworks-label">管治框架与标准</div>
             <ul>
-              <li>Bursa Malaysia MMLR (Main Market Listing Requirements)</li>
-              <li>IFRS S2 — climate-related disclosures</li>
-              <li>GRI Standards</li>
-              <li>GHG Protocol — Scope 1, 2, 3</li>
-              <li>TCFD — Task Force on Climate-related Financial Disclosures</li>
-              <li>UN SDGs — 5 adopted</li>
-              <li>WRAP Gold 2025</li>
-              <li>Cambodia Green Industry Awards 2025 (Silver)</li>
-              <li>Better Factories Cambodia</li>
-              <li>GRS &middot; RCS &middot; OEKO-TEX &middot; ZDHC &middot; Higg FEM</li>
+              <li>Bursa Malaysia MMLR（马来西亚交易所主板上市规定）</li>
+              <li>IFRS S2（气候相关披露准则）</li>
+              <li>GRI Standards（全球报告倡议组织标准）</li>
+              <li>GHG Protocol（温室气体核算体系：范围 1、2、3）</li>
+              <li>TCFD（气候相关财务披露工作组建议）</li>
+              <li>UN SDGs（已采用 5 项联合国可持续发展目标）</li>
+              <li>WRAP Gold 2025（WRAP 2025 金级认证）</li>
+              <li>Cambodia Green Industry Awards 2025（柬埔寨绿色工业奖银奖）</li>
+              <li>Better Factories Cambodia（改善柬埔寨工厂计划）</li>
+              <li>GRS、RCS、OEKO-TEX、ZDHC、Higg FEM</li>
             </ul>
           </div>
           <p style="font-size:12px; color:#999; margin-top:14px;">
-            自 FY2018 起按照马来西亚交易所标准进行永续发展报告。
-            管治框架：GRI Standards、IFRS S2、TCFD 及 5 项已采用的联合国可持续发展目标。
+            自 FY2018 起按马来西亚交易所要求发布可持续发展报告。
           </p>
         </div>
 
@@ -1104,7 +1055,7 @@
     <div class="inv-sec">
       <div class="inv-kicker rv">投资者关系</div>
       <h2 class="inv-contact-intro rv" id="inv-contact-heading" style="--d:.06s;">
-        欢迎投资者、<br>媒体及分析师垂询。
+        投资者关系垂询：<br><span class="accent">面向投资者、媒体与分析师。</span>
       </h2>
 
       <div class="inv-contact-grid rv" style="--d:.1s;">
@@ -1119,13 +1070,6 @@
           <p>领英：<a href="https://www.linkedin.com/company/pccs-group-berhad-my/home/"
                           rel="noopener" target="_blank">pccs-group-berhad-my</a></p>
         </div>
-        <div class="inv-contact-card">
-          <h3>主要联系人</h3>
-          <p style="margin-top:20px; font-size:11.5px; color:#aaa; line-height:1.6;">
-            本页所有面向投资者的文案须经 CFO&nbsp;/ 合规部门批准后方可发布。
-            页面未推断或虚构任何财务数据；仅展示已批准发布的数据。
-          </p>
-        </div>
       </div>
     </div>
   </section>
@@ -1134,12 +1078,13 @@
 
 <!-- ===== PAGE FOOTER ===== -->
 
-<script src="../assets/js/pccs-home.js"></script>
-<script src="../assets/js/investor-documents.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.4"></script>
+<script src="../assets/js/pccs-home.js?v=20261126-2"></script>
+<script src="../assets/js/investor-documents.js?v=20261126-1"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.4"></script>
 <script src="../admin/supabase-config.js"></script>
-<script src="../assets/js/investor-documents-remote.js?v=9"></script>
-  <script src="../assets/js/leadership-profiles.js"></script>
+<script src="../assets/js/group-content.js?v=6"></script>
+<script src="../assets/js/investor-documents-remote.js?v=10"></script>
+  <script src="../assets/js/leadership-profiles.js?v=20261126-1"></script>
   <script src="../assets/js/leadership-copy-cn.js"></script>
 <script>
 /* ============================================================

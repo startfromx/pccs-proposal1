@@ -36,4 +36,4 @@ Ask the user before changing approved copy, sitemap, investor content, sustainab
 
 ## Coordination
 
-Read `PROJECT-COORDINATOR.md` before starting work. Specialist agents write their own deliverables; only the Manager updates the coordinator file.
+Read `PROJECT-COORDINATOR.md` and `DECISIONS.md` before starting work. `DECISIONS.md` is the durable record of approved choices that must survive across chat sessions. Specialist agents write their own deliverables; only the Manager updates the coordinator and decision files.

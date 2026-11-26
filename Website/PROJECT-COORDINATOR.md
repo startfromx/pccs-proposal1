@@ -1,73 +1,84 @@
-# PCCS Website Project Coordinator
+# PCCS Website — Project Coordinator
 
-## Purpose
+_Last updated: 2026-11-26_
 
-This file is the shared project status and handoff record.
+## Quick start for a new agent
 
-## Agent ownership
+Read in this order before touching any file:
+1. `../CLAUDE.md` — branch → page assignment, shared file rules, design system
+2. This file — current page status and what needs doing
+3. `DECISIONS.md` — approved decisions that persist across AI sessions
+4. `planning/PCCS-visual-direction-brief.md` — visual tone
+5. `planning/PCCS-global-components.md` — nav, footer, shared patterns
+6. Your assigned page file (current state)
+7. `download code/pccs-proposal1-main/option1/assets/css/pccs.css` — design tokens
 
-- Manager: coordinates work and updates this file.
-- Strategist: website goals, audiences, and sitemap.
-- Head of Copy: copy quality, voice, and approvals.
-- Copywriter: copy drafts and alternatives.
-- Design Director: visual direction, design system, and page specifications.
-- Developer: implementation.
-- QA Reviewer: responsive, accessibility, and functional testing.
+---
 
-## Source priority
+## Copy source of truth
 
-1. Final PCCS copy PDF
-2. Approved project decisions
-3. PCCS brand memory
-4. Approved design specifications
-5. Agent suggestions
+> **The HTML files are now the source of truth for copy.**
+> `Copysheet/Website Copy PCCS Group.pdf` is outdated — do not use it to override existing page copy.
+> If copy is missing or marked `NEEDS PCCS INPUT`, flag it; do not invent it.
 
-## Current status
+---
 
-- Final copy PDF: available in `Copysheet/`
-- Existing assets: available in `Video/`
-- Sitemap: initial draft
-- Design system: initial draft
-- Page specifications: initial draft
-- Development: inspect existing source before editing
-- QA: not started
+## Implementation structure
+
+| Asset | Path (from repo root) |
+|---|---|
+| Working directory | `Website/download code/pccs-proposal1-main/option1/` |
+| Home | `index.html` |
+| Pages | `pages/<name>.html` and `pages/<name>-cn.html` |
+| Global CSS | `assets/css/pccs.css` |
+| Page CSS | `assets/css/pccs-pages.css` |
+| Global JS | `assets/js/pccs-home.js` — injects nav + footer, i18n, scroll |
+| Page JS | `assets/js/pccs-pages.js` — page-level behaviour |
+
+**Shared files are owned by `main`. Never edit them from a page branch.**
+Flag needed changes as `NEEDS SHARED FILE UPDATE: [description]`.
+
+---
+
+## Page status (2026-11-05)
+
+| Page | EN file | CN file | Branch | Status |
+|---|---|---|---|---|
+| Home | `index.html` | `cn.html` | main | ✅ Live |
+| Sustainability | `pages/sustainability.html` | `pages/sustainability-cn.html` | pccs-sustainability | ✅ Live |
+| Our Group | `pages/group.html` | `pages/group-cn.html` | pccs-group | ✅ Built |
+| Careers | `pages/careers.html` | `pages/careers-cn.html` | pccs-careers | ✅ Built |
+| Investors | `pages/investors.html` | `pages/investors-cn.html` | pccs-investors | ✅ Built |
+| Our Work | `pages/our-work.html` | `pages/our-work-cn.html` | pccs-our-work | ↪ Retired; files retained and redirected to Engineering |
+| What We Do | `pages/engineering.html` | `pages/engineering-cn.html` | pccs-engineering | 🔧 In progress |
+| Contact | `pages/contact.html` | `pages/contact-cn.html` | main | 🔧 Stub |
+
+---
+
+## Nav link rules
+
+- From `index.html`: pages use `pages/<file>.html`; same-page anchors use `#sectionId`
+- From `pages/*.html`: Home = `../index.html`; sibling pages = `<file>.html`; Home sections = `../index.html#sectionId`
+- CN pages link to sibling `-cn.html` files; language switcher handled by `pccs-home.js`
+
+---
 
 ## Approval gates
 
-Human approval is required before changing approved copy, investor or sustainability claims, adding financial data or customer logos, pushing to GitHub, or deploying.
+Stop and confirm with the user before:
+- Changing any copy on a built page
+- Adding investor, financial, or sustainability claims
+- Adding customer logos or partner names
+- Pushing to GitHub or deploying
 
-## Handoff format
+---
 
-Every agent reports what it reviewed, what it produced, files changed, unresolved questions, `NEEDS PCCS INPUT` items, and the recommended next agent.
+## Agent ownership
 
-## Current implementation structure
+| Role | Responsibility |
+|---|---|
+| Manager | Shared files, nav, integration, this coordinator file |
+| Developer | Assigned page HTML only |
+| QA | Responsive, accessibility, functional checks |
 
-- Home source: download code/pccs-proposal1-main/option1/index.html
-- Shared styles: download code/pccs-proposal1-main/option1/assets/css/pccs.css
-- Standalone-page styles: download code/pccs-proposal1-main/option1/assets/css/pccs-pages.css
-- Home behavior: download code/pccs-proposal1-main/option1/assets/js/pccs-home.js
-- Standalone-page behavior: download code/pccs-proposal1-main/option1/assets/js/pccs-pages.js
-- Independent page work files: download code/pccs-proposal1-main/option1/pages/
-
-Page specialists should work in their assigned page file. The Manager owns shared CSS, shared JavaScript, navigation, approved copy, and integration back into Home.
-
-## Live pages and link map (2026-10-15)
-
-These pages are approved and navigable. All nav links must use these exact paths.
-
-| Page | File (from option1 root) | Branch | Status |
-|---|---|---|---|
-| Home | index.html | main | Live |
-| Sustainability | pages/sustainability.html | pccs-sustainability | Live |
-| What We Do | pages/engineering.html | pccs-engineering | In progress |
-| Our Work | pages/our-work.html | pccs-our-work | In progress |
-| Our Group | pages/group.html | pccs-group | In progress |
-| Investors | pages/investors.html | pccs-investors | In progress |
-| Careers | pages/careers.html | pccs-careers | In progress |
-
-### Nav link rules
-
-- From `index.html`: page links use `pages/<file>.html`; same-page section anchors use `#sectionId`
-- From `pages/*.html`: Home is `../index.html`; page siblings are `<file>.html` (no path prefix); Home sections are `../index.html#sectionId`
-- Story has no dedicated page yet — links to `#story` / `../index.html#story` until a Story page is built
-- Unbuilt pages may keep their `href` target but should not be linked from live navigation until merged into main
+Each agent reports: files changed · decisions made · `NEEDS PCCS INPUT` items · recommended next step.

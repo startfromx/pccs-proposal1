@@ -25,11 +25,22 @@ create table if not exists public.pccs_group_leaders (
   sort_order integer not null default 0,
   name text not null default '',
   role text not null default '',
+  classification text not null default 'board' check (classification in ('board', 'management')),
   bio text not null default '',
   image_path text,
   published boolean not null default true,
   updated_at timestamptz not null default now()
 );
+
+alter table public.pccs_group_leaders add column if not exists classification text not null default 'board';
+update public.pccs_group_leaders set classification = 'management'
+where name = 'Tang Lai Huat' or role in ('Corporate Controller', '企业财务总监');
+
+alter table public.pccs_group_leaders
+  drop constraint if exists pccs_group_leaders_classification_check;
+alter table public.pccs_group_leaders
+  add constraint pccs_group_leaders_classification_check
+  check (classification in ('board', 'management'));
 
 create index if not exists pccs_group_leaders_language_order_idx
   on public.pccs_group_leaders (language, sort_order);

@@ -15,7 +15,6 @@
       'index.html': ['PCCS Group Berhad designs, develops and manufactures technical sportswear and performance apparel through an engineering-led global supply chain.', 'PCCS 集团有限公司以工程为核心，设计、开发并制造技术运动服装及高性能服饰，服务全球供应链。'],
       'group.html': ['Learn about PCCS Group Berhad, its history, leadership, structure, and engineering-led approach to technical sportswear manufacturing.', '了解 PCCS 集团有限公司的历史、领导团队、集团结构，以及以工程为核心的技术运动服装制造能力。'],
       'engineering.html': ['Explore PCCS technical sportswear engineering capabilities, from materials and development through manufacturing, testing, and delivery.', '探索 PCCS 从材料与开发到制造、测试及交付的技术运动服装工程能力。'],
-      'our-work.html': ['See how PCCS Group turns fibres, fabrics, materials, and technical development into finished performance sportswear.', '了解 PCCS 如何将纤维、面料、材料与技术开发转化为成品高性能运动服装。'],
       'sustainability.html': ['Read about PCCS Group sustainability priorities, operating practices, and progress across its manufacturing network.', '了解 PCCS 集团在制造网络中的可持续发展重点、运营实践与进展。'],
       'investors.html': ['Find official PCCS Group Berhad investor relations information, annual reports, governance documents, AGM materials, and disclosures.', '查阅 PCCS 集团有限公司官方投资者关系资料、年报、治理文件、股东大会资料及公告。'],
       'careers.html': ['Explore current careers and job openings at PCCS Group, including roles, locations, teams, requirements, and application details.', '探索 PCCS 集团当前职位与职业机会，包括职位、地点、团队、资格要求及申请资料。'],
@@ -25,7 +24,6 @@
       'index.html': ['PCCS Group Berhad — Technical Sportswear Manufacturing', 'PCCS 集团有限公司 — 技术运动服装制造'],
       'group.html': ['Our Group — PCCS Group Berhad', '我们的集团 — PCCS 集团有限公司'],
       'engineering.html': ['Technical Sportswear Engineering — PCCS Group', '技术运动服装工程 — PCCS 集团'],
-      'our-work.html': ['Our Work — PCCS Group Berhad', '我们的作品 — PCCS 集团有限公司'],
       'sustainability.html': ['Sustainability — PCCS Group Berhad', '可持续发展 — PCCS 集团有限公司'],
       'investors.html': ['Investor Relations — PCCS Group Berhad 6068', '投资者关系 — PCCS 集团有限公司 6068'],
       'careers.html': ['Careers at PCCS Group — Open Positions', 'PCCS 集团职业机会 — 招聘职位'],
@@ -78,7 +76,6 @@
         '<div class="nav-links">' +
           '<a href="' + story + '" data-t="nav.story"' + storyCurrent + '></a>' +
           lnk(page('engineering.html'),   'nav.whatwedo',      'engineering.html') +
-          lnk(page('our-work.html'),      'nav.ourwork',       'our-work.html') +
           lnk(page('group.html'),         'nav.ourgroup',      'group.html') +
           lnk(page('sustainability.html'),'nav.sustainability', 'sustainability.html') +
           lnk(page('investors.html'),     'nav.investors',     'investors.html') +
@@ -97,7 +94,6 @@
         '<div class="mobile-menu-links">' +
           '<a href="' + story + '" data-t="nav.story"' + storyCurrent + '></a>' +
           lnk(page('engineering.html'), 'nav.whatwedo', 'engineering.html') +
-          lnk(page('our-work.html'), 'nav.ourwork', 'our-work.html') +
           lnk(page('group.html'), 'nav.ourgroup', 'group.html') +
           lnk(page('sustainability.html'), 'nav.sustainability', 'sustainability.html') +
           lnk(page('investors.html'), 'nav.investors', 'investors.html') +
@@ -157,14 +153,13 @@
           '<div class="foot-nav">' +
             '<a href="' + story + '" data-t="foot.nav.story">Story</a>' +
             '<a href="' + page('engineering.html') + '" data-t="foot.nav.whatwedo">What We Do</a>' +
-            '<a href="' + page('our-work.html') + '" data-t="foot.nav.ourwork">Our Work</a>' +
             '<a href="' + page('group.html') + '" data-t="foot.nav.ourgroup">Our Group</a>' +
             '<a href="' + page('investors.html') + '" data-t="foot.nav.investors">Investors <span class="ar">↗</span></a>' +
             '<a href="' + page('careers.html') + '" data-t="foot.nav.careers">Careers</a>' +
             '<a href="' + contact + '" data-t="foot.nav.contact">Contact</a>' +
           '</div></div>' +
           '<div class="foot-lower"><div><div class="foot-desc" data-t="foot.desc">The trusted hand behind the world’s top brands. For fifty years we’ve designed, decorated and delivered the marks worth wearing with pride.</div><div class="foot-social"><span>✉  @pccs-group-berhad-pccs</span><a href="https://www.linkedin.com/company/pccs-group-berhad-my/home/" target="_blank" rel="noopener noreferrer">in  linkedin.com/company/pccs-group-berhad-my</a></div></div>' +
-          '<div class="foot-lower-right"><div class="foot-col"><h4 data-t="foot.h4.company">Company</h4><a href="' + story + '" data-t="foot.link.story">Story</a><a href="' + page('engineering.html') + '" data-t="foot.link.whatwedo">What We Do</a><a href="' + page('our-work.html') + '" data-t="foot.link.ourwork">Our Work</a><a href="' + page('group.html') + '" data-t="foot.link.ourgroup">Our Group</a><a href="' + page('group.html') + '#footprint" data-t="foot.link.footprint">Global Footprint</a></div>' +
+          '<div class="foot-lower-right"><div class="foot-col"><h4 data-t="foot.h4.company">Company</h4><a href="' + story + '" data-t="foot.link.story">Story</a><a href="' + page('engineering.html') + '" data-t="foot.link.whatwedo">What We Do</a><a href="' + page('group.html') + '" data-t="foot.link.ourgroup">Our Group</a><a href="' + page('group.html') + '#footprint" data-t="foot.link.footprint">Global Footprint</a></div>' +
           '<div class="foot-col"><h4 data-t="foot.h4.stakeholders">Stakeholders</h4><a href="' + page('investors.html') + '" data-t="foot.link.investors">Investors</a><a href="' + page('careers.html') + '" data-t="foot.link.careers">Careers</a><a href="' + page('sustainability.html') + '" data-t="foot.link.sustainability">Sustainability</a><a href="#" data-t="foot.link.newsroom">Newsroom</a></div>' +
           '<div class="foot-col"><h4 data-t="foot.h4.contact">Contact</h4><a href="' + contact + '" data-t="foot.link.hq">Kuala Lumpur HQ</a><a href="mailto:communication@pccsgroup.net">communication@pccsgroup.net</a><span class="foot-lang"><a class="lang-btn" data-lang="en" href="' + (sub ? englishFile : 'index.html') + '">EN</a> · <a class="lang-btn" data-lang="cn" href="' + (sub ? englishFile.replace(/\.html$/, '-cn.html') : 'index-cn.html') + '">中文</a></span></div></div></div>' +
           '<div class="foot-bottom"><span data-t="foot.copyright">© 2026 PCCS Group Berhad (Bursa: 6068). All rights reserved.</span><span data-t="foot.proposal">Proposal by Startfrom X Sdn Bhd. Design mockup — for internal review only.</span></div>' +
@@ -488,7 +483,7 @@
       }
       if (document.querySelector('.inv-hero')) {
         html('.inv-kicker', 'Equity Story');
-        html('.inv-hero-kicker', 'Investors · Bursa Malaysia 6068');
+        html('.inv-hero-kicker', 'Bursa Malaysia · Stock Code: 6068');
       }
       if (document.querySelector('.careers-page')) document.title = 'Careers at PCCS';
       return;
@@ -512,16 +507,16 @@
       textAll('.chain-card-tag', ['客户负责','已工程化','已开发','已打样','已制作','已验证','已生产','已交付']);
       textAll('.eng-pill', ['100+ 名研发人员','每年 3,000+ 款样品','每年 340+ 个 3D 纸样','约 1,500 吨面料 / 月','GRS','RCS','OEKO-TEX','ZDHC','Higg FEM','越南面料厂扩建中','50+ 项专利','刺绣','印花','热升华','无缝工艺','官方队徽','在生产一线 50 年','10+ 个生产基地','360+ 条生产线','每月约 470 万件成衣']);
       textAll('.eng-subsec-kicker', ['产品研发','材料统筹','特殊工艺','制造与质量','后整与交付']);
-      htmlAll('.eng-subsec-h2', ['创意不经过工程化，<br>终究只是创意。','性能，<br>始于品控把关。','您赋予装饰意义，<br>我们赋予它品质。','质量不是最后一道检验，<br>而是融入每一道工序。','零售即用，<br>准时交付。']);
+      htmlAll('.eng-subsec-h2', ['创意不经过工程化，<br>终究只是创意。','性能，<br>始于品控把关。','您赋予装饰意义，<br>我们赋予它品质。','质量不是最后一道检验，<br>而是融入每一道工序。','开箱即卖，<br>准时交货。']);
       html('.eng-statement-body', '因此，成工业不断深化核心环节的自主把控。我们每多掌控一环，您的品牌就少一分风险。');
-      html('.eng-explore-grid .eng-explore-card:nth-child(1) .eng-explore-h3', '我们的作品');
-      html('.eng-explore-grid .eng-explore-card:nth-child(1) .eng-explore-p', '那些响亮的名字，背后都是我们。足球、运动、生活方式——五十年来，我们一直在制造别人引以为傲的产品。');
-      html('.eng-explore-grid .eng-explore-card:nth-child(1) .pill-btn', '查看我们的作品 <span>&rarr;</span>');
-      html('.eng-explore-grid .eng-explore-card:nth-child(2) .eng-explore-h3', '永续未来');
-      html('.eng-explore-grid .eng-explore-card:nth-child(2) .eng-explore-p', '说到做到，数字为证。自 FY2018 起，按照 Bursa 标准持续报告。');
-      html('.eng-explore-grid .eng-explore-card:nth-child(2) .pill-btn', '查看我们的承诺 <span>&rarr;</span>');
+      html('.eng-explore-grid .eng-explore-card:nth-child(1) .eng-explore-h3', '永续未来');
+      html('.eng-explore-grid .eng-explore-card:nth-child(1) .eng-explore-p', '说到做到，数字为证。自 FY2018 起，按马来西亚证券交易所上市规则持续进行可持续发展报告。');
+      html('.eng-explore-grid .eng-explore-card:nth-child(1) .pill-btn', '查看我们的承诺 <span>&rarr;</span>');
+      html('.eng-explore-grid .eng-explore-card:nth-child(2) .eng-explore-h3', '投资者关系');
+      html('.eng-explore-grid .eng-explore-card:nth-child(2) .eng-explore-p', '年报、财报与马交所公告，均按上市规则如实披露。');
+      html('.eng-explore-grid .eng-explore-card:nth-child(2) .pill-btn', '查看投资者关系 <span>&rarr;</span>');
       html('.eng-explore-grid .eng-explore-card:nth-child(3) .eng-explore-h3', '加入我们');
-      html('.eng-explore-grid .eng-explore-card:nth-child(3) .eng-explore-p', '参与创造世界所穿的产品。无论身处哪个岗位，你的每个决定都是工程。');
+      html('.eng-explore-grid .eng-explore-card:nth-child(3) .eng-explore-p', '参与创造世界所穿的产品。无论身处哪个岗位，您的每个决定都是工程。');
       html('.eng-explore-grid .eng-explore-card:nth-child(3) .pill-btn', '查看职位 <span>&rarr;</span>');
     }
 
@@ -531,19 +526,19 @@
       html('.ow-hero-h1', '<span class="line">我们的作品。</span><span class="line g">成就他们的品牌。</span>');
       html('.ow-hero-sub', '五十年来，PCCS 为全球顶尖品牌制造专业运动服。他们的名字印在产品上，我们的标准融入产品中。这就是我们的工作。');
       html('.ow-hero-statline', '<span>室内运动服供应商排名前三</span><span class="sep" aria-hidden="true">·</span><span>覆盖 30+ 个国家</span><span class="sep" aria-hidden="true">·</span><span>50+ 项专利</span><span class="sep" aria-hidden="true">·</span><span>四个生产国</span>');
-      html('.ow-belief-quote', '他们的名字印在产品上。<br><em>我们的标准融入产品中。</em>');
+      html('.ow-belief-quote', '每一个伟大品牌的印记，<br><em>背后都有我们的标准。</em>');
       html('.ow-badge-h2', '你赋予徽章意义。<br>我们赋予它品质。');
       html('.ow-badge-glass-quote', '一枚徽章，须经得起长年穿着与五十次洗涤，不开裂、不翘边、不褪色。这是工程，不是装饰。');
       textAll('.ow-badge-item h3', ['这是工程，不是装饰','官方队徽，交给值得信赖的人','把标识工艺做成一门生意']);
       textAll('.ow-stat-l', ['室内运动服供应商排名前三','出口至 30 多个国家与地区','拥有 50 多项专利','四个生产国']);
       html('.ow-sectors-kicker', '业务领域');
-      html('.ow-sectors-h2', '我们的作品，<br>遍布每个角落。');
+      html('.ow-sectors-h2', '我们的制造，<br>无处不在。');
       html('.ow-how-kicker', '协作方式');
-      html('.ow-how-h2', '带着问题来找我们，<br>不只是带着规格。');
-      html('.ow-how-p', '多数制造商等待一份完整的技术规格；而在 PCCS，你只需说清楚想实现什么性能、什么产量、什么交期，如何落地，由我们攻克。');
+      html('.ow-how-h2', '带着标准规格来，<br>或者带着难题来。');
+      html('.ow-how-p', '如果您有完整的工艺单，我们保质保量、准时交付；如果您遇到技术瓶颈或亟待开发的新品，我们同样能以工程实力与您协同攻关。从图纸到量产，我们都能接得住。');
       html('.ow-how .pill-btn', '了解工程能力 <span>&rarr;</span>');
       html('.ow-manifesto-h2', '五十年的验证。<br>融入每一针每一线。');
-      html('.ow-manifesto-sub', '如果你的下一件产品需要规模化的精准制造，我们已经准备了五十年。欢迎与我们谈谈。');
+      html('.ow-manifesto-sub', '如果您的下一件产品需要规模化的精准制造，我们已经准备了五十年。欢迎与我们谈谈。');
       html('.ow-manifesto-btns .pill-btn-light', '了解工程能力 <span>&rarr;</span>');
     }
 
@@ -584,16 +579,14 @@
 
     if (document.body.classList.contains('page-document') && document.querySelector('.inv-hero')) {
       document.title = '投资者关系 · PCCS Group';
-      html('.inv-hero-kicker', '投资者关系 · Bursa Malaysia 6068');
-      html('.inv-hero-h1', '<span class="line">掌控更多。</span><span class="line"><span class="accent">创造价值。</span></span>');
-      html('.inv-hero-sub', 'PCCS 正从成衣制造商，成长为掌控开发、标识与面料的综合平台。我们拥有的价值链越完整，业务的长期潜力越清晰。');
+      html('.inv-hero-kicker', '马来西亚交易所 · 股票代码 6068');
+      html('.inv-hero-h1', '<span class="line">掌控更多</span><span class="line"><span class="accent">创造价值</span></span>');
+      html('.inv-hero-sub', '成工业为全球顶尖品牌制造专业运动服饰，并不断向价值链上游延伸：涵盖研发、特殊工艺与面料协同开发。');
       if (document.querySelector('.inv-hero-sub')) document.querySelector('.inv-hero-sub').style.fontSize = 'clamp(14px,1.15vw,19px)';
       html('.inv-kicker', '股权故事');
-      html('.inv-thesis-pull', '从成衣制造，<br>走向<span class="accent">综合平台。</span>');
-      html('.inv-fin-headline', '量过。<br>证过。<br><span class="accent">经得起时间。</span>');
-      textAll('.inv-thesis-body > p:not(.zh-tag)', ['PCCS 起初是一家成衣代工企业。五十年来，我们持续向价值链上游延伸：先加入装饰工艺，再拓展产品开发，最终进入面料。每增加一个环节，客户就少一项需要外包的工作。','PCCS 为全球领先品牌制造技术运动服装，并逐步掌握价值链中更高价值的环节：开发、标识，以及面料。']);
-      html('.inv-contact-intro', '想了解 PCCS 的下一步？<br><span class="accent">欢迎联系投资者关系团队。</span>');
-      textAll('.inv-chain-label', ['步骤','状态']);
+      html('.inv-thesis-pull', '从成衣制造<br>走向<span class="accent">综合平台</span>');
+      textAll('.inv-thesis-body > p:not(.zh-tag)', ['成工业集团起初是一家成衣代工企业。五十年来，我们持续向价值链上游延伸：从装饰工艺、产品开发，一路拓展至更专业的领域。价值链每完善一环，客户就少一道外包环节。','尽管市场仍常以传统成衣制造商来看待我们，但集团业务已实质性地转型为掌控设计研发、特殊工艺的综合平台。我们相信，随着核心价值链的不断完善，集团的长期内在价值将得到市场的进一步认可。']);
+      html('.inv-contact-intro', '投资者关系垂询：<br><span class="accent">面向投资者、媒体与分析师。</span>');
     }
 
     if (document.body.classList.contains('sustainability-page')) {

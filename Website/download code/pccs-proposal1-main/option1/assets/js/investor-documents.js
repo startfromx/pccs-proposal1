@@ -173,17 +173,17 @@
 };
   var isZh = document.documentElement.lang === 'zh-CN';
   var categories = isZh ? [
-    { id: 'governance', label: '企业管治', count: documents.governance.length },
+    { id: 'governance', label: '企业管治' },
     { id: 'announcements', label: '公司公告', href: 'https://www.bursamalaysia.com/market/listed-companies/company-announcements/subscribe/6068/option1/', external: true },
-    { id: 'agm', label: '股东大会摘要', count: documents.agm.length },
-    { id: 'quarterly', label: '季度财务报告', count: documents.quarterly.length },
-    { id: 'annual', label: '年度财务报告', count: documents.annual.length }
+    { id: 'agm', label: '股东大会摘要' },
+    { id: 'quarterly', label: '季度财务报告' },
+    { id: 'annual', label: '年度财务报告' }
   ] : [
-    { id: 'governance', label: 'Corporate Governance', count: documents.governance.length },
+    { id: 'governance', label: 'Corporate Governance' },
     { id: 'announcements', label: 'Company Announcements', href: 'https://www.bursamalaysia.com/market/listed-companies/company-announcements/subscribe/6068/option1/', external: true },
-    { id: 'agm', label: 'AGM Summary', count: documents.agm.length },
-    { id: 'quarterly', label: 'Quarterly Financial Report', count: documents.quarterly.length },
-    { id: 'annual', label: 'Annual Financial Report', count: documents.annual.length }
+    { id: 'agm', label: 'AGM Summary' },
+    { id: 'quarterly', label: 'Quarterly Financial Report' },
+    { id: 'annual', label: 'Annual Financial Report' }
   ];
   var root = document.querySelector('[data-investor-library]');
   if (!root) return;
@@ -193,7 +193,12 @@
   var labels = isZh ? { annual: '年度财务报告', quarterly: '季度财务报告', governance: '企业管治', agm: '股东大会摘要' } : { annual: 'Annual Financial Report', quarterly: 'Quarterly Financial Report', governance: 'Corporate Governance', agm: 'AGM Summary' };
   var descriptions = isZh ? { annual: '年度报告、声明、管治报告及股东大会相关文件。', quarterly: '按报告期间整理的季度财务报告。', governance: '政策、章程及委员会职权范围。', agm: '股东大会会议记录、摘要及股东问询回复。' } : { annual: 'Annual reports, statements, governance reports and supporting AGM documents.', quarterly: 'Quarterly financial reports arranged by reporting period.', governance: 'Policies, charters and committee terms of reference.', agm: 'AGM minutes, summaries and responses to shareholder queries.' };
   function escapeHtml(value) { return value.replace(/[&<>"']/g, function (c) { return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]; }); }
-  function titleOf(file) { return file.replace(/\.pdf$/i, ''); }
+  function titleOf(file) {
+    return file.replace(/\.pdf$/i, '')
+      .replace(/^Annua Report 2017$/, 'Annual Report 2017')
+      .replace(/^Annua lReport 2016$/, 'Annual Report 2016')
+      .replace(/^Statement to shareholders 2023$/, 'Statement to Shareholders 2023');
+  }
   function yearOf(file) { var match = file.match(/(19|20)\d{2}/); return match ? match[0] : ''; }
   function groupFiles(type) {
     var files = documents[type].slice();
@@ -207,14 +212,13 @@
   }
   function renderCategory(type) {
     var groups = groupFiles(type);
-    documentPanel.innerHTML = '<div class="investor-doc-head"><div><div class="page-card-kicker">' + (isZh ? '文件库' : 'Document library') + '</div><h2>' + labels[type] + '</h2><p>' + descriptions[type] + '</p></div><span class="investor-count">' + documents[type].length + ' ' + (isZh ? '份 PDF' : 'PDFs') + '</span></div>' + groups.map(function (group) { return '<section class="investor-doc-group investor-doc-group-open"><h3 class="investor-year-heading">' + escapeHtml(group.label) + '</h3><div class="investor-doc-list">' + group.files.map(function (file) { return '<a class="investor-doc-row" href="../documents/' + type.replace('governance', 'corporate-governance') .replace('agm', 'agm-summary').replace('annual', 'annual-reports').replace('quarterly', 'quarterly-reports') + '/' + encodeURIComponent(file) + '" target="_blank" rel="noopener"><span class="investor-doc-title">' + escapeHtml(titleOf(file)) + '</span><span class="investor-doc-meta">PDF <span aria-hidden="true">↗</span></span></a>'; }).join('') + '</div></section>'; }).join('');
+    documentPanel.innerHTML = '<div class="investor-doc-head"><div><div class="page-card-kicker">' + (isZh ? '文件库' : 'Document library') + '</div><h2>' + labels[type] + '</h2><p>' + descriptions[type] + '</p></div></div>' + groups.map(function (group) { return '<section class="investor-doc-group investor-doc-group-open"><h3 class="investor-year-heading">' + escapeHtml(group.label) + '</h3><div class="investor-doc-list">' + group.files.map(function (file) { return '<a class="investor-doc-row" href="../documents/' + type.replace('governance', 'corporate-governance') .replace('agm', 'agm-summary').replace('annual', 'annual-reports').replace('quarterly', 'quarterly-reports') + '/' + encodeURIComponent(file) + '" target="_blank" rel="noopener"><span class="investor-doc-title">' + escapeHtml(titleOf(file)) + '</span><span class="investor-doc-meta">PDF <span aria-hidden="true">↗</span></span></a>'; }).join('') + '</div></section>'; }).join('');
     root.querySelectorAll('[data-investor-category]').forEach(function (button) { button.classList.toggle('active', button.getAttribute('data-investor-category') === type); });
     if (select) select.value = type;
   }
   categories.forEach(function (category) {
     var item = document.createElement(category.href ? 'a' : 'button');
     item.className = 'investor-category'; item.textContent = category.label;
-    if (category.count) item.innerHTML += '<span>' + category.count + '</span>';
     if (category.href) { item.href = category.href; if (category.external) { item.target = '_blank'; item.rel = 'noopener'; } }
     else { item.type = 'button'; item.setAttribute('data-investor-category', category.id); item.addEventListener('click', function () { renderCategory(category.id); }); }
     categoryNav.appendChild(item);

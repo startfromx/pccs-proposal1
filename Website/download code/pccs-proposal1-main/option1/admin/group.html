@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow, noarchive">
   <title>PCCS Content Admin — Our Group</title>
-  <link rel="stylesheet" href="admin.css">
+  <link rel="stylesheet" href="admin.css?v=15">
 </head>
 <body>
   <section id="auth-screen" class="auth-screen"><div class="auth-card">
@@ -24,9 +24,9 @@
       <section class="toolbar"><div class="language-tabs" role="tablist"><button class="language-tab is-active" data-language="en" type="button">English</button><button class="language-tab" data-language="zh" type="button">中文</button></div><div class="actions"><button class="button button-secondary" id="reset-button" type="button">Reset</button><button class="button button-primary" id="save-button" type="button">Save to Supabase</button></div></section>
       <div class="group-tabs" role="tablist"><button class="group-tab is-active" data-section="story" type="button">Our Story</button><button class="group-tab" data-section="leadership" type="button">Leadership</button></div>
       <section id="story-editor" class="editor"><div class="editor-heading"><div><p class="eyebrow">OUR GROUP / OUR STORY</p><h2>Timeline content</h2></div><button class="button button-add" id="add-milestone" type="button">+ Add milestone</button></div><div class="group-form"><label class="form-wide">Section label<input id="story-kicker"></label><div id="milestone-list" class="milestone-list"></div></div></section>
-      <section id="leadership-editor" class="editor" hidden><div class="editor-heading"><div><p class="eyebrow">OUR GROUP / LEADERSHIP</p><h2>Director profiles</h2></div><button class="button button-add" id="add-leader" type="button">+ Add director</button></div><div class="group-form"><label class="form-wide">Section label<input id="leadership-kicker"></label><label class="form-wide">Introduction<textarea id="leadership-intro" rows="2"></textarea></label><div id="leader-list" class="leader-list"></div></div></section>
+      <section id="leadership-editor" class="editor" hidden><div class="editor-heading"><div><p class="eyebrow">OUR GROUP / LEADERSHIP</p><h2>Leadership profiles</h2><p class="editor-note">Maintain each person once. Name, photo and classification are shared; role and biography remain bilingual.</p></div><button class="button button-add" id="add-leader" type="button">+ Add profile</button></div><div class="group-form"><div class="leadership-copy-grid"><label>Section label English<input id="leadership-kicker-en"></label><label>中文区块标签<input id="leadership-kicker-zh"></label><label>Introduction English<textarea id="leadership-intro-en" rows="2"></textarea></label><label>中文简介<textarea id="leadership-intro-zh" rows="2"></textarea></label></div><div id="leader-list" class="leader-list"></div></div></section>
       <p id="status" class="status"></p>
     </main>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.4"></script><script src="supabase-config.js"></script><script src="sidebar-counts.js?v=2"></script><script src="group.js?v=14"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.4"></script><script src="supabase-config.js"></script><script src="sidebar-counts.js?v=2"></script><script src="group.js?v=17"></script>
 </body></html>
